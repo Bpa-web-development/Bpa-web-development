@@ -6,7 +6,7 @@ let cards = [];
 // Load card data
 async function loadCards() {
     try {
-        const response = await fetch("/Res/Data/ui-card.json");
+        const response = await fetch("/data/ui-card.json");
 
         if (!response.ok) {
             throw new Error("Could not load ui-card.json");
