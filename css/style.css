@@ -5,6 +5,9 @@
     right: 20px;
     z-index: 9999;
 }
+.accessibility-icon{
+    flex-direction: column;
+}
 .accessibility-icon img{
     width: 100%;
     height: 50px;
