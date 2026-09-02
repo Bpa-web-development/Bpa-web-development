@@ -1,3 +1,6 @@
+Ideas:
+ -User Recommends What Future Citys they Want to see 
+
 #Variables.css
 -Preset colors
 -find fonts
@@ -21,6 +24,8 @@
 -Different color sets to fit comfort
 
 sites to check out:
+-https://www.hellofresh.com/
+    ~Basicly what were doing but with food
 -https://pass.securly.com/ 
     ~I like the style it has for the menu and the Icon
     ~Seizure Safety Would be easy to do just my making the colors flat and reduce motion/visual triggers 
