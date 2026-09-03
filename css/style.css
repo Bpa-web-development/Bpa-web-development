@@ -23,3 +23,306 @@
     object-fit: contain;
     border-radius: 14px;
 }
+/*ACCESSIBILITY MENU*/
+
+.accessibility-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    display: flex;
+    justify-content: flex-end;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+.accessibility-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/*PANEL*/
+
+.accessibility-panel {
+    width: min(820px, 100%);
+    height: 100vh;
+
+    overflow-y: auto;
+
+    background: #f3f5fb;
+
+    box-shadow:
+        -5px 0 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/*HEADER*/
+
+.accessibility-header {
+    position: relative;
+
+    min-height: 335px;
+
+    padding: 20px 30px 30px;
+
+    background: #1674ed;
+
+    color: white;
+}
+
+
+.accessibility-header h2 {
+    margin: 25px 0 0;
+
+    text-align: center;
+
+    font-size: 36px;
+    font-weight: 500;
+}
+
+
+.accessibility-close {
+    position: absolute;
+
+    top: 15px;
+    left: 20px;
+
+    border: none;
+    background: transparent;
+
+    color: white;
+
+    font-size: 42px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+.accessibility-language {
+    position: absolute;
+
+    top: 20px;
+    right: 35px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 22px;
+}
+
+
+/*TOP BUTTONS*/
+
+.accessibility-top-buttons {
+    position: absolute;
+
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.accessibility-top-button {
+    min-height: 55px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: white;
+
+    color: #1674ed;
+
+    font-size: 21px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    transition: transform 0.15s ease;
+}
+
+
+.accessibility-top-button:hover {
+    transform: translateY(-2px);
+}
+
+
+.accessibility-button-icon {
+    font-size: 25px;
+}
+
+/*SETTINGS*/
+
+.accessibility-settings {
+    margin: 0 25px 30px;
+
+    padding: 25px;
+
+    border-radius: 22px;
+
+    background: white;
+}
+
+
+.accessibility-section-title {
+    margin: 0 0 20px;
+
+    font-size: 28px;
+    font-weight: 500;
+}
+
+
+.accessibility-option {
+    min-height: 95px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+
+    border-bottom: 1px solid #e5e7ec;
+}
+
+
+.accessibility-option:last-child {
+    border-bottom: none;
+}
+
+
+.accessibility-option-info {
+    flex: 1;
+}
+
+
+.accessibility-option-info h4 {
+    margin: 0 0 5px;
+
+    font-size: 23px;
+    font-weight: 500;
+}
+
+
+.accessibility-option-info p {
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 18px;
+}
+
+
+.accessibility-option-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f2f7fc;
+
+    font-size: 25px;
+}
+
+
+/*TOGGLE*/
+
+.accessibility-toggle {
+    width: 170px;
+}
+
+
+.toggle-button {
+    width: 170px;
+    height: 55px;
+
+    padding: 5px;
+
+    display: flex;
+
+    border: none;
+    border-radius: 30px;
+
+    background: #edf2f7;
+
+    cursor: pointer;
+}
+
+
+.toggle-button span {
+    width: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 25px;
+
+    font-size: 17px;
+    font-weight: 600;
+}
+
+
+.toggle-button.active {
+    background: #e1edff;
+}
+
+
+.toggle-button.active .toggle-on {
+    background: #1674ed;
+    color: white;
+}
+
+
+.toggle-button:not(.active) .toggle-off {
+    background: white;
+    color: #263143;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+/*FOOTER*/
+
+.accessibility-footer {
+    min-height: 65px;
+
+    padding: 10px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background: #1674ed;
+
+    color: white;
+
+    font-size: 20px;
+}
+
+
+.accessibility-footer-brand {
+    font-weight: 600;
+}

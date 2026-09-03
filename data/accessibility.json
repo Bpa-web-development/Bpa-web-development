@@ -1,0 +1,44 @@
+{
+    "title": "Accessibility Adjustments",
+    "language": "ENGLISH (US)",
+
+    "topButtons": [
+        {
+            "label": "Reset Settings",
+            "icon": "↻"
+        },
+        {
+            "label": "Statement",
+            "icon": "▱"
+        },
+        {
+            "label": "Hide Interface",
+            "icon": "◉"
+        }
+    ],
+
+    "sectionTitle": "Customize your browsing experience",
+
+    "settings": [
+        {
+            "title": "Seizure Safety",
+            "description": "Reduce motion and visual triggers",
+            "icon": "ϟ"
+        },
+        {
+            "title": "Low Vision Support",
+            "description": "Improve clarity and contrast",
+            "icon": "◉"
+        },
+        {
+            "title": "ADHD Friendly",
+            "description": "Support focus and reduce distractions",
+            "icon": "▣"
+        }
+    ],
+
+    "footer": {
+        "left": "Web Accessibility",
+        "right": "Learn More ›"
+    }
+}
