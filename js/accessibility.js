@@ -25,8 +25,9 @@ async function loadAccessibilityMenu() {
 
 function buildAccessibilityMenu() {
     const data = accessibilityData;
+    console.log(data)
     accessibilityMenu.innerHTML = `
-        <div class="accessibility-overlay">
+        <div id="accessibility-overlay">
             <div class="accessibility-panel">
                 <!-- Header -->
                 <header class="accessibility-header">
@@ -39,16 +40,17 @@ function buildAccessibilityMenu() {
 
                     <div class="accessibility-language">
                         <span>🇺🇸</span>
-                        ${data.header.language}
+                        ${data.language}
                         <span>⌄</span>
                     </div>
-                    <h2>${data.header.title}</h2>
+                    <h2>${data.title}</h2>
                 </header>
 
                 <!-- Top Buttons -->
                 <div class="accessibility-top-buttons">
 
-                    ${data.topButtons.map(button => `
+                    ${data.topButtons.map(button => 
+                        `
                         <button
                             class="accessibility-top-button"
                             id="${button.id}"
@@ -67,7 +69,7 @@ function buildAccessibilityMenu() {
                 <!-- Settings -->
                 <section class="accessibility-settings">
                     <h3 class="accessibility-section-title">
-                        ${data.section.title}
+                        ${data.title}
                     </h3>
                     <div class="accessibility-options">
                         ${data.settings.map(setting => `
@@ -121,7 +123,7 @@ function buildAccessibilityMenu() {
             </div>
         </div>
     `;
-
+    openAccessibilityMenu();
     setupAccessibilityEvents();
 }
 // EVENT LISTENERS
@@ -136,6 +138,7 @@ function setupAccessibilityEvents() {
     document.querySelectorAll(".toggle-button").forEach(button => {
         button.addEventListener("click", () => {
             const settingId = button.dataset.setting;
+            openAccessibilityMenu()
             toggleAccessibilitySetting(settingId, button);
 
         });
@@ -237,7 +240,16 @@ function resetAccessibilitySettings() {
 // OPEN / CLOSE
 
 function openAccessibilityMenu() {
-    accessibilityMenu.classList.add("open");
+    console.log("working")
+    const button = document.querySelector(".accessibility")
+    console.log(button)
+    button.addEventListener("click", () => {
+        console.log("hello")
+        const accessibilityOverlay = document.getElementById("accessibility-overlay")
+        accessibilityOverlay.classList.add("open");
+    })
+
+    
 
     document.body.classList.add(
         "accessibility-menu-open"

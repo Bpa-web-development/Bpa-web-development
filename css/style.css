@@ -25,13 +25,13 @@
 }
 /*ACCESSIBILITY MENU*/
 
-.accessibility-overlay {
+#accessibility-overlay {
     position: fixed;
     inset: 0;
     z-index: 10000;
 
     display: flex;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
 
     background: rgba(0, 0, 0, 0.25);
 
@@ -44,7 +44,7 @@
 }
 
 
-.accessibility-overlay.open {
+#accessibility-overlay.open {
     opacity: 1;
     visibility: visible;
 }
@@ -55,6 +55,7 @@
 .accessibility-panel {
     width: min(820px, 100%);
     height: 100vh;
+    display: flex;
 
     overflow-y: auto;
 
