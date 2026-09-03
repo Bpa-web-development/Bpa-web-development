@@ -16,3 +16,8 @@ Homepage
     Member quotes (Optional Survey, if complete user receives small discount on next payment)
     Q&A at the bottom
 
+About This Month
+    Go in depth and highlight the theme of the current month
+    Why we chose the city we chose
+    Why we chose specific items to add to our packages this month
+    Maybe historical facts about the area
