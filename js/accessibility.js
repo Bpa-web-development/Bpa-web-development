@@ -132,7 +132,8 @@ function setupAccessibilityEvents() {
 
     // Close menu
     const closeButton = document.getElementById("accessibilityClose");
-    closeButton.addEventListener("click", closeAccessibilityMenu);
+    closeButton.addEventListener("click", closeAccessibilityMenu()
+    );
 
     // Setting toggles
     document.querySelectorAll(".toggle-button").forEach(button => {
@@ -257,6 +258,7 @@ function openAccessibilityMenu() {
 }
 
 function closeAccessibilityMenu() {
+    console.log("Close button clicked")
     accessibilityMenu.classList.remove("open");
 
     document.body.classList.remove(

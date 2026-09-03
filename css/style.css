@@ -26,12 +26,13 @@
 /*ACCESSIBILITY MENU*/
 
 #accessibility-overlay {
+    
     position: fixed;
     inset: 0;
     z-index: 10000;
 
     display: flex;
-    /* justify-content: flex-end; */
+    flex-direction: column;
 
     background: rgba(0, 0, 0, 0.25);
 
@@ -47,6 +48,8 @@
 #accessibility-overlay.open {
     opacity: 1;
     visibility: visible;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -56,6 +59,7 @@
     width: min(820px, 100%);
     height: 100vh;
     display: flex;
+    flex-direction: column;
 
     overflow-y: auto;
 
@@ -126,30 +130,32 @@
 /*TOP BUTTONS*/
 
 .accessibility-top-buttons {
-    position: absolute;
+    /* position: absolute; */
 
-    left: 30px;
-    right: 30px;
+    left: 5px;
+    right: 5px;
     bottom: 30px;
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 
     gap: 18px;
+
+    padding: 15px 0;
 }
 
 
 .accessibility-top-button {
-    min-height: 55px;
-
+    min-height: 65px;
     border: none;
     border-radius: 30px;
+    max-width: 250px;
 
     background: white;
 
     color: #1674ed;
 
-    font-size: 21px;
+    font-size: 24px;
 
     cursor: pointer;
 
@@ -164,6 +170,7 @@
 
 .accessibility-top-button:hover {
     transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 
