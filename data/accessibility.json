@@ -23,17 +23,23 @@
         {
             "title": "Seizure Safety",
             "description": "Reduce motion and visual triggers",
-            "icon": "ϟ"
+            "icon": "/assets/icons/vision.png",
+            "alt": "ϟ"
+
+
         },
         {
             "title": "Low Vision Support",
             "description": "Improve clarity and contrast",
-            "icon": "◉"
+            "icon": "/assets/icons/low-vision.png",
+            "alt": "👁"
         },
         {
             "title": "ADHD Friendly",
             "description": "Support focus and reduce distractions",
-            "icon": "▣"
+            "icon": "/assets/icons/adhd.png",
+            "alt": "⚙"
+
         }
     ],
 

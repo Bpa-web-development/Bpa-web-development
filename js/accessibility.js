@@ -103,6 +103,7 @@ function buildAccessibilityMenu() {
                                 </div>
 
                                 <div class="accessibility-option-icon">
+                                <img src="${setting.icon}" alt="${setting.title} icon" />
                                     ${setting.icon}
                                 </div>
                             </div>
