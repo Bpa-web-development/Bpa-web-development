@@ -249,10 +249,13 @@ function openAccessibilityMenu() {
     const button = document.getElementById("accessibilityOpen")
     // console.log(button)
     button.addEventListener("click", () => {
-        console.log("hello")
+        button.classList.add("hidden")
+
         const accessibilityOverlay = document.getElementById("accessibility-overlay")
         accessibilityOverlay.classList.add("open");
-        button.classList.add("hidden")
+
+        const accessibilityMenu = document.getElementById("accessibilityMenu") 
+        accessibilityMenu.style.display = "flex"
         console.log(button)
     })
 
@@ -272,9 +275,8 @@ function closeAccessibilityMenu() {
     const button = document.getElementById("accessibilityOpen")
     button.classList.remove("hidden")
 
-    document.body.classList.remove(
-        "accessibility-menu-open"
-    );
+    const accessibilityMenu = document.getElementById("accessibilityMenu") 
+    accessibilityMenu.style.display = "none"
 }
 
 //start
