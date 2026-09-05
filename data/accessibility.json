@@ -5,11 +5,13 @@
     "topButtons": [
         {
             "label": "Reset Settings",
-            "icon": "↻"
+            "icon": "↻",
+            "id": "ResetButton"
         },
         {
             "label": "Statement",
-            "icon": "▱"
+            "icon": "▱",
+            "id": "StatementButton"
         }
     ],
 

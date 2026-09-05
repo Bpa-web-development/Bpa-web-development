@@ -105,7 +105,6 @@ function buildAccessibilityMenu() {
 
                                 <div class="accessibility-option-icon">
                                 <img src="${setting.icon}" alt="${setting.title} icon" />
-                                    ${setting.icon}
                                 </div>
                             </div>
                         `).join("")}
@@ -151,14 +150,27 @@ function setupAccessibilityEvents() {
     });
 
     // Top buttons
-    document.querySelectorAll(".accessibility-top-button").forEach(button => {
-        button.addEventListener("click", () => {
-            const action = button.dataset.action;
-            handleAccessibilityAction(action);
 
-        });
+    const resetButton = document.getElementById("ResetButton")
+    resetButton.addEventListener("click", () =>{
+        console.log("Reset Button Clicked")
+        document.querySelectorAll(".toggle-button").forEach(button => {
+            const settingId = button.dataset.setting;
+            const currentlyEnabled = button.getAttribute("aria-pressed") === "true";
+            if (currentlyEnabled){
+                toggleAccessibilitySetting(settingId, button)
+            }
+        })
+    })
 
-    });
+    // document.querySelectorAll(".accessibility-top-button").forEach(button => {
+    //     button.addEventListener("click", () => {
+    //         const action = button.dataset.action;
+    //         handleAccessibilityAction(action);
+
+    //     });
+
+    // });
 }
 
 // TOGGLE ACCESSIBILITY SETTING
@@ -185,11 +197,10 @@ function applyAccessibilitySetting(settingId, enabled) {
     document.documentElement.classList.toggle(
         `accessibility-${settingId}`,
         enabled
-    );k
-l
-    console.log(
-        `${settingId}: ${enabled ? "ON" : "OFF"}`
     );
+    // console.log(
+    //     `${settingId}: ${enabled ? "ON" : "OFF"}`
+    // );
 }
 
 
@@ -245,7 +256,6 @@ function resetAccessibilitySettings() {
 // OPEN / CLOSE
 
 function openAccessibilityMenu() {
-    console.log("working")
     const button = document.getElementById("accessibilityOpen")
     // console.log(button)
     button.addEventListener("click", () => {
