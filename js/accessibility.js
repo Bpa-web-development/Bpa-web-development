@@ -14,7 +14,8 @@ async function loadAccessibilityMenu() {
         accessibilityData = await response.json();
         buildAccessibilityMenu();
 
-    } catch (error) {
+    } 
+    catch (error) {
         console.error("Accessibility menu error:", error);
     }
 }
@@ -133,8 +134,10 @@ function setupAccessibilityEvents() {
 
     // Close menu
     const closeButton = document.getElementById("accessibilityClose");
-    closeButton.addEventListener("click", closeAccessibilityMenu()
-    );
+    // console.log(closeButton)
+    closeButton.addEventListener("click", () =>{
+        closeAccessibilityMenu()
+    });
 
     // Setting toggles
     document.querySelectorAll(".toggle-button").forEach(button => {
@@ -182,8 +185,8 @@ function applyAccessibilitySetting(settingId, enabled) {
     document.documentElement.classList.toggle(
         `accessibility-${settingId}`,
         enabled
-    );
-
+    );k
+l
     console.log(
         `${settingId}: ${enabled ? "ON" : "OFF"}`
     );
@@ -243,13 +246,16 @@ function resetAccessibilitySettings() {
 
 function openAccessibilityMenu() {
     console.log("working")
-    const button = document.querySelector(".accessibility")
-    console.log(button)
+    const button = document.getElementById("accessibilityOpen")
+    // console.log(button)
     button.addEventListener("click", () => {
         console.log("hello")
         const accessibilityOverlay = document.getElementById("accessibility-overlay")
         accessibilityOverlay.classList.add("open");
+        button.classList.add("hidden")
+        console.log(button)
     })
+
 
     
 
@@ -260,7 +266,11 @@ function openAccessibilityMenu() {
 
 function closeAccessibilityMenu() {
     console.log("Close button clicked")
-    accessibilityMenu.classList.remove("open");
+    const accessibilityOverlay = document.getElementById("accessibility-overlay");
+    accessibilityOverlay.classList.remove("open");
+
+    const button = document.getElementById("accessibilityOpen")
+    button.classList.remove("hidden")
 
     document.body.classList.remove(
         "accessibility-menu-open"

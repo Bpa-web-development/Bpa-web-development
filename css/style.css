@@ -22,6 +22,12 @@
     object-fit: contain;
     border-radius: 14px;
 }
+
+.accessibility-icon.hidden{
+    visibility: hidden;
+}
+
+
 /*ACCESSIBILITY MENU*/
 #accessibilityMenu{
     max-width: fit-content;
