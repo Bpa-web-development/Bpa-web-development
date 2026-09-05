@@ -473,3 +473,11 @@
     line-height: 1.6;
     color: var(--clr-dark);
 }
+
+.team-link {
+    right: 2rem; /* Position the link towards the right */
+    position: fixed; /* Keep it fixed on the screen */
+    top: 2rem; /* Position the link towards the bottom */
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
