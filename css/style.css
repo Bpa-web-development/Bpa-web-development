@@ -8,103 +8,107 @@
 /* PAGE NAVBAR */
 
 nav{
-    display: flex;
-    height: 8rem;
     width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
+    background-color: #222;
 }
 
 #NavbarContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 8rem;
-    width: 100%;
-    z-index: 1000;
-    background-color: #351515; /* White background for the navbar */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+   width: 90%;
+   max-width: 1200px;
+   margin: auto;
+    
     
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
 
+    min-height: 80px;
+
 }
 
-#CompanyLogo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 8rem;
-    width: 10rem                                                                                                                                                                                                                                                                                                                                                                                    ;
-}
+.circular-logo{
+    width: 65px;
+    height: 65px;
 
-#CompanyLogo img{
-    height: 92%;
-    width: auto;
-    transition: var(--transition);
-    background-color: transparent;
-}
-
-#CompanyLogo img:hover{
-    transform: scale(1.05);
-    transition: var(--transition);
-    cursor: pointer;
-}
-/* Gemini generated for the logo cut out */
-.circular-logo {
-  width: 10rem;
-  height: 8rem;
-  object-fit: cover;
-  /* Clips the rectangular element into a perfect circle, trimming the outer corners */
-  clip-path: circle(49% at 50% 50%);
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 #NavbarLinkContainer{
     display: flex;
-    flex-direction: row;
-    width: 60%;
-    justify-content: right;
+    align-items: center;
+    gap: 10px;
+
     list-style: none;
-    gap: 1.5rem;
-    margin-right: 1.5rem;
 }
 
-.LinkDropDown{
+#NavbarLinkContainer > li {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    max-height: 4rem;
 }
 
 .NavbarLinkItem{
-    position: relative;
-    font-size: 2rem;
+    display: block;
+    padding: 30px 15px;
+
+    color:white;
     text-decoration: none;
-    color: black;
-    display: flex;
-    width: auto;
-    transition: var(--transition);
+
+    font-family: arial, sans-serif;
+    font-size: 16px;
+
+    transition: 0.3s;
 }
 
 .NavbarLinkItem:hover{
-    transform: scale(1.05);
-    transition: var(--transition);
+    background-color: #444;
+
 }
 
+.SubMenu{
+    position: absolute;
+    top:100%;
+    left: 0;
 
+    min-width: 190px;
 
+    background-color: #333;
 
+    list-style: none;
 
+    opacity: 0;
+    visibility: hidden;
 
+    transform: translateY(10px);
 
+    transition: 0.25s;
 
+    z-index: 1000;
 
+}
 
+.LinkDropDown:hover .SubMenu{
+    opacity: 1;
+    visibility: visible;
 
+    transform: translateY(0);
+}
+.SubMenu li a {
+    display: block;
+
+    padding: 14px 18px;
+
+    color: white;
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    transition: 0.2s;
+}
+
+.SubMenu li a:hover {
+    background-color: #555;
+    padding-left: 23px;
+}
 
 
 /* Accessibility Button */
