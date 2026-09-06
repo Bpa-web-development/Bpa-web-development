@@ -32,7 +32,7 @@ sites to check out:
     {To implement an effective Seizure Safety mode, the application's design system relies on centralized theme management using CSS variables for key visual properties. Rather than hardcoding colors, transition speeds, and animation curves directly into individual page components, these dynamic values are declared at the root level of the layout. When a user activates the safety toggle button, a JavaScript event listener tracks the active state and toggles a dedicated accessibility class on the main site container. This single class swap overrides the global variables instantly across the entire interface—flattening aggressive background gradients, toning down high-contrast flash points, and capping standard UI animations to instant or minimal durations.
     Beyond the manual toggle, the system integrates seamlessly with native browser accessibility preferences through the prefers-reduced-motion media query. By detecting whether a user already has motion-reduction settings turned on at their operating system level, the interface can default to the safe state automatically upon initial load. Storing this choice in local browser storage ensures the low-trigger environment persists as the user navigates between pages or returns in future sessions, maintaining a consistent, accessible experience without impacting the core navigation layout.}
 
-    *TO DO*
+        *TO DO*
     **BEN**
     Key Responsibilities / 
     Structure & Flow: 
@@ -43,3 +43,5 @@ sites to check out:
     Clearly list or illustrate what items are included in each monthly tier (e.g., local snacks, artisan goods, city-themed apparel).
     BPA Standard Compliance:
     Ensure the design adheres to key Web Design contest standards—responsive layout, clean HTML/CSS/JS, fast load times, accessible color contrast, and clear navigation.
+
+
