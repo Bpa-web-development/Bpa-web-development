@@ -7,11 +7,17 @@
 
 /* PAGE NAVBAR */
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 nav{
     display: flex;
     height: 8rem;
     width: 100%;
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     left: 0;
 }
@@ -39,6 +45,14 @@ nav{
     align-items: center;
     height: 8rem;
     width: 10rem                                                                                                                                                                                                                                                                                                                                                                                    ;
+}
+
+#CompanyLogo a{
+    display: flex;
+    height: 92%;
+    width: auto;
+    align-items: center;
+    justify-content: center;
 }
 
 #CompanyLogo img{
@@ -96,9 +110,53 @@ nav{
 }
 
 
+/* SubscriptionPlan Cards */
 
+#SubscriptionCardContainer{
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    gap: 1rem;
+    width: 100%;
+}
 
+.SubscriptionCard{
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
 
+    width: 20%;
+    height: 30rem;
+
+    background-color:#351515;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+
+}
+
+.SubscriptionCard img{
+    margin-top: .5rem;
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+.SubscriptionCard button{
+    margin-top: auto;
+    margin-bottom: 1rem;
+    width: 30%;
+    height: 2rem;
+    border-radius: .5rem;
+    border: none;
+}
+
+.SubscriptionCard button:hover{
+    transition: var(--transition);
+    cursor: pointer;
+}
 
 
 

@@ -1,0 +1,48 @@
+{
+    "Plan1": {
+        "name": "Basic Plan",
+        "price": "$9.99/month",
+        "description": "This be the basic plan",
+        "features": [
+            "Feature 1",
+            "Feature 2",
+            "Feature 3"
+        ]
+    },
+    "Plan2": {
+        "name": "Standard Plan",
+        "price": "$19.99/month",
+        "description": "This be the standard plan",
+        "features": [
+            "Feature 1",
+            "Feature 2",
+            "Feature 3",
+            "Feature 4"
+        ]
+    },
+    "Plan3": {
+        "name": "Plentiful Plan",
+        "price": "$29.99/month",
+        "description": "This be the plentiful plan",
+        "features": [
+            "Feature 1",
+            "Feature 2",
+            "Feature 3",
+            "Feature 4",
+            "Feature 5"
+        ]
+    },
+    "Plan4": {
+        "name": "VIP Plan",
+        "price": "$49.99/month",
+        "description": "This be the VIP plan",
+        "features": [
+            "Feature 1",
+            "Feature 2",
+            "Feature 3",
+            "Feature 4",
+            "Feature 5",
+            "Feature 6"
+        ]
+    }
+}
