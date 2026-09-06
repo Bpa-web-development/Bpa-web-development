@@ -269,12 +269,6 @@ function openAccessibilityMenu() {
         console.log(button)
     })
 
-
-    
-
-    document.body.classList.add(
-        "accessibility-menu-open"
-    );
 }
 
 function closeAccessibilityMenu() {
