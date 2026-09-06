@@ -1,5 +1,7 @@
-{
-    "Plan1": {
+
+[
+    {
+        "id": "Plan1",
         "name": "Basic Plan",
         "price": "$9.99/month",
         "description": "This be the basic plan",
@@ -7,9 +9,11 @@
             "Feature 1",
             "Feature 2",
             "Feature 3"
-        ]
+        ],
+        "img": "/assets/images/basic-plan.png"
     },
-    "Plan2": {
+    {
+        "id": "Plan2",
         "name": "Standard Plan",
         "price": "$19.99/month",
         "description": "This be the standard plan",
@@ -18,9 +22,11 @@
             "Feature 2",
             "Feature 3",
             "Feature 4"
-        ]
+        ],
+        "img": "/assets/images/standard-plan.png"
     },
-    "Plan3": {
+    {
+        "id": "Plan3",
         "name": "Plentiful Plan",
         "price": "$29.99/month",
         "description": "This be the plentiful plan",
@@ -30,9 +36,11 @@
             "Feature 3",
             "Feature 4",
             "Feature 5"
-        ]
+        ],
+        "img": "/assets/images/plentiful-plan.png"
     },
-    "Plan4": {
+    {
+        "id": "Plan4",
         "name": "VIP Plan",
         "price": "$49.99/month",
         "description": "This be the VIP plan",
@@ -43,6 +51,11 @@
             "Feature 4",
             "Feature 5",
             "Feature 6"
-        ]
+        ],
+        "img": "/assets/images/vip-plan.png"
     }
-}
+    
+]
+
+
+

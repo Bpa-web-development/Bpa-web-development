@@ -32,13 +32,21 @@ nav{
     justify-content: space-between;
 
     min-height: 80px;
-
+    height: 8rem;
 }
 
 .circular-logo{
     width: 65px;
     height: 65px;
 }
+
+#CompanyLogo{
+    display: flex;
+    height: 60%;
+    width: auto;
+    align-items: center;
+}
+
 #CompanyLogo a{
     display: flex;
     height: 92%;
@@ -48,7 +56,7 @@ nav{
 }
 
 #CompanyLogo img{
-    height: 92%;
+    /* height: 92%; */
     width: auto;
     transition: var(--transition);
     background-color: transparent;
@@ -61,11 +69,11 @@ nav{
 }
 /* Gemini generated for the logo cut out */
 .circular-logo {
-  width: 10rem;
-  height: 8rem;
-  object-fit: cover;
-  /* Clips the rectangular element into a perfect circle, trimming the outer corners */
-  clip-path: circle(49% at 50% 50%);
+    width: 10rem;
+    height: 8rem;
+    object-fit: cover;
+    /* Clips the rectangular element into a perfect circle, trimming the outer corners */
+    clip-path: circle(49% at 50% 50%);
     border-radius: 50%;
     object-fit: cover;
 }
@@ -145,6 +153,67 @@ nav{
     background-color: #555;
     padding-left: 23px;
 }
+
+
+/* *********************** */
+/* SubscriptionPlan Cards */
+
+#SubscriptionCardContainer{
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.SubscriptionCard{
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+
+    width: 20%;
+    height: 30rem;
+
+    background-color:#351515;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+
+}
+
+.SubscriptionCard img{
+    margin-top: .5rem;
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+.SubscriptionCard button{
+    margin-top: auto;
+    margin-bottom: 1rem;
+    width: 30%;
+    height: 2rem;
+    border-radius: .5rem;
+    border: none;
+}
+
+.SubscriptionCard button:hover{
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.SubscriptionFeatures li{
+    list-style: none;
+}
+
+
+
+
+
+
 
 
 /* Accessibility Button */
