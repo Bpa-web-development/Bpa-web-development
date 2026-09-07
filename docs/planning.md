@@ -34,3 +34,13 @@ sites to check out:
 
 
 
+colors:
+Primary Background	#F8F9FA	Alabaster (Off-White)	Main page backgrounds, large content sections, outside margins.
+Base Surface	#FFFFFF	Pure White	Content cards, modal windows, dropdown menus, text inputs.
+Primary Brand	#344557	Faded Navy Blue	Navigation bars, primary buttons, footers, hero section backgrounds.
+Secondary Brand	#722F37	Deep Maroon	Active navigation states, secondary buttons, important alerts.
+Accent	#C5A059	Muted Gold	Badges, icons, call-to-action highlights, subtle underline accents.
+Primary Text	#1A1A24	Soft Black	All main body text and large typography headings.
+Secondary Text	#6C757D	Slate Gray	Subtitles, placeholder text, footer text, subtle borders.
+
+

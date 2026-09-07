@@ -1,31 +1,22 @@
-:root{
-    --clr-gold: #F2EC52;
-    --transition: all .3s ease-in-out;
-    --slower-transition: all .5s ease-in-out;
-
-}
-
-/* PAGE NAVBAR */
-
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-nav{
+/*PAGE NAVBAR*********************************************************************************************************/
+nav {
     width: 100%;
-    /* position: fixed; */
     top: 0;
     left: 0;
-    background-color: #222;
+    /* position: fixed; Uncomment if you want a sticky navbar */
+    background-color: var(--primary-color);
 }
 
 #NavbarContainer {
-   width: 90%;
-   max-width: 1200px;
-   margin: auto;
-    
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
     
     display: flex;
     align-items: center;
@@ -35,19 +26,15 @@ nav{
     height: 8rem;
 }
 
-.circular-logo{
-    width: 65px;
-    height: 65px;
-}
-
-#CompanyLogo{
+/***COMPANY LOGO***/
+#CompanyLogo {
     display: flex;
     height: 60%;
     width: auto;
     align-items: center;
 }
 
-#CompanyLogo a{
+#CompanyLogo a {
     display: flex;
     height: 92%;
     width: auto;
@@ -55,34 +42,31 @@ nav{
     justify-content: center;
 }
 
-#CompanyLogo img{
-    /* height: 92%; */
+#CompanyLogo img {
     width: auto;
-    transition: var(--transition);
     background-color: transparent;
+    transition: var(--transition);
 }
 
-#CompanyLogo img:hover{
+#CompanyLogo img:hover {
     transform: scale(1.05);
-    transition: var(--transition);
     cursor: pointer;
 }
-/* Gemini generated for the logo cut out */
+
 .circular-logo {
     width: 10rem;
     height: 8rem;
-    object-fit: cover;
-    /* Clips the rectangular element into a perfect circle, trimming the outer corners */
-    clip-path: circle(49% at 50% 50%);
     border-radius: 50%;
     object-fit: cover;
+    /* Clips the rectangular element into a perfect circle */
+    clip-path: circle(49% at 50% 50%); 
 }
 
-#NavbarLinkContainer{
+/***NAVIGATION LINKS***/
+#NavbarLinkContainer {
     display: flex;
     align-items: center;
     gap: 10px;
-
     list-style: none;
 }
 
@@ -90,73 +74,64 @@ nav{
     position: relative;
 }
 
-.NavbarLinkItem{
+.NavbarLinkItem {
     display: block;
     padding: 30px 15px;
-
-    color:white;
+    color: var(--base-surface-white);
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
     text-decoration: none;
-
-    font-family: arial, sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 16px;
-
-    transition: 0.3s;
+    transition: var(--transition);
 }
 
-.NavbarLinkItem:hover{
-    background-color: #444;
-
+.NavbarLinkItem:hover {
+    /* Kept hardcoded as no variable perfectly matched, feel free to update */
+    background-color: var(--secondary-color);
 }
 
-.SubMenu{
+/***DROPDOWN SUB-MENU***/
+.SubMenu {
     position: absolute;
-    top:100%;
+    top: 100%;
     left: 0;
-
     min-width: 190px;
-
-    background-color: #333;
-
+    
+    background-color: var(--secondary-color);
     list-style: none;
-
+    
+    /* Hidden by default, smoothly transitions in */
     opacity: 0;
     visibility: hidden;
-
     transform: translateY(10px);
-
-    transition: 0.25s;
-
+    transition: var(--transition);
     z-index: 1000;
-
 }
 
-.LinkDropDown:hover .SubMenu{
+/* Trigger dropdown visibility on hover */
+.LinkDropDown:hover .SubMenu {
     opacity: 1;
     visibility: visible;
-
     transform: translateY(0);
 }
+
 .SubMenu li a {
     display: block;
-
     padding: 14px 18px;
-
-    color: white;
+    color: var(--base-surface-white);
     text-decoration: none;
-
     font-family: Arial, sans-serif;
-
-    transition: 0.2s;
+    transition: var(--transition);
 }
 
 .SubMenu li a:hover {
     background-color: #555;
-    padding-left: 23px;
+    /* Indents the text slightly for a cool interactive feel */
+    padding-left: 23px; 
 }
 
-
-/* *********************** */
-/* SubscriptionPlan Cards */
+/***SubscriptionPlan Cards***/
 
 #SubscriptionCardContainer{
     display: flex;
@@ -208,13 +183,6 @@ nav{
 .SubscriptionFeatures li{
     list-style: none;
 }
-
-
-
-
-
-
-
 
 /* Accessibility Button */
 .accessibility {
