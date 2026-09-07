@@ -17,7 +17,7 @@ async function loadSubscriptionPlans() {
 }
 
 function buildSubscriptionPlans(data) {
-    const container = document.getElementById("SubscriptionCardContainer");
+    const container = document.getElementById("subscription-card-container");
 
     let containerContent = '';
 
@@ -25,12 +25,12 @@ function buildSubscriptionPlans(data) {
         console.log(plan)
         containerContent += 
             `   
-            <div class="SubscriptionCard">
+            <div class="subscription-card">
                 <h1>${plan.name}</h1>
                 <p>Price: ${plan.price}</p>
                 <p>${plan.description}</p>
                 <img src="${plan.img}" alt="">
-                <ul class="SubscriptionFeatures">
+                <ul class="subscription-features">
                     ${plan.features.map(feature => `<li>${feature}</li>`).join('')}
                 </ul>
                 <button>Subscribe</button>

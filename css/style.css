@@ -132,9 +132,9 @@ body {
 }
 
 /* SUBSCRIPTION PLAN CARDS */
-.subscription-card-container {
+#subscription-card-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
     gap: var(--space-lg);
     width: 100%;
     justify-content: center;
