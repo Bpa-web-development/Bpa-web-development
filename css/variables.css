@@ -1,21 +1,23 @@
 :root {
 
-    /* Main Color variables */
-    --background-off-white: #F8F9FA;
-    --base-surface-white: #FFFFFF;
-    --primary-color: #344557;
-    --secondary-color: #722F37;
-    --accent-color: #F2EC52;
+  /* Main Color variables */
+  --background-off-white: #F8F9FA;
+  --base-surface-white: #FFFFFF;
+  --primary-color: #344557;
+  --secondary-color: #722F37;
+  --accent-color: #F2EC52;
 
-    /* Text color variables */
-    --primary-text-color: #333;
-    --secondary-text-color: #6C757D;
-    --tertiary-text-color: #ADB5BD;
-    --quaternary-text-color: #CED4DA;
+  /* Text color variables */
+  --primary-text-color: #333;
+  --secondary-text-color: #6C757D;
+  --tertiary-text-color: #ADB5BD;
+  --quaternary-text-color: #CED4DA;
 
-    /* Main Font variables */
+  /* Main Font variables */
+  --font-heading: 'Playfair Display', serif; /* Or 'Montserrat', 'Merriweather' */
+  --font-body: 'Lato', sans-serif;           /* Or 'Inter', 'Open Sans' */
 
-    /* Typography Scale (Base 16px) */
+  /* Typography Scale (Base 16px) */
   --font-size-xs: 0.75rem;  /* 12px: Badges, captions, legal text */
   --font-size-sm: 0.875rem; /* 14px: Navigation links, metadata, small buttons */
   --font-size-base: 1rem;   /* 16px: All primary body paragraphs */
