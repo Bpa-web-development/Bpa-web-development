@@ -15,8 +15,38 @@
 
     /* Main Font variables */
 
+    /* Typography Scale (Base 16px) */
+  --font-size-xs: 0.75rem;  /* 12px: Badges, captions, legal text */
+  --font-size-sm: 0.875rem; /* 14px: Navigation links, metadata, small buttons */
+  --font-size-base: 1rem;   /* 16px: All primary body paragraphs */
+  --font-size-md: 1.25rem;  /* 20px: Subheadings (H4), large button text */
+  --font-size-lg: 1.5rem;   /* 24px: Section headers (H3) */
+  --font-size-xl: 2rem;     /* 32px: Page titles (H2) */
+  --font-size-xxl: 2.5rem;  /* 40px: Hero section main titles (H1) */
+
+  /* Spacing System (8px Grid) */
+  --space-xs: 0.25rem;  /* 4px: Inside complex components */
+  --space-sm: 0.5rem;   /* 8px: Between an icon and text */
+  --space-md: 1rem;     /* 16px: Standard padding inside buttons/inputs */
+  --space-lg: 1.5rem;   /* 24px: Margin between paragraphs */
+  --space-xl: 2rem;     /* 32px: Padding inside your white content cards */
+  --space-xxl: 4rem;    /* 64px: Vertical padding between major page sections */
+
+  /* Structural UI Variables */
+  --radius-sm: 4px;     /* Sharp, professional corners for inputs & tags */
+  --radius-md: 8px;     /* Softer corners for primary buttons */
+  --radius-lg: 12px;    /* Corners for large white content cards and modals */
+
+  /* Depth (Shadows) */
+  --shadow-sm: 0 1px 3px rgba(26, 26, 36, 0.1);  /* Hover states for buttons */
+  --shadow-md: 0 4px 6px rgba(26, 26, 36, 0.08); /* White cards resting on off-white */
+  
+  /* Interaction Timing */
+  --transition-fast: 150ms ease-in-out; /* Button hovers, color changes */
+  --transition-base: 250ms ease-in-out; /* Dropdown menus, modal popups */
+
     /*Card variables */
-    --border-radius: 1.5rem; 
+    --border-radius-btn: 1.5rem; 
 
 
     /* Event/interactivity variables */
