@@ -13,13 +13,11 @@
     <link rel="stylesheet" href="/css/responsive.css">
 
 </head>
-
-
     <body>
-        <nav>
-            <div id="NavbarContainer">
-                <div id="CompanyLogo">
-                    <a href="index.html">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="company-logo">
+                    <a href="../index.html">
                         <img class="circular-logo" 
                             src="/assets/images/Marlowby Logotemp.jpg" 
                             alt="Marlowby Logo"
@@ -27,53 +25,31 @@
                     </a>    
                 </div>
                 
-                <ul id="NavbarLinkContainer">
-
+                <ul class="navbar-link-container">
                     <!-- Specials Dropdown -->
-                    <li class="LinkDropDown">
-                        <a class="NavbarLinkItem" href="#">
-                            This Months Specials
-                        </a>
-
-                        <ul class="SubMenu">
+                    <li class="link-dropdown">
+                        <a class="navbar-link-item" href="#">Specials</a>
+                        <ul class="sub-menu">
                             <li><a href="#">Daily Specials</a></li>
                             <li><a href="#">Weekly Deals</a></li>
                             <li><a href="#">Limited Offers</a></li>
-
                         </ul>
-                    </li>   
-                    
-                    <li class="LinkDropDown">
-                        <a class="NavbarLinkItem" href="#">
-                            Past Months
-                        </a>
+                    </li>    
 
-                        <ul class="SubMenu">
-                            <li><a href="#">fill in here</a></li>
-                            <li><a href="#">fill in here</a></li>
-                            <li><a href="#">fill in here</a></li>
-
-                        </ul>
-                    </li>
-
-                    <li class="LinkDropdown">
-                        <a class="NavbarLinkItem" href="#">
-                            Our mission
-                        </a>
-
-                        <ul class="SubMenu">
+                    <!-- About Us Dropdown -->
+                    <li class="link-dropdown">
+                        <a class="navbar-link-item" href="#">About Us</a>
+                        <ul class="sub-menu">
                             <li><a href="#">Our Story</a></li>
                             <li><a href="#">Our Team</a></li>
                             <li><a href="#">Contact us</a></li>
                         </ul>
                     </li>
-                        <!-- Subscription Dropdown -->
-                    <li class="LinkDropDown">
-                        <a class="NavbarLinkItem" href="/html/SubscriptionPlans.html">
-                            Subscription Plans 
-                        </a>
-
-                        <ul class="SubMenu">
+                    
+                    <!-- Subscription Dropdown -->
+                    <li class="link-dropdown">
+                        <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
+                        <ul class="sub-menu">
                             <li><a href="#">Basic Plan</a></li>
                             <li><a href="#">Premium Plan</a></li>
                             <li><a href="#">Compare Plans</a></li>
@@ -81,11 +57,8 @@
                     </li>
 
                     <li>
-                        <a class="NavbarLinkItem" href="#">
-                            Sign In
-                        </a>
+                        <a class="navbar-link-item" href="#">Sign In</a>
                     </li>
-
                 </ul>
             </div>
         </nav>

@@ -4,184 +4,185 @@
     box-sizing: border-box;
 }
 
-/*PAGE NAVBAR*********************************************************************************************************/
-nav {
+/* PAGE NAVBAR */
+.navbar {
     width: 100%;
     top: 0;
     left: 0;
-    /* position: fixed; Uncomment if you want a sticky navbar */
+    /* position: sticky; /* Sticky is generally preferred over fixed for navbars */
     background-color: var(--primary-color);
 }
 
-#NavbarContainer {
+.navbar-container {
     width: 90%;
     max-width: 1200px;
-    margin: auto;
-    
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    min-height: 80px;
-    height: 8rem;
+    min-height: 8rem;
 }
 
-/***COMPANY LOGO***/
-#CompanyLogo {
+/* COMPANY LOGO */
+.company-logo {
     display: flex;
-    height: 60%;
-    width: auto;
     align-items: center;
+    height: 100%;
 }
 
-#CompanyLogo a {
+.company-logo a {
     display: flex;
-    height: 92%;
-    width: auto;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
 
-#CompanyLogo img {
-    width: auto;
-    background-color: transparent;
-    transition: var(--transition);
+.company-logo img {
+    height: 100%;
+    transition: var(--transition, 0.3s ease);
 }
 
-#CompanyLogo img:hover {
+.company-logo img:hover {
     transform: scale(1.05);
     cursor: pointer;
 }
 
 .circular-logo {
-    width: 10rem;
-    height: 8rem;
+    width: 8rem;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     object-fit: cover;
-    /* Clips the rectangular element into a perfect circle */
-    clip-path: circle(49% at 50% 50%); 
 }
 
-/***NAVIGATION LINKS***/
-#NavbarLinkContainer {
+/* NAVIGATION LINKS */
+.navbar-link-container {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 1rem;
     list-style: none;
 }
 
-#NavbarLinkContainer > li {
+.navbar-link-container > li {
     position: relative;
 }
 
-.NavbarLinkItem {
+.navbar-link-item {
     display: block;
-    padding: 30px 15px;
-    color: var(--base-surface-white);
+    padding: 1rem 1.5rem;
+    color: var(--base-surface-white, #fff);
     background-color: var(--secondary-color);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-btn, 0.25rem);
     text-decoration: none;
     font-family: Arial, sans-serif;
-    font-size: 16px;
-    transition: var(--transition);
+    font-size: 1rem;
+    transition: var(--transition, 0.3s ease);
 }
 
-.NavbarLinkItem:hover {
-    /* Kept hardcoded as no variable perfectly matched, feel free to update */
-    background-color: var(--secondary-color);
+.navbar-link-item:hover {
+    filter: brightness(1.1); /* Dynamically lightens the background instead of hardcoding */
 }
 
-/***DROPDOWN SUB-MENU***/
-.SubMenu {
+/* DROPDOWN SUB-MENU */
+.sub-menu {
     position: absolute;
     top: 100%;
     left: 0;
-    min-width: 190px;
-    
+    min-width: 12rem;
     background-color: var(--secondary-color);
     list-style: none;
-    
-    /* Hidden by default, smoothly transitions in */
+    border-radius: var(--border-radius-btn, 0.25rem);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(10px);
-    transition: var(--transition);
+    transform: translateY(-10px);
+    transition: var(--transition, 0.3s ease);
     z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Trigger dropdown visibility on hover */
-.LinkDropDown:hover .SubMenu {
+.link-dropdown:hover .sub-menu,
+.link-dropdown:focus-within .sub-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-.SubMenu li a {
+.sub-menu li a {
     display: block;
-    padding: 14px 18px;
-    color: var(--base-surface-white);
+    padding: 1rem 1.25rem;
+    color: var(--base-surface-white, #fff);
     text-decoration: none;
     font-family: Arial, sans-serif;
-    transition: var(--transition);
+    transition: var(--transition, 0.3s ease);
 }
 
-.SubMenu li a:hover {
-    background-color: #555;
-    /* Indents the text slightly for a cool interactive feel */
-    padding-left: 23px; 
+.sub-menu li a:hover,
+.sub-menu li a:focus {
+    background-color: rgba(255, 255, 255, 0.1); /* Better than a hardcoded #555 */
+    padding-left: 1.5rem; 
 }
 
-/***SubscriptionPlan Cards***/
-
-#SubscriptionCardContainer{
+/* SUBSCRIPTION PLAN CARDS */
+.subscription-card-container {
     display: flex;
-    flex-direction: row;
-    background-color: black;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     width: 100%;
     justify-content: center;
+    background-color: var(--background-dark, #000);
+    padding: 2rem;
 }
 
-.SubscriptionCard{
-    margin: 1rem;
+.subscription-card {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
-
-    width: 20%;
-    height: 30rem;
-
-    background-color:#351515;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    min-height: 30rem;
+    background-color: #351515;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
-
+    padding: 1rem;
+    transition: var(--transition, 0.3s ease);
 }
 
-.SubscriptionCard img{
-    margin-top: .5rem;
-    width: 50%;
-    height: auto;
+.subscription-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.subscription-card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
 }
 
-.SubscriptionCard button{
-    margin-top: auto;
-    margin-bottom: 1rem;
-    width: 30%;
-    height: 2rem;
-    border-radius: .5rem;
-    border: none;
+.subscription-features {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 0 1rem;
 }
 
-.SubscriptionCard button:hover{
-    transition: var(--transition);
-    cursor: pointer;
-}
-
-.SubscriptionFeatures li{
+.subscription-features li {
     list-style: none;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.subscription-card button {
+    margin-top: auto;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: var(--primary-color, #fff);
+    cursor: pointer;
+    transition: var(--transition, 0.3s ease);
+    font-weight: bold;
+}
+
+.subscription-card button:hover {
+    transform: scale(1.05);
 }
 
 /* Accessibility Button */
@@ -206,7 +207,6 @@ nav {
     width: 70px;
     height: 70px;
     object-fit: contain;
-    border-radius: 14px;
 }
 
 .accessibility-icon.hidden{
@@ -384,8 +384,8 @@ nav {
 
 
 .accessibility-button-icon img {
-    width: 30px;
-    height: 30px;
+    width: 5rem;
+    height: 100%;
 
     object-fit: contain;
 
@@ -455,8 +455,8 @@ nav {
 
 
 .accessibility-option-icon {
-    width: 45px;
-    height: 30px;
+    width: 3.75rem;
+    height: 3.75rem;
 
     display: flex;
     align-items: center;

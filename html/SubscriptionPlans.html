@@ -8,77 +8,70 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive.css">
 </head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="company-logo">
+                <a href="../index.html">
+                    <img class="circular-logo" 
+                        src="/assets/images/Marlowby Logotemp.jpg" 
+                        alt="Marlowby Logo"
+                    >
+                </a>    
+            </div>
+            
+            <ul class="navbar-link-container">
+                <!-- Specials Dropdown -->
+                <li class="link-dropdown">
+                    <a class="navbar-link-item" href="#">Specials</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Daily Specials</a></li>
+                        <li><a href="#">Weekly Deals</a></li>
+                        <li><a href="#">Limited Offers</a></li>
+                    </ul>
+                </li>    
 
-    <body>
-        <nav>
-            <div id="NavbarContainer">
-                <div id="CompanyLogo">
-                    <a href="../index.html">
-                        <img class="circular-logo" 
-                            src="/assets/images/Marlowby Logotemp.jpg" 
-                            alt="Marlowby Logo"
-                        >
-                    </a>    
-                </div>
+                <!-- About Us Dropdown -->
+                <li class="link-dropdown">
+                    <a class="navbar-link-item" href="#">About Us</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </li>
                 
-                <ul id="NavbarLinkContainer">
+                <!-- Subscription Dropdown -->
+                <li class="link-dropdown">
+                    <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Basic Plan</a></li>
+                        <li><a href="#">Premium Plan</a></li>
+                        <li><a href="#">Compare Plans</a></li>
+                    </ul>
+                </li>
 
-                    <!-- Specials Dropdown -->
-                    <li class="LinkDropDown">
-                        <a class="NavbarLinkItem" href="#">Specials
-                        </a>
+                <li>
+                    <a class="navbar-link-item" href="#">Sign In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-                        <ul class="SubMenu">
-                            <li><a href="#">Daily Specials</a></li>
-                            <li><a href="#">Weekly Deals</a></li>
-                            <li><a href="#">Limited Offers</a></li>
+    <section class="subscription-card-container">
+        <div class="subscription-card">
+            <h1>Plan Name</h1>
+            <p>Price: $XX.XX</p>
+            <p>Plan Description</p>
+            <img src="/assets/images/Marlowby Logotemp.jpg" alt="Subscription Plan Graphic">
+            <ul class="subscription-features">
+                <li>Feature 1 included</li>
+                <li>Feature 2 included</li>
+            </ul>
+            <button>Subscribe</button>
+        </div>
+    </section>
 
-                        </ul>
-                    </li>    
-
-                    <li class="LinkDropdown">
-                        <a class="NavbarLinkItem" href="#">
-                            About Us
-                        </a>
-
-                        <ul class="SubMenu">
-                            <li><a href="#">Our Story</a></li>
-                            <li><a href="#">Our Team</a></li>
-                            <li><a href="#">Contact us</a></li>
-                        </ul>
-                    </li>
-                        <!-- Subscription Dropdown -->
-                    <li class="LinkDropDown">
-                        <a class="NavbarLinkItem" href="/html/SubscriptionPlans.html">
-                            Subscription Plans 
-                        </a>
-
-                        <ul class="SubMenu">
-                            <li><a href="#">Basic Plan</a></li>
-                            <li><a href="#">Premium Plan</a></li>
-                            <li><a href="#">Compare Plans</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a class="NavbarLinkItem" href="#">
-                            Sign In
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </nav>
-
-        <section id="SubscriptionCardContainer">
-            <div class="SubscriptionCard">
-                <h1>Plan Name</h1>
-                <p>Price: $XX.XX</p>
-                <p>Plan Description</p>
-                <img src="/assets/images/Marlowby Logotemp.jpg" alt="">
-                <button>Subscribe</button>
-            </div>
-        </section>
-
-        <script src="/js/SubscriptionPlans.js"></script>
-    </body>
+    <script src="/js/SubscriptionPlans.js"></script>
+</body>
+</html>
