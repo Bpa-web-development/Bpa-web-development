@@ -10,7 +10,7 @@
             "Feature 2",
             "Feature 3"
         ],
-        "img": "/assets/images/basic-plan.png"
+        "img": "/assets/images/Screen-Shot-2020-03-21-at-10.13.22-AM.png"
     },
     {
         "id": "Plan2",
@@ -23,7 +23,7 @@
             "Feature 3",
             "Feature 4"
         ],
-        "img": "/assets/images/standard-plan.png"
+        "img": "/assets/images/Screen-Shot-2020-03-21-at-10.13.22-AM.png"
     },
     {
         "id": "Plan3",
@@ -37,7 +37,7 @@
             "Feature 4",
             "Feature 5"
         ],
-        "img": "/assets/images/plentiful-plan.png"
+        "img": "/assets/images/Screen-Shot-2020-03-21-at-10.13.22-AM.png"
     },
     {
         "id": "Plan4",
@@ -52,7 +52,7 @@
             "Feature 5",
             "Feature 6"
         ],
-        "img": "/assets/images/vip-plan.png"
+        "img": "/assets/images/Screen-Shot-2020-03-21-at-10.13.22-AM.png"
     }
     
 ]

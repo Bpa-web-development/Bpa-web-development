@@ -1,0 +1,71 @@
+/* RESPONSIVE DESIGN (MOBILE) */
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  .navbar-link-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--primary-color);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-md);
+    
+    /* Mobile Hide State */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: var(--transition-base);
+  }
+
+  .navbar-link-container.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .navbar-link-container > li {
+    width: 100%;
+  }
+
+  .navbar-link-item {
+    padding: 0.85rem 1.5rem;
+    justify-content: space-between;
+    border-radius: 0;
+  }
+
+  .sub-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.15);
+    display: none;
+    padding: 0;
+  }
+
+  .link-dropdown.is-active .sub-menu {
+    display: block;
+  }
+
+  .sub-menu li a {
+    color: var(--text-light);
+    padding-left: 2.5rem;
+  }
+
+  .nav-cta-item {
+    padding: 1rem 1.5rem 0.5rem;
+  }
+
+  .btn-signin {
+    width: 100%;
+    text-align: center;
+  }
+}
