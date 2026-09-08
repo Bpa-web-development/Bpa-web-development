@@ -191,7 +191,7 @@ body {
     gap: var(--space-lg);
     width: 100%;
     justify-content: center;
-    background-color: var(--base-surface-white);
+    background-color: var(--primary-color);
     padding: var(--space-xl);
 }
 
