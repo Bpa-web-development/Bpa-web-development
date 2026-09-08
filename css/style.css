@@ -1,187 +1,134 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: var(--font-body);
-  background-color: var(--background-off-white);
-  color: var(--primary-text-color);
+    font-family: var(--font-body);
+    background-color: var(--background-off-white);
+    color: var(--primary-text-color);
 }
 
-/* HEADER & NAVBAR STRUCTURAL STYLES */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: var(--primary-color);
-  box-shadow: var(--shadow-sticky);
+/* PAGE NAVBAR */
+.navbar {
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--primary-color);
 }
 
 .navbar-container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 4.75rem; /* Sleek, non-bulky height */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 8rem;
 }
 
-/* LOGO */
+/* COMPANY LOGO */
+.company-logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
 .company-logo a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-family: var(--font-heading);
+    color: var(--base-surface-white, #fff);
+    text-decoration: none;
+    font-size: var(--font-size-lg);
+}
+
+.company-logo img {
+    height: 100%;
+    transition: var(--transition);
+}
+
+.company-logo img:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 .circular-logo {
-  width: 3.25rem;
-  height: 3.25rem;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
+    width: 8rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.company-logo a:hover .circular-logo {
-  transform: scale(1.05);
-  border-color: var(--accent-color);
-}
-
-/* NAVIGATION LINKS CONTAINER */
+/* NAVIGATION LINKS */
 .navbar-link-container {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
 }
 
 .navbar-link-container > li {
-  position: relative;
+    position: relative;
 }
 
-/* TOP LEVEL LINKS */
 .navbar-link-item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.5rem 0.75rem;
-  color: var(--text-light);
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  text-decoration: none;
-  letter-spacing: 0.3px;
-  border-radius: var(--radius-sm);
-  transition: color var(--transition-fast), background-color var(--transition-fast);
+    display: block;
+    padding: var(--space-md) var(--space-lg);
+    color: var(--base-surface-white, #fff);
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius-btn);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    transition: var(--transition);
 }
 
-.navbar-link-item:hover,
-.link-dropdown:hover > .navbar-link-item {
-  color: var(--accent-color);
-  background-color: rgba(255, 255, 255, 0.05);
+.navbar-link-item:hover {
+    filter: brightness(1.1);
 }
 
-/* CHEVRON ANIMATION */
-.chevron {
-  transition: transform var(--transition-fast);
-}
-
-.link-dropdown:hover .chevron {
-  transform: rotate(180deg);
-}
-
-/* DROPDOWN MENU */
+/* DROPDOWN SUB-MENU */
 .sub-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 13rem;
-  padding: 0.5rem 0;
-  background-color: var(--base-surface-white);
-  list-style: none;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: var(--transition-base);
-  z-index: 1100;
-}
-
-/* Invisible hover bridge prevents mouseout gaps */
-.link-dropdown::before {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 10px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 12rem;
+    background-color: var(--secondary-color);
+    list-style: none;
+    border-radius: var(--radius-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+    z-index: 1000;
+    box-shadow: var(--shadow-md);
 }
 
 .link-dropdown:hover .sub-menu,
 .link-dropdown:focus-within .sub-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 .sub-menu li a {
-  display: block;
-  padding: 0.65rem 1.25rem;
-  color: var(--primary-text-color);
-  font-size: var(--font-size-sm);
-  text-decoration: none;
-  font-weight: 400;
-  transition: background-color var(--transition-fast), color var(--transition-fast), padding-left var(--transition-fast);
+    display: block;
+    padding: var(--space-md) 1.25rem;
+    color: var(--base-surface-white, #fff);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    transition: var(--transition);
 }
 
 .sub-menu li a:hover,
 .sub-menu li a:focus {
-  background-color: #F1F3F5;
-  color: var(--secondary-color);
-  padding-left: 1.5rem;
-}
-
-/* CALL TO ACTION BUTTON (SIGN IN) */
-.btn-signin {
-  display: inline-block;
-  padding: 0.55rem 1.4rem;
-  color: var(--text-light);
-  background-color: var(--secondary-color);
-  border-radius: var(--radius-pill);
-  text-decoration: none;
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  transition: all var(--transition-fast);
-}
-
-.btn-signin:hover {
-  background-color: #8c3a44;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-
-/* MOBILE TOGGLE (HAMBURGER) */
-.mobile-nav-toggle {
-  display: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  flex-direction: column;
-  gap: 5px;
-  padding: 0.5rem;
-}
-
-.hamburger-bar {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background-color: var(--text-light);
-  border-radius: 2px;
-  transition: var(--transition-fast);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 1.5rem; 
 }
 
 /* SUBSCRIPTION PLAN CARDS */
