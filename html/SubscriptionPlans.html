@@ -3,62 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <!-- Favicon & Title -->
+    <title>Marlowby | Home</title>
+    <link rel="icon" type="image/x-icon" href="/assets/images/Marlowby Logotemp.jpg">
+
+    <!--css links-->
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive.css">
+
+    <!-- Google Fonts Link (Playfair Display & Lato) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
 </head>
-    <body>
-                <nav class="navbar">
-            <div class="navbar-container">
-                <div class="company-logo">
-                    <a href="../index.html">
-                        <img class="circular-logo" 
-                            src="/assets/images/Marlowby Logotemp.jpg" 
-                            alt="Marlowby Logo"
-                        >
-                    </a>    
-                </div>
-                
-                <ul class="navbar-link-container">
-                    <!-- Specials Dropdown -->
-                    <li class="link-dropdown">
-                        <a class="navbar-link-item" href="#">Specials</a>
-                        <ul class="sub-menu">
-                            <li><a href="#">Daily Specials</a></li>
-                            <li><a href="#">Weekly Deals</a></li>
-                            <li><a href="#">Limited Offers</a></li>
-                        </ul>
-                    </li>    
 
-                    <!-- About Us Dropdown -->
-                    <li class="link-dropdown">
-                        <a class="navbar-link-item" href="/html/our-mission.html">About Us</a>
-                        <ul class="sub-menu">
-                            <li><a href="#">Our Story</a></li>
-                            <li><a href="#">Our Team</a></li>
-                            <li><a href="#">Contact us</a></li>
-                        </ul>
-                    </li>
-                    
-                    <!-- Subscription Dropdown -->
-                    <li class="link-dropdown">
-                        <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
-                        <ul class="sub-menu">
-                            <li><a href="#">Basic Plan</a></li>
-                            <li><a href="#">Premium Plan</a></li>
-                            <li><a href="#">Compare Plans</a></li>
-                        </ul>
-                    </li>
+<body>
 
-                    <li>
-                        <a class="navbar-link-item" href="/html/box-detail.html">Sign In</a>
-                    </li>
-                </ul>
+    <!-- Navigation Bar Section -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="company-logo">
+                <a href="../index.html">
+                    <img class="circular-logo" 
+                    src="/assets/images/Marlowby Logotemp.jpg" 
+                    alt="Marlowby Logo">
+                </a>    
             </div>
-        </nav>
-        <section id="subscription-card-container">
+                
+            <ul class="navbar-link-container">
+                <!-- Specials Dropdown -->
+                <li class="link-dropdown">
+                    <a class="navbar-link-item" href="/html/specials.html">Specials</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Daily Specials</a></li>
+                        <li><a href="#">Weekly Deals</a></li>
+                        <li><a href="#">Limited Offers</a></li>
+                    </ul>
+                </li>
+
+                <!-- Past Months -->
+                <li class="link-dropdown">
+                    <a class="navbar-link-item" href="/html/past-months.html">Past Months</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">January 2026</a></li>
+                        <li><a href="#">February 2026</a></li>
+                        <li><a href="#">March 2026</a></li>
+                    </ul>
+                </li>
+                <!-- <li><a href="#">Limited Offers</a></li>
+                    </ul>
+                </li>    -->
+
+                <!-- About Us Dropdown -->
+                <li class="link-dropdown">
+                    <a class="navbar-link-item" href="/html/our-mission.html">About Us</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </li>
+                    
+                <!-- Subscription Dropdown -->
+                <li class="link-dropdown">
+                    <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Basic Plan</a></li>
+                        <li><a href="#">Premium Plan</a></li>
+                        <li><a href="#">Compare Plans</a></li>
+                    </ul>
+                </li>
+
+                <!-- Sign In Button -->
+                <li>
+                       <a class="navbar-link-item" href="#">Sign In</a>
+                </li>
+
+                <!-- Shopping Cart -->
+                <li>
+                       <a class="navbar-link-item" href="#">Cart</a>
+                </li>
+            </ul>   
+        </div>
+    </nav> 
+
+    <section id="subscription-card-container">
             
+    </section>
+    <script src="/js/SubscriptionPlans.js"></script>
+
+    <!-- SKIP PAST SEC -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+   <!--MAIN AREA-->
+    <main id="main-content">
+        </div>
+
+        <section class="box-detail-section" aria-labelledby="box-title">
+            <div class="container box-grid">
+                
+<!-- PRODUCTS VIEWING  TS -->
+    <div class="box-gallery">
+        <img src="images/featured-box-main.jpg" alt="Marlowby open monthly subscription box showing local artisan goods" class="main-image">
+    <div class="thumbnail-grid">
+    <img src="images/apparel-thumb.jpg" alt="Local themed graphic apparel item">
+     <img src="images/gourmet-thumb.jpg" alt="Artisanal local treat packaging">
+     <img src="images/craft-thumb.jpg" alt="Handcrafted home good item">
+            </div>
+                </div>
+
+                <!-- PRODUCT PURSCHASE N SHIPPING DETAILS -->
+                <div class="box-info">
+                    <span class="badge">Featured City of the Month</span>
+                    <h1 id="box-title">The Curated City Experience Box</h1>
+                    <p class="price-tag">$49.99 <span>/ or included with Monthly Subscription</span></p>
+
+                    <p class="description">
+                        Explore America’s top culture hubs! Every month features a brand-new featured U.S. city, delivering 5 handpicked items from independent urban artisans, small-batch bakeries, and regional craftsmen[cite: 2].
+                    </p>
+
+                    <!--PRUCHASE + YART + SHIPPING-->
+                    <form class="purchase-form" action="#" method="POST">
+                        <fieldset class="purchase-type">
+                            <legend class="sr-only">Choose Purchase Option</legend>
+                            
+                            <label class="radio-card">
+                                <input type="radio" name="purchase_option" value="subscribe" checked>
+                                <span class="card-content">
+                                    <strong>Monthly Subscription (Save 15%)</strong>
+                                    <small>$42.49/mo • Automatically rotates to a new city next month</small>
+                                </span>
+                            </label>
+
+                            <label class="radio-card">
+                                <input type="radio" name="purchase_option" value="one-time">
+                                <span class="card-content">
+                                    <strong>Single City Box</strong>
+                                    <small>$49.99 one-time purchase</small>
+                                </span>
+                            </label>
+                        </fieldset>
+
+                        <div class="action-row">
+                            <div class="quantity-selector">
+                                <label for="quantity">Qty:</label>
+                                <select id="quantity" name="quantity">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary add-to-cart-btn">
+                                Add Box to Cart
+                            </button>
+                        </div>
+                    </form>
+
+                    <!--OUR IMPACT ON COMMUNITY / MAYBE TBD-->
+                    <div class="community-impact-box">
+                        <h3>Small Business Impact</h3>
+                        <p>10% of proceeds from every box directly support independent small business development grants in the featured city[cite: 2].</p>
+      </div>
+      </div>
+
+      </div>
+    </section>
+
+    <!--ITEMS N CATEGO N EACH TYTPE-->
+        <section class="box-contents-section" aria-labelledby="contents-title">
+            <div class="container">
+                <h2 id="contents-title">Standard Items Included in Every City Box</h2>
+                <div class="items-grid">
+                    
+                    <article class="item-card">
+                        <img src="images/apparel.jpg" alt="Heritage styled unisex graphic apparel">
+                        <h3>Custom Heritage Apparel</h3>
+                        <p class="vendor-tag">Category: Local Apparel &amp; Accessories</p>
+                        <p>Premium, soft-blend unisex apparel featuring custom typography and graphics celebrating local city culture.</p>
+                    </article>
+
+                    <article class="item-card">
+                        <img src="images/confection.jpg" alt="Small batch sweets and snacks">
+                        <h3>Gourmet Local Snacks &amp; Confections</h3>
+                        <p class="vendor-tag">Category: Artisanal Foods</p>
+                        <p>Small-batch sweets, savory snacks, or specialty condiments crafted fresh by local family-owned kitchens.</p>
+                    </article>
+
+                    <article class="item-card">
+                        <img src="images/craft.jpg" alt="Handcrafted soy wax candle or home good">
+                        <h3>Handcrafted Home &amp; Living Goods</h3>
+                        <p class="vendor-tag">Category: Home &amp; Craft</p>
+                        <p>Eco-friendly soy candles, custom coasters, or wellness crafts created by local neighborhood makers.</p>
+                    </article>
+
+                    <article class="item-card">
+                        <img src="images/drink.jpg" alt="Local craft roast coffee or beverage blend">
+                        <h3>Signature Craft Beverage / Coffee</h3>
+                        <p class="vendor-tag">Category: Beverage &amp; Cafe</p>
+                        <p>Locally roasted coffee beans, specialty tea blends, or craft soda syrups unique to the month's featured area.</p>
+                    </article>
+
+                </div>
+            </div>
         </section>
-        <script src="/js/SubscriptionPlans.js"></script>
+    </main>
+
+    <!--FOOTS /TBD-->
+    <footer class="site-footer">
+        <div class="container footer-content">
+                    <p>&copy; 2027 Marlowby Subscription Services. All rights reserved.</p>
+                    <nav aria-label="Footer Navigation">
+                        <ul class="footer-links">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="works-cited.html">Works Cited / Copyright</a></li>
+        </ul>
+            </nav>
+        </div>
+    </footer>
+    <script src="box.js"></script>
     </body>
