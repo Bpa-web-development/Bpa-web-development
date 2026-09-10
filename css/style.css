@@ -54,6 +54,7 @@ body {
     display: flex;
     align-items: center;
     height: 100%;
+    right: 15rem;
 }
 
 .company-logo a {
@@ -89,8 +90,8 @@ body {
 }
 
 .circular-logo {
-    width: 6.5rem;
-    height: 6.5rem;
+    width: 6rem;
+    height: 6rem;
 
     border-radius: 50%;
 
