@@ -54,7 +54,6 @@ body {
     display: flex;
     align-items: center;
     height: 100%;
-    right: 15rem;
 }
 
 .company-logo a {
