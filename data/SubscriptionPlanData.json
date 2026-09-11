@@ -1,61 +1,45 @@
+{
 
-[
+  "featuredBox": {
+    "title": "The Curated City Experience Box",
+    "badge": "Featured City of the Month",
+    "subscriptionPrice": 42.49,
+    "oneTimePrice": 49.99,
+    "mainImage": "/assets/images/featured-box-main.jpg",
+    "thumbnails": [
+      { "src": "/", "alt": "Local themed graphic apparel item" },
+      { "src": "/", "alt": "Artisanal local treat packaging" },
+      { "src": "/", "alt": "Handcrafted home good item" }
+    ]
+  },
+  "standardItems": [
     {
-        "id": "Plan1",
-        "name": "Basic Plan",
-        "price": "$9.99/month",
-        "description": "This be the basic plan",
-        "features": [
-            "Feature 1",
-            "Feature 2",
-            "Feature 3"
-        ],
-        "img": "/assets/images/basic-plan.png"
+      "id": 1,
+      "title": "Custom Heritage Apparel",
+      "category": "Local Apparel & Accessories",
+      "image": "/",
+      "description": "Premium, soft-blend unisex apparel featuring custom typography and graphics celebrating local city culture."
     },
     {
-        "id": "Plan2",
-        "name": "Standard Plan",
-        "price": "$19.99/month",
-        "description": "This be the standard plan",
-        "features": [
-            "Feature 1",
-            "Feature 2",
-            "Feature 3",
-            "Feature 4"
-        ],
-        "img": "/assets/images/standard-plan.png"
+      "id": 2,
+      "title": "Gourmet Local Snacks & Confections",
+      "category": "Artisanal Foods",
+      "image": "/",
+      "description": "Small-batch sweets, savory snacks, or specialty condiments crafted fresh by local family-owned kitchens."
     },
     {
-        "id": "Plan3",
-        "name": "Plentiful Plan",
-        "price": "$29.99/month",
-        "description": "This be the plentiful plan",
-        "features": [
-            "Feature 1",
-            "Feature 2",
-            "Feature 3",
-            "Feature 4",
-            "Feature 5"
-        ],
-        "img": "/assets/images/plentiful-plan.png"
+      "id": 3,
+      "title": "Handcrafted Home & Living Goods",
+      "category": "Home & Craft",
+      "image": "/",
+      "description": "Eco-friendly soy candles, custom coasters, or wellness crafts created by local neighborhood makers."
     },
     {
-        "id": "Plan4",
-        "name": "VIP Plan",
-        "price": "$49.99/month",
-        "description": "This be the VIP plan",
-        "features": [
-            "Feature 1",
-            "Feature 2",
-            "Feature 3",
-            "Feature 4",
-            "Feature 5",
-            "Feature 6"
-        ],
-        "img": "/assets/images/vip-plan.png"
+      "id": 4,
+      "title": "Signature Craft Beverage / Coffee",
+      "category": "Beverage & Cafe",
+      "image": "/",
+      "description": "Locally roasted coffee beans, specialty tea blends, or craft soda syrups unique to the month's featured area."
     }
-    
-]
-
-
-
+  ]
+}

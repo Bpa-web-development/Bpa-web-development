@@ -10,8 +10,9 @@
 
     <!--css links-->
     <link rel="stylesheet" href="/css/variables.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/subscriptionPlans.css">
     <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <!-- Google Fonts Link (Playfair Display & Lato) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,9 +57,6 @@
                         <li><a href="#">March 2026</a></li>
                     </ul>
                 </li>
-                <!-- <li><a href="#">Limited Offers</a></li>
-                    </ul>
-                </li>    -->
 
                 <!-- About Us Dropdown -->
                 <li class="link-dropdown">
@@ -89,6 +87,7 @@
                 <li>
                     <a class="navbar-link-item" href="#">
                         <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cart-count">0</span>
                     </a>
                 </li>
             </ul>   
@@ -98,29 +97,27 @@
     <section id="subscription-card-container">
             
     </section>
-    <script src="/js/SubscriptionPlans.js"></script>
 
     <!-- SKIP PAST SEC -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
    <!--MAIN AREA-->
     <main id="main-content">
-        </div>
 
         <section class="box-detail-section" aria-labelledby="box-title">
             <div class="container box-grid">
                 
-<!-- PRODUCTS VIEWING  TS -->
-    <div class="box-gallery">
-        <img src="images/featured-box-main.jpg" alt="Marlowby open monthly subscription box showing local artisan goods" class="main-image">
-    <div class="thumbnail-grid">
-    <img src="images/apparel-thumb.jpg" alt="Local themed graphic apparel item">
-     <img src="images/gourmet-thumb.jpg" alt="Artisanal local treat packaging">
-     <img src="images/craft-thumb.jpg" alt="Handcrafted home good item">
-            </div>
+                <!-- PRODUCTS VIEWING -->
+                <div class="box-gallery">
+                    <img src="images/featured-box-main.jpg" alt="Marlowby open monthly subscription box showing local artisan goods" class="main-image">
+                    <div class="thumbnail-grid">
+                        <img src="images/apparel-thumb.jpg" alt="Local themed graphic apparel item">
+                        <img src="images/gourmet-thumb.jpg" alt="Artisanal local treat packaging">
+                        <img src="images/craft-thumb.jpg" alt="Handcrafted home good item">
+                    </div>
                 </div>
 
-                <!-- PRODUCT PURSCHASE N SHIPPING DETAILS -->
+                <!-- PRODUCT PURCHASE & SHIPPING DETAILS -->
                 <div class="box-info">
                     <span class="badge">Featured City of the Month</span>
                     <h1 id="box-title">The Curated City Experience Box</h1>
@@ -130,7 +127,7 @@
                         Explore America’s top culture hubs! Every month features a brand-new featured U.S. city, delivering 5 handpicked items from independent urban artisans, small-batch bakeries, and regional craftsmen[cite: 2].
                     </p>
 
-                    <!--PRUCHASE + YART + SHIPPING-->
+                    <!-- PURCHASE + CART + SHIPPING -->
                     <form class="purchase-form" action="#" method="POST">
                         <fieldset class="purchase-type">
                             <legend class="sr-only">Choose Purchase Option</legend>
@@ -168,17 +165,17 @@
                         </div>
                     </form>
 
-                    <!--OUR IMPACT ON COMMUNITY / MAYBE TBD-->
+                    <!-- COMMUNITY IMPACT -->
                     <div class="community-impact-box">
                         <h3>Small Business Impact</h3>
                         <p>10% of proceeds from every box directly support independent small business development grants in the featured city[cite: 2].</p>
-      </div>
-      </div>
+                    </div>
+                </div>
 
-      </div>
-    </section>
+            </div>
+        </section>
 
-    <!--ITEMS N CATEGO N EACH TYTPE-->
+        <!-- ITEMS IN EACH CATEGORY -->
         <section class="box-contents-section" aria-labelledby="contents-title">
             <div class="container">
                 <h2 id="contents-title">Standard Items Included in Every City Box</h2>
@@ -217,19 +214,20 @@
         </section>
     </main>
 
-    <!--FOOTS /TBD-->
+    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="container footer-content">
-                    <p>&copy; 2027 Marlowby Subscription Services. All rights reserved.</p>
-                    <nav aria-label="Footer Navigation">
-                        <ul class="footer-links">
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Service</a></li>
-            <li><a href="works-cited.html">Works Cited / Copyright</a></li>
-        </ul>
+            <p>&copy; 2027 Marlowby Subscription Services. All rights reserved.</p>
+            <nav aria-label="Footer Navigation">
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="works-cited.html">Works Cited / Copyright</a></li>
+                </ul>
             </nav>
         </div>
     </footer>
-    <script src="box.js"></script>
+
+    <script src="/js/SubscriptionPlans.js"></script>
 </body>
 </html>
