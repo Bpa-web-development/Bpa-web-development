@@ -1,7 +1,7 @@
 
 /*Grid ish layout TBD*/
 .box-detail-section {
-  padding: var(--space-xl, 2rem) 0 var(--space-xxl, 4rem) 0;
+  padding: var(--space-xl, 2rem) 2rem var(--space-xxl, 4rem) 2rem;
 }
 
 .box-grid {
@@ -183,7 +183,7 @@
 
 /*ITEM GRID TBD FOR CERTAIN*/
 .box-contents-section {
-  padding: var(--space-xxl, 4rem) 0;
+  padding: var(--space-xxl, 4rem) 2rem;
   background-color: var(--base-surface-white, #FFFFFF);
   border-top: 1px solid var(--quaternary-text-color, #CED4DA);
 }

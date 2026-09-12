@@ -3,7 +3,7 @@
   /* Main Color variables */
   --background-off-white: #F8F9FA;
   --base-surface-white: #FFFFFF;
-  --primary-color: #344557;
+  --primary-color: rgba(25, 32, 50, 0.98);
   --secondary-color: #722F37;
   --accent-color: #F2EC52;
 

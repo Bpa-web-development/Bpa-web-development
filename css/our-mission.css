@@ -1,91 +1,251 @@
+.mission_hero {
+    width: 100%;
+    min-height: calc(100vh - 6rem);
+    background: var(--background-off-white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--space-xxl) var(--space-xl);
+}
+
+.mission_hero_container {
+    width: 100%;
+    max-width: 1150px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-xxl);
+}
+
+.mission_hero_text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.mission_eyebrow {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: var(--space-sm);
+    font-family: var(--font-body);
+}
+
+.mission_hero_text h1 {
+    font-size: var(--font-size-xxl);
+    color: var(--primary-color);
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-heading);
+}
+
+.mission_hero_text h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin: 0 0 var(--space-md);
+    font-family: var(--font-heading);
+}
+
+.mission_hero_text p {
+    max-width: 530px;
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+    color: var(--secondary-text-color);
+    margin: 0 0 var(--space-lg);
+    font-family: var(--font-body);
+}
+
+.mission_hero_btn {
+    display: inline-block;
+
+    padding: 0.85rem 1.4rem;
+    border-radius: var(--border-radius-btn);
+
+    background: var(--secondary-color);
+    color: var(--base-surface-white);
+
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    font-family: var(--font-body);
+}
+
+.mission_hero_btn:hover {
+    transform: translateY(-4px);
+    background: var(--base-surface-white);
+    box-shadow: 0 12px 28px rgba(26, 26, 36, 0.2);
+    color: var(--primary-color);
+}
+
+.mission_hero_img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+.mission_img_wrapper {
+    width: 100%;
+    max-width: 430px;
+    aspect-ratio: 4 / 5;
+
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+
+    box-shadow: var(--shadow-md);
+    transform: rotate(2deg);
+    transition: var(--transition);
+}
+
+.mission_img_wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    opacity: 1;
+    transition:
+        opacity 1.5s ease,
+        filter 1.5s ease;
+}
+
+.mission_img_wrapper img.fade-out {
+    opacity: 0;
+    filter: sepia(.15) saturate(.8) hue-rotate(-15deg);
+}
+
+.mission_thumbnails {
+    width: 100%;
+    max-width: 430px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.mission_thumbnails .thumb {
+    width: 72px;
+    height: 72px;
+
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    opacity: .65;
+    border: 3px solid transparent;
+    transition: var(--transition);
+}
+
+.mission_thumbnails .thumb.active {
+    opacity: 1;
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.mission_img_wrapper:hover {
+    transform: rotate(0deg) scale(1.03);
+}
+
+/* Team Cards Section ****************************************************************************************/
 .team_cards_section {
-    padding: 5rem 2rem; /* Slightly more breathing room on top/bottom */
-    background: var(--clr-off-white);
+    padding: var(--space-xxl) var(--space-xl);
+    background: var(--background-off-white);
 }
 
 .team_cards_header {
-    max-width: 700px; /* Tighter width makes paragraphs easier to read */
-    margin: 0 auto 4rem;
+    max-width: 700px;
+    margin: 0 auto var(--space-xxl);
     text-align: center;
 }
 
 .team_cards_header h2 {
-    font-size: 2.5rem;
-    color: var(--clr-navy);
-    margin-bottom: 1rem;
+    font-size: var(--font-size-xl);
+    color: var(--primary-color);
+    margin-bottom: var(--space-md);
     font-weight: 700;
-    letter-spacing: -0.02em; /* Tightening letter spacing slightly looks modern */
+    letter-spacing: -0.02em;
+    font-family: var(--font-heading);
 }
 
 .team_cards_header p {
-    font-size: 1.125rem;
-    color: var(--clr-dark);
+    font-size: var(--font-size-base);
+    color: var(--secondary-text-color);
     line-height: 1.7;
+    font-family: var(--font-body);
 }
 
 .team_cards_container {
     max-width: var(--max-width);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Widened the minimum slightly */
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-xl);
 }
 
 .team_card {
-    background: var(--clr-white);
-    border-radius: 0.75rem; /* Slightly less rounded corners for a corporate feel */
+    background: var(--base-surface-white);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    /* Softened the initial shadow */
-    box-shadow: 0 4px 6px -1px rgba(20, 33, 61, 0.05), 0 2px 4px -1px rgba(20, 33, 61, 0.03); 
-    border: 1px solid rgba(20, 33, 61, 0.05); /* Adds a crisp edge */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(26, 26, 36, 0.05);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .team_card:hover {
-    transform: translateY(-5px); /* Subtler lift */
-    /* Deeper, softer shadow on hover */
-    box-shadow: 0 10px 15px -3px rgba(20, 33, 61, 0.1), 0 4px 6px -2px rgba(20, 33, 61, 0.05);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(26, 26, 36, 0.1), 0 4px 6px -2px rgba(26, 26, 36, 0.05);
 }
 
 .team_card img {
     width: 100%;
-    aspect-ratio: 4 / 3; /* Keeps images perfectly proportional when scaling */
+    aspect-ratio: 4 / 3;
     object-fit: cover;
     display: block;
-    border-bottom: 1px solid rgba(20, 33, 61, 0.05);
+    border-bottom: 1px solid rgba(26, 26, 36, 0.05);
 }
 
 .team_card_text {
-    padding: 1.75rem;
+    padding: var(--space-xl);
 }
 
 .team_card_text h3 {
-    font-size: 1.25rem;
-    color: var(--clr-navy); /* Darker color for the name */
-    margin-bottom: 0.25rem;
+    font-size: var(--font-size-md);
+    color: var(--primary-color);
+    margin-bottom: var(--space-xs);
     font-weight: 600;
+    font-family: var(--font-heading);
 }
 
-/* New class for the job title */
 .team_card_text .role {
-    font-size: 0.85rem;
+    font-size: var(--font-size-xs);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--clr-red); /* Accent color used here instead */
-    margin-bottom: 1rem;
+    color: var(--secondary-color);
+    margin-bottom: var(--space-md);
     font-weight: 600;
     display: block;
+    font-family: var(--font-body);
 }
 
 .team_card_text p {
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     line-height: 1.6;
-    color: var(--clr-dark);
+    color: var(--primary-text-color);
+    font-family: var(--font-body);
 }
 
-team-link {
-    right: 2rem; /* Position the link towards the right */
-    position: fixed; /* Keep it fixed on the screen */
-    top: 2rem; /* Position the link towards the bottom */
-    z-index: 1000; /* Ensure it stays above other elements */
+.team-link {
+    right: var(--space-xl);
+    position: fixed;
+    top: var(--space-xl);
+    z-index: 1000;
 }
