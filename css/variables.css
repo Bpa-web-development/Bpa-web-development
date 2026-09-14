@@ -33,6 +33,8 @@
   --space-lg: 1.5rem;   /* 24px: Margin between paragraphs */
   --space-xl: 2rem;     /* 32px: Padding inside your white content cards */
   --space-xxl: 4rem;    /* 64px: Vertical padding between major page sections */
+  --space-xxxl: 6rem;   /* 96px: Large spacing for hero sections */
+  --space-xxxxl: 8rem;  /* 128px: Extra large spacing for hero sections */
 
   /* Structural UI Variables */
   --radius-sm: 4px;     /* Sharp, professional corners for inputs & tags */
