@@ -4,29 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicon & Title -->
+    <!-- Favicon & Title BPA STANDARD -->
     <title>Marlowby | Subscription Plans</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/Marlowby Logotemp.jpg">
 
-    <!--css links-->
+    <!--OUR CSS GOOD-->
     <link rel="stylesheet" href="/css/variables.css">
-    <link rel="stylesheet" href="/css/subscriptionPlans.css">
-    <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/SubscriptionPlans.css">
+    <link rel="stylesheet" href="/css/responsive.css">
 
-    <!-- Google Fonts Link (Playfair Display & Lato) -->
+    <!-- Google Fonts Link (Playfair Display & Lato) BPA CONDUCT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome Icon Link -->
+    <!-- Font Awesome Icon Link BPA CONDUCT -->
     <script src="https://kit.fontawesome.com/59468707c3.js" crossorigin="anonymous"></script>
+
+    <!-- GSAP + ScrollTrigger (powers the curtain scroll transition below) GOOD BPA CONDUCT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 </head>
 
 <body>
 
-    <!-- Navigation Bar Section -->
     <nav class="navbar">
         <div class="navbar-container">
             <div class="company-logo">
@@ -34,7 +37,17 @@
                     <img class="circular-logo" 
                     src="/assets/images/Marlowby Logotemp.jpg" 
                     alt="Marlowby Logo">
-                </a>    
+                </a>
+                <div class="logo-stats" aria-live="polite">
+                    <span class="logo-stat">
+                        <span class="logo-stat-number" id="statShoppers">0</span>
+                        <span class="logo-stat-label">shoppers this month</span>
+                    </span>
+                    <span class="logo-stat">
+                        <span class="logo-stat-number" id="statCartItems">0</span>
+                        <span class="logo-stat-label">in cart</span>
+                    </span>
+                </div>
             </div>
                 
             <ul class="navbar-link-container">
@@ -68,7 +81,7 @@
                     </ul>
                 </li>
                     
-                <!-- Subscription Dropdown -->
+                <!-- Subscription Dropdown GOOD -->
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
                     <ul class="sub-menu">
@@ -78,143 +91,148 @@
                     </ul>
                 </li>
 
-                <!-- Sign In Button -->
+                <!-- Sign In Button GOOD -->
                 <li>
                        <a class="navbar-link-item" href="/html/sign-in.html">Sign In</a>
                 </li>
 
-                <!-- Shopping Cart -->
+                <!-- Shopping Cart WORK-->
                 <li>
-                    <a class="navbar-link-item" href="/html/cart.html">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span id="cart-count">0</span>
+                    <a class="navbar-link-item cart-link" href="/html/cart.html" id="cartLink">
+                        <i class="fa-solid fa-cart-shopping" id="cartIcon"></i>
                     </a>
                 </li>
             </ul>   
         </div>
     </nav>       
 
-    <section id="subscription-card-container">
-            
-    </section>
+    <!-- CURTAIN SCROLL TRANSITION OVERLAY NEEDED TBD -->
+    <!--SCREEN WIPE PROTECTION NEEDED -->
+    <div id="screenWipe" class="screen-wipe" aria-hidden="true">
+        <div class="wipe-inner">
+            <span class="wipe-eyebrow">Up Next</span>
+            <h2 id="wipeLabel" class="wipe-label">Choose The Plan Right For You</h2>
+        </div>
+    </div>
 
-    <!-- SKIP PAST SEC -->
+    <!-- ADD-TO-CART CONFIRMATION SOLID -->
+    <div id="cartToast" class="cart-toast" role="status" aria-live="polite"></div>
+
+    <!-- SKIP PAST SEC NOT NEEDED -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-   <!--MAIN AREA-->
+    <!--MAIN AREA YES-->
     <main id="main-content">
 
-        <section class="box-detail-section" aria-labelledby="box-title">
+        <!-- SECTION 1: FEATURED BOX (this month: Burlington, Vermont) -->
+        <section class="scroll-section hero-section" id="hero-section" aria-labelledby="box-title">
             <div class="container box-grid">
-                
-                <!-- PRODUCTS VIEWING -->
+
+                <!-- PRODUCT GALLERY TBD -->
                 <div class="box-gallery">
-                    <img src="images/featured-box-main.jpg" alt="Marlowby open monthly subscription box showing local artisan goods" class="main-image">
-                    <div class="thumbnail-grid">
-                        <img src="images/apparel-thumb.jpg" alt="Local themed graphic apparel item">
-                        <img src="images/gourmet-thumb.jpg" alt="Artisanal local treat packaging">
-                        <img src="images/craft-thumb.jpg" alt="Handcrafted home good item">
-                    </div>
+                    <img id="mainBoxImage" src="" alt="" class="main-image">
+                    <div class="thumbnail-grid" id="thumbnailGrid"></div>
                 </div>
 
-                <!-- PRODUCT PURCHASE & SHIPPING DETAILS -->
+                <!-- FEATURED BOX SUMMARY TBD FOR SURE -->
                 <div class="box-info">
-                    <span class="badge">Featured City of the Month</span>
-                    <h1 id="box-title">The Curated City Experience Box</h1>
-                    <p class="price-tag">$49.99 <span>/ or included with Monthly Subscription</span></p>
-
-                    <p class="description">
-                        Explore America’s top culture hubs! Every month features a brand-new featured U.S. city, delivering 5 handpicked items from independent urban artisans, small-batch bakeries, and regional craftsmen[cite: 2].
-                    </p>
-
-                    <!-- PURCHASE + CART + SHIPPING -->
-                    <form class="purchase-form" action="#" method="POST">
-                        <fieldset class="purchase-type">
-                            <legend class="sr-only">Choose Purchase Option</legend>
-                            
-                            <label class="radio-card">
-                                <input type="radio" name="purchase_option" value="subscribe" checked>
-                                <span class="card-content">
-                                    <strong>Monthly Subscription (Save 15%)</strong>
-                                    <small>$42.49/mo • Automatically rotates to a new city next month</small>
-                                </span>
-                            </label>
-
-                            <label class="radio-card">
-                                <input type="radio" name="purchase_option" value="one-time">
-                                <span class="card-content">
-                                    <strong>Single City Box</strong>
-                                    <small>$49.99 one-time purchase</small>
-                                </span>
-                            </label>
-                        </fieldset>
-
-                        <div class="action-row">
-                            <div class="quantity-selector">
-                                <label for="quantity">Qty:</label>
-                                <select id="quantity" name="quantity">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary add-to-cart-btn">
-                                Add Box to Cart
-                            </button>
-                        </div>
-                    </form>
-
-                    <!-- COMMUNITY IMPACT -->
-                    <div class="community-impact-box">
-                        <h3>Small Business Impact</h3>
-                        <p>10% of proceeds from every box directly support independent small business development grants in the featured city[cite: 2].</p>
-                    </div>
+                    <span class="badge" id="boxBadge"></span>
+                    <h1 id="box-title"></h1>
+                    <p class="price-tag" id="boxPrice"></p>
+                    <p class="description" id="boxDescription"></p>
+                    <p class="scroll-hint">Scroll to see your plan options ↓</p>
                 </div>
 
             </div>
         </section>
 
-        <!-- ITEMS IN EACH CATEGORY -->
-        <section class="box-contents-section" aria-labelledby="contents-title">
+        <!-- TRANSTION UNO NEEDS WORK DK YET-->
+          
+        <div class="scroll-transition-trigger" id="transition-to-tiers" data-next-label="Choose The Plan Right For You"></div>
+
+        <!-- SECTION 2: CHOOSE THE PLAN RIGHT FOR YOU YES GOOD -->
+        <section class="scroll-section tiers-section" id="tiers-section" aria-labelledby="tiers-title">
             <div class="container">
-                <h2 id="contents-title">Standard Items Included in Every City Box</h2>
-                <div class="items-grid">
-                    
-                    <article class="item-card">
-                        <img src="images/apparel.jpg" alt="Heritage styled unisex graphic apparel">
-                        <h3>Custom Heritage Apparel</h3>
-                        <p class="vendor-tag">Category: Local Apparel &amp; Accessories</p>
-                        <p>Premium, soft-blend unisex apparel featuring custom typography and graphics celebrating local city culture.</p>
-                    </article>
+                <div class="section-header">
+                    <h2 id="tiers-title">Choose The Plan Right For You</h2>
+                    <p>Every plan rotates to a brand-new featured U.S. city each month — this month it's Burlington, Vermont.</p>
+                </div>
+                <div class="tiers-grid" id="tiers-container"></div>
+            </div>
+        </section>
 
-                    <article class="item-card">
-                        <img src="images/confection.jpg" alt="Small batch sweets and snacks">
-                        <h3>Gourmet Local Snacks &amp; Confections</h3>
-                        <p class="vendor-tag">Category: Artisanal Foods</p>
-                        <p>Small-batch sweets, savory snacks, or specialty condiments crafted fresh by local family-owned kitchens.</p>
-                    </article>
+        <!-- TRANSITION 2 NEEDS WORK -->
+        <div class="scroll-transition-trigger" id="transition-to-contents" data-next-label="What To Expect"></div>
 
-                    <article class="item-card">
-                        <img src="images/craft.jpg" alt="Handcrafted soy wax candle or home good">
-                        <h3>Handcrafted Home &amp; Living Goods</h3>
-                        <p class="vendor-tag">Category: Home &amp; Craft</p>
-                        <p>Eco-friendly soy candles, custom coasters, or wellness crafts created by local neighborhood makers.</p>
-                    </article>
+        <!-- SECTION 3: WHAT TO EXPECT TBD FS -->
+        <section class="scroll-section contents-section" id="contents-section" aria-labelledby="contents-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="contents-title">What To Expect Inside Every Box</h2>
+                    <p>Standard categories included in this month's Burlington, Vermont box.</p>
+                </div>
+                <div class="items-grid" id="items-container"></div>
+            </div>
+        </section>
 
-                    <article class="item-card">
-                        <img src="images/drink.jpg" alt="Local craft roast coffee or beverage blend">
-                        <h3>Signature Craft Beverage / Coffee</h3>
-                        <p class="vendor-tag">Category: Beverage &amp; Cafe</p>
-                        <p>Locally roasted coffee beans, specialty tea blends, or craft soda syrups unique to the month's featured area.</p>
-                    </article>
+        <!-- TRANSITION 3 NEEDS WORK -->
+        <div class="scroll-transition-trigger" id="transition-to-payment" data-next-label="Payment Details"></div>
 
+        <!-- PAY DEF NOT DONE-->
+        <section class="scroll-section payment-section" id="payment-section" aria-labelledby="payment-title">
+            <div class="container payment-grid">
+                <div class="section-header">
+                    <h2 id="payment-title">Payment Details</h2>
+                    <p>Pick how you'd like to receive this month's Burlington, Vermont box.</p>
+                </div>
+
+                <form class="purchase-form" action="#" method="POST">
+                    <fieldset class="purchase-type">
+                        <legend class="sr-only">Choose Purchase Option</legend>
+
+                        <label class="radio-card">
+                            <input type="radio" name="purchase_option" value="subscribe" checked>
+                            <span class="card-content">
+                                <strong>Monthly Subscription (Save 15%)</strong>
+                                <small id="subPriceLabel">Automatically rotates to a new city next month</small>
+                            </span>
+                        </label>
+
+                        <label class="radio-card">
+                            <input type="radio" name="purchase_option" value="one-time">
+                            <span class="card-content">
+                                <strong>Single City Box</strong>
+                                <small id="onePriceLabel">One-time purchase</small>
+                            </span>
+                        </label>
+                    </fieldset>
+
+                    <div class="action-row">
+                        <div class="quantity-selector">
+                            <label for="quantity">Qty:</label>
+                            <select id="quantity" name="quantity">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn-primary add-to-cart-btn" id="addToCartBtn">
+                            Add Box to Cart
+                        </button>
+                    </div>
+                </form>
+
+                <div class="community-impact-box">
+                    <h3>Small Business Impact</h3>
+                    <p>10% of proceeds from every box directly support independent small business development grants in the featured city.</p>
                 </div>
             </div>
         </section>
+
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER NEEDS WORK -->
     <footer class="site-footer">
         <div class="container footer-content">
             <p>&copy; 2027 Marlowby Subscription Services. All rights reserved.</p>

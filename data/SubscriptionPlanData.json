@@ -1,61 +1,99 @@
 {
+  "monthlyCity": "Burlington, Vermont",
+  "stats": {
+    "shoppersThisMonth": 4872
+  },
+  "sectionLabels": {
+    "tiers": "Choose The Plan Right For You",
+    "contents": "What To Expect",
+    "payment": "Payment Details"
+  },
   "featuredBox": {
-    "title": "The Curated City Experience Box",
-    "badge": "Featured City of the Month",
+    "badge": "Featured City: Burlington, VT",
+    "title": "The Burlington, Vermont Discovery Box",
+    "description": "Explore Burlington, Vermont this month! We've packed five handpicked items from Lake Champlain artisans, Green Mountain creameries, and small-batch Vermont makers into one curated box.",
     "subscriptionPrice": 42.49,
     "oneTimePrice": 49.99,
-    "mainImage": "images/featured-box-main.jpg",
+    "mainImage": "https://placehold.co/700x700/1f2632/f2ec52?text=Burlington%2C+VT+Box",
+    "mainImageAlt": "Open Burlington, Vermont subscription box with maple, cheese, and local goods on a rustic table",
     "thumbnails": [
-      { "src": "images/apparel-thumb.jpg", "alt": "Heavyweight city graphic hoodie" },
-      { "src": "images/snack-thumb.jpg", "alt": "Small-batch gourmet chocolates" },
-      { "src": "images/candle-thumb.jpg", "alt": "Hand-poured soy candle" }
+      { "src": "https://placehold.co/160x160/344557/ffffff?text=Apparel", "alt": "Burlington, Vermont graphic tee folded flat" },
+      { "src": "https://placehold.co/160x160/722F37/ffffff?text=Maple", "alt": "Small-batch Vermont maple candy" },
+      { "src": "https://placehold.co/160x160/1f2632/f2ec52?text=Candle", "alt": "Hand-poured Vermont balsam fir candle" }
     ]
   },
   "boxTiers": [
     {
       "id": "tier-1",
-      "badge": "Tier 01 • Starter",
+      "badge": "Tier 01 \u2022 Starter",
       "name": "The City Explorer",
       "price": "$29.99/mo",
-      "description": "A perfect monthly sample of local city culture and authentic handcrafted treats.",
-      "itemCount": "3 Curated Artisan Items",
+      "description": "A perfect monthly sample of Burlington's local culture and authentic handcrafted treats.",
       "features": [
-        "Artisanal Small-Batch Snack Pack (Gourmet Popcorn or Toffee)",
-        "Hand-Poured 4oz Soy Wax Travel Candle",
-        "Custom City Skyline Enamel Pin or Tote Bag",
-        "Illustrated City Guide & Artisan Story Booklet"
+        "Small-Batch Vermont Maple Candy Sampler",
+        "Hand-Poured 4oz Balsam Fir Soy Travel Candle",
+        "Burlington Skyline Enamel Pin or Tote Bag",
+        "Illustrated Burlington City Guide & Artisan Story Booklet"
       ]
     },
     {
       "id": "tier-2",
-      "badge": "Tier 02 • Most Popular",
+      "badge": "Tier 02 \u2022 Most Popular",
       "name": "The Artisan Collector",
       "price": "$42.49/mo",
-      "description": "Our signature full experience box featuring premium apparel and daily lifestyle goods.",
-      "itemCount": "5-6 Full-Sized Premium Items",
+      "description": "Our signature full experience box featuring premium apparel and daily lifestyle goods from this month's featured city.",
       "features": [
-        "Ultra-Soft Vintage Heavyweight City Graphic Tee",
-        "Locally Roasted Whole-Bean Craft Coffee (12oz)",
-        "Hand-Poured 8oz Amber Jar Soy Wax Candle",
-        "Small-Batch Artisanal Sweets or Gourmet Sauce",
-        "Speckled Ceramic City Campfire Mug",
+        "Ultra-Soft Church Street Marketplace Graphic Tee",
+        "Lake Champlain Roasted Whole-Bean Craft Coffee (12oz)",
+        "Hand-Poured 8oz Balsam Fir Soy Wax Candle",
+        "Pure Vermont Maple Syrup, 8oz Sugarhouse Bottle",
+        "Speckled Ceramic Green Mountain Camp Mug",
         "Free Priority Shipping Included"
       ]
     },
     {
       "id": "tier-3",
-      "badge": "Tier 03 • Ultimate VIP",
+      "badge": "Tier 03 \u2022 Ultimate VIP",
       "name": "The City VIP Vault",
       "price": "$69.99/mo",
-      "description": "Exclusive limited-run collectibles, premium outerwear, and double the gourmet delicacies.",
-      "itemCount": "8+ Deluxe & Limited Goods",
+      "description": "Exclusive limited-run collectibles, premium outerwear, and double the gourmet delicacies from Burlington's best makers.",
       "features": [
         "Everything in the Artisan Collector Tier",
-        "Premium Heavyweight Fleece Hoodie or Canvas Jacket",
-        "Limited-Edition Numbered Screenprint Art Poster",
-        "Exclusive 20% Off Coupons for Featured Local Vendors",
+        "Premium Heavyweight Vermont Flannel or Fleece Pullover",
+        "Limited-Edition Numbered Green Mountains Screenprint Poster",
+        "Exclusive 20% Off Coupons for Burlington Vendors",
         "VIP Early Access to Next Month's City Reveal"
       ]
+    }
+  ],
+  "monthlyItems": [
+    {
+      "image": "https://placehold.co/500x360/344557/ffffff?text=Church+St.+Tee",
+      "alt": "Heritage styled Burlington, Vermont graphic apparel",
+      "title": "Church Street Graphic Tee",
+      "category": "Local Apparel & Accessories",
+      "description": "Premium, soft-blend unisex tee featuring custom artwork inspired by Burlington's Church Street Marketplace and the Green Mountains."
+    },
+    {
+      "image": "https://placehold.co/500x360/722F37/ffffff?text=Maple+Treats",
+      "alt": "Small batch Vermont maple candy and syrup sampler",
+      "title": "Pure Vermont Maple Treats",
+      "category": "Artisanal Foods",
+      "description": "Small-batch maple candies and a mini syrup sampler crafted by family-run sugarhouses just outside Burlington."
+    },
+    {
+      "image": "https://placehold.co/500x360/1f2632/f2ec52?text=Balsam+Fir+Candle",
+      "alt": "Hand-poured balsam fir soy wax candle",
+      "title": "Balsam Fir Soy Candle",
+      "category": "Home & Craft",
+      "description": "Eco-friendly soy candle hand-poured in small batches, scented with Green Mountain balsam fir."
+    },
+    {
+      "image": "https://placehold.co/500x360/6C757D/ffffff?text=Champlain+Coffee",
+      "alt": "Locally roasted Lake Champlain coffee beans",
+      "title": "Lake Champlain Craft Coffee",
+      "category": "Beverage & Cafe",
+      "description": "Whole-bean coffee roasted locally near Lake Champlain, with tasting notes chosen just for this month's box."
     }
   ]
 }
