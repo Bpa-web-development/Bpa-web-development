@@ -44,3 +44,7 @@ Primary Text	#1A1A24	Soft Black	All main body text and large typography headings
 Secondary Text	#6C757D	Slate Gray	Subtitles, placeholder text, footer text, subtle borders.
 
 
+**BURLINGTON VERMONT**
+Awesome small markets, views and cultures.
+
+
