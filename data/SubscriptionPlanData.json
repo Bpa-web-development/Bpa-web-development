@@ -1,45 +1,61 @@
 {
-
   "featuredBox": {
     "title": "The Curated City Experience Box",
     "badge": "Featured City of the Month",
     "subscriptionPrice": 42.49,
     "oneTimePrice": 49.99,
-    "mainImage": "/assets/images/featured-box-main.jpg",
+    "mainImage": "images/featured-box-main.jpg",
     "thumbnails": [
-      { "src": "/", "alt": "Local themed graphic apparel item" },
-      { "src": "/", "alt": "Artisanal local treat packaging" },
-      { "src": "/", "alt": "Handcrafted home good item" }
+      { "src": "images/apparel-thumb.jpg", "alt": "Heavyweight city graphic hoodie" },
+      { "src": "images/snack-thumb.jpg", "alt": "Small-batch gourmet chocolates" },
+      { "src": "images/candle-thumb.jpg", "alt": "Hand-poured soy candle" }
     ]
   },
-  "standardItems": [
+  "boxTiers": [
     {
-      "id": 1,
-      "title": "Custom Heritage Apparel",
-      "category": "Local Apparel & Accessories",
-      "image": "/",
-      "description": "Premium, soft-blend unisex apparel featuring custom typography and graphics celebrating local city culture."
+      "id": "tier-1",
+      "badge": "Tier 01 • Starter",
+      "name": "The City Explorer",
+      "price": "$29.99/mo",
+      "description": "A perfect monthly sample of local city culture and authentic handcrafted treats.",
+      "itemCount": "3 Curated Artisan Items",
+      "features": [
+        "Artisanal Small-Batch Snack Pack (Gourmet Popcorn or Toffee)",
+        "Hand-Poured 4oz Soy Wax Travel Candle",
+        "Custom City Skyline Enamel Pin or Tote Bag",
+        "Illustrated City Guide & Artisan Story Booklet"
+      ]
     },
     {
-      "id": 2,
-      "title": "Gourmet Local Snacks & Confections",
-      "category": "Artisanal Foods",
-      "image": "/",
-      "description": "Small-batch sweets, savory snacks, or specialty condiments crafted fresh by local family-owned kitchens."
+      "id": "tier-2",
+      "badge": "Tier 02 • Most Popular",
+      "name": "The Artisan Collector",
+      "price": "$42.49/mo",
+      "description": "Our signature full experience box featuring premium apparel and daily lifestyle goods.",
+      "itemCount": "5-6 Full-Sized Premium Items",
+      "features": [
+        "Ultra-Soft Vintage Heavyweight City Graphic Tee",
+        "Locally Roasted Whole-Bean Craft Coffee (12oz)",
+        "Hand-Poured 8oz Amber Jar Soy Wax Candle",
+        "Small-Batch Artisanal Sweets or Gourmet Sauce",
+        "Speckled Ceramic City Campfire Mug",
+        "Free Priority Shipping Included"
+      ]
     },
     {
-      "id": 3,
-      "title": "Handcrafted Home & Living Goods",
-      "category": "Home & Craft",
-      "image": "/",
-      "description": "Eco-friendly soy candles, custom coasters, or wellness crafts created by local neighborhood makers."
-    },
-    {
-      "id": 4,
-      "title": "Signature Craft Beverage / Coffee",
-      "category": "Beverage & Cafe",
-      "image": "/",
-      "description": "Locally roasted coffee beans, specialty tea blends, or craft soda syrups unique to the month's featured area."
+      "id": "tier-3",
+      "badge": "Tier 03 • Ultimate VIP",
+      "name": "The City VIP Vault",
+      "price": "$69.99/mo",
+      "description": "Exclusive limited-run collectibles, premium outerwear, and double the gourmet delicacies.",
+      "itemCount": "8+ Deluxe & Limited Goods",
+      "features": [
+        "Everything in the Artisan Collector Tier",
+        "Premium Heavyweight Fleece Hoodie or Canvas Jacket",
+        "Limited-Edition Numbered Screenprint Art Poster",
+        "Exclusive 20% Off Coupons for Featured Local Vendors",
+        "VIP Early Access to Next Month's City Reveal"
+      ]
     }
   ]
 }
