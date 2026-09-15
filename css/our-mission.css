@@ -1,13 +1,13 @@
 .mission_hero {
     width: 100%;
     min-height: calc(100vh - 6rem);
-    background: var(--background-off-white);
+    background: var( --base-surface-white, #FFFFFF);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: var(--space-xxl) var(--space-xl);
+    padding: var(--space-xl) var(--space-xl);
 }
 
 .mission_hero_container {
@@ -157,7 +157,7 @@
 
 /* Team Cards Section ****************************************************************************************/
 .team_cards_section {
-    padding: var(--space-xxl) var(--space-xl);
+    padding: var(--space-xxl) var(--space-xxxl);
     background: var(--background-off-white);
 }
 
