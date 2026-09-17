@@ -6,7 +6,8 @@
   "sectionLabels": {
     "tiers": "Choose The Plan Right For You",
     "contents": "What To Expect",
-    "payment": "Payment Details"
+    "payment": "Payment Details",
+    "explore": "Keep Exploring"
   },
   "featuredBox": {
     "badge": "Featured City: Burlington, VT",
@@ -18,16 +19,17 @@
     "mainImageAlt": "Open Burlington, Vermont subscription box with maple, cheese, and local goods on a rustic table",
     "thumbnails": [
       { "src": "https://placehold.co/160x160/344557/ffffff?text=Apparel", "alt": "Burlington, Vermont graphic tee folded flat" },
-      { "src": "https://placehold.co/160x160/722F37/ffffff?text=Maple", "alt": "Small-batch Vermont maple candy" },
+      { "src": "/assets/images/GlassMapleLeafBottle_SM.jpeg", "alt": "Small-batch Vermont maple candy" },
       { "src": "https://placehold.co/160x160/1f2632/f2ec52?text=Candle", "alt": "Hand-poured Vermont balsam fir candle" }
     ]
   },
   "boxTiers": [
     {
       "id": "tier-1",
-      "badge": "Tier 01 \u2022 Starter",
+      "badge": "Tier 01 • Starter",
       "name": "The City Explorer",
       "price": "$29.99/mo",
+      "priceValue": 29.99,
       "description": "A perfect monthly sample of Burlington's local culture and authentic handcrafted treats.",
       "features": [
         "Small-Batch Vermont Maple Candy Sampler",
@@ -38,9 +40,10 @@
     },
     {
       "id": "tier-2",
-      "badge": "Tier 02 \u2022 Most Popular",
+      "badge": "Tier 02 • Most Popular",
       "name": "The Artisan Collector",
       "price": "$42.49/mo",
+      "priceValue": 42.49,
       "description": "Our signature full experience box featuring premium apparel and daily lifestyle goods from this month's featured city.",
       "features": [
         "Ultra-Soft Church Street Marketplace Graphic Tee",
@@ -53,9 +56,10 @@
     },
     {
       "id": "tier-3",
-      "badge": "Tier 03 \u2022 Ultimate VIP",
+      "badge": "Tier 03 • Ultimate VIP",
       "name": "The City VIP Vault",
       "price": "$69.99/mo",
+      "priceValue": 69.99,
       "description": "Exclusive limited-run collectibles, premium outerwear, and double the gourmet delicacies from Burlington's best makers.",
       "features": [
         "Everything in the Artisan Collector Tier",
@@ -68,32 +72,55 @@
   ],
   "monthlyItems": [
     {
+      "id": "item-tee",
       "image": "https://placehold.co/500x360/344557/ffffff?text=Church+St.+Tee",
       "alt": "Heritage styled Burlington, Vermont graphic apparel",
       "title": "Church Street Graphic Tee",
       "category": "Local Apparel & Accessories",
-      "description": "Premium, soft-blend unisex tee featuring custom artwork inspired by Burlington's Church Street Marketplace and the Green Mountains."
+      "description": "Premium, soft-blend unisex tee featuring custom artwork inspired by Burlington's Church Street Marketplace and the Green Mountains.",
+      "price": 18.0
     },
     {
+      "id": "item-maple",
       "image": "https://placehold.co/500x360/722F37/ffffff?text=Maple+Treats",
       "alt": "Small batch Vermont maple candy and syrup sampler",
       "title": "Pure Vermont Maple Treats",
       "category": "Artisanal Foods",
-      "description": "Small-batch maple candies and a mini syrup sampler crafted by family-run sugarhouses just outside Burlington."
+      "description": "Small-batch maple candies and a mini syrup sampler crafted by family-run sugarhouses just outside Burlington.",
+      "price": 12.5
     },
     {
+      "id": "item-candle",
       "image": "https://placehold.co/500x360/1f2632/f2ec52?text=Balsam+Fir+Candle",
       "alt": "Hand-poured balsam fir soy wax candle",
       "title": "Balsam Fir Soy Candle",
       "category": "Home & Craft",
-      "description": "Eco-friendly soy candle hand-poured in small batches, scented with Green Mountain balsam fir."
+      "description": "Eco-friendly soy candle hand-poured in small batches, scented with Green Mountain balsam fir.",
+      "price": 16.0
     },
     {
+      "id": "item-coffee",
       "image": "https://placehold.co/500x360/6C757D/ffffff?text=Champlain+Coffee",
       "alt": "Locally roasted Lake Champlain coffee beans",
       "title": "Lake Champlain Craft Coffee",
       "category": "Beverage & Cafe",
-      "description": "Whole-bean coffee roasted locally near Lake Champlain, with tasting notes chosen just for this month's box."
+      "description": "Whole-bean coffee roasted locally near Lake Champlain, with tasting notes chosen just for this month's box.",
+      "price": 14.75
     }
-  ]
+  ],
+  "exploreSection": {
+    "heading": "Ready To Explore?",
+    "subtext": "Your box is picked, your extras are queued up — take a look at what's waiting in your cart, or keep browsing this month's Burlington, Vermont finds.",
+    "primaryAction": { "label": "View Cart", "href": "/html/cart.html" },
+    "secondaryLinks": [
+      { "label": "Browse Past Cities", "href": "/html/past-months.html" },
+      { "label": "Contact Customer Support", "href": "/html/our-mission.html" }
+    ]
+  },
+  "cartDrawer": {
+    "title": "Your Cart",
+    "emptyMessage": "Your cart is empty. Add a box or an item to get started.",
+    "viewCartHref": "/html/cart.html",
+    "supportHref": "/html/our-mission.html"
+  }
 }

@@ -4,56 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicon & Title -->
+    <!-- Favicon & Title BPA STANDARD -->
     <title>Marlowby | Subscription Plans</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/Marlowby Logotemp.jpg">
 
-    <!--css links (order matches the rest of the site: variables, style, page css, responsive)-->
+    <!--OUR CSS GOOD-->
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/SubscriptionPlans.css">
     <link rel="stylesheet" href="/css/responsive.css">
 
-    <!-- Google Fonts Link (Playfair Display & Lato) -->
+    <!-- Google Fonts Link (Playfair Display & Lato) BPA CONDUCT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome Icon Link -->
+    <!-- Font Awesome Icon Link BPA CONDUCT -->
     <script src="https://kit.fontawesome.com/59468707c3.js" crossorigin="anonymous"></script>
 
-    <!-- GSAP + ScrollTrigger (powers the curtain scroll transition below) -->
+    <!-- GSAP + ScrollTrigger GOOD BPA CONDUCT -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
 </head>
 
 <body>
 
-    <!-- Navigation Bar Section (same markup as every other page, plus a
-         page-specific logo stats readout and cart glow — see
-         SubscriptionPlans.css, scoped so it only affects this page) -->
     <nav class="navbar">
         <div class="navbar-container">
-            <div class="company-logo">
-                <a href="../index.html">
-                    <img class="circular-logo" 
-                    src="/assets/images/Marlowby Logotemp.jpg" 
-                    alt="Marlowby Logo">
-                </a>
-                <div class="logo-stats" aria-live="polite">
-                    <span class="logo-stat">
-                        <span class="logo-stat-number" id="statShoppers">0</span>
-                        <span class="logo-stat-label">shoppers this month</span>
-                    </span>
-                    <span class="logo-stat">
-                        <span class="logo-stat-number" id="statCartItems">0</span>
-                        <span class="logo-stat-label">in cart</span>
-                    </span>
-                </div>
-            </div>
-                
-            <ul class="navbar-link-container">
+
+            <!-- LEFT NAV LINKS -->
+            <ul class="navbar-link-container navbar-link-left">
                 <!-- Specials Dropdown -->
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/specials.html">Specials</a>
@@ -83,8 +63,26 @@
                         <li><a href="#">Contact us</a></li>
                     </ul>
                 </li>
-                    
-                <!-- Subscription Dropdown -->
+            </ul>
+
+            <!-- CENTERED LOGO -->
+            <div class="company-logo">
+                <a href="../index.html">
+                    <img class="circular-logo" 
+                    src="/assets/images/Marlowby Logotemp.jpg" 
+                    alt="Marlowby Logo">
+                </a>
+                <div class="logo-stats" aria-live="polite">
+                    <span class="logo-stat">
+                        <span class="logo-stat-number" id="statShoppers">0</span>
+                        <span class="logo-stat-label">shoppers this month</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- RIGHT NAV LINKS -->
+            <ul class="navbar-link-container navbar-link-right">
+                <!-- Subscription Dropdown GOOD -->
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
                     <ul class="sub-menu">
@@ -94,23 +92,55 @@
                     </ul>
                 </li>
 
-                <!-- Sign In Button -->
+                <!-- Sign In Button GLOWING GOOD -->
                 <li>
-                       <a class="navbar-link-item" href="/html/sign-in.html">Sign In</a>
+                    <a class="navbar-link-item nav-signin-btn" href="/html/sign-in.html">Sign In</a>
                 </li>
-
-                <!-- Shopping Cart -->
-                <li>
-                    <a class="navbar-link-item cart-link" href="/html/cart.html" id="cartLink">
-                        <i class="fa-solid fa-cart-shopping" id="cartIcon"></i>
-                    </a>
-                </li>
-            </ul>   
+            </ul>
         </div>
-    </nav>       
+    </nav>
 
-    <!-- CURTAIN SCROLL TRANSITION OVERLAY -->
-    <!-- Decorative + non-blocking: GSAP animates this over the viewport between sections -->
+    <!-- PERSISTENT CART BUTTON LES GOO -->
+    <button type="button"
+            class="cart-hamburger"
+            id="cartHamburger"
+            aria-label="Open cart"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="cartDrawer">
+        <span class="cart-hamburger-bars" aria-hidden="true">
+            <span></span><span></span><span></span>
+        </span>
+        <i class="fa-solid fa-cart-shopping" id="cartIcon" aria-hidden="true"></i>
+        <span class="cart-hamburger-count" id="statCartItems">0</span>
+    </button>
+
+    <!-- CART DRAWER GOOD -->
+    <div class="cart-overlay" id="cartOverlay" hidden></div>
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Your cart">
+        <div class="cart-drawer-header">
+            <h2 id="cartDrawerTitle">Your Cart</h2>
+            <button type="button" class="cart-drawer-close" id="closeCartDrawer" aria-label="Close cart">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div class="cart-drawer-items" id="cartDrawerItems"></div>
+
+        <div class="cart-drawer-footer">
+            <div class="cart-subtotal-row">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">$0.00</span>
+            </div>
+            <a class="btn-primary cart-drawer-btn" id="viewCartLink" href="/html/cart.html">View Full Cart</a>
+            <div class="cart-drawer-links">
+                <a id="supportLink" href="/html/our-mission.html">Customer Support</a>
+                <button type="button" class="link-btn" id="continueShoppingBtn">Continue Shopping</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- CURTAIN SCROLL TRANSITION OVERLAY LES GOO -->
     <div id="screenWipe" class="screen-wipe" aria-hidden="true">
         <div class="wipe-inner">
             <span class="wipe-eyebrow">Up Next</span>
@@ -118,26 +148,22 @@
         </div>
     </div>
 
-    <!-- ADD-TO-CART CONFIRMATION TOAST -->
+    <!-- ADD-TO-CART CONFIRMATION SOLID -->
     <div id="cartToast" class="cart-toast" role="status" aria-live="polite"></div>
 
-    <!-- SKIP PAST SEC -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!--MAIN AREA-->
     <main id="main-content">
 
-        <!-- SECTION 1: FEATURED BOX (this month: Burlington, Vermont) -->
+        <!-- SECTION 1: FEATURED BOX LES GOO -->
         <section class="scroll-section hero-section" id="hero-section" aria-labelledby="box-title">
             <div class="container box-grid">
 
-                <!-- PRODUCT GALLERY -->
                 <div class="box-gallery">
                     <img id="mainBoxImage" src="" alt="" class="main-image">
                     <div class="thumbnail-grid" id="thumbnailGrid"></div>
                 </div>
 
-                <!-- FEATURED BOX SUMMARY -->
                 <div class="box-info">
                     <span class="badge" id="boxBadge"></span>
                     <h1 id="box-title"></h1>
@@ -149,11 +175,9 @@
             </div>
         </section>
 
-        <!-- TRANSITION 1: pinned briefly on its own, independent of section
-             height, so the curtain never clips tall section content -->
         <div class="scroll-transition-trigger" id="transition-to-tiers" data-next-label="Choose The Plan Right For You"></div>
 
-        <!-- SECTION 2: CHOOSE THE PLAN RIGHT FOR YOU -->
+        <!-- SECTION 2: CHOOSE THE PLAN RIGHT FOR YOU GOOD -->
         <section class="scroll-section tiers-section" id="tiers-section" aria-labelledby="tiers-title">
             <div class="container">
                 <div class="section-header">
@@ -164,78 +188,88 @@
             </div>
         </section>
 
-        <!-- TRANSITION 2 -->
         <div class="scroll-transition-trigger" id="transition-to-contents" data-next-label="What To Expect"></div>
 
-        <!-- SECTION 3: WHAT TO EXPECT -->
+        <!-- SECTION 3: WHAT TO EXPECT (EXTRA ITEMS) GOOD -->
         <section class="scroll-section contents-section" id="contents-section" aria-labelledby="contents-title">
             <div class="container">
                 <div class="section-header">
-                    <h2 id="contents-title">What To Expect Inside Every Box</h2>
-                    <p>Standard categories included in this month's Burlington, Vermont box.</p>
+                    <h2 id="contents-title">Looking for something extra with your box?</h2>
+                    <p>Add an extra of some of our signature local items below to complete your shipment!</p>
                 </div>
                 <div class="items-grid" id="items-container"></div>
             </div>
         </section>
 
-        <!-- TRANSITION 3 -->
         <div class="scroll-transition-trigger" id="transition-to-payment" data-next-label="Payment Details"></div>
 
-        <!-- SECTION 4: PAYMENT DETAILS -->
+        <!-- SECTION 4: PAYMENT DETAILS STYLED GOOD -->
         <section class="scroll-section payment-section" id="payment-section" aria-labelledby="payment-title">
             <div class="container payment-grid">
                 <div class="section-header">
-                    <h2 id="payment-title">Payment Details</h2>
-                    <p>Pick how you'd like to receive this month's Burlington, Vermont box.</p>
+                    <h2 id="payment-title">Payment Options</h2>
+                    <p>Select your preference and review payment options before placing your order.</p>
                 </div>
 
-                <form class="purchase-form" action="#" method="POST">
-                    <fieldset class="purchase-type">
-                        <legend class="sr-only">Choose Purchase Option</legend>
-
-                        <label class="radio-card">
-                            <input type="radio" name="purchase_option" value="subscribe" checked>
-                            <span class="card-content">
-                                <strong>Monthly Subscription (Save 15%)</strong>
-                                <small id="subPriceLabel">Automatically rotates to a new city next month</small>
-                            </span>
-                        </label>
-
-                        <label class="radio-card">
-                            <input type="radio" name="purchase_option" value="one-time">
-                            <span class="card-content">
-                                <strong>Single City Box</strong>
-                                <small id="onePriceLabel">One-time purchase</small>
-                            </span>
-                        </label>
-                    </fieldset>
-
-                    <div class="action-row">
-                        <div class="quantity-selector">
-                            <label for="quantity">Qty:</label>
-                            <select id="quantity" name="quantity">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
+                <div class="payment-card-wrapper">
+                    <div class="payment-summary-box">
+                        <h3>Order Overview & Direct Checkout</h3>
+                        <p class="payment-subtext">Choose your plan tier above or check out directly with your curated selections below.</p>
+                        
+                        <div class="payment-perks-grid">
+                            <div class="perk-item">
+                                <i class="fa-solid fa-truck-fast"></i>
+                                <span>Free Priority Shipping On All Subscriptions</span>
+                            </div>
+                            <div class="perk-item">
+                                <i class="fa-solid fa-rotate"></i>
+                                <span>Cancel or Pause Anytime with 1-Click</span>
+                            </div>
+                            <div class="perk-item">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>100% Satisfaction Local Artisan Guarantee</span>
+                            </div>
                         </div>
 
-                        <button type="submit" class="btn-primary add-to-cart-btn" id="addToCartBtn">
-                            Add Box to Cart
-                        </button>
+                        <div class="payment-methods-accepted">
+                            <span class="accepted-label">Accepted Payment Methods:</span>
+                            <div class="payment-icons">
+                                <i class="fa-brands fa-cc-visa" title="Visa"></i>
+                                <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+                                <i class="fa-brands fa-cc-amex" title="American Express"></i>
+                                <i class="fa-brands fa-cc-apple-pay" title="Apple Pay"></i>
+                                <i class="fa-brands fa-cc-paypal" title="PayPal"></i>
+                            </div>
+                        </div>
                     </div>
-                </form>
 
-                <div class="community-impact-box">
-                    <h3>Small Business Impact</h3>
-                    <p>10% of proceeds from every box directly support independent small business development grants in the featured city.</p>
+                    <div class="community-impact-box">
+                        <h3><i class="fa-solid fa-store"></i> Small Business Impact</h3>
+                        <p>10% of proceeds from every box directly support independent small business development grants in the featured city.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="scroll-transition-trigger" id="transition-to-explore" data-next-label="Keep Exploring"></div>
+
+        <!-- SECTION 5: READY TO EXPLORE LES GOO -->
+        <section class="scroll-section explore-section" id="explore-section" aria-labelledby="explore-title">
+            <div class="container explore-content">
+                <h2 id="explore-title"></h2>
+                <p id="exploreSubtext"></p>
+                <div class="explore-actions">
+                    <a class="btn-primary explore-cart-btn" id="exploreCartBtn" href="/html/cart.html">
+                        <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                        View Cart
+                    </a>
+                    <div class="explore-links" id="exploreLinks"></div>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="container footer-content">
             <p>&copy; 2027 Marlowby Subscription Services. All rights reserved.</p>
