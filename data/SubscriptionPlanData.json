@@ -18,7 +18,7 @@
     "mainImageAlt": "Open Burlington, Vermont subscription box with maple, cheese, and local goods on a rustic table",
     "thumbnails": [
       { "src": "https://placehold.co/160x160/344557/ffffff?text=Apparel", "alt": "Burlington, Vermont graphic tee folded flat" },
-      { "src": "/assets/images/GlassMapleLeafBottle_SM.jpeg", "alt": "Small-batch Vermont maple candy" },
+      { "src": "https://placehold.co/160x160/722F37/ffffff?text=Maple", "alt": "Small-batch Vermont maple candy" },
       { "src": "https://placehold.co/160x160/1f2632/f2ec52?text=Candle", "alt": "Hand-poured Vermont balsam fir candle" }
     ]
   },
