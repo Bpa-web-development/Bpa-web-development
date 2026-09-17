@@ -9,23 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
       renderItems(data.monthlyItems);
       applySectionLabels(data.sectionLabels);
 
-      // Gallery + cart interactions depend on markup we just injected
+      //injection of my funk to make it work
       initGallery();
       initAddToCart(data.featuredBox);
       initLogoStats(data.stats);
 
-      // Curtain transition depends on final section heights, so it runs
-      // once everything above has been rendered onto the page.
+      //curtain runs based on height so loads everything good and jolly
       initCurtainScrollTransition();
     })
     .catch((err) => {
       console.error("Subscription plan data failed to load:", err);
     });
 });
-
-/* ==========================================================================
-   RENDERING
-   ========================================================================== */
+//render of curtain and boxes
 
 function renderFeaturedBox(box) {
   if (!box) return;
@@ -95,7 +91,7 @@ function renderItems(items) {
     .join("");
 }
 
-/*CURTAIN SCROLL TRANSITION: "UP NEXT" LABELS GOOD TBD*/
+//up next curtain tbd
 function applySectionLabels(labels) {
   if (!labels) return;
 
@@ -108,7 +104,7 @@ function applySectionLabels(labels) {
   if (toPayment && labels.payment) toPayment.dataset.nextLabel = labels.payment;
 }
 
-/*THUMB GAL NEEDS WORK TBD*/
+//image gallery tbd
 function initGallery() {
   const mainImage = document.getElementById("mainBoxImage");
   const thumbnails = document.querySelectorAll(".thumbnail-grid img");
@@ -119,8 +115,7 @@ function initGallery() {
     });
   });
 }
-
-/*ADD TO CARD POP GOOD*/
+//add to cart zone good
 let cartItemCount = 0;
 
 function initAddToCart(featuredBox) {
@@ -159,7 +154,7 @@ function updateCartCount(newTotal) {
 
   statEl.textContent = cartItemCount;
   statEl.classList.remove("is-bumped");
- //RESTART IF BROKE NEEDED
+  // Restart the bump animation even if it's already mid-flight
   void statEl.offsetWidth;
   statEl.classList.add("is-bumped");
 }
@@ -187,13 +182,13 @@ function showCartToast(message) {
   }, 3200);
 }
 
-/*STATS NOT NEEDED FAKE COULD MAKE IT REAL WHEN DEPLOYED*/
+//LOGO STATS *FAKE* for now but will be real at some time
 function initLogoStats(stats) {
   const shopperTarget = stats?.shoppersThisMonth ?? 4872;
   const shopperEl = document.getElementById("statShoppers");
   if (shopperEl) animateCountUp(shopperEl, shopperTarget, 1800);
 
-//COUNT CART ITEMS AWESOME
+ //START CART AT 0 THEN LOADS EVERY CHOICE YUH
   const cartEl = document.getElementById("statCartItems");
   if (cartEl) cartEl.textContent = cartItemCount;
 }
@@ -220,14 +215,14 @@ function animateCountUp(el, target, duration = 1500) {
   requestAnimationFrame(tick);
 }
 
-//CURTAIN SCROLL TRANSITION: "UP NEXT" LABELS GOOD TBD
+//GSAP SCROLL LES GO
 function initCurtainScrollTransition() {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
     console.warn("GSAP/ScrollTrigger not available — curtain transition skipped.");
     return;
   }
 
-  //ADA COMPLIAMCE: If the user prefers reduced motion, skip the curtain transition entirely.
+  //REDUCE MOTION JUS FOR ADA
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (prefersReducedMotion) return;
 
@@ -251,7 +246,7 @@ function initCurtainScrollTransition() {
       onUpdate: (self) => {
         const progress = self.progress;
 
-       //PHASES 1 AND 2 WIPE SCREEN GOOD!
+       //RENDER THE DIF CURTAIN PHASES
         if (progress <= 0.5) {
           const topProgress = progress * 200;
           wipe.style.clipPath = `polygon(0 0, 100% 0, 100% ${topProgress}%, 0 ${topProgress}%)`;
@@ -259,8 +254,7 @@ function initCurtainScrollTransition() {
           const bottomProgress = (progress - 0.5) * 200;
           wipe.style.clipPath = `polygon(0 ${bottomProgress}%, 100% ${bottomProgress}%, 100% 100%, 0 100%)`;
         }
-
-       //UP NEXT GOOD
+//ONLY SHOWS CERTAIN LABEL I CHOSE TO SHOW
         const showLabel = progress > 0.12 && progress < 0.88;
         wipeInner.classList.toggle("is-visible", showLabel);
       },
@@ -269,6 +263,6 @@ function initCurtainScrollTransition() {
     });
   });
 
- // Refresh ScrollTrigger after all elements are rendered and the page is fully loaded
+//LOADING PAGE FOR PROPER RENDERING
   window.addEventListener("load", () => ScrollTrigger.refresh());
 }
