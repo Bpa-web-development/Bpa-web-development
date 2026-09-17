@@ -25,7 +25,7 @@
 .skip-link:focus {
   top: 0;
 }
-
+/*NAV BAR CHANGE*/
 .company-logo {
   flex-direction: column;
   align-items: flex-start;
@@ -87,7 +87,7 @@
   white-space: nowrap;
 }
 
-/* CART ICOND GOOD*/
+/*GLOW CART ICON YES YES*/
 #cartIcon {
   color: var(--accent-color);
   filter: drop-shadow(0 0 4px rgba(242, 236, 82, 0.55));
@@ -122,11 +122,13 @@
   }
 }
 
+
 .container {
   max-width: 1200px;
   width: 90%;
   margin: 0 auto;
 }
+
 
 .scroll-section {
   min-height: 100vh;
@@ -138,13 +140,14 @@
   padding: calc(var(--space-xxl) + 2rem) 0 var(--space-xxl);
 }
 
+/*GSAP SCROLL TRIGGER*/
 .scroll-transition-trigger {
   height: 65vh;
   width: 100%;
   pointer-events: none;
 }
 
-
+/*FEATURED BOX IS LIT*/
 .box-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -229,6 +232,7 @@
   font-weight: 600;
 }
 
+/*CHOOSE RIGHT PLAN FOR U TS*/
 .section-header {
   text-align: center;
   margin-bottom: var(--space-xl);
@@ -320,10 +324,7 @@
   outline: none;
 }
 
-/* ==========================================================================
-   SECTION 3: WHAT TO EXPECT (box contents)
-   ========================================================================== */
-
+/*EXPECTED IN BOX TBD*/
 .items-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -373,6 +374,7 @@
   margin: var(--space-xs) 0 var(--space-md);
 }
 
+/*PAYMENT OPTIONS TBD*/
 .payment-grid {
   max-width: 700px;
 }
@@ -439,6 +441,7 @@
   margin-top: var(--space-xs);
 }
 
+/*CURTAIN ANIMATION LEGENDARY */
 .screen-wipe {
   position: fixed;
   inset: 0;
@@ -453,7 +456,7 @@
     var(--secondary-color)
   );
 
-  /* Fully hidden by default; JS/GSAP animates this clip-path on scroll */
+  /*HIDDEN* FOR ADA*/
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 
   display: flex;
@@ -491,14 +494,14 @@
   margin: 0;
 }
 
-/* Respect reduced-motion: the curtain effect is skipped entirely in JS,
-   this just guarantees no stray transitions if the class ever toggles. */
+/*MOTION SHIT*/
 @media (prefers-reduced-motion: reduce) {
   .wipe-inner {
     transition: none;
   }
 }
 
+/*CART ADD*/
 .cart-toast {
   position: fixed;
   top: 1.5rem;
@@ -543,6 +546,9 @@
     max-width: none;
   }
 }
+
+ /*ROUGH FOOT DAMN*/
+
 .site-footer {
   background: linear-gradient(
     135deg,
@@ -607,6 +613,7 @@
   width: 100%;
 }
 
+/*RESPONE TYPE SHIP*/
 @media (max-width: 900px) {
   .logo-stats {
     display: none;
