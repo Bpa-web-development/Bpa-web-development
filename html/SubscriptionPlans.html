@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicon & Title BPA STANDARD -->
+    <!-- Favicon & Title -->
     <title>Marlowby | Subscription Plans</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/Marlowby Logotemp.jpg">
 
-    <!--OUR CSS GOOD-->
+    <!--css links (order matches the rest of the site: variables, style, page css, responsive)-->
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/SubscriptionPlans.css">
     <link rel="stylesheet" href="/css/responsive.css">
 
-    <!-- Google Fonts Link (Playfair Display & Lato) BPA CONDUCT -->
+    <!-- Google Fonts Link (Playfair Display & Lato) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome Icon Link BPA CONDUCT -->
+    <!-- Font Awesome Icon Link -->
     <script src="https://kit.fontawesome.com/59468707c3.js" crossorigin="anonymous"></script>
 
-    <!-- GSAP + ScrollTrigger (powers the curtain scroll transition below) GOOD BPA CONDUCT -->
+    <!-- GSAP + ScrollTrigger (powers the curtain scroll transition below) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
@@ -30,6 +30,9 @@
 
 <body>
 
+    <!-- Navigation Bar Section (same markup as every other page, plus a
+         page-specific logo stats readout and cart glow — see
+         SubscriptionPlans.css, scoped so it only affects this page) -->
     <nav class="navbar">
         <div class="navbar-container">
             <div class="company-logo">
@@ -81,7 +84,7 @@
                     </ul>
                 </li>
                     
-                <!-- Subscription Dropdown GOOD -->
+                <!-- Subscription Dropdown -->
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
                     <ul class="sub-menu">
@@ -91,12 +94,12 @@
                     </ul>
                 </li>
 
-                <!-- Sign In Button GOOD -->
+                <!-- Sign In Button -->
                 <li>
                        <a class="navbar-link-item" href="/html/sign-in.html">Sign In</a>
                 </li>
 
-                <!-- Shopping Cart WORK-->
+                <!-- Shopping Cart -->
                 <li>
                     <a class="navbar-link-item cart-link" href="/html/cart.html" id="cartLink">
                         <i class="fa-solid fa-cart-shopping" id="cartIcon"></i>
@@ -106,8 +109,8 @@
         </div>
     </nav>       
 
-    <!-- CURTAIN SCROLL TRANSITION OVERLAY NEEDED TBD -->
-    <!--SCREEN WIPE PROTECTION NEEDED -->
+    <!-- CURTAIN SCROLL TRANSITION OVERLAY -->
+    <!-- Decorative + non-blocking: GSAP animates this over the viewport between sections -->
     <div id="screenWipe" class="screen-wipe" aria-hidden="true">
         <div class="wipe-inner">
             <span class="wipe-eyebrow">Up Next</span>
@@ -115,26 +118,26 @@
         </div>
     </div>
 
-    <!-- ADD-TO-CART CONFIRMATION SOLID -->
+    <!-- ADD-TO-CART CONFIRMATION TOAST -->
     <div id="cartToast" class="cart-toast" role="status" aria-live="polite"></div>
 
-    <!-- SKIP PAST SEC NOT NEEDED -->
+    <!-- SKIP PAST SEC -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!--MAIN AREA YES-->
+    <!--MAIN AREA-->
     <main id="main-content">
 
         <!-- SECTION 1: FEATURED BOX (this month: Burlington, Vermont) -->
         <section class="scroll-section hero-section" id="hero-section" aria-labelledby="box-title">
             <div class="container box-grid">
 
-                <!-- PRODUCT GALLERY TBD -->
+                <!-- PRODUCT GALLERY -->
                 <div class="box-gallery">
                     <img id="mainBoxImage" src="" alt="" class="main-image">
                     <div class="thumbnail-grid" id="thumbnailGrid"></div>
                 </div>
 
-                <!-- FEATURED BOX SUMMARY TBD FOR SURE -->
+                <!-- FEATURED BOX SUMMARY -->
                 <div class="box-info">
                     <span class="badge" id="boxBadge"></span>
                     <h1 id="box-title"></h1>
@@ -146,11 +149,11 @@
             </div>
         </section>
 
-        <!-- TRANSTION UNO NEEDS WORK DK YET-->
-          
+        <!-- TRANSITION 1: pinned briefly on its own, independent of section
+             height, so the curtain never clips tall section content -->
         <div class="scroll-transition-trigger" id="transition-to-tiers" data-next-label="Choose The Plan Right For You"></div>
 
-        <!-- SECTION 2: CHOOSE THE PLAN RIGHT FOR YOU YES GOOD -->
+        <!-- SECTION 2: CHOOSE THE PLAN RIGHT FOR YOU -->
         <section class="scroll-section tiers-section" id="tiers-section" aria-labelledby="tiers-title">
             <div class="container">
                 <div class="section-header">
@@ -161,10 +164,10 @@
             </div>
         </section>
 
-        <!-- TRANSITION 2 NEEDS WORK -->
+        <!-- TRANSITION 2 -->
         <div class="scroll-transition-trigger" id="transition-to-contents" data-next-label="What To Expect"></div>
 
-        <!-- SECTION 3: WHAT TO EXPECT TBD FS -->
+        <!-- SECTION 3: WHAT TO EXPECT -->
         <section class="scroll-section contents-section" id="contents-section" aria-labelledby="contents-title">
             <div class="container">
                 <div class="section-header">
@@ -175,10 +178,10 @@
             </div>
         </section>
 
-        <!-- TRANSITION 3 NEEDS WORK -->
+        <!-- TRANSITION 3 -->
         <div class="scroll-transition-trigger" id="transition-to-payment" data-next-label="Payment Details"></div>
 
-        <!-- PAY DEF NOT DONE-->
+        <!-- SECTION 4: PAYMENT DETAILS -->
         <section class="scroll-section payment-section" id="payment-section" aria-labelledby="payment-title">
             <div class="container payment-grid">
                 <div class="section-header">
@@ -232,7 +235,7 @@
 
     </main>
 
-    <!-- FOOTER NEEDS WORK -->
+    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="container footer-content">
             <p>&copy; 2027 Marlowby Subscription Services. All rights reserved.</p>
