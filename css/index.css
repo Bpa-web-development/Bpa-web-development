@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .homepage-hero-section { 
     min-height: 75vh;
     background-image: url("/assets/images/central-park-nyc-skyline-l.jpg");
@@ -23,4 +29,53 @@
 .homepage-hero_text p{
     font-size: 2rem;
     font-family: var(--font-heading);
+}
+
+
+.homepage-info-section{
+
+}
+.homepage-info-section-container{
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+
+    padding: 1rem 0
+}
+
+
+.homepage-info-section-img{
+    display: flex;
+
+    width: 40%;
+    height: auto;
+
+    justify-content: center;
+    border-radius: 4rem;
+}
+
+.homepage-info-section-img img{
+    width: 70%;
+    height: auto;
+
+    border-radius: 4rem;
+}
+.homepage-info-section-text{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 40%;
+    height: auto;
+
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    text-shadow: var(--secondary-text-color) 3px 3px 5px;
+}
+
+.homepage-info-section-text h1{
+    margin-bottom: 4rem;
 }
