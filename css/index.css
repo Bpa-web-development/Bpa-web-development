@@ -32,9 +32,10 @@
 }
 
 
-.homepage-info-section{
+/* .homepage-info-section{
 
-}
+} */
+
 .homepage-info-section-container{
     display: flex;
     flex-direction: row;
@@ -78,4 +79,151 @@
 
 .homepage-info-section-text h1{
     margin-bottom: 4rem;
+}
+
+
+/***************************************************************************************************************/
+
+
+.homepage-news-container{
+    padding: 10rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.homepage-news-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 0;
+}
+
+.homepage-news-cards{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.homepage-news-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 25%;
+    height: 80%;
+    max-height: 80%;
+    
+
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+    transition: var(--slower-transition);
+
+}
+
+.homepage-news-card img{
+    border-radius: 1rem;
+    max-height: 30rem;
+    width: 100%;
+}
+
+
+
+/***************************************************************************************************************/
+
+
+
+.homepage-subflipbox-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 0;
+    height: 80vh;
+}
+
+.subflipbox-text{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    gap: 2rem;
+}
+
+.subflipbox-text h1, h2, h3{
+    font-family: var(--font-heading);
+    color: var(--accent-blue-color);
+    text-shadow: var(--secondary-text-color) 3px 3px 5px;
+}
+
+.subflipbox-cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    width: 100%;
+}
+
+.subflipbox-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    min-width: 20%;
+    height: 80%;
+    min-height: 35rem;
+    max-height: 52.5rem;
+
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+    /* transition: var(--slower-transition); */
+
+    background: url("../assets/images/justin-bisson-beck-YwFHhIgG77M-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.subflipbox-card h1, p{
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    text-shadow: var(--secondary-text-color) 3px 3px 5px;
+}
+
+.subflipbox-card img{
+    max-height: 30rem;
+    width: 100%;
+}
+
+.subflipbox-card button{
+    position: absolute;
+    bottom: 1rem;
+    width: 30%;
+    height: 6%;
+    border-radius: 1.5rem;
+    transition: var(--slower-transition);
+}
+
+.subflipbox-card button:hover{
+    cursor: pointer;
+    transition: var(--slower-transition);
+    transform: scale(1.05);
 }

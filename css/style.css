@@ -613,12 +613,16 @@ body {
     width: 70px;
     height: 70px;
     cursor: pointer;
+
+    border-radius: 50%;
 }
 /* Accessibility Icon Image */
 .accessibility-icon img {
     width: 70px;
     height: 70px;
     object-fit: contain;
+
+    border-radius: 50%;
 }
 
 .accessibility-icon.hidden{
@@ -648,7 +652,6 @@ body {
     flex: center;
 
     background: rgba(0, 0, 0, 0.25);
-    border-radius: 1.5rem;
 
     opacity: 0;
     visibility: hidden;
@@ -664,6 +667,8 @@ body {
     visibility: visible;
     display: flex;
     flex-direction: column;
+
+    border-radius: 1.5rem;
 }
 
 
@@ -681,6 +686,7 @@ body {
 
     box-shadow:
         -5px 0 25px rgba(0, 0, 0, 0.15);
+    border-radius: 1.5rem;
 }
 
 
@@ -908,6 +914,7 @@ body {
     background: #edf2f7;
 
     cursor: pointer;
+    transition: var(--slower-transition);
 }
 
 
@@ -928,6 +935,7 @@ body {
 
 .toggle-button.active {
     background: #e1edff;
+    transition: var(--slower-transition);
 }
 
 
@@ -942,7 +950,9 @@ body {
     color: #263143;
 
     box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.08);
+    0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+
 }
 
 
@@ -971,3 +981,4 @@ body {
     font-weight: 600;
     font-family: var(--font-family);
 }
+

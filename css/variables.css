@@ -5,7 +5,8 @@
   --base-surface-white: #FFFFFF;
   --primary-color: rgba(25, 32, 50, 0.98);
   --secondary-color: #722F37;
-  --accent-color: #F2EC52;
+  --accent-blue-color: rgba(35, 51, 90, 0.98);
+  --accent-yellow-color: #F2EC52;
 
   /* Text color variables */
   --primary-text-color: #333;
