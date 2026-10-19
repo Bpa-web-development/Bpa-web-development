@@ -3,133 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Favicon & Title -->
+    <meta name="description" content="Marlowby specials: daily, weekly and limited deals with promo codes that work at checkout, plus a daily postcard prize and a free tote at $300.">
+
     <title>Marlowby | Specials</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/Marlowby Logotemp.jpg">
 
-    <!--css links-->
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/nav-footer.css">
+    <link rel="stylesheet" href="/css/shop.css">
+    <link rel="stylesheet" href="/css/deals.css">
+    <link rel="stylesheet" href="/css/specials.css">
     <link rel="stylesheet" href="/css/responsive.css">
 
-    <!-- Google Fonts Link (Playfair Display & Lato) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome Icon Link -->
     <script src="https://kit.fontawesome.com/59468707c3.js" crossorigin="anonymous"></script>
-
 </head>
 
-<body>
+<body class="specials-page">
 
-   <!-- Navigation Bar Section -->
-    <nav class="navbar">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="navbar" aria-label="Main">
         <div class="navbar-container">
             <div class="company-logo">
-                <a href="../index.html">
-                    <img class="circular-logo" 
-                    src="/assets/images/Marlowby Logotemp.jpg" 
-                    alt="Marlowby Logo">
-                </a>    
+                <a href="../index.html" class="company-logo-link">
+                    <img class="circular-logo"
+                    src="/assets/images/Marlowby Logotemp.jpg"
+                    alt="">
+                    <span class="company-logo-name">Marlowby</span>
+                </a>
             </div>
-                
-            <ul class="navbar-link-container">
-                <!-- Specials Dropdown -->
+
+            <button type="button" class="navbar-toggle" id="navbarToggle" aria-expanded="false" aria-controls="navbarLinks">
+                <span class="navbar-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span class="navbar-toggle-label">Menu</span>
+            </button>
+
+            <ul class="navbar-link-container" id="navbarLinks">
                 <li class="link-dropdown">
-                    <a class="navbar-link-item" href="/html/specials.html">Specials</a>
+                    <a class="navbar-link-item" href="/html/specials.html" aria-current="page">Specials</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Daily Specials</a></li>
-                        <li><a href="#">Weekly Deals</a></li>
-                        <li><a href="#">Limited Offers</a></li>
+                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
+                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
+                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
                     </ul>
                 </li>
 
-                <!-- Past Months -->
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/past-months.html">Past Months</a>
                     <ul class="sub-menu">
-                        <li><a href="#">January 2026</a></li>
-                        <li><a href="#">February 2026</a></li>
-                        <li><a href="#">March 2026</a></li>
+                        <li><a href="/html/past-months.html#January">January 2026</a></li>
+                        <li><a href="/html/past-months.html#February">February 2026</a></li>
+                        <li><a href="/html/past-months.html#March">March 2026</a></li>
                     </ul>
                 </li>
-                <!-- <li><a href="#">Limited Offers</a></li>
-                    </ul>
-                </li>    -->
 
-                <!-- About Us Dropdown -->
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/our-mission.html">Our Mission</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Our Story</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
+                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
+                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
                     </ul>
                 </li>
-                    
-                <!-- Subscription Dropdown -->
+
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Basic Plan</a></li>
-                        <li><a href="#">Premium Plan</a></li>
-                        <li><a href="#">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
                     </ul>
                 </li>
 
-                <!-- Sign In Button -->
                 <li>
-                       <a class="navbar-link-item" href="/html/sign-in.html">Sign In</a>
+                    <a class="navbar-link-item navbar-sign-in" href="/html/sign-in.html">Sign In</a>
                 </li>
 
-                <!-- Shopping Cart -->
                 <li>
-                    <a class="navbar-link-item" href="#">
-                        <i class="fa-solid fa-cart-shopping"></i>
+                    <a class="navbar-link-item navbar-cart" href="/html/SubscriptionPlans.html#plans" aria-label="Cart">
+                        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>
                     </a>
                 </li>
-            </ul>   
+            </ul>
         </div>
-    </nav>       
+    </nav>
 
-   <section class="Daily_Specials" id="Daily">
-    <div class="team_cards_header">
-        <h2>Daily Special Package, Orlando Florida</h2>
-        <p></p>
+    <div class="accessibility">
+        <button
+            type="button"
+            class="accessibility-icon"
+            id="accessibilityOpen"
+            aria-label="Open accessibility menu">
+
+            <img src="/assets/icons/accessability.png" alt="">
+        </button>
     </div>
 
-    <div class="Special_Cards_Container">
-        
-        <div class="Special_card">
-            <img src="/assets/images/DolphinLagoon_Daily Special.png" alt="Swim with dolphins at Discovery Cove">
-            <div class="Special_card_text">
-                <h3>Swim with Dolphins in Orlando, Florida</h3>
-                <span class="special-price">Included in daily specials!</span>
-                <p>Swim with dolphins and enjoy an all-inclusive day at discovery cove!
-                    Get up close and personal with these amazing creatures in a safe and 
-                    controlled environment. This once-in-a-lifetime experience is perfect for families, 
-                    couples, and anyone looking to create unforgettable memories.
-                </p>
-            </div>
-        </div>
-
-        <div class="Special_card">
-            <img src="/assets/images/HauntedMonsterTruckRide_SpecialsPage.png" alt="Haunted Monster Truck Ride">
-            <div class="Special_card_text">
-                <h3>Haunted Monster Truck Ride Orlando, Florida</h3>
-                <span class="special-price">Included in daily specials!</span>
-                <p>Get ready for a thrilling ride through the haunted streets in the monster truck!
-                    Experience the excitement of high-speed racing and bone-chilling scares.
-                </p>
-            </div>
-        </div>
+    <div id="accessibilityMenu">
     </div>
-</section>
 
 
+    <main id="main-content">
 
+        <aside class="deal-ribbon" aria-label="Current deals" data-ribbon>
+            <div class="deal-ribbon_inner">
+                <ul class="deal-ribbon_list">
+                    <li class="is-active">Tonight only: 10% off everything with <strong>MIDNIGHT</strong></li>
+                    <li>Pick a postcard below and win a code every day</li>
+                    <li>15% off a 12-month gift with <strong>HOLIDAY12</strong></li>
+                </ul>
+                <a class="deal-ribbon_link" href="/html/SubscriptionPlans.html#plans">See the plans</a>
+                <button type="button" class="deal-ribbon_pause">Pause</button>
+            </div>
+        </aside>
+
+        <section class="sp-hero" aria-labelledby="spTitle">
+            <div class="sp-hero_text">
+                <p class="sp-eyebrow">Specials</p>
+                <h1 id="spTitle">The deal desk is <span>open.</span></h1>
+                <p class="sp-lead">Every code on this page works at checkout. Tap Apply and it's waiting in your cart. It's one code per order, so pick your favorite.</p>
+                <div class="sp-hero_actions">
+                    <a class="deal-button" href="#Daily">Today's specials</a>
+                    <a class="deal-button deal-button--ghost" href="#wallet">See every code</a>
+                </div>
+                <dl class="sp-stats">
+                    <div><dt>Codes live now</dt><dd data-code-count>7</dd></div>
+                    <div><dt>Biggest discount</dt><dd>20%</dd></div>
+                    <div><dt>Shipping</dt><dd>Free</dd></div>
+                </dl>
+            </div>
+
+            <div class="sp-board" data-reveal>
+                <div class="sp-board_head">
+                    <h2 id="boardTitle">Departures</h2>
+                    <p class="sp-board_clock" aria-hidden="true" data-board-clock>12:00 PM</p>
+                </div>
+                <table class="sp-board_table" aria-labelledby="boardTitle">
+                    <thead>
+                        <tr><th scope="col">Leaves</th><th scope="col">Deal</th><th scope="col">Code</th><th scope="col"><span class="visually-hidden">Apply</span></th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><span data-flap>TONIGHT</span></td><td>10% off everything</td><td><span class="sp-board_code" data-flap>MIDNIGHT</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="MIDNIGHT" aria-label="Apply MIDNIGHT">Board</button></td></tr>
+                        <tr><td><span data-flap>SUNDAY</span></td><td>$25 off the Road Trip Bundle</td><td><span class="sp-board_code" data-flap>BUNDLE25</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="BUNDLE25" aria-label="Apply BUNDLE25">Board</button></td></tr>
+                        <tr><td><span data-flap>SUNDAY</span></td><td>20% off yearly plans</td><td><span class="sp-board_code" data-flap>MAPLE20</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="MAPLE20" aria-label="Apply MAPLE20">Board</button></td></tr>
+                        <tr><td><span data-flap>DEC 31</span></td><td>15% off 12-month gifts</td><td><span class="sp-board_code" data-flap>HOLIDAY12</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="HOLIDAY12" aria-label="Apply HOLIDAY12">Board</button></td></tr>
+                        <tr><td><span data-flap>ANYTIME</span></td><td>15% off your whole order</td><td><span class="sp-board_code" data-flap>BURLINGTON15</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="BURLINGTON15" aria-label="Apply BURLINGTON15">Board</button></td></tr>
+                    </tbody>
+                </table>
+                <p class="sp-board_status"><span class="sp-board_light" aria-hidden="true"></span><span data-board-status>All deals on time</span></p>
+            </div>
+        </section>
+
+
+        <section class="sp-section" id="Daily" aria-labelledby="dailyTitle">
+            <div class="sp-section_header" data-reveal>
+                <p class="sp-eyebrow">Daily specials</p>
+                <h2 id="dailyTitle">New every morning</h2>
+                <p>One flash code, one postcard prize and one maker pick, all reset at midnight.</p>
+            </div>
+
+            <div class="deals-grid">
+                <article class="deal deal--flash" aria-labelledby="flashTitle" data-reveal>
+                    <div class="deal_main">
+                        <p class="deal_tag">Tonight only</p>
+                        <h3 id="flashTitle">10% off everything</h3>
+                        <p>Good on every plan and every gift until midnight. Tomorrow brings a new deal.</p>
+                        <p class="deal_clock"><span class="visually-hidden">This deal ends at midnight.</span><span aria-hidden="true" data-flash-clock>00:00:00</span><span class="deal_clock-label" aria-hidden="true">left tonight</span></p>
+                    </div>
+                    <div class="deal_stub">
+                        <p class="deal_code-label">Code</p>
+                        <p class="deal_code">MIDNIGHT</p>
+                        <button type="button" class="deal-button deal-button--light" data-promo-apply="MIDNIGHT">Apply code</button>
+                        <button type="button" class="deal-button deal-button--outline-light" data-promo-copy="MIDNIGHT">Copy</button>
+                    </div>
+                </article>
+
+                <article class="deal deal--maker" aria-labelledby="makerTitle" data-reveal>
+                    <p class="deal_tag">Maker of the day</p>
+                    <h3 id="makerTitle" data-maker-name>Pure maple syrup</h3>
+                    <p data-maker-blurb>Tapped in the Green Mountains and boiled down in a wood-fired sugarhouse.</p>
+                    <p class="deal_fine" data-maker-box>In every Basic and Premium box this month.</p>
+                    <a class="deal-button deal-button--ghost" href="/html/SubscriptionPlans.html#plans">Get it in a box</a>
+                </article>
+            </div>
+
+            <div class="sp-pick" data-reveal>
+                <div class="sp-pick_text">
+                    <p class="sp-eyebrow">Daily prize</p>
+                    <h3 id="pickTitle">Pick a postcard</h3>
+                    <p id="pickHelp">Three postcards, three secret codes. Choose one a day and keep what you find.</p>
+                    <p class="sp-pick_result" id="pickResult" role="status"></p>
+                    <div class="sp-pick_actions" id="pickActions" hidden>
+                        <button type="button" class="deal-button" id="pickApply">Apply my code</button>
+                        <button type="button" class="deal-button deal-button--ghost" id="pickCopy" data-promo-copy="" data-promo-copy-from="pickCode">Copy</button>
+                    </div>
+                </div>
+                <div class="sp-pick_cards" role="group" aria-labelledby="pickTitle">
+                    <button type="button" class="sp-postcard" data-pick="0" aria-describedby="pickHelp"><span class="sp-postcard_inner"><span class="sp-postcard_front" aria-hidden="true"><span class="sp-postcard_stamp">1</span><span class="sp-postcard_word">Lake</span></span><span class="sp-postcard_back" aria-hidden="true"></span></span><span class="visually-hidden">Pick postcard 1</span></button>
+                    <button type="button" class="sp-postcard" data-pick="1" aria-describedby="pickHelp"><span class="sp-postcard_inner"><span class="sp-postcard_front" aria-hidden="true"><span class="sp-postcard_stamp">2</span><span class="sp-postcard_word">Maple</span></span><span class="sp-postcard_back" aria-hidden="true"></span></span><span class="visually-hidden">Pick postcard 2</span></button>
+                    <button type="button" class="sp-postcard" data-pick="2" aria-describedby="pickHelp"><span class="sp-postcard_inner"><span class="sp-postcard_front" aria-hidden="true"><span class="sp-postcard_stamp">3</span><span class="sp-postcard_word">Peaks</span></span><span class="sp-postcard_back" aria-hidden="true"></span></span><span class="visually-hidden">Pick postcard 3</span></button>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="sp-section sp-section--tint" id="Weekly" aria-labelledby="weeklyTitle">
+            <div class="sp-section_header" data-reveal>
+                <p class="sp-eyebrow">Weekly deals</p>
+                <h2 id="weeklyTitle">This week's best trips</h2>
+                <p>These run all week and reset on Sunday night. <strong data-week-left>Ends Sunday.</strong></p>
+            </div>
+
+            <div class="deals-grid">
+                <article class="deal deal--bundle" aria-labelledby="bundleTitle" data-reveal>
+                    <p class="deal_tag">Bundle and save</p>
+                    <h3 id="bundleTitle">The Road Trip Bundle</h3>
+                    <p>A year of Premium for you plus a 3-month Gift for someone you love. Both passports get stamped.</p>
+                    <p class="deal_price"><s data-deal-was>$699</s> <strong data-deal-now>$674</strong></p>
+                    <button type="button" class="deal-button" data-deal-add="premium:annual,gift:3" data-deal-code="BUNDLE25">Add the bundle</button>
+                    <p class="deal_fine">Code BUNDLE25 is added for you.</p>
+                </article>
+
+                <article class="deal deal--coupon" aria-labelledby="yearlyTitle" data-reveal>
+                    <p class="deal_tag">Yearly members</p>
+                    <h3 id="yearlyTitle">20% off any yearly plan</h3>
+                    <p>Stacks on top of the yearly price drop. Here's a Premium year with the code.</p>
+                    <p class="deal_price"><s data-deal-was>$600</s> <strong data-deal-now>$480</strong></p>
+                    <p class="deal_code deal_code--dark">MAPLE20</p>
+                    <div class="deal_actions">
+                        <button type="button" class="deal-button" data-deal-add="premium:annual" data-deal-code="MAPLE20">Add Premium yearly</button>
+                        <button type="button" class="deal-button deal-button--ghost" data-promo-copy="MAPLE20">Copy</button>
+                    </div>
+                </article>
+
+                <article class="deal deal--friend" aria-labelledby="friendTitle" data-reveal>
+                    <p class="deal_tag">Bring a friend</p>
+                    <h3 id="friendTitle">Make your own code</h3>
+                    <p>Type your first name and share the code. Your friend gets $10 off their first order.</p>
+                    <label class="deal_label" for="refName">Your first name</label>
+                    <input class="deal_input" type="text" id="refName" autocomplete="given-name" maxlength="20">
+                    <p class="deal_code deal_code--dark deal_code--ref" id="refCode" aria-live="polite">YOURNAME-MB10</p>
+                    <button type="button" class="deal-button deal-button--ghost" data-promo-copy="" data-promo-copy-from="refCode" data-ref-action>Copy my code</button>
+                </article>
+            </div>
+        </section>
+
+
+        <section class="sp-section" id="Limited" aria-labelledby="limitedTitle">
+            <div class="sp-section_header" data-reveal>
+                <p class="sp-eyebrow">Limited offers</p>
+                <h2 id="limitedTitle">Here for a short stay</h2>
+                <p>Seasonal codes and free goodies that won't be around forever.</p>
+            </div>
+
+            <div class="deals-grid">
+                <article class="deal deal--holiday" aria-labelledby="holidayTitle" data-reveal>
+                    <p class="deal_tag">Gift season</p>
+                    <h3 id="holidayTitle">Give a whole year of cities</h3>
+                    <p>Twelve prepaid boxes and a passport in their name, with 15% off through December 31.</p>
+                    <p class="deal_price"><s data-deal-was>$349</s> <strong data-deal-now>$297</strong></p>
+                    <p class="deal_code deal_code--dark">HOLIDAY12</p>
+                    <button type="button" class="deal-button" data-deal-add="gift:12" data-deal-code="HOLIDAY12">Add a 12-month gift</button>
+                </article>
+
+                <article class="deal deal--reward" aria-labelledby="rewardTitle" data-reveal>
+                    <svg class="deal_tote" viewBox="0 0 80 80" aria-hidden="true"><path d="M28 26c0-10 24-10 24 0" fill="none" stroke="#1d2a3a" stroke-width="4" stroke-linecap="round"/><path d="M14 26h52l-5 46H19z" fill="#e3a83b" stroke="#1d2a3a" stroke-width="3" stroke-linejoin="round"/><text x="40" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#1d2a3a">BTV</text></svg>
+                    <p class="deal_tag">Free goodie</p>
+                    <h3 id="rewardTitle">A free tote at $300</h3>
+                    <p class="deal_reward-text" data-reward-text>Your cart is empty.</p>
+                    <div class="deal_meter" aria-hidden="true"><span data-reward-fill></span></div>
+                </article>
+
+                <article class="deal deal--exit-offer" aria-labelledby="newTitle" data-reveal>
+                    <p class="deal_tag">New members</p>
+                    <h3 id="newTitle">$10 off your first box</h3>
+                    <p>New to Marlowby? Take $10 off any plan or gift box.</p>
+                    <p class="deal_code deal_code--dark">PASSPORT10</p>
+                    <div class="deal_actions">
+                        <button type="button" class="deal-button" data-promo-apply="PASSPORT10">Apply code</button>
+                        <button type="button" class="deal-button deal-button--ghost" data-promo-copy="PASSPORT10">Copy</button>
+                    </div>
+                </article>
+
+                <article class="deal deal--mystery" aria-labelledby="mysteryTitle" data-reveal>
+                    <div>
+                        <p class="deal_tag">Mystery mail</p>
+                        <h3 id="mysteryTitle">There's a postcard with your name on it</h3>
+                        <p>Flip it over to find a secret code from this month's city.</p>
+                    </div>
+                    <button type="button" class="deal-button deal-button--light" data-open-postcard>Open my postcard</button>
+                </article>
+            </div>
+        </section>
+
+
+        <section class="sp-section sp-wallet" id="wallet" aria-labelledby="walletTitle">
+            <div class="sp-section_header" data-reveal>
+                <p class="sp-eyebrow">Your code wallet</p>
+                <h2 id="walletTitle">Every code, one tap away</h2>
+                <p>These come straight from our plan catalog, so they always match checkout.</p>
+            </div>
+
+            <p class="sp-wallet_status" id="walletStatus" role="status">No code in your cart yet.</p>
+            <ul class="sp-wallet_list" id="walletList"></ul>
+
+            <form class="sp-check" id="codeCheck" novalidate data-reveal>
+                <label for="codeCheckInput">Got a code from a friend?</label>
+                <div class="sp-check_row">
+                    <input type="text" id="codeCheckInput" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="20" placeholder="JORDAN-MB10">
+                    <button type="submit" class="deal-button">Check and apply</button>
+                </div>
+                <p class="sp-check_msg" id="codeCheckMsg" role="status"></p>
+            </form>
+        </section>
+
+
+        <section class="sp-steps" aria-labelledby="stepsTitle">
+            <h2 id="stepsTitle" class="visually-hidden">How codes work</h2>
+            <ol>
+                <li data-reveal><span class="sp-steps_num" aria-hidden="true">1</span><h3>Pick a code</h3><p>Grab one from this page, the postcard, or a friend.</p></li>
+                <li data-reveal><span class="sp-steps_num" aria-hidden="true">2</span><h3>Tap Apply</h3><p>It goes straight into your cart. You can also type it in the cart.</p></li>
+                <li data-reveal><span class="sp-steps_num" aria-hidden="true">3</span><h3>Check out</h3><p>The savings show at checkout and on your order. One code per order.</p></li>
+            </ol>
+        </section>
+
+        <section class="sp-cta" aria-labelledby="spCtaTitle" data-reveal>
+            <h2 id="spCtaTitle">Found your deal?</h2>
+            <p>Pick a plan and your first city stamp is on its way.</p>
+            <a class="deal-button deal-button--light" href="/html/SubscriptionPlans.html#plans">Choose a plan</a>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <div class="site-footer-brand">
+                <a href="../index.html" class="site-footer-logo">Marlowby</a>
+                <p>Explore your city, one box at a time. Every month we ship the best local products, small businesses and culture from a different U.S. city.</p>
+                <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
+            </div>
+
+            <nav class="site-footer-links" aria-label="Footer">
+                <div>
+                    <h2>Explore</h2>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="/html/specials.html" aria-current="page">Specials</a></li>
+                        <li><a href="/html/past-months.html">Past Months</a></li>
+                        <li><a href="/html/SubscriptionPlans.html">Subscription Plans</a></li>
+                        <li><a href="/html/sign-in.html">Sign In</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Plans</h2>
+                    <ul>
+                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#gift">Gift Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Deals</h2>
+                    <ul>
+                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
+                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
+                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
+                        <li><a href="/html/specials.html#wallet">Promo Codes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Company</h2>
+                    <ul>
+                        <li><a href="/html/our-mission.html">Our Mission</a></li>
+                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
+                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
+                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="site-footer-bottom">
+            <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
+            <a href="#main-content" class="site-footer-top">Back to top</a>
+        </div>
+    </footer>
+
+    <script src="/js/accessibility.js"></script>
+    <script src="/js/navbar.js"></script>
+    <script src="/js/nav-footer.js"></script>
+    <script src="/js/store.js"></script>
+    <script src="/js/shop.js"></script>
+    <script src="/js/deals.js"></script>
+    <script src="/js/specials.js"></script>
 </body>
-</html>     
+</html>

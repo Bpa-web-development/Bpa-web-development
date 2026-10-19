@@ -1,0 +1,110 @@
+{
+    "currency": "USD",
+    "plans": {
+        "basic": {
+            "name": "Basic",
+            "tagline": "A taste of a new city every month.",
+            "itemsPerBox": 5,
+            "renews": true,
+            "prices": {
+                "monthly": 34,
+                "half": 31,
+                "annual": 29
+            }
+        },
+        "premium": {
+            "name": "Premium",
+            "tagline": "The whole city, delivered.",
+            "itemsPerBox": 8,
+            "renews": true,
+            "prices": {
+                "monthly": 59,
+                "half": 54,
+                "annual": 50
+            }
+        },
+        "gift": {
+            "name": "Gift",
+            "tagline": "Send someone on a road trip.",
+            "itemsPerBox": 5,
+            "renews": false,
+            "prices": {
+                "3": 99,
+                "6": 189,
+                "12": 349
+            }
+        }
+    },
+    "billing": {
+        "monthly": {
+            "label": "Monthly",
+            "months": 1,
+            "billed": "Billed monthly"
+        },
+        "half": {
+            "label": "Every 6 months",
+            "months": 6,
+            "billed": "Billed every 6 months"
+        },
+        "annual": {
+            "label": "Yearly",
+            "months": 12,
+            "billed": "Billed yearly"
+        }
+    },
+    "promos": {
+        "BURLINGTON15": {
+            "type": "percent",
+            "value": 15,
+            "label": "15% off your whole order"
+        },
+        "PASSPORT10": {
+            "type": "amount",
+            "value": 10,
+            "label": "$10 off any order"
+        },
+        "MAPLE20": {
+            "type": "percent",
+            "value": 20,
+            "label": "20% off yearly plans",
+            "terms": [
+                "annual"
+            ],
+            "hint": "Switch a plan to Yearly to unlock it."
+        },
+        "BUNDLE25": {
+            "type": "amount",
+            "value": 25,
+            "label": "$25 off Premium plus a Gift",
+            "requires": [
+                "premium",
+                "gift"
+            ],
+            "hint": "Add Premium and a Gift to unlock it."
+        },
+        "MIDNIGHT": {
+            "type": "percent",
+            "value": 10,
+            "label": "10% off tonight only"
+        },
+        "HOLIDAY12": {
+            "type": "percent",
+            "value": 15,
+            "label": "15% off 12-month gifts",
+            "terms": [
+                "12"
+            ],
+            "hint": "Add a 12-month Gift to unlock it."
+        }
+    },
+    "referral": {
+        "suffix": "-MB10",
+        "type": "amount",
+        "value": 10,
+        "label": "$10 off from a friend"
+    },
+    "reward": {
+        "threshold": 300,
+        "label": "a free Burlington tote bag"
+    }
+}

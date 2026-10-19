@@ -3,286 +3,649 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compare Marlowby subscription plans. Get a curated box of local products from a different U.S. city every month, starting at $29 a month with free shipping.">
 
-    <!-- Favicon & Title BPA STANDARD -->
     <title>Marlowby | Subscription Plans</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/Marlowby Logotemp.jpg">
 
-    <!--OUR CSS GOOD-->
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/nav-footer.css">
+    <link rel="stylesheet" href="/css/shop.css">
+    <link rel="stylesheet" href="/css/deals.css">
     <link rel="stylesheet" href="/css/SubscriptionPlans.css">
     <link rel="stylesheet" href="/css/responsive.css">
 
-    <!-- Google Fonts Link (Playfair Display & Lato) BPA CONDUCT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome Icon Link BPA CONDUCT -->
     <script src="https://kit.fontawesome.com/59468707c3.js" crossorigin="anonymous"></script>
-
-    <!-- GSAP + ScrollTrigger GOOD BPA CONDUCT -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 
-<body>
+<body class="plans-page">
 
-    <nav class="navbar">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="navbar" aria-label="Main">
         <div class="navbar-container">
+            <div class="company-logo">
+                <a href="../index.html" class="company-logo-link">
+                    <img class="circular-logo"
+                    src="/assets/images/Marlowby Logotemp.jpg"
+                    alt="">
+                    <span class="company-logo-name">Marlowby</span>
+                </a>
+            </div>
 
-            <!-- LEFT NAV LINKS -->
-            <ul class="navbar-link-container navbar-link-left">
-                <!-- Specials Dropdown -->
+            <button type="button" class="navbar-toggle" id="navbarToggle" aria-expanded="false" aria-controls="navbarLinks">
+                <span class="navbar-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span class="navbar-toggle-label">Menu</span>
+            </button>
+
+            <ul class="navbar-link-container" id="navbarLinks">
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/specials.html">Specials</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Daily Specials</a></li>
-                        <li><a href="#">Weekly Deals</a></li>
-                        <li><a href="#">Limited Offers</a></li>
+                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
+                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
+                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
                     </ul>
                 </li>
 
-                <!-- Past Months -->
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/past-months.html">Past Months</a>
                     <ul class="sub-menu">
-                        <li><a href="#">January 2026</a></li>
-                        <li><a href="#">February 2026</a></li>
-                        <li><a href="#">March 2026</a></li>
+                        <li><a href="/html/past-months.html#January">January 2026</a></li>
+                        <li><a href="/html/past-months.html#February">February 2026</a></li>
+                        <li><a href="/html/past-months.html#March">March 2026</a></li>
                     </ul>
                 </li>
 
-                <!-- About Us Dropdown -->
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/our-mission.html">Our Mission</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Our Story</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
+                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
+                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
                     </ul>
                 </li>
-            </ul>
 
-            <!-- CENTERED LOGO -->
-            <div class="company-logo">
-                <a href="../index.html">
-                    <img class="circular-logo" 
-                    src="/assets/images/Marlowby Logotemp.jpg" 
-                    alt="Marlowby Logo">
-                </a>
-                <div class="logo-stats" aria-live="polite">
-                    <span class="logo-stat">
-                        <span class="logo-stat-number" id="statShoppers">0</span>
-                        <span class="logo-stat-label">shoppers this month</span>
-                    </span>
-                </div>
-            </div>
-
-            <!-- RIGHT NAV LINKS -->
-            <ul class="navbar-link-container navbar-link-right">
-                <!-- Subscription Dropdown GOOD -->
                 <li class="link-dropdown">
-                    <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
+                    <a class="navbar-link-item" href="/html/SubscriptionPlans.html" aria-current="page">Subscription Plans</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Basic Plan</a></li>
-                        <li><a href="#">Premium Plan</a></li>
-                        <li><a href="#">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
                     </ul>
                 </li>
 
-                <!-- Sign In Button GLOWING GOOD -->
                 <li>
-                    <a class="navbar-link-item nav-signin-btn" href="/html/sign-in.html">Sign In</a>
+                    <a class="navbar-link-item navbar-sign-in" href="/html/sign-in.html">Sign In</a>
+                </li>
+
+                <li>
+                    <a class="navbar-link-item navbar-cart" href="/html/SubscriptionPlans.html#plans" aria-label="Cart">
+                        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>
+                    </a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <!-- PERSISTENT CART BUTTON LES GOO -->
-    <button type="button"
-            class="cart-hamburger"
-            id="cartHamburger"
-            aria-label="Open cart"
-            aria-haspopup="true"
-            aria-expanded="false"
-            aria-controls="cartDrawer">
-        <span class="cart-hamburger-bars" aria-hidden="true">
-            <span></span><span></span><span></span>
-        </span>
-        <i class="fa-solid fa-cart-shopping" id="cartIcon" aria-hidden="true"></i>
-        <span class="cart-hamburger-count" id="statCartItems">0</span>
-    </button>
+    <div class="accessibility">
+        <button
+            type="button"
+            class="accessibility-icon"
+            id="accessibilityOpen"
+            aria-label="Open accessibility menu">
 
-    <!-- CART DRAWER GOOD -->
-    <div class="cart-overlay" id="cartOverlay" hidden></div>
-    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Your cart">
-        <div class="cart-drawer-header">
-            <h2 id="cartDrawerTitle">Your Cart</h2>
-            <button type="button" class="cart-drawer-close" id="closeCartDrawer" aria-label="Close cart">
-                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-            </button>
-        </div>
-
-        <div class="cart-drawer-items" id="cartDrawerItems"></div>
-
-        <div class="cart-drawer-footer">
-            <div class="cart-subtotal-row">
-                <span>Subtotal</span>
-                <span id="cartSubtotal">$0.00</span>
-            </div>
-            <a class="btn-primary cart-drawer-btn" id="viewCartLink" href="/html/cart.html">View Full Cart</a>
-            <div class="cart-drawer-links">
-                <a id="supportLink" href="/html/our-mission.html">Customer Support</a>
-                <button type="button" class="link-btn" id="continueShoppingBtn">Continue Shopping</button>
-            </div>
-        </div>
-    </aside>
-
-    <!-- CURTAIN SCROLL TRANSITION OVERLAY LES GOO -->
-    <div id="screenWipe" class="screen-wipe" aria-hidden="true">
-        <div class="wipe-inner">
-            <span class="wipe-eyebrow">Up Next</span>
-            <h2 id="wipeLabel" class="wipe-label">Choose The Plan Right For You</h2>
-        </div>
+            <img src="/assets/icons/accessability.png" alt="">
+        </button>
     </div>
 
-    <!-- ADD-TO-CART CONFIRMATION SOLID -->
-    <div id="cartToast" class="cart-toast" role="status" aria-live="polite"></div>
+    <div id="accessibilityMenu">
+    </div>
 
-    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <main id="main-content">
 
-        <!-- SECTION 1: FEATURED BOX LES GOO -->
-        <section class="scroll-section hero-section" id="hero-section" aria-labelledby="box-title">
-            <div class="container box-grid">
-
-                <div class="box-gallery">
-                    <img id="mainBoxImage" src="" alt="" class="main-image">
-                    <div class="thumbnail-grid" id="thumbnailGrid"></div>
-                </div>
-
-                <div class="box-info">
-                    <span class="badge" id="boxBadge"></span>
-                    <h1 id="box-title"></h1>
-                    <p class="price-tag" id="boxPrice"></p>
-                    <p class="description" id="boxDescription"></p>
-                    <p class="scroll-hint">Scroll to see your plan options ↓</p>
-                </div>
-
+        <aside class="deal-ribbon" aria-label="Current deals" data-ribbon>
+            <div class="deal-ribbon_inner">
+                <ul class="deal-ribbon_list">
+                    <li class="is-active">Tonight only: 10% off everything with <strong>MIDNIGHT</strong></li>
+                    <li>Spend $300 and get a free Burlington tote bag</li>
+                    <li>20% off any yearly plan with <strong>MAPLE20</strong></li>
+                </ul>
+                <a class="deal-ribbon_link" href="/html/specials.html">See all deals</a>
+                <button type="button" class="deal-ribbon_pause">Pause</button>
             </div>
-        </section>
+        </aside>
 
-        <div class="scroll-transition-trigger" id="transition-to-tiers" data-next-label="Choose The Plan Right For You"></div>
+        <section class="plans-hero" aria-labelledby="plans-hero-title">
+            <div class="plans-hero_text">
+                <p class="plans-eyebrow">Subscription Plans</p>
+                <h1 id="plans-hero-title">
+                    <span class="visually-hidden">Pick your box. We'll pick the city.</span>
+                    <span aria-hidden="true">Pick your box.<br><span class="plans-hero_accent">We'll pick</span><span class="scramble" id="heroScramble">the city.</span></span>
+                </h1>
+                <p class="plans-hero_lead">Every month Marlowby ships a curated box of goods from the small businesses of one U.S. city. Choose how much of the city you want, then watch the stamps pile up in your own Marlowby passport.</p>
 
-        <!-- SECTION 2: CHOOSE THE PLAN RIGHT FOR YOU GOOD -->
-        <section class="scroll-section tiers-section" id="tiers-section" aria-labelledby="tiers-title">
-            <div class="container">
-                <div class="section-header">
-                    <h2 id="tiers-title">Choose The Plan Right For You</h2>
-                    <p>Every plan rotates to a brand-new featured U.S. city each month — this month it's Burlington, Vermont.</p>
+                <div class="plans-countdown">
+                    <p class="plans-countdown_label">The <span id="nextMonthName">next</span> box ships in</p>
+                    <div class="plans-countdown_clock" role="timer" aria-label="Time until the next box ships">
+                        <div><span id="cdDays">00</span><small>days</small></div>
+                        <div><span id="cdHours">00</span><small>hrs</small></div>
+                        <div><span id="cdMins">00</span><small>min</small></div>
+                        <div><span id="cdSecs">00</span><small>sec</small></div>
+                    </div>
                 </div>
-                <div class="tiers-grid" id="tiers-container"></div>
+
+                <div class="scratch" id="scratch">
+                    <div class="scratch_prize" id="scratchPrize" aria-hidden="true">
+                        <p class="scratch_label">Next stop</p>
+                        <p class="scratch_city" id="scratchCity">Burlington, VT</p>
+                        <p class="scratch_hint" id="scratchHint"></p>
+                    </div>
+                    <canvas class="scratch_foil" id="scratchFoil" aria-hidden="true"></canvas>
+                </div>
+                <p class="scratch_status visually-hidden" id="scratchStatus" aria-live="polite"></p>
+
+                <div class="plans-hero_actions">
+                    <a class="plans-button" href="#plans">See the plans</a>
+                    <button type="button" class="plans-button plans-button--ghost" id="scratchReveal">Reveal the next city</button>
+                </div>
             </div>
-        </section>
 
-        <div class="scroll-transition-trigger" id="transition-to-contents" data-next-label="What To Expect"></div>
-
-        <!-- SECTION 3: WHAT TO EXPECT (EXTRA ITEMS) GOOD -->
-        <section class="scroll-section contents-section" id="contents-section" aria-labelledby="contents-title">
-            <div class="container">
-                <div class="section-header">
-                    <h2 id="contents-title">Looking for something extra with your box?</h2>
-                    <p>Add an extra of some of our signature local items below to complete your shipment!</p>
-                </div>
-                <div class="items-grid" id="items-container"></div>
-            </div>
-        </section>
-
-        <div class="scroll-transition-trigger" id="transition-to-payment" data-next-label="Payment Details"></div>
-
-        <!-- SECTION 4: PAYMENT DETAILS STYLED GOOD -->
-        <section class="scroll-section payment-section" id="payment-section" aria-labelledby="payment-title">
-            <div class="container payment-grid">
-                <div class="section-header">
-                    <h2 id="payment-title">Payment Options</h2>
-                    <p>Select your preference and review payment options before placing your order.</p>
-                </div>
-
-                <div class="payment-card-wrapper">
-                    <div class="payment-summary-box">
-                        <h3>Order Overview & Direct Checkout</h3>
-                        <p class="payment-subtext">Choose your plan tier above or check out directly with your curated selections below.</p>
-                        
-                        <div class="payment-perks-grid">
-                            <div class="perk-item">
-                                <i class="fa-solid fa-truck-fast"></i>
-                                <span>Free Priority Shipping On All Subscriptions</span>
+            <div class="plans-hero_art-wrap">
+                <div class="passport" id="passport">
+                    <div class="passport_book">
+                        <div class="passport_page passport_page--stamps">
+                            <p class="passport_heading">Stamps</p>
+                            <div class="passport_stamps" id="ppStamps">
+                                <p class="passport_empty" id="ppEmpty">Your first stamp goes here.</p>
                             </div>
-                            <div class="perk-item">
-                                <i class="fa-solid fa-rotate"></i>
-                                <span>Cancel or Pause Anytime with 1-Click</span>
-                            </div>
-                            <div class="perk-item">
-                                <i class="fa-solid fa-shield-halved"></i>
-                                <span>100% Satisfaction Local Artisan Guarantee</span>
-                            </div>
+                            <p class="passport_folio" aria-hidden="true">02</p>
                         </div>
-
-                        <div class="payment-methods-accepted">
-                            <span class="accepted-label">Accepted Payment Methods:</span>
-                            <div class="payment-icons">
-                                <i class="fa-brands fa-cc-visa" title="Visa"></i>
-                                <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
-                                <i class="fa-brands fa-cc-amex" title="American Express"></i>
-                                <i class="fa-brands fa-cc-apple-pay" title="Apple Pay"></i>
-                                <i class="fa-brands fa-cc-paypal" title="PayPal"></i>
+                        <div class="passport_leaf">
+                            <button type="button" class="passport_cover" id="passportCover" aria-expanded="false" aria-controls="ppIdPage">
+                                <svg class="passport_emblem" viewBox="0 0 80 80" aria-hidden="true">
+                                    <circle cx="40" cy="40" r="34" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="40" cy="40" r="27" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3"/>
+                                    <polygon points="40,10 45,35 70,40 45,45 40,70 35,45 10,40 35,35" fill="currentColor"/>
+                                    <circle cx="40" cy="40" r="4" fill="#1d2a3a"/>
+                                </svg>
+                                <span class="passport_cover-title">Marlowby</span>
+                                <span class="passport_cover-sub">Explorer Passport</span>
+                                <span class="passport_cover-hint">Tap to open</span>
+                            </button>
+                            <div class="passport_page passport_page--id" id="ppIdPage">
+                                <p class="passport_heading">Explorer</p>
+                                <div class="passport_id">
+                                    <div class="passport_photo" aria-hidden="true"><span id="ppInitials">YOU</span></div>
+                                    <dl class="passport_fields">
+                                        <div><dt>Name</dt><dd id="ppName">Your Name</dd></div>
+                                        <div><dt>Home state</dt><dd id="ppState">Anywhere, USA</dd></div>
+                                        <div><dt>Member since</dt><dd id="ppSince">Today</dd></div>
+                                        <div><dt>Passport no.</dt><dd id="ppNumber">MB-0000</dd></div>
+                                        <div><dt>Plan</dt><dd id="ppPlan">Not chosen yet</dd></div>
+                                    </dl>
+                                </div>
+                                <p class="passport_mrz" id="ppMrz" aria-hidden="true"></p>
+                                <button type="button" class="passport_close" id="passportClose">Close passport</button>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="community-impact-box">
-                        <h3><i class="fa-solid fa-store"></i> Small Business Impact</h3>
-                        <p>10% of proceeds from every box directly support independent small business development grants in the featured city.</p>
+                <div class="passport_form">
+                    <div class="passport_field">
+                        <label for="ppNameInput">Your name</label>
+                        <input type="text" id="ppNameInput" maxlength="22" autocomplete="name" placeholder="Jordan Lee">
+                    </div>
+                    <div class="passport_field">
+                        <label for="ppStateInput">Home state</label>
+                        <select id="ppStateInput">
+                            <option value="">Choose a state</option>
+                        </select>
+                    </div>
+                    <button type="button" class="plans-button passport_stamp-button" id="ppStampButton">Stamp my passport</button>
+                </div>
+                <p class="visually-hidden" id="ppStatus" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <div class="city-ticker" aria-hidden="true">
+            <div class="city-ticker_track" id="cityTicker"></div>
+        </div>
+
+
+        <section class="plans-section" id="plans" aria-labelledby="plans-title">
+            <div class="plans-section_header" data-reveal>
+                <p class="plans-eyebrow">Plans</p>
+                <h2 id="plans-title">Choose how you travel</h2>
+                <p>Commit longer and every box costs less. Shipping is always free.</p>
+
+                <fieldset class="billing-switch">
+                    <legend class="visually-hidden">Billing period</legend>
+                    <span class="billing-switch_pill" aria-hidden="true"></span>
+                    <label class="billing-switch_option is-checked"><input type="radio" name="billing" value="monthly" checked><span>Monthly</span></label>
+                    <label class="billing-switch_option"><input type="radio" name="billing" value="half"><span>6 months <span class="billing-switch_save">-8%</span></span></label>
+                    <label class="billing-switch_option"><input type="radio" name="billing" value="annual"><span>Yearly <span class="billing-switch_save">-15%</span></span></label>
+                </fieldset>
+            </div>
+
+            <div class="plans-cards">
+
+                <article class="plan-card" id="basic" aria-labelledby="basicTitle" data-reveal>
+                    <div class="plan-card_inner">
+                        <div class="plan-card_face plan-card_front">
+                            <h3 id="basicTitle">Basic</h3>
+                            <p class="plan-card_tagline">A taste of a new city every month.</p>
+                            <p class="plan-card_price">
+                                <span class="plan-card_currency">$</span><span class="plan-card_amount" data-price-basic>34</span>
+                                <span class="plan-card_period">/ box</span>
+                            </p>
+                            <p class="plan-card_billed" data-billed-basic>Billed monthly</p>
+                            <ul class="plan-card_features">
+                                <li>4 to 5 local products</li>
+                                <li>Personal Marlowby passport</li>
+                                <li>A city stamp in every box</li>
+                                <li>Printed maker stories card</li>
+                                <li>Free U.S. shipping</li>
+                                <li>Skip or cancel anytime</li>
+                            </ul>
+                            <button type="button" class="plans-button plan-card_cta" data-plan="basic">Subscribe to Basic</button>
+                            <button type="button" class="plan-card_flip" data-flip>Peek inside this month's box</button>
+                        </div>
+                        <div class="plan-card_face plan-card_back" inert>
+                            <h3>This month's Basic box</h3>
+                            <p class="plan-card_city" data-sample-city>Burlington, Vermont</p>
+                            <ul class="plan-card_sample" data-sample="basic"></ul>
+                            <button type="button" class="plan-card_flip" data-flip>Back to plan</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="plan-card plan-card--featured" id="premium" aria-labelledby="premiumTitle" data-reveal>
+                    <div class="plan-card_inner">
+                        <div class="plan-card_face plan-card_front">
+                            <p class="plan-card_badge">Most popular</p>
+                            <h3 id="premiumTitle">Premium</h3>
+                            <p class="plan-card_tagline">The whole city, delivered.</p>
+                            <p class="plan-card_price">
+                                <span class="plan-card_currency">$</span><span class="plan-card_amount" data-price-premium>59</span>
+                                <span class="plan-card_period">/ box</span>
+                            </p>
+                            <p class="plan-card_billed" data-billed-premium>Billed monthly</p>
+                            <ul class="plan-card_features">
+                                <li>7 to 9 local products</li>
+                                <li>Personal Marlowby passport</li>
+                                <li>A city stamp in every box</li>
+                                <li>One full-size signature item</li>
+                                <li>Digital city guide and playlist</li>
+                                <li>Early access to Specials</li>
+                                <li>Free U.S. shipping</li>
+                            </ul>
+                            <button type="button" class="plans-button plan-card_cta" data-plan="premium">Subscribe to Premium</button>
+                            <button type="button" class="plan-card_flip" data-flip>Peek inside this month's box</button>
+                        </div>
+                        <div class="plan-card_face plan-card_back" inert>
+                            <h3>This month's Premium box</h3>
+                            <p class="plan-card_city" data-sample-city>Burlington, Vermont</p>
+                            <ul class="plan-card_sample" data-sample="premium"></ul>
+                            <button type="button" class="plan-card_flip" data-flip>Back to plan</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="plan-card" id="gift" aria-labelledby="giftTitle" data-reveal>
+                    <div class="plan-card_inner">
+                        <div class="plan-card_face plan-card_front">
+                            <h3 id="giftTitle">Gift</h3>
+                            <p class="plan-card_tagline">Send someone on a road trip.</p>
+                            <p class="plan-card_price">
+                                <span class="plan-card_currency">$</span><span class="plan-card_amount" data-price-gift>99</span>
+                                <span class="plan-card_period">one time</span>
+                            </p>
+                            <fieldset class="gift-length">
+                                <legend class="visually-hidden">Gift length</legend>
+                                <label class="pill-option is-checked"><input type="radio" name="giftMonths" value="3" checked><span>3 months</span></label>
+                                <label class="pill-option"><input type="radio" name="giftMonths" value="6"><span>6 months</span></label>
+                                <label class="pill-option"><input type="radio" name="giftMonths" value="12"><span>12 months</span></label>
+                            </fieldset>
+                            <ul class="plan-card_features">
+                                <li>Basic boxes, prepaid</li>
+                                <li>A passport in their name</li>
+                                <li>A city stamp in every box</li>
+                                <li>Personal gift note</li>
+                                <li>Choose the start month</li>
+                                <li>Never renews automatically</li>
+                            </ul>
+                            <button type="button" class="plans-button plan-card_cta" data-plan="gift">Give a Gift</button>
+                            <button type="button" class="plan-card_flip" data-flip>Peek inside this month's box</button>
+                        </div>
+                        <div class="plan-card_face plan-card_back" inert>
+                            <h3>This month's Gift box</h3>
+                            <p class="plan-card_city" data-sample-city>Burlington, Vermont</p>
+                            <ul class="plan-card_sample" data-sample="basic"></ul>
+                            <p class="plan-card_note">Arrives with a handwritten-style note card and your message.</p>
+                            <button type="button" class="plan-card_flip" data-flip>Back to plan</button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="plans-deals" id="deals" aria-labelledby="dealsTitle">
+            <div class="plans-section_header" data-reveal>
+                <p class="plans-eyebrow">Deals and codes</p>
+                <h2 id="dealsTitle">Pack your bags for less</h2>
+                <p>Here's tonight's code. Find bundles, gift deals and a daily postcard prize on the Specials page.</p>
+            </div>
+
+            <div class="deals-grid deals-grid--teaser">
+                <article class="deal deal--flash" aria-labelledby="flashTitle" data-reveal>
+                    <div class="deal_main">
+                        <p class="deal_tag">Tonight only</p>
+                        <h3 id="flashTitle">10% off everything</h3>
+                        <p>Good on every plan and every gift until midnight. Tomorrow brings a new deal.</p>
+                        <p class="deal_clock"><span class="visually-hidden">This deal ends at midnight.</span><span aria-hidden="true" data-flash-clock>00:00:00</span><span class="deal_clock-label" aria-hidden="true">left tonight</span></p>
+                    </div>
+                    <div class="deal_stub">
+                        <p class="deal_code-label">Code</p>
+                        <p class="deal_code">MIDNIGHT</p>
+                        <button type="button" class="deal-button deal-button--light" data-promo-apply="MIDNIGHT">Apply code</button>
+                        <button type="button" class="deal-button deal-button--outline-light" data-promo-copy="MIDNIGHT">Copy</button>
+                    </div>
+                </article>
+
+                <article class="deal deal--more" aria-labelledby="moreTitle" data-reveal>
+                    <p class="deal_tag">On the Specials page</p>
+                    <h3 id="moreTitle">Six more ways to save</h3>
+                    <ul class="deal_list">
+                        <li><strong>$25 off</strong> the Road Trip Bundle</li>
+                        <li><strong>20% off</strong> any yearly plan</li>
+                        <li><strong>15% off</strong> 12-month gifts</li>
+                        <li><strong>$10</strong> friend codes you make yourself</li>
+                        <li>A <strong>free tote</strong> at $300</li>
+                        <li>A <strong>postcard prize</strong> every day</li>
+                    </ul>
+                    <a class="deal-button" href="/html/specials.html">See all specials</a>
+                </article>
+            </div>
+        </section>
+
+
+
+        <section class="plans-quiz" aria-labelledby="quizTitle">
+            <div class="plans-quiz_card" data-reveal>
+                <p class="plans-eyebrow">Not sure?</p>
+                <h2 id="quizTitle">Find your plan in three taps</h2>
+                <div class="plans-quiz_progress" aria-hidden="true"><span id="quizBar"></span></div>
+
+                <div class="plans-quiz_form" id="planQuiz">
+                    <fieldset class="quiz-step is-active" data-step="0">
+                        <legend>Who is the box for?</legend>
+                        <div class="quiz-choices">
+                            <label><input type="radio" name="who" value="me"><span>Me</span></label>
+                            <label><input type="radio" name="who" value="gift"><span>Someone else</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="quiz-step" data-step="1" disabled>
+                        <legend>How much of the city do you want?</legend>
+                        <div class="quiz-choices">
+                            <label><input type="radio" name="depth" value="taste"><span>A little taste</span></label>
+                            <label><input type="radio" name="depth" value="full"><span>All of it</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="quiz-step" data-step="2" disabled>
+                        <legend>What feels right each month?</legend>
+                        <div class="quiz-choices">
+                            <label><input type="radio" name="budget" value="low"><span>Under $40</span></label>
+                            <label><input type="radio" name="budget" value="high"><span>Up to $60</span></label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="plans-quiz_result" id="quizResult" aria-live="polite" hidden>
+                    <p class="plans-quiz_result-label">Your match</p>
+                    <p class="plans-quiz_result-plan" id="quizPlan"></p>
+                    <p id="quizWhy"></p>
+                    <div class="plans-quiz_result-actions">
+                        <a class="plans-button" id="quizGo" href="#plans">Show me this plan</a>
+                        <button type="button" class="plans-button plans-button--ghost" id="quizReset">Start over</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="scroll-transition-trigger" id="transition-to-explore" data-next-label="Keep Exploring"></div>
 
-        <!-- SECTION 5: READY TO EXPLORE LES GOO -->
-        <section class="scroll-section explore-section" id="explore-section" aria-labelledby="explore-title">
-            <div class="container explore-content">
-                <h2 id="explore-title"></h2>
-                <p id="exploreSubtext"></p>
-                <div class="explore-actions">
-                    <a class="btn-primary explore-cart-btn" id="exploreCartBtn" href="/html/cart.html">
-                        <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
-                        View Cart
-                    </a>
-                    <div class="explore-links" id="exploreLinks"></div>
+        <section class="plans-trip" aria-labelledby="tripTitle">
+            <div class="plans-trip_header" data-reveal>
+                <p class="plans-eyebrow">Collect the stamps</p>
+                <h2 id="tripTitle">Fill a whole passport in a year</h2>
+                <p>Slide to choose how many months you'll subscribe. Every box earns a city stamp, and every city is a community of makers you support.</p>
+            </div>
+
+            <div class="plans-trip_panel" data-reveal>
+                <div class="plans-trip_controls">
+                    <fieldset class="trip-plan">
+                        <legend class="visually-hidden">Plan for the road trip</legend>
+                        <label class="pill-option"><input type="radio" name="tripPlan" value="basic"><span>Basic</span></label>
+                        <label class="pill-option is-checked"><input type="radio" name="tripPlan" value="premium" checked><span>Premium</span></label>
+                    </fieldset>
+                    <label class="trip-range_label" for="tripMonths"><span id="tripMonthsOut">6</span> months</label>
+                    <input type="range" id="tripMonths" min="1" max="12" value="6" aria-describedby="tripSummary">
                 </div>
+
+                <div class="trip-passport">
+                    <ol class="trip-stamps" id="tripStamps"></ol>
+                </div>
+
+                <dl class="trip-stats" id="tripSummary" aria-live="polite">
+                    <div><dt>Cities visited</dt><dd id="tripCities">6</dd></div>
+                    <div><dt>Local products</dt><dd id="tripItems">48</dd></div>
+                    <div><dt>You pay</dt><dd id="tripTotal">$324</dd></div>
+                    <div><dt>You save</dt><dd id="tripSave">$30</dd></div>
+                </dl>
+            </div>
+        </section>
+
+
+        <section class="plans-compare" id="compare" aria-labelledby="compareTitle">
+            <div class="plans-compare_header" data-reveal>
+                <h2 id="compareTitle">Compare plans</h2>
+                <button type="button" class="plans-toggle" id="diffToggle" aria-pressed="false">
+                    <span class="plans-toggle_track" aria-hidden="true"><span class="plans-toggle_thumb"></span></span>
+                    Show differences only
+                </button>
+            </div>
+            <div class="plans-compare_scroll" tabindex="0" data-reveal>
+                <table class="plans-compare_table" id="compareTable">
+                    <caption class="visually-hidden">Features included in each Marlowby plan</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Feature</th>
+                            <th scope="col">Basic</th>
+                            <th scope="col" class="is-featured">Premium</th>
+                            <th scope="col">Gift</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Starting price</th>
+                            <td>$29 / box</td>
+                            <td class="is-featured">$50 / box</td>
+                            <td>$99 for 3 boxes</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Local products per box</th>
+                            <td>4 to 5</td>
+                            <td class="is-featured">7 to 9</td>
+                            <td>4 to 5</td>
+                        </tr>
+                        <tr data-same>
+                            <th scope="row">Personal Marlowby passport</th>
+                            <td><span class="mark mark--yes">Included</span></td>
+                            <td class="is-featured"><span class="mark mark--yes">Included</span></td>
+                            <td><span class="mark mark--yes">Included</span></td>
+                        </tr>
+                        <tr data-same>
+                            <th scope="row">City stamp in every box</th>
+                            <td><span class="mark mark--yes">Included</span></td>
+                            <td class="is-featured"><span class="mark mark--yes">Included</span></td>
+                            <td><span class="mark mark--yes">Included</span></td>
+                        </tr>
+                        <tr data-same>
+                            <th scope="row">Maker stories card</th>
+                            <td><span class="mark mark--yes">Included</span></td>
+                            <td class="is-featured"><span class="mark mark--yes">Included</span></td>
+                            <td><span class="mark mark--yes">Included</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Full-size signature item</th>
+                            <td><span class="mark mark--no">Not included</span></td>
+                            <td class="is-featured"><span class="mark mark--yes">Included</span></td>
+                            <td><span class="mark mark--no">Not included</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Digital city guide and playlist</th>
+                            <td><span class="mark mark--no">Not included</span></td>
+                            <td class="is-featured"><span class="mark mark--yes">Included</span></td>
+                            <td><span class="mark mark--no">Not included</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Early access to Specials</th>
+                            <td><span class="mark mark--no">Not included</span></td>
+                            <td class="is-featured"><span class="mark mark--yes">Included</span></td>
+                            <td><span class="mark mark--no">Not included</span></td>
+                        </tr>
+                        <tr data-same>
+                            <th scope="row">Free U.S. shipping</th>
+                            <td><span class="mark mark--yes">Included</span></td>
+                            <td class="is-featured"><span class="mark mark--yes">Included</span></td>
+                            <td><span class="mark mark--yes">Included</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Renews automatically</th>
+                            <td>Yes, skip or cancel anytime</td>
+                            <td class="is-featured">Yes, skip or cancel anytime</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+        <section class="plans-faq" aria-labelledby="faqTitle">
+            <h2 id="faqTitle" data-reveal>Questions about plans</h2>
+
+            <details data-reveal>
+                <summary>When will I be charged?</summary>
+                <div class="plans-faq_body"><p>Monthly plans are charged on the 1st of each month, and boxes ship on the 5th. Six-month and yearly plans are charged once, on the day you subscribe.</p></div>
+            </details>
+
+            <details data-reveal>
+                <summary>Can I skip a month or cancel?</summary>
+                <div class="plans-faq_body"><p>Yes. Skip or cancel from your account before the 1st and you won't be charged for that month's box.</p></div>
+            </details>
+
+            <details data-reveal>
+                <summary>How do you choose each month's city?</summary>
+                <div class="plans-faq_body"><p>We rotate through regions so every box feels new, and we look for cities with a strong community of small, independent makers. You can see earlier boxes on our <a href="/html/past-months.html">Past Months</a> page.</p></div>
+            </details>
+
+            <details data-reveal>
+                <summary>Can I change plans later?</summary>
+                <div class="plans-faq_body"><p>Yes. Upgrades and downgrades start with your next box. Switching from a yearly plan to monthly takes effect at your renewal date.</p></div>
+            </details>
+        </section>
+
+
+        <section class="plans-cta" aria-labelledby="ctaTitle" data-reveal>
+            <h2 id="ctaTitle">Ready to explore your next city?</h2>
+            <p>Join Marlowby and support a new community of small businesses every month.</p>
+            <div class="plans-cta_actions">
+                <button type="button" class="plans-button plans-button--light" data-plan="premium">Start with Premium</button>
+                <a class="plans-cta_link" href="/html/our-mission.html">Read about our mission</a>
             </div>
         </section>
 
     </main>
 
     <footer class="site-footer">
-        <div class="container footer-content">
-            <p>&copy; 2027 Marlowby Subscription Services. All rights reserved.</p>
-            <nav aria-label="Footer Navigation">
-                <ul class="footer-links">
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                    <li><a href="works-cited.html">Works Cited / Copyright</a></li>
-                </ul>
+        <div class="site-footer-inner">
+            <div class="site-footer-brand">
+                <a href="../index.html" class="site-footer-logo">Marlowby</a>
+                <p>Explore your city, one box at a time. Every month we ship the best local products, small businesses and culture from a different U.S. city.</p>
+                <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
+            </div>
+
+            <nav class="site-footer-links" aria-label="Footer">
+                <div>
+                    <h2>Explore</h2>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="/html/specials.html">Specials</a></li>
+                        <li><a href="/html/past-months.html">Past Months</a></li>
+                        <li><a href="/html/SubscriptionPlans.html" aria-current="page">Subscription Plans</a></li>
+                        <li><a href="/html/sign-in.html">Sign In</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Plans</h2>
+                    <ul>
+                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#gift">Gift Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Deals</h2>
+                    <ul>
+                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
+                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
+                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
+                        <li><a href="/html/specials.html#wallet">Promo Codes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Company</h2>
+                    <ul>
+                        <li><a href="/html/our-mission.html">Our Mission</a></li>
+                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
+                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
+                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
+                    </ul>
+                </div>
             </nav>
+        </div>
+
+        <div class="site-footer-bottom">
+            <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
+            <a href="#main-content" class="site-footer-top">Back to top</a>
         </div>
     </footer>
 
-    <script src="/js/SubscriptionPlans.js"></script>
+
+    <canvas class="plans-confetti" id="confetti" aria-hidden="true" popover="manual"></canvas>
+
+    <div class="scroll-road" aria-hidden="true">
+        <div class="scroll-road_line"><span class="scroll-road_fill" id="roadFill"></span></div>
+        <div class="scroll-road_box" id="roadBox"></div>
+    </div>
+
+
+    <script src="/js/accessibility.js"></script>
+    <script src="/js/navbar.js"></script>
+    <script src="/js/nav-footer.js"></script>
+    <script src="/js/store.js"></script>
+    <script src="/js/shop.js"></script>
+    <script src="/js/deals.js"></script>
+    <script src="/js/subscription-plans.js"></script>
 </body>
 </html>
