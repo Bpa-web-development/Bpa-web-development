@@ -18,9 +18,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-    <script src="https://kit.fontawesome.com/59468707c3.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="plans-page">
@@ -56,6 +55,7 @@
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/past-months.html">Past Months</a>
                     <ul class="sub-menu">
+                        <li><a href="/html/burlington.html">This Month: Burlington, VT</a></li>
                         <li><a href="/html/past-months.html#January">January 2026</a></li>
                         <li><a href="/html/past-months.html#February">February 2026</a></li>
                         <li><a href="/html/past-months.html#March">March 2026</a></li>
@@ -85,7 +85,7 @@
                 </li>
 
                 <li>
-                    <a class="navbar-link-item navbar-cart" href="/html/SubscriptionPlans.html#plans" aria-label="Cart">
+                    <a class="navbar-link-item navbar-cart" href="/html/cart.html" aria-label="Cart">
                         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>
                     </a>
                 </li>
@@ -110,18 +110,6 @@
 
     <main id="main-content">
 
-        <aside class="deal-ribbon" aria-label="Current deals" data-ribbon>
-            <div class="deal-ribbon_inner">
-                <ul class="deal-ribbon_list">
-                    <li class="is-active">Tonight only: 10% off everything with <strong>MIDNIGHT</strong></li>
-                    <li>Spend $300 and get a free Burlington tote bag</li>
-                    <li>20% off any yearly plan with <strong>MAPLE20</strong></li>
-                </ul>
-                <a class="deal-ribbon_link" href="/html/specials.html">See all deals</a>
-                <button type="button" class="deal-ribbon_pause">Pause</button>
-            </div>
-        </aside>
-
         <section class="plans-hero" aria-labelledby="plans-hero-title">
             <div class="plans-hero_text">
                 <p class="plans-eyebrow">Subscription Plans</p>
@@ -131,30 +119,38 @@
                 </h1>
                 <p class="plans-hero_lead">Every month Marlowby ships a curated box of goods from the small businesses of one U.S. city. Choose how much of the city you want, then watch the stamps pile up in your own Marlowby passport.</p>
 
-                <div class="plans-countdown">
-                    <p class="plans-countdown_label">The <span id="nextMonthName">next</span> box ships in</p>
-                    <div class="plans-countdown_clock" role="timer" aria-label="Time until the next box ships">
-                        <div><span id="cdDays">00</span><small>days</small></div>
-                        <div><span id="cdHours">00</span><small>hrs</small></div>
-                        <div><span id="cdMins">00</span><small>min</small></div>
-                        <div><span id="cdSecs">00</span><small>sec</small></div>
-                    </div>
-                </div>
-
-                <div class="scratch" id="scratch">
-                    <div class="scratch_prize" id="scratchPrize" aria-hidden="true">
-                        <p class="scratch_label">Next stop</p>
-                        <p class="scratch_city" id="scratchCity">Burlington, VT</p>
-                        <p class="scratch_hint" id="scratchHint"></p>
-                    </div>
-                    <canvas class="scratch_foil" id="scratchFoil" aria-hidden="true"></canvas>
-                </div>
-                <p class="scratch_status visually-hidden" id="scratchStatus" aria-live="polite"></p>
-
                 <div class="plans-hero_actions">
                     <a class="plans-button" href="#plans">See the plans</a>
-                    <button type="button" class="plans-button plans-button--ghost" id="scratchReveal">Reveal the next city</button>
+                    <a class="plans-button plans-button--ghost" href="/html/specials.html">Browse the deals</a>
                 </div>
+
+                <article class="hero-box" aria-labelledby="heroBoxTitle">
+                    <header class="hero-box_head">
+                        <div>
+                            <p class="hero-box_label">Now shipping</p>
+                            <h2 class="hero-box_city" id="heroBoxTitle">The Burlington, VT box</h2>
+                        </div>
+                        <p class="hero-box_code"><span aria-hidden="true">BTV</span><span class="visually-hidden">Ships from Burlington, Vermont</span></p>
+                    </header>
+                    <ul class="hero-box_list">
+                        <li><span class="hero-box_dot" aria-hidden="true"></span><b>Pure maple syrup</b><small>Boiled down in a Green Mountain sugarhouse</small></li>
+                        <li><span class="hero-box_dot" aria-hidden="true"></span><b>Maple cream candies</b><small>Cooked and stirred by hand</small></li>
+                        <li><span class="hero-box_dot" aria-hidden="true"></span><b>Small-batch dark chocolate</b><small>Made a few blocks from Lake Champlain</small></li>
+                        <li><span class="hero-box_dot" aria-hidden="true"></span><b>Sharp cheddar crackers</b><small>Baked with aged Vermont cheddar</small></li>
+                        <li><span class="hero-box_dot hero-box_dot--gold" aria-hidden="true"></span><b>Hand-thrown stoneware mug</b><small>Premium boxes only</small></li>
+                    </ul>
+                    <div class="plans-countdown">
+                        <p class="plans-countdown_label">The <span id="nextMonthName">next</span> box ships in</p>
+                        <div class="plans-countdown_clock" role="timer" aria-label="Time until the next box ships">
+                            <div><span id="cdDays">00</span><small>days</small></div>
+                            <div><span id="cdHours">00</span><small>hrs</small></div>
+                            <div><span id="cdMins">00</span><small>min</small></div>
+                            <div><span id="cdSecs">00</span><small>sec</small></div>
+                        </div>
+                        <p class="hero-box_secret">Where it goes is a secret until it ships.</p>
+                    </div>
+                    <a class="hero-box_more" href="/html/burlington.html">Explore the Burlington spotlight</a>
+                </article>
             </div>
 
             <div class="plans-hero_art-wrap">
@@ -165,22 +161,41 @@
                             <div class="passport_stamps" id="ppStamps">
                                 <p class="passport_empty" id="ppEmpty">Your first stamp goes here.</p>
                             </div>
-                            <p class="passport_folio" aria-hidden="true">02</p>
+                            <div class="passport_pager" id="ppPager" hidden>
+                                <button type="button" class="passport_pager-button" id="ppPrev" aria-label="Turn back to the previous stamps page"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+                                <p class="passport_pager-label" id="ppPageLabel" aria-live="polite">Page 1 of 1</p>
+                                <button type="button" class="passport_pager-button" id="ppNext" aria-label="Turn to the next stamps page"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+                            </div>
+                            <p class="passport_folio" id="ppFolio" aria-hidden="true">02</p>
                         </div>
                         <div class="passport_leaf">
                             <button type="button" class="passport_cover" id="passportCover" aria-expanded="false" aria-controls="ppIdPage">
-                                <svg class="passport_emblem" viewBox="0 0 80 80" aria-hidden="true">
-                                    <circle cx="40" cy="40" r="34" fill="none" stroke="currentColor" stroke-width="2"/>
-                                    <circle cx="40" cy="40" r="27" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3"/>
-                                    <polygon points="40,10 45,35 70,40 45,45 40,70 35,45 10,40 35,35" fill="currentColor"/>
-                                    <circle cx="40" cy="40" r="4" fill="#1d2a3a"/>
-                                </svg>
+                                <span class="passport_stitch" aria-hidden="true"></span>
+                                <span class="passport_foil" aria-hidden="true"></span>
+                                <span class="passport_cover-top" aria-hidden="true">United States of Adventure</span>
+                                <svg class="passport_emblem" viewBox="0 0 100 100" aria-hidden="true">
+                                    <defs>
+                                        <linearGradient id="ppGold" x1="0" y1="0" x2="1" y2="1">
+                                            <stop offset="0" stop-color="#f6e2a6"/>
+                                            <stop offset="0.45" stop-color="#d4a94f"/>
+                                            <stop offset="0.7" stop-color="#fbeec4"/>
+                                            <stop offset="1" stop-color="#a87a2a"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <circle cx="50" cy="50" r="44" fill="none" stroke="url(#ppGold)" stroke-width="2.5"/>
+                                    <circle cx="50" cy="50" r="38" fill="none" stroke="url(#ppGold)" stroke-width="1" stroke-dasharray="1.5 3"/>
+                                    <polygon points="50,14 55,44 86,50 55,56 50,86 45,56 14,50 45,44" fill="url(#ppGold)"/>
+                                    <polygon points="50,30 53,47 70,50 53,53 50,70 47,53 30,50 47,47" fill="#142035" transform="rotate(45 50 50)"/>
+                                    <circle cx="50" cy="50" r="5" fill="#142035" stroke="url(#ppGold)" stroke-width="1.5"/>
+                                                                    </svg>
                                 <span class="passport_cover-title">Marlowby</span>
                                 <span class="passport_cover-sub">Explorer Passport</span>
+                                <span class="passport_chip" aria-hidden="true"></span>
                                 <span class="passport_cover-hint">Tap to open</span>
                             </button>
                             <div class="passport_page passport_page--id" id="ppIdPage">
-                                <p class="passport_heading">Explorer</p>
+                                <p class="passport_heading">Explorer <span class="passport_heading-type">Type P &middot; USA</span></p>
+                                <span class="passport_holo" aria-hidden="true"></span>
                                 <div class="passport_id">
                                     <div class="passport_photo" aria-hidden="true"><span id="ppInitials">YOU</span></div>
                                     <dl class="passport_fields">
@@ -214,11 +229,6 @@
                 <p class="visually-hidden" id="ppStatus" aria-live="polite"></p>
             </div>
         </section>
-
-        <div class="city-ticker" aria-hidden="true">
-            <div class="city-ticker_track" id="cityTicker"></div>
-        </div>
-
 
         <section class="plans-section" id="plans" aria-labelledby="plans-title">
             <div class="plans-section_header" data-reveal>
@@ -339,41 +349,19 @@
         </section>
 
         <section class="plans-deals" id="deals" aria-labelledby="dealsTitle">
-            <div class="plans-section_header" data-reveal>
-                <p class="plans-eyebrow">Deals and codes</p>
-                <h2 id="dealsTitle">Pack your bags for less</h2>
-                <p>Here's tonight's code. Find bundles, gift deals and a daily postcard prize on the Specials page.</p>
-            </div>
-
-            <div class="deals-grid deals-grid--teaser">
-                <article class="deal deal--flash" aria-labelledby="flashTitle" data-reveal>
-                    <div class="deal_main">
-                        <p class="deal_tag">Tonight only</p>
-                        <h3 id="flashTitle">10% off everything</h3>
-                        <p>Good on every plan and every gift until midnight. Tomorrow brings a new deal.</p>
-                        <p class="deal_clock"><span class="visually-hidden">This deal ends at midnight.</span><span aria-hidden="true" data-flash-clock>00:00:00</span><span class="deal_clock-label" aria-hidden="true">left tonight</span></p>
-                    </div>
-                    <div class="deal_stub">
-                        <p class="deal_code-label">Code</p>
-                        <p class="deal_code">MIDNIGHT</p>
-                        <button type="button" class="deal-button deal-button--light" data-promo-apply="MIDNIGHT">Apply code</button>
-                        <button type="button" class="deal-button deal-button--outline-light" data-promo-copy="MIDNIGHT">Copy</button>
-                    </div>
-                </article>
-
-                <article class="deal deal--more" aria-labelledby="moreTitle" data-reveal>
-                    <p class="deal_tag">On the Specials page</p>
-                    <h3 id="moreTitle">Six more ways to save</h3>
-                    <ul class="deal_list">
-                        <li><strong>$25 off</strong> the Road Trip Bundle</li>
-                        <li><strong>20% off</strong> any yearly plan</li>
-                        <li><strong>15% off</strong> 12-month gifts</li>
-                        <li><strong>$10</strong> friend codes you make yourself</li>
-                        <li>A <strong>free tote</strong> at $300</li>
-                        <li>A <strong>postcard prize</strong> every day</li>
-                    </ul>
-                    <a class="deal-button" href="/html/specials.html">See all specials</a>
-                </article>
+            <div class="deal-sign" data-reveal>
+                <div class="deal-sign_text">
+                    <p class="plans-eyebrow">Deals and codes</p>
+                    <h2 id="dealsTitle">Every deal lives on the Specials page</h2>
+                    <p>Tonight, <strong>MIDNIGHT</strong> takes 10% off everything for <span class="deal-sign_clock" data-flash-clock>00:00:00</span> more.</p>
+                </div>
+                <nav class="deal-sign_dir" aria-label="Deal directory">
+                    <a href="/html/specials.html#Daily"><b>Daily specials</b><small>3 deals</small></a>
+                    <a href="/html/specials.html#Weekly"><b>Weekly deals</b><small>3 deals</small></a>
+                    <a href="/html/specials.html#Limited"><b>Limited offers</b><small>4 deals</small></a>
+                    <a href="/html/specials.html#wallet"><b>Code wallet</b><small data-promo-total>7 codes</small></a>
+                </nav>
+                <a class="plans-button deal-sign_go" href="/html/specials.html">See all deals<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
         </section>
 
@@ -418,38 +406,6 @@
                         <button type="button" class="plans-button plans-button--ghost" id="quizReset">Start over</button>
                     </div>
                 </div>
-            </div>
-        </section>
-
-
-        <section class="plans-trip" aria-labelledby="tripTitle">
-            <div class="plans-trip_header" data-reveal>
-                <p class="plans-eyebrow">Collect the stamps</p>
-                <h2 id="tripTitle">Fill a whole passport in a year</h2>
-                <p>Slide to choose how many months you'll subscribe. Every box earns a city stamp, and every city is a community of makers you support.</p>
-            </div>
-
-            <div class="plans-trip_panel" data-reveal>
-                <div class="plans-trip_controls">
-                    <fieldset class="trip-plan">
-                        <legend class="visually-hidden">Plan for the road trip</legend>
-                        <label class="pill-option"><input type="radio" name="tripPlan" value="basic"><span>Basic</span></label>
-                        <label class="pill-option is-checked"><input type="radio" name="tripPlan" value="premium" checked><span>Premium</span></label>
-                    </fieldset>
-                    <label class="trip-range_label" for="tripMonths"><span id="tripMonthsOut">6</span> months</label>
-                    <input type="range" id="tripMonths" min="1" max="12" value="6" aria-describedby="tripSummary">
-                </div>
-
-                <div class="trip-passport">
-                    <ol class="trip-stamps" id="tripStamps"></ol>
-                </div>
-
-                <dl class="trip-stats" id="tripSummary" aria-live="polite">
-                    <div><dt>Cities visited</dt><dd id="tripCities">6</dd></div>
-                    <div><dt>Local products</dt><dd id="tripItems">48</dd></div>
-                    <div><dt>You pay</dt><dd id="tripTotal">$324</dd></div>
-                    <div><dt>You save</dt><dd id="tripSave">$30</dd></div>
-                </dl>
             </div>
         </section>
 
@@ -562,6 +518,7 @@
                 <summary>Can I change plans later?</summary>
                 <div class="plans-faq_body"><p>Yes. Upgrades and downgrades start with your next box. Switching from a yearly plan to monthly takes effect at your renewal date.</p></div>
             </details>
+            <p class="plans-faq_more" data-reveal>Still wondering? <a href="/html/faq.html">Read every FAQ</a> or <a href="/html/faq.html#helpdesk">ask the help desk</a>.</p>
         </section>
 
 
@@ -589,10 +546,12 @@
                     <h2>Explore</h2>
                     <ul>
                         <li><a href="../index.html">Home</a></li>
+                        <li><a href="/html/burlington.html">This Month</a></li>
                         <li><a href="/html/specials.html">Specials</a></li>
                         <li><a href="/html/past-months.html">Past Months</a></li>
                         <li><a href="/html/SubscriptionPlans.html" aria-current="page">Subscription Plans</a></li>
                         <li><a href="/html/sign-in.html">Sign In</a></li>
+                        <li><a href="/html/cart.html">Your Cart</a></li>
                     </ul>
                 </div>
                 <div>
@@ -619,7 +578,9 @@
                         <li><a href="/html/our-mission.html">Our Mission</a></li>
                         <li><a href="/html/our-mission.html#Story">Our Story</a></li>
                         <li><a href="/html/our-mission.html#Team">Our Team</a></li>
-                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
+                        <li><a href="/html/faq.html">FAQs and help</a></li>
+                        <li><a href="/html/works-cited.html">Works Cited</a></li>
                     </ul>
                 </div>
             </nav>
@@ -636,12 +597,13 @@
 
     <div class="scroll-road" aria-hidden="true">
         <div class="scroll-road_line"><span class="scroll-road_fill" id="roadFill"></span></div>
-        <div class="scroll-road_box" id="roadBox"></div>
+        <div class="scroll-road_box" id="roadBox">
+            <svg viewBox="0 0 40 40" focusable="false"><path d="M20 38 L6 4 L20 12 L34 4 Z" fill="#fbf6ee" stroke="#1d2a3a" stroke-width="2" stroke-linejoin="round"/><path d="M20 38 L20 12" stroke="#1d2a3a" stroke-width="2" stroke-linecap="round"/><path d="M20 38 L13 16 L20 12 Z" fill="#e3a83b"/></svg>
+        </div>
     </div>
 
 
     <script src="/js/accessibility.js"></script>
-    <script src="/js/navbar.js"></script>
     <script src="/js/nav-footer.js"></script>
     <script src="/js/store.js"></script>
     <script src="/js/shop.js"></script>

@@ -59,6 +59,7 @@
             </dl>
             <p class="shop-fine" id="shopRenewNote"></p>
             <button type="button" class="shop-button" id="shopToCheckout">Check out</button>
+            <a class="shop-full-link" id="shopFullCart" href="/html/cart.html">View full cart</a>
             <p class="shop-account-hint" id="shopAccountHint"></p>
         </div>
     </div>
@@ -187,10 +188,13 @@
     </div>
 </dialog>
 
-<div class="shop-toast" id="shopToast" hidden>
+<section class="shop-toast" id="shopToast" aria-label="Cart update" hidden>
     <p id="shopToastText"></p>
-    <button type="button" class="shop-toast_button" id="shopToastView">View cart</button>
-</div>
+    <div class="shop-toast_actions">
+        <button type="button" class="shop-toast_button shop-toast_button--ghost" id="shopToastView">Quick look</button>
+        <a class="shop-toast_button" id="shopToastGo" href="/html/cart.html">Go to cart</a>
+    </div>
+</section>
 <p class="shop-sr" id="shopLive" aria-live="polite"></p>`;
 
     const PLAN_INK = { basic: "#4a6650", premium: "#1d2a3a", gift: "#b0491f" };
@@ -239,6 +243,10 @@
         const views = $$(".shop-view", drawer);
         let toastTimer = 0;
         let lastCount = M.cart.count();
+        const onCartPage = document.body.dataset.page === "cart";
+        if (onCartPage) {
+            $("#shopFullCart").hidden = true;
+        }
 
         function announce(message) {
             live.textContent = "";
@@ -310,7 +318,20 @@
             link.lastChild.setAttribute("aria-hidden", "true");
             link.addEventListener("click", (event) => {
                 event.preventDefault();
-                openCart();
+                if (onCartPage) {
+                    const nav = $(".navbar.is-open");
+                    if (nav && toggle) {
+                        toggle.click();
+                    }
+                    const title = $("#cartTitle");
+                    if (title) {
+                        title.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+                        title.focus({ preventScroll: true });
+                    }
+                    return;
+                }
+                const page = $(".navbar-cart");
+                window.location.href = page ? page.href : "/html/cart.html";
             });
         });
 
@@ -525,7 +546,7 @@
                         link.append(avatar);
                     }
                     link.append(document.createTextNode(isNav ? user.firstName : "My Account"));
-                    link.setAttribute("aria-label", "Account for " + user.name);
+                    link.setAttribute("aria-label", (isNav ? user.firstName : "My Account") + ", account for " + user.name);
                 } else {
                     link.textContent = link.dataset.shopLabel;
                     link.removeAttribute("aria-label");
@@ -539,6 +560,9 @@
         }
 
         function showToast(message) {
+            if (onCartPage) {
+                return;
+            }
             $("#shopToastText").textContent = message;
             toast.hidden = false;
             toast.classList.remove("is-showing");
@@ -965,7 +989,18 @@
             return item;
         }
 
-        M.shop = { add, openCart, openAccount, applyPromo, toast: showToast, announce };
+        function openCheckout() {
+            if (!M.cart.items.length) {
+                return;
+            }
+            openCart();
+            showView("checkout");
+            prefillCheckout();
+            renderSummary();
+            $("#shopCheckoutTitle").focus();
+        }
+
+        M.shop = { add, openCart, openCheckout, openAccount, applyPromo, toast: showToast, announce };
         renderCart();
         renderAccountBits();
         document.dispatchEvent(new CustomEvent("marlowby:shop-ready"));

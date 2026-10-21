@@ -135,7 +135,6 @@
 .shop-drawer::backdrop,
 .shop-modal::backdrop {
     background: rgba(29, 42, 58, 0.55);
-    backdrop-filter: blur(4px);
 }
 
 .shop-drawer *,
@@ -536,6 +535,25 @@
 .shop-drawer_foot .shop-fine:last-child {
     margin: 0.7rem 0 0;
     text-align: center;
+}
+
+.shop-full-link {
+    display: block;
+    margin: 0.7rem 0 0;
+    color: var(--shop-ink);
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.shop-full-link:hover {
+    color: var(--shop-clay);
+}
+
+.shop-full-link[hidden] {
+    display: none;
 }
 
 .shop-account-hint {
@@ -1117,6 +1135,38 @@
 
 .shop-toast_button:hover {
     background: #fff;
+}
+
+.shop-toast_actions {
+    display: flex;
+    flex: none;
+    gap: 0.4rem;
+}
+
+a.shop-toast_button {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.shop-toast_button--ghost {
+    background: transparent;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+    color: #fff;
+}
+
+.shop-toast_button--ghost:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+@media (max-width: 480px) {
+    .shop-toast {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 20px;
+        text-align: center;
+    }
 }
 
 .shop-reward {

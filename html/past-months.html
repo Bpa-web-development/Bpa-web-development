@@ -3,98 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Favicon & Title -->
+    <meta name="description" content="Look back at the cities Marlowby has visited: Savannah, Providence and Lexington, with every item from each month's box.">
+
     <title>Marlowby | Past Months</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/Marlowby Logotemp.jpg">
 
-    <!--css links-->
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/nav-footer.css">
+    <link rel="stylesheet" href="/css/shop.css">
+    <link rel="stylesheet" href="/css/deals.css">
+    <link rel="stylesheet" href="/css/past-months.css">
     <link rel="stylesheet" href="/css/responsive.css">
 
-    <!-- Google Fonts Link (Playfair Display & Lato) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome Icon Link -->
-    <script src="https://kit.fontawesome.com/59468707c3.js" crossorigin="anonymous"></script>
-
 </head>
 
-<body>
+<body class="pm-page">
 
-    <!-- Navigation Bar Section -->
-    <nav class="navbar">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="navbar" aria-label="Main">
         <div class="navbar-container">
             <div class="company-logo">
-                <a href="../index.html">
-                    <img class="circular-logo" 
-                    src="/assets/images/Marlowby Logotemp.jpg" 
-                    alt="Marlowby Logo">
-                </a>    
+                <a href="../index.html" class="company-logo-link">
+                    <img class="circular-logo"
+                    src="/assets/images/Marlowby Logotemp.jpg"
+                    alt="">
+                    <span class="company-logo-name">Marlowby</span>
+                </a>
             </div>
-                
-            <ul class="navbar-link-container">
-                <!-- Specials Dropdown -->
+
+            <button type="button" class="navbar-toggle" id="navbarToggle" aria-expanded="false" aria-controls="navbarLinks">
+                <span class="navbar-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span class="navbar-toggle-label">Menu</span>
+            </button>
+
+            <ul class="navbar-link-container" id="navbarLinks">
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/specials.html">Specials</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Daily Specials</a></li>
-                        <li><a href="#">Weekly Deals</a></li>
-                        <li><a href="#">Limited Offers</a></li>
+                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
+                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
+                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
                     </ul>
                 </li>
 
-                <!-- Past Months -->
                 <li class="link-dropdown">
-                    <a class="navbar-link-item" href="/html/past-months.html">Past Months</a>
+                    <a class="navbar-link-item" href="/html/past-months.html" aria-current="page">Past Months</a>
                     <ul class="sub-menu">
-                        <li><a href="#">January 2026</a></li>
-                        <li><a href="#">February 2026</a></li>
-                        <li><a href="#">March 2026</a></li>
+                        <li><a href="/html/burlington.html">This Month: Burlington, VT</a></li>
+                        <li><a href="/html/past-months.html#January">January 2026</a></li>
+                        <li><a href="/html/past-months.html#February">February 2026</a></li>
+                        <li><a href="/html/past-months.html#March">March 2026</a></li>
                     </ul>
                 </li>
-                <!-- <li><a href="#">Limited Offers</a></li>
-                    </ul>
-                </li>    -->
 
-                <!-- About Us Dropdown -->
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/our-mission.html">Our Mission</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Our Story</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
+                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
+                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
                     </ul>
                 </li>
-                    
-                <!-- Subscription Dropdown -->
+
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Basic Plan</a></li>
-                        <li><a href="#">Premium Plan</a></li>
-                        <li><a href="#">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
                     </ul>
                 </li>
 
-                <!-- Sign In Button -->
                 <li>
-                       <a class="navbar-link-item" href="/html/sign-in.html">Sign In</a>
+                    <a class="navbar-link-item navbar-sign-in" href="/html/sign-in.html">Sign In</a>
                 </li>
 
-                <!-- Shopping Cart -->
                 <li>
-                    <a class="navbar-link-item" href="#">
-                        <i class="fa-solid fa-cart-shopping"></i>
+                    <a class="navbar-link-item navbar-cart" href="/html/cart.html" aria-label="Cart">
+                        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>
                     </a>
                 </li>
-            </ul>   
+            </ul>
         </div>
-    </nav>       
+    </nav>
 
-    
+    <div class="accessibility">
+        <button
+            type="button"
+            class="accessibility-icon"
+            id="accessibilityOpen"
+            aria-label="Open accessibility menu">
+
+            <img src="/assets/icons/accessability.png" alt="">
+        </button>
+    </div>
+
+    <div id="accessibilityMenu">
+    </div>
+
+
+    <main id="main-content" class="pm">
+
+        <section class="pm-hero" aria-labelledby="pmTitle">
+            <div class="pm-hero_inner">
+                <p class="pm-eyebrow">Past Months</p>
+                <h1 id="pmTitle">Every box is a <span>trip we already took.</span></h1>
+                <p class="pm-hero_lead">Flip back through the passport. Each month Marlowby shipped a box from one U.S. city, packed with goods from its small businesses and a story about the people who make them. Every city fact is backed by a <a href="/html/works-cited.html#past-months">source in our Works Cited</a>.</p>
+                <nav class="pm-jump" aria-label="Jump to a month">
+                    <a href="#January"><b>Jan</b><span>Savannah, GA</span></a>
+                    <a href="#February"><b>Feb</b><span>Providence, RI</span></a>
+                    <a href="#March"><b>Mar</b><span>Lexington, KY</span></a>
+                    <a href="/html/burlington.html" class="pm-jump_now"><b>Now</b><span>Burlington, VT</span></a>
+                </nav>
+            </div>
+            <svg class="pm-hero_route" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <path d="M0 90 C180 20 320 110 480 60 S800 10 960 70 S1140 40 1200 30" fill="none" stroke="#e3a83b" stroke-width="2.5" stroke-dasharray="2 10" stroke-linecap="round"/>
+                <circle cx="240" cy="60" r="6" fill="#e3a83b"/>
+                <circle cx="600" cy="38" r="6" fill="#e3a83b"/>
+                <circle cx="900" cy="56" r="6" fill="#e3a83b"/>
+                <circle cx="1140" cy="42" r="8" fill="#fbf6ee" stroke="#e3a83b" stroke-width="3"/>
+            </svg>
+        </section>
+
+        <section class="pm-now" aria-labelledby="pmNowTitle">
+            <a class="pm-now_card" href="/html/burlington.html">
+                <span class="pm-now_tag">This month</span>
+                <span class="pm-now_body">
+                    <span class="pm-now_title" id="pmNowTitle">Burlington, VT is shipping now</span>
+                    <span class="pm-now_text">Maple syrup, small-batch chocolate and the Discover Jazz Festival. Step inside this month's box.</span>
+                </span>
+                <span class="pm-now_go" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+            </a>
+        </section>
+
+        <article class="pm-city pm-city--savannah" id="January" aria-labelledby="janTitle">
+            <div class="pm-city_inner">
+                <div class="pm-city_copy" data-pm-reveal>
+                    <p class="pm-city_month">January 2026</p>
+                    <h2 id="janTitle">Savannah, Georgia</h2>
+                    <p class="pm-city_story">We started the year somewhere warm. Savannah's historic district is laid out around 22 leafy squares shaded by live oaks and Spanish moss, and its kitchens run on pecans, peaches and slow afternoons.</p>
+                    <ul class="pm-items">
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Pecan pralines</b><small>Cooked in copper pots by a family candy kitchen</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Georgia peach jam</b><small>Small-batch and barely sweetened</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Lowcountry hot sauce</b><small>Aged peppers from a two-person kitchen</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Live oak soy candle</b><small>Hand-poured, smells like a porch after rain</small></li>
+                        <li><span class="pm-items_dot pm-items_dot--gold" aria-hidden="true"></span><b>Hand-printed tea towel</b><small>Premium only, with a block-print of the squares</small></li>
+                    </ul>
+                </div>
+                <div class="pm-city_art" aria-hidden="true">
+                    <svg class="pm-stamp" viewBox="0 0 220 220" focusable="false">
+                        <circle cx="110" cy="110" r="100" fill="none" stroke="currentColor" stroke-width="4"/>
+                        <circle cx="110" cy="110" r="88" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 5"/>
+                        <path id="pmArcJan" d="M40 110 A70 70 0 0 1 180 110" fill="none"/>
+                        <text class="pm-stamp_arc"><textPath href="#pmArcJan" startOffset="50%" text-anchor="middle">SAVANNAH &#183; GEORGIA</textPath></text>
+                        <path d="M110 92 C100 70 82 62 70 70 C88 72 98 84 104 98 Z M110 92 C120 70 138 62 150 70 C132 72 122 84 116 98 Z" fill="currentColor"/>
+                        <rect x="106" y="92" width="8" height="36" fill="currentColor"/>
+                        <path d="M84 98 q-4 16 2 26 M136 98 q4 16 -2 26 M96 100 q-2 12 0 20 M124 100 q2 12 0 20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <text x="110" y="156" class="pm-stamp_big" text-anchor="middle">SAV</text>
+                        <text x="110" y="176" class="pm-stamp_small" text-anchor="middle">JAN 2026</text>
+                    </svg>
+                    <p class="pm-city_fact"><b>22</b><span>historic squares in the old city</span></p>
+                </div>
+            </div>
+        </article>
+
+        <article class="pm-city pm-city--providence" id="February" aria-labelledby="febTitle">
+            <div class="pm-city_inner">
+                <div class="pm-city_copy" data-pm-reveal>
+                    <p class="pm-city_month">February 2026</p>
+                    <h2 id="febTitle">Providence, Rhode Island</h2>
+                    <p class="pm-city_story">A small capital with a big creative streak. Providence was once known for making jewelry, its art school keeps the streets full of makers, and on WaterFire nights bonfires burn right on the rivers downtown.</p>
+                    <ul class="pm-items">
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Coffee syrup</b><small>Stir it into milk for Rhode Island's official state drink</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Sea salt caramels</b><small>Finished with salt from the Atlantic coast</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Hand-stamped brass bracelet</b><small>From a jeweler in an old mill building</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Riverfront art print</b><small>Screen-printed by a local design student</small></li>
+                        <li><span class="pm-items_dot pm-items_dot--gold" aria-hidden="true"></span><b>Wool knit beanie</b><small>Premium only, for a New England February</small></li>
+                    </ul>
+                </div>
+                <div class="pm-city_art" aria-hidden="true">
+                    <svg class="pm-stamp" viewBox="0 0 220 220" focusable="false">
+                        <rect x="12" y="12" width="196" height="196" rx="18" fill="none" stroke="currentColor" stroke-width="4"/>
+                        <rect x="24" y="24" width="172" height="172" rx="10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 5"/>
+                        <text x="110" y="58" class="pm-stamp_arc" text-anchor="middle">PROVIDENCE &#183; RI</text>
+                        <path d="M70 128 q10 -30 20 0 q10 -42 20 0 q10 -30 20 0 q10 -24 20 0 Z" fill="currentColor"/>
+                        <path d="M50 138 q15 -8 30 0 t30 0 t30 0 t30 0" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <path d="M50 150 q15 -8 30 0 t30 0 t30 0 t30 0" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+                        <text x="110" y="182" class="pm-stamp_big" text-anchor="middle">PVD</text>
+                        <text x="110" y="200" class="pm-stamp_small" text-anchor="middle">FEB 2026</text>
+                    </svg>
+                    <p class="pm-city_fact"><b>Coffee milk</b><span>is Rhode Island's official state drink</span></p>
+                </div>
+            </div>
+        </article>
+
+        <article class="pm-city pm-city--lexington" id="March" aria-labelledby="marTitle">
+            <div class="pm-city_inner">
+                <div class="pm-city_copy" data-pm-reveal>
+                    <p class="pm-city_month">March 2026</p>
+                    <h2 id="marTitle">Lexington, Kentucky</h2>
+                    <p class="pm-city_story">Spring came early in the Horse Capital of the World. Lexington sits in the middle of the Bluegrass region, with rolling pastures, wooden fences, banjo music and farm kitchens that never skip dessert.</p>
+                    <ul class="pm-items">
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Sorghum caramels</b><small>Made with syrup pressed on a family farm</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Smoked sea salt</b><small>Slow-smoked over oak by a two-person spice shop</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Bluegrass playlist card</b><small>Picked by a local fiddle teacher</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Horse country postcard set</b><small>Watercolors of the pastures in spring</small></li>
+                        <li><span class="pm-items_dot pm-items_dot--gold" aria-hidden="true"></span><b>Hand-thrown pottery bowl</b><small>Premium only, glazed in bluegrass green</small></li>
+                    </ul>
+                </div>
+                <div class="pm-city_art" aria-hidden="true">
+                    <svg class="pm-stamp" viewBox="0 0 220 220" focusable="false">
+                        <path d="M110 8 L202 60 L202 160 L110 212 L18 160 L18 60 Z" fill="none" stroke="currentColor" stroke-width="4"/>
+                        <path d="M110 24 L188 68 L188 152 L110 196 L32 152 L32 68 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 5"/>
+                        <text x="110" y="64" class="pm-stamp_arc" text-anchor="middle">LEXINGTON &#183; KY</text>
+                        <path d="M66 140 h88 M66 124 h88 M74 116 v32 M110 116 v32 M146 116 v32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M88 110 q2 -22 18 -26 l10 -12 l2 10 q14 6 14 22 l-6 2 q-2 -10 -10 -12 q-4 10 -16 10 z" fill="currentColor"/>
+                        <text x="110" y="174" class="pm-stamp_big" text-anchor="middle">LEX</text>
+                        <text x="110" y="192" class="pm-stamp_small" text-anchor="middle">MAR 2026</text>
+                    </svg>
+                    <p class="pm-city_fact"><b>Horse Capital</b><span>of the World is Lexington's nickname</span></p>
+                </div>
+            </div>
+        </article>
+
+        <section class="pm-next" aria-labelledby="pmNextTitle">
+            <div class="pm-next_card" data-pm-reveal>
+                <div class="pm-next_seal" aria-hidden="true"><span>?</span></div>
+                <div>
+                    <p class="pm-eyebrow">Next month</p>
+                    <h2 id="pmNextTitle">The next stamp is a mystery.</h2>
+                    <p>We never say where the next box is going until it ships. Join now and your passport gets its next stamp the day it lands on your porch.</p>
+                    <div class="pm-next_actions">
+                        <a class="pm-button" href="/html/SubscriptionPlans.html#plans">Pick a plan</a>
+                        <a class="pm-button pm-button--ghost" href="/html/burlington.html">See this month's box</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <div class="site-footer-brand">
+                <a href="../index.html" class="site-footer-logo">Marlowby</a>
+                <p>Explore your city, one box at a time. Every month we ship the best local products, small businesses and culture from a different U.S. city.</p>
+                <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
+            </div>
+
+            <nav class="site-footer-links" aria-label="Footer">
+                <div>
+                    <h2>Explore</h2>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="/html/burlington.html">This Month</a></li>
+                        <li><a href="/html/specials.html">Specials</a></li>
+                        <li><a href="/html/past-months.html" aria-current="page">Past Months</a></li>
+                        <li><a href="/html/SubscriptionPlans.html">Subscription Plans</a></li>
+                        <li><a href="/html/sign-in.html">Sign In</a></li>
+                        <li><a href="/html/cart.html">Your Cart</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Plans</h2>
+                    <ul>
+                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#gift">Gift Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Deals</h2>
+                    <ul>
+                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
+                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
+                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
+                        <li><a href="/html/specials.html#wallet">Promo Codes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Company</h2>
+                    <ul>
+                        <li><a href="/html/our-mission.html">Our Mission</a></li>
+                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
+                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
+                        <li><a href="/html/faq.html">FAQs and help</a></li>
+                        <li><a href="/html/works-cited.html">Works Cited</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="site-footer-bottom">
+            <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
+            <a href="#main-content" class="site-footer-top">Back to top</a>
+        </div>
+    </footer>
+
+    <script src="/js/accessibility.js"></script>
+    <script src="/js/nav-footer.js"></script>
+    <script src="/js/store.js"></script>
+    <script src="/js/shop.js"></script>
+    <script src="/js/deals.js"></script>
+    <script src="/js/past-months.js"></script>
 </body>
 </html>

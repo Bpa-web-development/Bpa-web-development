@@ -513,8 +513,7 @@
 }
 
 .deal-pop::backdrop {
-    background: rgba(29, 42, 58, 0.55);
-    backdrop-filter: blur(4px);
+    background: rgba(29, 42, 58, 0.62);
 }
 
 .deal-pop[open] {

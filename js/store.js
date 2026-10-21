@@ -70,7 +70,7 @@
         }
     }
 
-    const money = (value) => "$" + Number(value).toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+    const money = (value) => { const amount = Number(value); const cents = Math.round(amount * 100) % 100 !== 0; return "$" + amount.toLocaleString("en-US", { minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: 2 }); };
 
     const catalog = {
         data: DEFAULT_CATALOG,

@@ -33,18 +33,7 @@
     };
 
     const CITIES = [
-        { name: "Burlington", abbr: "VT", hint: "Picture maple syrup, lake sunsets, and outdoorsy makers." },
-        { name: "Santa Fe", abbr: "NM", hint: "Think red rock, turquoise, and green chile that people argue about." },
-        { name: "Portland", abbr: "ME", hint: "Picture lighthouses, lobster boats, and blueberry everything." },
-        { name: "Asheville", abbr: "NC", hint: "Mountain air, banjo music, and a lot of local craft." },
-        { name: "Milwaukee", abbr: "WI", hint: "Lakefront breezes, old breweries, and a serious love of cheese." },
-        { name: "Tucson", abbr: "AZ", hint: "Desert sunsets, saguaros, and the best tortillas you've had." },
-        { name: "New Orleans", abbr: "LA", hint: "Brass bands, beignets, and a little bit of magic." },
-        { name: "Boise", abbr: "ID", hint: "River trails, potatoes with personality, and a growing art scene." },
-        { name: "San Antonio", abbr: "TX", hint: "A famous river walk, bright papel picado, and smoky salsas." },
-        { name: "Duluth", abbr: "MN", hint: "A big lake, bigger winters, and cozy wool everything." },
-        { name: "Charleston", abbr: "SC", hint: "Rainbow row houses, sweetgrass baskets, and benne wafers." },
-        { name: "Bozeman", abbr: "MT", hint: "Big sky, huckleberry treats, and trail-ready gear." }
+        { name: "Burlington", abbr: "VT", code: "BTV" }
     ];
 
     const FIRST_SHIP = nextShipDate(new Date());
@@ -293,84 +282,6 @@
         showStep(0, false);
     }
 
-    function initTrip() {
-        const range = $("#tripMonths");
-        const stamps = $("#tripStamps");
-        const start = FIRST_SHIP;
-
-        CITIES.forEach((city, index) => {
-            const month = new Date(start.getFullYear(), start.getMonth() + index, 1);
-            const li = document.createElement("li");
-            li.className = "trip-stamp";
-            li.style.setProperty("--turn", ((index % 5) - 2) * 3 + "deg");
-            li.innerHTML =
-                '<span class="trip-stamp_abbr"></span>' +
-                '<span class="trip-stamp_city"></span>' +
-                '<span class="trip-stamp_month"></span>';
-            $(".trip-stamp_abbr", li).textContent = city.abbr;
-            $(".trip-stamp_city", li).textContent = city.name;
-            $(".trip-stamp_month", li).textContent = month.toLocaleString("en-US", { month: "short", year: "numeric" });
-            stamps.appendChild(li);
-        });
-
-        const stampItems = $$(".trip-stamp", stamps);
-        const shown = { items: 0, total: 0, save: 0 };
-
-        function rateFor(months) {
-            if (months >= 12) {
-                return "annual";
-            }
-            return months >= 6 ? "half" : "monthly";
-        }
-
-        function update() {
-            const months = Number(range.value);
-            const plan = state.tripPlan;
-            const rate = rateFor(months);
-            const total = PRICES[plan][rate] * months;
-            const save = PRICES[plan].monthly * months - total;
-            const items = ITEMS_PER_BOX[plan] * months;
-
-            range.style.setProperty("--fill", ((months - 1) / 11) * 100 + "%");
-            range.setAttribute("aria-valuetext", months + (months === 1 ? " month" : " months"));
-            $("#tripMonthsOut").textContent = months;
-            $("#tripCities").textContent = months;
-
-            const animateMoney = (id, key, value) => {
-                const element = $(id);
-                const from = shown[key];
-                shown[key] = value;
-                if (reduceMotion) {
-                    element.textContent = key === "items" ? value : money(value);
-                    return;
-                }
-                const begin = performance.now();
-                const step = (now) => {
-                    const progress = Math.min((now - begin) / 350, 1);
-                    const current = Math.round(from + (value - from) * progress);
-                    element.textContent = key === "items" ? current : money(current);
-                    if (progress < 1) {
-                        requestAnimationFrame(step);
-                    }
-                };
-                requestAnimationFrame(step);
-            };
-            animateMoney("#tripItems", "items", items);
-            animateMoney("#tripTotal", "total", total);
-            animateMoney("#tripSave", "save", save);
-
-            stampItems.forEach((stamp, index) => {
-                stamp.classList.toggle("is-stamped", index < months);
-            });
-        }
-
-        range.addEventListener("input", update);
-        setupRadioGroup($(".trip-plan"), (input) => {
-            state.tripPlan = input.value;
-            update();
-        })();
-    }
-
     function initCompare() {
         const table = $("#compareTable");
         const toggle = $("#diffToggle");
@@ -553,6 +464,19 @@
         refreshPrices();
     }
 
+    function initDealSign() {
+        const M = window.Marlowby;
+        const total = $("[data-promo-total]");
+        if (!total || !M) {
+            return;
+        }
+        const render = () => {
+            total.textContent = Object.keys(M.catalog.data.promos || {}).length + 1 + " codes";
+        };
+        document.addEventListener("marlowby:catalog", render);
+        render();
+    }
+
     function initCart() {
         const M = window.Marlowby;
         if (!M) {
@@ -715,13 +639,26 @@
             const top = document.createElement("span");
             const big = document.createElement("strong");
             const bottom = document.createElement("span");
-            top.textContent = stamp.kind === "member" ? "Marlowby" : stamp.abbr;
-            big.textContent = stamp.kind === "member" ? stamp.plan : stamp.city;
+            const mystery = stamp.kind === "city" && !CITIES.some((item) => item.name === stamp.city);
+            top.textContent = stamp.kind === "member" ? "Marlowby" : mystery ? "Top secret" : stamp.abbr;
+            big.textContent = stamp.kind === "member" ? stamp.plan : mystery ? "Mystery" : stamp.city;
             bottom.textContent = stamp.kind === "member" ? "Member" : stamp.month;
             if (big.textContent.length > 9) {
                 element.classList.add("ink-stamp--long");
             }
-            element.append(top, big, bottom);
+            if (mystery) {
+                element.classList.add("ink-stamp--mystery");
+            }
+            const code = stamp.kind === "city" ? (mystery ? "???" : stamp.code || (CITIES.find((item) => item.name === stamp.city) || {}).code) : "";
+            if (code) {
+                const tag = document.createElement("em");
+                tag.textContent = code;
+                element.append(tag);
+            }
+            element.prepend(top);
+            element.append(big, bottom);
+            element.setAttribute("role", "img");
+            element.setAttribute("aria-label", stamp.kind === "member" ? "Marlowby " + stamp.plan + " member stamp" : mystery ? "Mystery city stamp, " + stamp.month : stamp.city + ", " + stamp.abbr + " stamp, " + stamp.month);
             if (slam && !reduceMotion) {
                 element.classList.add("is-slamming");
                 setTimeout(() => {
@@ -733,14 +670,122 @@
             return element;
         }
 
-        function renderStamps(slamLast) {
-            $$(".ink-stamp", stampArea).forEach((element) => element.remove());
-            const visible = data.stamps.slice(-STAMP_SLOTS.length);
+        const PER_PAGE = STAMP_SLOTS.length;
+        const book = $(".passport_book", passport);
+        const stampsPage = $(".passport_page--stamps", passport);
+        const pager = $("#ppPager");
+        const prevButton = $("#ppPrev");
+        const nextButton = $("#ppNext");
+        const pageLabel = $("#ppPageLabel");
+        const folio = $("#ppFolio");
+        const pageCount = () => Math.max(1, Math.ceil(data.stamps.length / PER_PAGE));
+        let view = pageCount() - 1;
+        let turning = false;
+        let pending = false;
+
+        function fillPage(area, page, slamLast) {
+            $$(".ink-stamp", area).forEach((element) => element.remove());
+            const start = page * PER_PAGE;
+            const visible = data.stamps.slice(start, Math.min(start + PER_PAGE, data.stamps.length - (pending ? 1 : 0)));
             visible.forEach((stamp, index) => {
-                stampArea.appendChild(stampElement(stamp, index, slamLast && index === visible.length - 1));
+                area.appendChild(stampElement(stamp, start + index, slamLast && index === visible.length - 1));
             });
-            empty.hidden = data.stamps.length > 0;
         }
+
+        function renderStamps(slamLast) {
+            fillPage(stampArea, view, slamLast);
+            empty.hidden = data.stamps.length > 0;
+            const total = pageCount();
+            folio.textContent = String(view + 2).padStart(2, "0");
+            pageLabel.textContent = "Page " + (view + 1) + " of " + total;
+            pager.hidden = total < 2;
+            prevButton.disabled = turning || view === 0;
+            nextButton.disabled = turning || view >= total - 1;
+        }
+
+        function makeLeaf(content) {
+            const leaf = document.createElement("div");
+            leaf.className = "passport_turn";
+            leaf.setAttribute("aria-hidden", "true");
+            leaf.inert = true;
+            const front = stampsPage.cloneNode(true);
+            front.classList.add("passport_turn-front");
+            $$("[id]", front).forEach((element) => element.removeAttribute("id"));
+            if (content) {
+                const area = $(".passport_stamps", front);
+                $$(".ink-stamp", area).forEach((element) => element.remove());
+                content(area, front);
+            }
+            $$(".is-slamming", front).forEach((element) => element.classList.remove("is-slamming"));
+            const shade = document.createElement("span");
+            shade.className = "passport_turn-shade";
+            front.appendChild(shade);
+            const back = document.createElement("div");
+            back.className = "passport_page passport_turn-back";
+            leaf.append(front, back);
+            return leaf;
+        }
+
+        function turnTo(target, done) {
+            const total = pageCount();
+            target = Math.max(0, Math.min(total - 1, target));
+            if (target === view || turning) {
+                if (done) {
+                    done(false);
+                }
+                return;
+            }
+            const forward = target > view;
+            if (reduceMotion) {
+                view = target;
+                renderStamps(false);
+                if (done) {
+                    done(true);
+                }
+                return;
+            }
+            turning = true;
+            let leaf;
+            if (forward) {
+                leaf = makeLeaf(null);
+                view = target;
+                renderStamps(false);
+            } else {
+                leaf = makeLeaf((area, front) => {
+                    fillPage(area, target, false);
+                    $(".passport_folio", front).textContent = String(target + 2).padStart(2, "0");
+                    $(".passport_pager-label", front).textContent = "Page " + (target + 1) + " of " + total;
+                });
+            }
+            leaf.classList.add(forward ? "is-forward" : "is-back");
+            book.appendChild(leaf);
+            renderStamps(false);
+            let finished = false;
+            const finish = () => {
+                if (finished) {
+                    return;
+                }
+                finished = true;
+                if (!forward) {
+                    view = target;
+                }
+                leaf.remove();
+                turning = false;
+                renderStamps(false);
+                if (done) {
+                    done(true);
+                }
+            };
+            leaf.addEventListener("animationend", (event) => {
+                if (event.target === leaf) {
+                    finish();
+                }
+            });
+            setTimeout(finish, 1400);
+        }
+
+        prevButton.addEventListener("click", () => turnTo(view - 1));
+        nextButton.addEventListener("click", () => turnTo(view + 1));
 
         function setOpen(open) {
             passport.classList.toggle("is-open", open);
@@ -754,7 +799,25 @@
             setOpen(true);
             data.stamps.push(stamp);
             save();
-            setTimeout(() => renderStamps(true), wasOpen ? 0 : 700);
+            const last = pageCount() - 1;
+            setTimeout(() => {
+                if (view === last) {
+                    renderStamps(true);
+                    return;
+                }
+                if (turning) {
+                    setTimeout(() => {
+                        view = last;
+                        renderStamps(true);
+                    }, 1400);
+                    return;
+                }
+                pending = true;
+                turnTo(last, () => {
+                    pending = false;
+                    renderStamps(true);
+                });
+            }, wasOpen ? 0 : 700);
         }
 
         passportApi.name = () => data.name.trim();
@@ -794,11 +857,12 @@
 
         stampButton.addEventListener("click", () => {
             const cityStamps = data.stamps.filter((stamp) => stamp.kind === "city").length;
-            const city = CITIES[cityStamps % CITIES.length];
+            const city = CITIES[cityStamps] || { name: "Mystery", abbr: "Top secret", code: "???" };
             const month = new Date(FIRST_SHIP.getFullYear(), FIRST_SHIP.getMonth() + cityStamps, 1);
             const label = month.toLocaleString("en-US", { month: "short", year: "numeric" });
-            addStamp({ kind: "city", city: city.name, abbr: city.abbr, month: label });
-            status.textContent = "Stamped " + city.name + ", " + city.abbr + " for " + label + ".";
+            const freshPage = data.stamps.length > 0 && data.stamps.length % PER_PAGE === 0;
+            addStamp({ kind: "city", city: city.name, abbr: city.abbr, code: city.code, month: label });
+            status.textContent = (CITIES[cityStamps] ? "Stamped " + city.name + ", " + city.abbr + " for " + label + "." : "Stamped a mystery city for " + label + ". It stays a secret until it ships.") + (freshPage ? " That page was full, so it went on page " + pageCount() + "." : "");
             stampButton.textContent = "Stamp the next city";
         });
 
@@ -812,7 +876,7 @@
 
     function initScramble() {
         const target = $("#heroScramble");
-        const words = CITIES.map((city) => city.name + ".").concat(["the city."]);
+        const words = [CITIES[0].name + ".", "a mystery.", "somewhere new.", "the city."];
         const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         if (reduceMotion) {
             return;
@@ -855,130 +919,6 @@
         setTimeout(next, 3000);
     }
 
-    function initScratch() {
-        const wrap = $("#scratch");
-        const canvas = $("#scratchFoil");
-        const prize = $("#scratchPrize");
-        const status = $("#scratchStatus");
-        const reveal = $("#scratchReveal");
-        const context = canvas.getContext("2d");
-        const city = CITIES[0];
-        const monthName = FIRST_SHIP.toLocaleString("en-US", { month: "long" });
-        let revealed = false;
-        let drawing = false;
-        let strokes = 0;
-
-        $("#scratchCity").textContent = city.name + ", " + city.abbr;
-        $("#scratchHint").textContent = city.hint;
-
-        function paintFoil() {
-            const ratio = window.devicePixelRatio || 1;
-            const rect = wrap.getBoundingClientRect();
-            canvas.width = Math.round(rect.width * ratio);
-            canvas.height = Math.round(rect.height * ratio);
-            context.setTransform(ratio, 0, 0, ratio, 0, 0);
-            context.globalCompositeOperation = "source-over";
-            const foil = context.createLinearGradient(0, 0, rect.width, rect.height);
-            foil.addColorStop(0, "#c98f2a");
-            foil.addColorStop(0.35, "#f3d48b");
-            foil.addColorStop(0.55, "#d9a542");
-            foil.addColorStop(1, "#f6e2ad");
-            context.fillStyle = foil;
-            context.fillRect(0, 0, rect.width, rect.height);
-            context.fillStyle = "rgba(29, 42, 58, 0.08)";
-            for (let x = -rect.height; x < rect.width; x += 14) {
-                context.fillRect(x, 0, 4, rect.height * 3);
-            }
-            context.fillStyle = "#1d2a3a";
-            context.textAlign = "center";
-            context.textBaseline = "middle";
-            context.font = "700 18px 'Playfair Display', Georgia, serif";
-            context.fillText("Scratch to reveal the " + monthName + " city", rect.width / 2, rect.height / 2 - 8);
-            context.font = "700 11px Lato, Arial, sans-serif";
-            context.fillText("DRAG ACROSS THE GOLD FOIL", rect.width / 2, rect.height / 2 + 16);
-        }
-
-        function finish() {
-            if (revealed) {
-                return;
-            }
-            revealed = true;
-            wrap.classList.add("is-revealed");
-            prize.setAttribute("aria-hidden", "false");
-            reveal.disabled = true;
-            reveal.textContent = "City revealed";
-            status.textContent = "The " + monthName + " city is " + city.name + ", " + city.abbr + ". " + city.hint;
-            const rect = wrap.getBoundingClientRect();
-            launchConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2, 60);
-        }
-
-        function clearedShare() {
-            const data = context.getImageData(0, 0, canvas.width, canvas.height).data;
-            let clear = 0;
-            let total = 0;
-            for (let i = 3; i < data.length; i += 4 * 40) {
-                total += 1;
-                if (data[i] === 0) {
-                    clear += 1;
-                }
-            }
-            return clear / total;
-        }
-
-        function scratchAt(event) {
-            const rect = canvas.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-            context.globalCompositeOperation = "destination-out";
-            context.beginPath();
-            context.arc(x, y, 22, 0, Math.PI * 2);
-            context.fill();
-            strokes += 1;
-            if (strokes % 12 === 0 && clearedShare() > 0.45) {
-                finish();
-            }
-        }
-
-        canvas.addEventListener("pointerdown", (event) => {
-            if (revealed) {
-                return;
-            }
-            drawing = true;
-            canvas.setPointerCapture(event.pointerId);
-            scratchAt(event);
-        });
-        canvas.addEventListener("pointermove", (event) => {
-            if (drawing && !revealed) {
-                scratchAt(event);
-            }
-        });
-        ["pointerup", "pointercancel"].forEach((type) => {
-            canvas.addEventListener(type, () => {
-                drawing = false;
-            });
-        });
-
-        reveal.addEventListener("click", finish);
-        window.addEventListener("resize", () => {
-            if (!revealed) {
-                paintFoil();
-            }
-        });
-        paintFoil();
-        if (document.fonts) {
-            document.fonts.ready.then(() => {
-                if (!revealed) {
-                    paintFoil();
-                }
-            });
-        }
-    }
-
-    function initTicker() {
-        const track = $("#cityTicker");
-        const run = CITIES.map((city) => '<span class="city-ticker_item"><b>' + city.abbr + "</b>" + city.name + "</span>").join("");
-        track.innerHTML = reduceMotion ? run : run + run;
-    }
 
     function initRoad() {
         const fill = $("#roadFill");
@@ -1022,18 +962,16 @@
     document.addEventListener("DOMContentLoaded", () => {
         initPassport();
         initScramble();
-        initScratch();
-        initTicker();
         initRoad();
         initMagnetic();
         initCountdown();
         initBilling();
         initCards();
         initQuiz();
-        initTrip();
         initCompare();
         initFaq();
         initReveal();
         initCart();
+        initDealSign();
     });
 })();

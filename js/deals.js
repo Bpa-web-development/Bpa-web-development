@@ -74,19 +74,37 @@
 
 <button type="button" class="deal-ticket" id="dealTicket" hidden>${TICKET_ICON}<span>15% off</span></button>`;
 
-    function readSeen() {
+    const SEEN_DAYS = 7;
+
+    function readStore(store) {
         try {
-            return JSON.parse(sessionStorage.getItem(SEEN_KEY) || "{}") || {};
+            return JSON.parse(store.getItem(SEEN_KEY) || "{}") || {};
         } catch (error) {
             return {};
         }
     }
 
+    function readSeen() {
+        const seen = Object.assign({}, readStore(sessionStorage));
+        const kept = readStore(localStorage);
+        const cutoff = Date.now() - SEEN_DAYS * 86400000;
+        Object.keys(kept).forEach((name) => {
+            if (kept[name] > cutoff) {
+                seen[name] = 1;
+            }
+        });
+        return seen;
+    }
+
     function markSeen(name) {
-        const seen = readSeen();
-        seen[name] = 1;
+        const session = readStore(sessionStorage);
+        session[name] = 1;
+        session.auto = 1;
+        const kept = readStore(localStorage);
+        kept[name] = Date.now();
         try {
-            sessionStorage.setItem(SEEN_KEY, JSON.stringify(seen));
+            sessionStorage.setItem(SEEN_KEY, JSON.stringify(session));
+            localStorage.setItem(SEEN_KEY, JSON.stringify(kept));
         } catch (error) {
         }
     }
@@ -145,7 +163,7 @@
         }
 
         function refreshTicket() {
-            ticket.hidden = !readSeen().welcome || hasPromo();
+            ticket.hidden = !document.body.matches(".plans-page, .specials-page") || !readSeen().welcome || hasPromo();
         }
 
         function flip(open) {
@@ -260,10 +278,11 @@
         refreshTicket();
 
         const seen = readSeen();
-        if (!seen.welcome) {
+        const popupPage = document.body.matches(".plans-page, .specials-page");
+        if (popupPage && !seen.welcome) {
             let fired = false;
             const fire = () => {
-                if (fired || readSeen().welcome) {
+                if (fired || readSeen().welcome || readSeen().auto) {
                     return;
                 }
                 if (anyDialogOpen() || hasPromo()) {
@@ -276,18 +295,19 @@
             };
             const onScroll = () => {
                 const progress = window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-                if (progress > 0.35) {
+                if (progress > 0.6) {
                     fire();
                 }
             };
-            window.setTimeout(fire, 14000);
+            window.setTimeout(fire, 45000);
             window.addEventListener("scroll", onScroll, { passive: true });
         }
 
-        if (finePointer && !seen.exit) {
-            const armedAt = Date.now() + 6000;
+        if (popupPage && finePointer && !seen.exit) {
+            const armedAt = Date.now() + 20000;
             document.documentElement.addEventListener("mouseleave", (event) => {
-                if (event.clientY <= 0 && Date.now() > armedAt && !readSeen().exit) {
+                const now = readSeen();
+                if (event.clientY <= 0 && Date.now() > armedAt && !now.exit && !now.auto && !hasPromo() && !anyDialogOpen()) {
                     openExit();
                 }
             });

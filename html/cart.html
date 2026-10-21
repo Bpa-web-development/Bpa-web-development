@@ -3,103 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Review your Marlowby plans, apply a promo code and check out. Every box ships free.">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Favicon & Title -->
-    <title>Marlowby | Our Mission</title>
+    <title>Marlowby | Cart</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/Marlowby Logotemp.jpg">
 
-    <!--css links-->
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/our-mission.css">
+    <link rel="stylesheet" href="/css/nav-footer.css">
+    <link rel="stylesheet" href="/css/shop.css">
+    <link rel="stylesheet" href="/css/deals.css">
+    <link rel="stylesheet" href="/css/cart.css">
     <link rel="stylesheet" href="/css/responsive.css">
 
-    <!-- Google Fonts Link (Playfair Display & Lato) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome Icon Link -->
-    <script src="https://kit.fontawesome.com/59468707c3.js" crossorigin="anonymous"></script>
-
 </head>
 
-<body>
+<body class="cart-page" data-page="cart">
 
-    <!-- Navigation Bar Section -->
-    <nav class="navbar">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="navbar" aria-label="Main">
         <div class="navbar-container">
             <div class="company-logo">
-                <a href="../index.html">
-                    <img class="circular-logo" 
-                    src="/assets/images/Marlowby Logotemp.jpg" 
-                    alt="Marlowby Logo">
-                </a>    
+                <a href="../index.html" class="company-logo-link">
+                    <img class="circular-logo"
+                    src="/assets/images/Marlowby Logotemp.jpg"
+                    alt="">
+                    <span class="company-logo-name">Marlowby</span>
+                </a>
             </div>
-                
-            <ul class="navbar-link-container">
-                <!-- Specials Dropdown -->
+
+            <button type="button" class="navbar-toggle" id="navbarToggle" aria-expanded="false" aria-controls="navbarLinks">
+                <span class="navbar-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span class="navbar-toggle-label">Menu</span>
+            </button>
+
+            <ul class="navbar-link-container" id="navbarLinks">
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/specials.html">Specials</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Daily Specials</a></li>
-                        <li><a href="#">Weekly Deals</a></li>
-                        <li><a href="#">Limited Offers</a></li>
+                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
+                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
+                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
                     </ul>
                 </li>
 
-                <!-- Past Months -->
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/past-months.html">Past Months</a>
                     <ul class="sub-menu">
-                        <li><a href="#">January 2026</a></li>
-                        <li><a href="#">February 2026</a></li>
-                        <li><a href="#">March 2026</a></li>
+                        <li><a href="/html/burlington.html">This Month: Burlington, VT</a></li>
+                        <li><a href="/html/past-months.html#January">January 2026</a></li>
+                        <li><a href="/html/past-months.html#February">February 2026</a></li>
+                        <li><a href="/html/past-months.html#March">March 2026</a></li>
                     </ul>
                 </li>
-                <!-- <li><a href="#">Limited Offers</a></li>
-                    </ul>
-                </li>    -->
 
-                <!-- About Us Dropdown -->
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/our-mission.html">Our Mission</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Our Story</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
+                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
+                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
                     </ul>
                 </li>
-                    
-                <!-- Subscription Dropdown -->
+
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Basic Plan</a></li>
-                        <li><a href="#">Premium Plan</a></li>
-                        <li><a href="#">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
                     </ul>
                 </li>
 
-                <!-- Sign In Button -->
                 <li>
-                       <a class="navbar-link-item" href="/html/sign-in.html">Sign In</a>
+                    <a class="navbar-link-item navbar-sign-in" href="/html/sign-in.html">Sign In</a>
                 </li>
 
-                <!-- Shopping Cart -->
                 <li>
-                    <a class="navbar-link-item" href="/html/cart.html">
-                        <i class="fa-solid fa-cart-shopping"></i>
+                    <a class="navbar-link-item navbar-cart" href="/html/cart.html" aria-label="Cart">
+                        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>
                     </a>
                 </li>
-            </ul>   
+            </ul>
         </div>
-    </nav> 
+    </nav>
+
+    <div class="accessibility">
+        <button
+            type="button"
+            class="accessibility-icon"
+            id="accessibilityOpen"
+            aria-label="Open accessibility menu">
+
+            <img src="/assets/icons/accessability.png" alt="">
+        </button>
+    </div>
+
+    <div id="accessibilityMenu">
+    </div>
+
+
+    <main id="main-content" class="cart-main">
+        <section class="cart-hero" aria-labelledby="cartTitle">
+            <svg class="cart-hero_route" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <path d="M-20 190 C 220 60, 420 210, 640 110 S 1010 20, 1220 70" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="2 12" stroke-linecap="round"/>
+            </svg>
+            <div class="cart-hero_inner">
+                <p class="cart-eyebrow">Your suitcase</p>
+                <h1 id="cartTitle" tabindex="-1">Your cart</h1>
+                <p class="cart-hero_lead" id="cartLead">Every plan ships free, stamps your Marlowby passport and fills a box with goods from one city's small businesses.</p>
+                <ol class="cart-steps" id="cartSteps" aria-label="Checkout steps">
+                    <li class="is-current" aria-current="step"><span aria-hidden="true">1</span>Pack your suitcase</li>
+                    <li><span aria-hidden="true">2</span>Tell us where it ships</li>
+                    <li><span aria-hidden="true">3</span>Get your passport stamped</li>
+                </ol>
+            </div>
+        </section>
+
+        <div class="cart-layout">
+            <div class="cart-col">
+                <div class="cart-done" id="cartDone" tabindex="-1" hidden>
+                    <svg viewBox="0 0 52 52" aria-hidden="true" focusable="false"><circle cx="26" cy="26" r="24"/><path d="M15 27 l8 8 l15 -17"/></svg>
+                    <div>
+                        <h2 id="cartDoneTitle">Your passport is stamped!</h2>
+                        <p id="cartDoneText"></p>
+                    </div>
+                </div>
+
+                <section class="cart-items" aria-labelledby="cartItemsTitle">
+                    <div class="cart-items_head">
+                        <h2 id="cartItemsTitle">In your suitcase <span class="cart-count" id="cartCount"></span></h2>
+                        <button type="button" class="cart-text-button" id="cartClear" hidden>Empty my cart</button>
+                    </div>
+
+                    <div class="cart-undo" id="cartUndo" hidden>
+                        <p id="cartUndoText"></p>
+                        <button type="button" class="cart-undo_button" id="cartUndoButton">Undo</button>
+                    </div>
+
+                    <ul class="cart-lines" id="cartLines"></ul>
+
+                    <div class="cart-empty" id="cartEmpty" hidden>
+                        <svg viewBox="0 0 160 120" aria-hidden="true" focusable="false">
+                            <rect x="22" y="34" width="116" height="74" rx="14" class="cart-empty_case"/>
+                            <path d="M60 34 V22 a8 8 0 0 1 8 -8 h24 a8 8 0 0 1 8 8 V34" class="cart-empty_handle"/>
+                            <path d="M22 62 H138" class="cart-empty_strap"/>
+                            <rect x="96" y="48" width="30" height="22" rx="4" class="cart-empty_tag"/>
+                            <path d="M101 56 h20 M101 62 h12" class="cart-empty_lines"/>
+                            <circle cx="44" cy="84" r="10" class="cart-empty_sticker"/>
+                        </svg>
+                        <h2>Your suitcase is empty</h2>
+                        <p>Pick a plan and your first city stamp is on its way. Every box ships free and you can skip or cancel anytime.</p>
+                        <div class="cart-empty_actions">
+                            <a class="cart-button" href="/html/SubscriptionPlans.html#plans">Browse the plans</a>
+                            <a class="cart-button cart-button--ghost" href="/html/specials.html">See today's deals</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="cart-more" aria-labelledby="cartMoreTitle">
+                    <h2 id="cartMoreTitle">Room for one more?</h2>
+                    <p class="cart-more_lead" id="cartMoreLead">Add another plan for yourself or send a Gift box to someone who loves to travel.</p>
+                    <ul class="cart-more_list" id="cartMore"></ul>
+                </section>
+            </div>
+
+            <aside class="cart-side" aria-label="Order summary">
+                <section class="cart-summary" aria-labelledby="cartSummaryTitle">
+                    <h2 id="cartSummaryTitle">Order summary</h2>
+
+                    <div class="cart-reward" id="cartReward">
+                        <svg class="cart-reward_icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M8 11 h16 l-1.5 16 h-13 Z"/><path d="M12 11 V9 a4 4 0 0 1 8 0 V11"/></svg>
+                        <p class="cart-reward_text" id="cartRewardText"></p>
+                        <div class="cart-reward_track" aria-hidden="true"><span class="cart-reward_fill" id="cartRewardFill"></span></div>
+                    </div>
+
+                    <dl class="cart-totals">
+                        <div><dt>Subtotal</dt><dd id="cartSubtotal">$0</dd></div>
+                        <div class="cart-totals_discount" id="cartDiscountRow" hidden><dt id="cartDiscountLabel">Promo</dt><dd id="cartDiscount">$0</dd></div>
+                        <div><dt>Shipping</dt><dd class="cart-free">Free</dd></div>
+                        <div class="cart-totals_due"><dt>Due today</dt><dd id="cartTotal">$0</dd></div>
+                    </dl>
+                    <p class="cart-saved" id="cartSaved" hidden></p>
+
+                    <form class="cart-promo" id="cartPromoForm" novalidate>
+                        <label for="cartPromoInput">Have a promo code?</label>
+                        <div class="cart-promo_row">
+                            <input type="text" id="cartPromoInput" name="promo" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="20" placeholder="Enter a code" aria-describedby="cartPromoMsg">
+                            <button type="submit" class="cart-promo_apply">Apply</button>
+                        </div>
+                        <div class="cart-chips" role="group" aria-label="Codes to try">
+                            <button type="button" class="cart-chip" data-code="BURLINGTON15">BURLINGTON15</button>
+                            <button type="button" class="cart-chip" data-code="PASSPORT10">PASSPORT10</button>
+                            <button type="button" class="cart-chip" data-code="MAPLE20">MAPLE20</button>
+                        </div>
+                    </form>
+                    <div class="cart-promo_applied" id="cartPromoApplied" hidden>
+                        <span class="cart-promo_stamp" id="cartPromoCode"></span>
+                        <p class="cart-promo_label" id="cartPromoLabel"></p>
+                        <button type="button" class="cart-text-button" id="cartPromoRemove">Remove</button>
+                    </div>
+                    <p class="cart-promo_msg" id="cartPromoMsg" role="status"></p>
+
+                    <button type="button" class="cart-button cart-button--wide" id="cartCheckout">
+                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                        Check out securely
+                    </button>
+                    <p class="cart-fine" id="cartRenewNote">You won't be charged until launch. Cancel anytime.</p>
+                    <a class="cart-deals-link" href="/html/specials.html#wallet">Find more codes on the Specials page</a>
+                </section>
+
+                <a class="cart-month" href="/html/burlington.html">
+                    <span class="cart-month_label">Now shipping</span>
+                    <span class="cart-month_city">The Burlington, VT box</span>
+                    <span class="cart-month_text">Maple syrup, small-batch chocolate and a taste of the Discover Jazz Festival. See everything inside this month's box.</span>
+                    <span class="cart-month_go">Visit this month's city <span aria-hidden="true">&rarr;</span></span>
+                    <span class="cart-month_code" aria-hidden="true">BTV</span>
+                    <span class="cart-month_secret">Next month's city stays a secret until it ships.</span>
+                </a>
+            </aside>
+        </div>
+
+        <section class="cart-perks" aria-label="Why members love Marlowby">
+            <ul>
+                <li><strong>Free shipping</strong><span>On every box, every month.</span></li>
+                <li><strong>Skip or cancel anytime</strong><span>No calls and no fees.</span></li>
+                <li><strong>A new passport stamp</strong><span>Collect a city with every box.</span></li>
+                <li><strong>Small businesses first</strong><span>Every item comes from a local maker.</span></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <div class="site-footer-brand">
+                <a href="../index.html" class="site-footer-logo">Marlowby</a>
+                <p>Explore your city, one box at a time. Every month we ship the best local products, small businesses and culture from a different U.S. city.</p>
+                <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
+            </div>
+
+            <nav class="site-footer-links" aria-label="Footer">
+                <div>
+                    <h2>Explore</h2>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="/html/burlington.html">This Month</a></li>
+                        <li><a href="/html/specials.html">Specials</a></li>
+                        <li><a href="/html/past-months.html">Past Months</a></li>
+                        <li><a href="/html/SubscriptionPlans.html">Subscription Plans</a></li>
+                        <li><a href="/html/sign-in.html">Sign In</a></li>
+                        <li><a href="/html/cart.html" aria-current="page">Your Cart</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Plans</h2>
+                    <ul>
+                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#gift">Gift Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Deals</h2>
+                    <ul>
+                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
+                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
+                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
+                        <li><a href="/html/specials.html#wallet">Promo Codes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Company</h2>
+                    <ul>
+                        <li><a href="/html/our-mission.html">Our Mission</a></li>
+                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
+                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
+                        <li><a href="/html/faq.html">FAQs and help</a></li>
+                        <li><a href="/html/works-cited.html">Works Cited</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="site-footer-bottom">
+            <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
+            <a href="#main-content" class="site-footer-top">Back to top</a>
+        </div>
+    </footer>
+
+    <script src="/js/accessibility.js"></script>
+    <script src="/js/nav-footer.js"></script>
+    <script src="/js/store.js"></script>
+    <script src="/js/shop.js"></script>
+    <script src="/js/deals.js"></script>
+    <script src="/js/cart.js"></script>
 </body>
 </html>

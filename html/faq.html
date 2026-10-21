@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Marlowby help center: answers about boxes, billing, gifts and promo codes, plus a help desk ticket form and ways to contact the team.">
+
+    <title>Marlowby | FAQs and Help</title>
+    <link rel="icon" type="image/x-icon" href="/assets/images/Marlowby Logotemp.jpg">
+
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/nav-footer.css">
+    <link rel="stylesheet" href="/css/shop.css">
+    <link rel="stylesheet" href="/css/deals.css">
+    <link rel="stylesheet" href="/css/faq.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="faq-page">
+
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="navbar" aria-label="Main">
+        <div class="navbar-container">
+            <div class="company-logo">
+                <a href="../index.html" class="company-logo-link">
+                    <img class="circular-logo"
+                    src="/assets/images/Marlowby Logotemp.jpg"
+                    alt="">
+                    <span class="company-logo-name">Marlowby</span>
+                </a>
+            </div>
+
+            <button type="button" class="navbar-toggle" id="navbarToggle" aria-expanded="false" aria-controls="navbarLinks">
+                <span class="navbar-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span class="navbar-toggle-label">Menu</span>
+            </button>
+
+            <ul class="navbar-link-container" id="navbarLinks">
+                <li class="link-dropdown">
+                    <a class="navbar-link-item" href="/html/specials.html">Specials</a>
+                    <ul class="sub-menu">
+                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
+                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
+                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
+                    </ul>
+                </li>
+
+                <li class="link-dropdown">
+                    <a class="navbar-link-item" href="/html/past-months.html">Past Months</a>
+                    <ul class="sub-menu">
+                        <li><a href="/html/burlington.html">This Month: Burlington, VT</a></li>
+                        <li><a href="/html/past-months.html#January">January 2026</a></li>
+                        <li><a href="/html/past-months.html#February">February 2026</a></li>
+                        <li><a href="/html/past-months.html#March">March 2026</a></li>
+                    </ul>
+                </li>
+
+                <li class="link-dropdown">
+                    <a class="navbar-link-item" href="/html/our-mission.html">Our Mission</a>
+                    <ul class="sub-menu">
+                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
+                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
+                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
+                    </ul>
+                </li>
+
+                <li class="link-dropdown">
+                    <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
+                    <ul class="sub-menu">
+                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="navbar-link-item navbar-sign-in" href="/html/sign-in.html">Sign In</a>
+                </li>
+
+                <li>
+                    <a class="navbar-link-item navbar-cart" href="/html/cart.html" aria-label="Cart">
+                        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="accessibility">
+        <button
+            type="button"
+            class="accessibility-icon"
+            id="accessibilityOpen"
+            aria-label="Open accessibility menu">
+
+            <img src="/assets/icons/accessability.png" alt="">
+        </button>
+    </div>
+
+    <div id="accessibilityMenu">
+    </div>
+
+
+    <main id="main-content">
+
+        <section class="fq-hero" aria-labelledby="fqTitle">
+            <div class="fq-hero_inner">
+                <p class="fq-eyebrow">Help center</p>
+                <h1 id="fqTitle">How can we <em>help?</em></h1>
+                <p class="fq-hero_lead">Answers about boxes, billing, gifts and codes, plus a real help desk in Burlington when you'd rather talk to a person.</p>
+
+                <form class="fq-search" id="fqSearchForm" role="search">
+                    <label class="visually-hidden" for="fqSearch">Search the questions</label>
+                    <svg class="fq-search_icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                    <input type="search" id="fqSearch" placeholder="Try &quot;skip a month&quot; or &quot;gift&quot;" autocomplete="off" aria-describedby="fqCount">
+                    <button type="button" class="fq-search_clear" id="fqClear" hidden>Clear</button>
+                    <button type="submit" class="visually-hidden">Search</button>
+                </form>
+                <p class="fq-count" id="fqCount" aria-live="polite"></p>
+
+                <div class="fq-chips" role="group" aria-label="Filter by topic">
+                    <button type="button" class="fq-chip is-active" data-topic="all" aria-pressed="true">All topics</button>
+                    <button type="button" class="fq-chip" data-topic="shipping" aria-pressed="false">Boxes and shipping</button>
+                    <button type="button" class="fq-chip" data-topic="billing" aria-pressed="false">Plans and billing</button>
+                    <button type="button" class="fq-chip" data-topic="gifts" aria-pressed="false">Gifts</button>
+                    <button type="button" class="fq-chip" data-topic="deals" aria-pressed="false">Deals and codes</button>
+                    <button type="button" class="fq-chip" data-topic="account" aria-pressed="false">Your account</button>
+                </div>
+            </div>
+
+            <aside class="fq-desk-card" aria-labelledby="fqDeskTitle">
+                <p class="fq-desk-card_postmark" aria-hidden="true"><span>Help</span><strong>BTV</strong><span>Vermont</span></p>
+                <h2 id="fqDeskTitle">The help desk</h2>
+                <p class="fq-status" id="fqStatus"><span class="fq-status_dot" aria-hidden="true"></span><span id="fqStatusText">Checking the hours</span></p>
+                <dl class="fq-desk-card_list">
+                    <div><dt>Hours</dt><dd>Mon to Fri, 9am to 6pm ET</dd></div>
+                    <div><dt>Email reply</dt><dd>Within 1 business day</dd></div>
+                    <div><dt>Phone</dt><dd>1-802-555-0142</dd></div>
+                </dl>
+                <a class="fq-button" href="#helpdesk">Open a ticket</a>
+            </aside>
+        </section>
+
+        <section class="fq-answers" id="answers" aria-labelledby="fqAnswersTitle">
+            <h2 class="visually-hidden" id="fqAnswersTitle">Questions and answers</h2>
+
+            <div class="fq-group" data-group="shipping" id="shipping">
+                <div class="fq-group_head">
+                    <span class="fq-group_num" aria-hidden="true">01</span>
+                    <h3>Boxes and shipping</h3>
+                </div>
+                <details class="fq-item">
+                    <summary>When does my box ship?</summary>
+                    <div class="fq-item_body"><p>Every box leaves our Burlington warehouse on the 5th of the month. You'll get an email with tracking that day, and most boxes arrive in 3 to 6 business days.</p></div>
+                </details>
+                <details class="fq-item">
+                    <summary>Which city is in next month's box?</summary>
+                    <div class="fq-item_body"><p>That's the fun part: every future box is a mystery. We only reveal a city when its box ships. This month's city is Burlington, VT. Until a box ships, all you get are little hints in your email and on the <a href="/html/SubscriptionPlans.html">plans page</a>, so the surprise stays yours.</p></div>
+                </details>
+                <details class="fq-item">
+                    <summary>What's inside a box?</summary>
+                    <div class="fq-item_body"><p>Basic boxes hold 4 to 5 local products and Premium boxes hold 7 to 9, always from small businesses in that month's city. Every box also has a maker stories card and a new stamp for your Marlowby passport.</p></div>
+                </details>
+                <details class="fq-item">
+                    <summary>How much is shipping?</summary>
+                    <div class="fq-item_body"><p>Shipping is free on every plan and every gift to any U.S. address, including Alaska and Hawaii. We don't ship outside the U.S. yet.</p></div>
+                </details>
+                <details class="fq-item">
+                    <summary>Something arrived broken. What do I do?</summary>
+                    <div class="fq-item_body"><p>We're sorry! Snap a photo and <a href="#helpdesk">open a help desk ticket</a> with your order number within 14 days. We'll send a replacement or a refund for that item, whichever you prefer.</p></div>
+                </details>
+            </div>
+
+            <div class="fq-group" data-group="billing" id="billing">
+                <div class="fq-group_head">
+                    <span class="fq-group_num" aria-hidden="true">02</span>
+                    <h3>Plans and billing</h3>
+                </div>
+                <details class="fq-item">
+                    <summary>How much do the plans cost?</summary>
+                    <div class="fq-item_body"><p>Basic is $34 a box and Premium is $59 a box when you pay monthly. Paying every 6 months drops that to $31 and $54, and paying yearly drops it to $29 and $50. <a href="/html/SubscriptionPlans.html#compare">Compare the plans</a> to see everything side by side.</p></div>
+                </details>
+                <details class="fq-item">
+                    <summary>Can I skip a month or cancel?</summary>
+                    <div class="fq-item_body"><p>Yes, anytime. Skip or cancel before the 1st of the month and you won't be charged for that month's box. After the 1st, that box is already being packed, so the change starts the following month.</p></div>
+                </details>
+                <details class="fq-item">
+                    <summary>When will I be charged?</summary>
+                    <div class="fq-item_body"><p>Your first charge happens at checkout. After that, monthly plans renew on the 1st, and 6-month or yearly plans renew on the 1st of the month your term ends.</p></div>
+                </details>
+                <details class="fq-item">
+                    <summary>Can I switch between Basic and Premium?</summary>
+                    <div class="fq-item_body"><p>Of course. Changes made before the 1st apply to that month's box. Upgrading mid-term only charges the difference for the boxes left in your term.</p></div>
+                </details>
+            </div>
+
+            <div class="fq-group" data-group="gifts" id="gifts">
+                <div class="fq-group_head">
+                    <span class="fq-group_num" aria-hidden="true">03</span>
+                    <h3>Gifts</h3>
+                </div>
+                <details class="fq-item">
+                    <summary>How do gift boxes work?</summary>
+                    <div class="fq-item_body"><p>Choose 3, 6 or 12 prepaid boxes for $99, $189 or $349. Gifts never renew, so nobody gets a surprise bill. You pick the start month and add a personal note at checkout.</p></div>
+                </details>
+                <details class="fq-item">
+                    <summary>Does the person I'm gifting get a passport?</summary>
+                    <div class="fq-item_body"><p>Yes. Every gift comes with a Marlowby passport printed with their name, and each box adds that city's stamp. They'll never know which city is coming next either.</p></div>
+                </details>
+            </div>
+
+            <div class="fq-group" data-group="deals" id="deals">
+                <div class="fq-group_head">
+                    <span class="fq-group_num" aria-hidden="true">04</span>
+                    <h3>Deals and codes</h3>
+                </div>
+                <details class="fq-item">
+                    <summary>Where do I enter a promo code?</summary>
+                    <div class="fq-item_body"><p>Type it in the promo box in your cart, or tap Apply on any code in the <a href="/html/specials.html#wallet">code wallet on the Specials page</a>. You can use one code per order, and the savings show before you pay.</p></div>
+                </details>
+                <details class="fq-item">
+                    <summary>How do friend codes work?</summary>
+                    <div class="fq-item_body"><p>Make your own on the Specials page. It's your first name plus -MB10, like JORDAN-MB10. Your friend gets $10 off their first order when they use it.</p></div>
+                </details>
+                <details class="fq-item">
+                    <summary>How do I get the free tote bag?</summary>
+                    <div class="fq-item_body"><p>Once your cart reaches $300 after any discount, a free Burlington tote is added to your order. It ships inside your first box.</p></div>
+                </details>
+            </div>
+
+            <div class="fq-group" data-group="account" id="account">
+                <div class="fq-group_head">
+                    <span class="fq-group_num" aria-hidden="true">05</span>
+                    <h3>Your account</h3>
+                </div>
+                <details class="fq-item">
+                    <summary>Is my account information safe?</summary>
+                    <div class="fq-item_body"><p>In this demo, your account is encrypted and saved only on this device. Your password is never stored. It's used to unlock your encrypted profile, so not even we can read it.</p></div>
+                </details>
+                <details class="fq-item">
+                    <summary>What are passport stamps?</summary>
+                    <div class="fq-item_body"><p>Your Marlowby passport is a keepsake that grows with you. Every box adds an inked stamp for its city, and members get a special stamp when they join. Fill it up and you'll have a record of every city you've explored.</p></div>
+                </details>
+            </div>
+
+            <div class="fq-empty" id="fqEmpty" hidden>
+                <p class="fq-empty_title">No answers match <strong id="fqEmptyTerm"></strong></p>
+                <p>Try a shorter word, or ask the team directly.</p>
+                <a class="fq-button" href="#helpdesk">Ask the help desk</a>
+            </div>
+        </section>
+
+        <section class="fq-helpdesk" id="helpdesk" aria-labelledby="fqHelpTitle">
+            <div class="fq-section_head">
+                <p class="fq-eyebrow">Help desk</p>
+                <h2 id="fqHelpTitle">Send us a ticket</h2>
+                <p>Tell us what's going on and a real person on our Burlington team will write back within one business day.</p>
+            </div>
+
+            <div class="fq-helpdesk_grid">
+                <form class="fq-ticket" id="fqTicket" novalidate>
+                    <div class="fq-ticket_edge" aria-hidden="true"></div>
+                    <div class="fq-field">
+                        <label for="tkName">Your name</label>
+                        <input type="text" id="tkName" name="name" autocomplete="name" required aria-describedby="tkNameErr">
+                        <p class="fq-error" id="tkNameErr"></p>
+                    </div>
+                    <div class="fq-field">
+                        <label for="tkEmail">Email</label>
+                        <input type="email" id="tkEmail" name="email" autocomplete="email" required aria-describedby="tkEmailErr">
+                        <p class="fq-error" id="tkEmailErr"></p>
+                    </div>
+                    <div class="fq-field">
+                        <label for="tkOrder">Order number <span class="fq-optional">(optional)</span></label>
+                        <input type="text" id="tkOrder" name="order" autocomplete="off" placeholder="MB-XXXX" aria-describedby="tkOrderHint tkOrderErr">
+                        <p class="fq-hint" id="tkOrderHint">It starts with MB, like MB-4821. You'll find it in your order email.</p>
+                        <p class="fq-error" id="tkOrderErr"></p>
+                    </div>
+                    <div class="fq-field">
+                        <label for="tkTopic">Topic</label>
+                        <select id="tkTopic" name="topic" required aria-describedby="tkTopicErr">
+                            <option value="">Choose a topic</option>
+                            <option>Boxes and shipping</option>
+                            <option>Plans and billing</option>
+                            <option>Gifts</option>
+                            <option>Deals and codes</option>
+                            <option>Your account</option>
+                            <option>Something else</option>
+                        </select>
+                        <p class="fq-error" id="tkTopicErr"></p>
+                    </div>
+                    <div class="fq-field fq-field--wide">
+                        <label for="tkMessage">How can we help?</label>
+                        <textarea id="tkMessage" name="message" rows="5" maxlength="600" required aria-describedby="tkCount tkMessageErr"></textarea>
+                        <p class="fq-hint fq-count-line" id="tkCount">0 of 600 characters</p>
+                        <p class="fq-error" id="tkMessageErr"></p>
+                    </div>
+                    <button type="submit" class="fq-button fq-button--wide">Send my ticket</button>
+                </form>
+
+                <section class="fq-tickets" aria-labelledby="fqTicketsTitle">
+                    <h3 id="fqTicketsTitle">Your tickets</h3>
+                    <p class="fq-tickets_empty" id="fqTicketsEmpty">No tickets yet. Anything you send shows up here so you can follow it.</p>
+                    <ol class="fq-tickets_list" id="fqTicketsList"></ol>
+                </section>
+            </div>
+            <p class="visually-hidden" id="fqLive" aria-live="polite"></p>
+        </section>
+
+        <section class="fq-contact" id="contact" aria-labelledby="fqContactTitle">
+            <div class="fq-section_head">
+                <p class="fq-eyebrow">Contact</p>
+                <h2 id="fqContactTitle">Other ways to reach us</h2>
+                <p>Pick whatever's easiest. Every message lands with the same small team.</p>
+            </div>
+            <ul class="fq-contact_grid">
+                <li class="fq-contact_card">
+                    <span class="fq-contact_icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+                    <h3>Email</h3>
+                    <p class="fq-contact_value" id="fqEmail">support@marlowby.com</p>
+                    <p>Replies within 1 business day.</p>
+                    <button type="button" class="fq-button fq-button--ghost" id="fqCopyEmail">Copy email</button>
+                </li>
+                <li class="fq-contact_card">
+                    <span class="fq-contact_icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M6.6 3h3l1.5 4.5-2 1.4a12 12 0 0 0 6 6l1.4-2 4.5 1.5v3A2.6 2.6 0 0 1 18.4 20 15.4 15.4 0 0 1 4 5.6 2.6 2.6 0 0 1 6.6 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+                    <h3>Phone</h3>
+                    <p class="fq-contact_value">1-802-555-0142</p>
+                    <p>Mon to Fri, 9am to 6pm ET. Average wait under 3 minutes.</p>
+                </li>
+                <li class="fq-contact_card">
+                    <span class="fq-contact_icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 10 12 4l8 6v10H4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 20v-6h6v6" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+                    <h3>Mail</h3>
+                    <address class="fq-contact_value">Marlowby<br>120 Church Street<br>Burlington, VT 05401</address>
+                    <p>Letters are answered within 2 weeks.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="fq-cta" aria-labelledby="fqCtaTitle">
+            <h2 id="fqCtaTitle">All sorted? Your next city is waiting.</h2>
+            <p>Pick a plan, or grab a code first.</p>
+            <div class="fq-cta_actions">
+                <a class="fq-button fq-button--light" href="/html/SubscriptionPlans.html">See the plans</a>
+                <a class="fq-cta_link" href="/html/specials.html">Browse the deals</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <div class="site-footer-brand">
+                <a href="../index.html" class="site-footer-logo">Marlowby</a>
+                <p>Explore your city, one box at a time. Every month we ship the best local products, small businesses and culture from a different U.S. city.</p>
+                <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
+            </div>
+
+            <nav class="site-footer-links" aria-label="Footer">
+                <div>
+                    <h2>Explore</h2>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="/html/burlington.html">This Month</a></li>
+                        <li><a href="/html/specials.html">Specials</a></li>
+                        <li><a href="/html/past-months.html">Past Months</a></li>
+                        <li><a href="/html/SubscriptionPlans.html">Subscription Plans</a></li>
+                        <li><a href="/html/sign-in.html">Sign In</a></li>
+                        <li><a href="/html/cart.html">Your Cart</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Plans</h2>
+                    <ul>
+                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#gift">Gift Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Deals</h2>
+                    <ul>
+                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
+                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
+                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
+                        <li><a href="/html/specials.html#wallet">Promo Codes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Company</h2>
+                    <ul>
+                        <li><a href="/html/our-mission.html">Our Mission</a></li>
+                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
+                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
+                        <li><a href="/html/faq.html" aria-current="page">FAQs and help</a></li>
+                        <li><a href="/html/works-cited.html">Works Cited</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="site-footer-bottom">
+            <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
+            <a href="#main-content" class="site-footer-top">Back to top</a>
+        </div>
+    </footer>
+
+    <script src="/js/accessibility.js"></script>
+    <script src="/js/nav-footer.js"></script>
+    <script src="/js/store.js"></script>
+    <script src="/js/shop.js"></script>
+    <script src="/js/deals.js"></script>
+    <script src="/js/faq.js"></script>
+</body>
+</html>

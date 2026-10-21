@@ -300,6 +300,137 @@
         label.textContent = days === 0 ? "Last day: ends tonight." : "Ends Sunday, " + days + (days === 1 ? " day" : " days") + " from now.";
     }
 
+    function initNavHeight() {
+        const navbar = $(".navbar");
+        if (!navbar) {
+            return;
+        }
+        const set = () => {
+            const sticky = getComputedStyle(navbar).position === "sticky" || getComputedStyle(navbar).position === "fixed";
+            document.documentElement.style.setProperty("--sp-nav-h", (sticky ? navbar.offsetHeight : 0) + "px");
+        };
+        set();
+        if ("ResizeObserver" in window) {
+            new ResizeObserver(set).observe(navbar);
+        } else {
+            window.addEventListener("resize", set);
+        }
+    }
+
+    function initJump() {
+        const links = $$("[data-jump]");
+        if (!links.length || !("IntersectionObserver" in window)) {
+            return;
+        }
+        const sections = links.map((link) => document.getElementById(link.dataset.jump)).filter(Boolean);
+        const visible = new Map();
+        const pick = () => {
+            let best = null;
+            sections.forEach((section) => {
+                if (visible.get(section) && (!best || section.offsetTop > best.offsetTop)) {
+                    best = section;
+                }
+            });
+            links.forEach((link) => {
+                const on = Boolean(best) && link.dataset.jump === best.id;
+                link.classList.toggle("is-current", on);
+                if (on) {
+                    link.setAttribute("aria-current", "location");
+                } else {
+                    link.removeAttribute("aria-current");
+                }
+            });
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => visible.set(entry.target, entry.isIntersecting));
+            pick();
+        }, { rootMargin: "-35% 0px -55% 0px" });
+        sections.forEach((section) => observer.observe(section));
+    }
+
+    function burstAt(element) {
+        if (reduceMotion || !element || !element.isConnected) {
+            return;
+        }
+        const rect = element.getBoundingClientRect();
+        if (!rect.width) {
+            return;
+        }
+        const burst = document.createElement("span");
+        burst.className = "sp-burst";
+        burst.setAttribute("aria-hidden", "true");
+        burst.style.left = rect.left + rect.width / 2 + "px";
+        burst.style.top = rect.top + rect.height / 2 + "px";
+        const colors = ["#e3a83b", "#b0491f", "#5f7d64", "#ffcf5c", "#1d2a3a"];
+        for (let n = 0; n < 16; n += 1) {
+            const piece = document.createElement("i");
+            const angle = (n / 16) * Math.PI * 2;
+            const reach = 40 + Math.random() * 40;
+            piece.style.setProperty("--x", Math.cos(angle) * reach + "px");
+            piece.style.setProperty("--y", Math.sin(angle) * reach + "px");
+            piece.style.setProperty("--r", Math.round(Math.random() * 360) + "deg");
+            piece.style.setProperty("--c", colors[n % colors.length]);
+            burst.appendChild(piece);
+        }
+        document.body.appendChild(burst);
+        window.setTimeout(() => burst.remove(), 800);
+    }
+
+    function initLiveDeals() {
+        const pill = $("[data-jump-save]");
+        const cards = $$(".deal");
+        let lastCode = M.cart.discount().code || "";
+        let lastTrigger = null;
+
+        document.addEventListener("click", (event) => {
+            const trigger = event.target.closest("[data-promo-apply], [data-deal-add], #pickApply, #codeCheck button");
+            if (trigger) {
+                lastTrigger = trigger;
+            }
+        }, true);
+
+        function codesIn(card) {
+            return $$("[data-promo-apply], [data-deal-code]", card).map((node) => node.dataset.promoApply || node.dataset.dealCode);
+        }
+
+        function render() {
+            const discount = M.cart.discount();
+            const code = discount.code || "";
+            cards.forEach((card) => card.classList.toggle("is-applied", Boolean(code) && codesIn(card).includes(code)));
+            if (pill) {
+                pill.classList.toggle("is-saving", Boolean(code));
+                let long = "No code yet";
+                let short = "No code yet";
+                if (code && discount.amount) {
+                    long = "You're saving " + M.money(discount.amount) + " with " + code;
+                    short = M.money(discount.amount) + " off";
+                } else if (code) {
+                    long = code + " is in your cart";
+                    short = code;
+                }
+                const longSpan = document.createElement("span");
+                longSpan.className = "sp-jump_long";
+                longSpan.textContent = long;
+                const shortSpan = document.createElement("span");
+                shortSpan.className = "sp-jump_short";
+                shortSpan.textContent = short;
+                pill.replaceChildren(longSpan, shortSpan);
+            }
+            if (code && code !== lastCode) {
+                burstAt(lastTrigger || pill);
+                if (pill && !reduceMotion) {
+                    pill.classList.remove("is-pop");
+                    void pill.offsetWidth;
+                    pill.classList.add("is-pop");
+                }
+            }
+            lastCode = code;
+        }
+
+        document.addEventListener("marlowby:cart", render);
+        render();
+    }
+
     function initReveal() {
         const targets = $$("[data-reveal]");
         if (reduceMotion || !("IntersectionObserver" in window)) {
@@ -322,6 +453,8 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+        initNavHeight();
+        initJump();
         initReveal();
         initFlaps();
         initMaker();
@@ -330,6 +463,7 @@
         if (M) {
             initBoardStatus();
             initWallet();
+            initLiveDeals();
         }
     });
 })();
