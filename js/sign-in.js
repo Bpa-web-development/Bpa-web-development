@@ -258,7 +258,7 @@
                 text.style.margin = "0";
                 const strong = document.createElement("b");
                 strong.textContent = "No box yet.";
-                text.append(strong, " Pick a plan and your first stamp will be Burlington, VT.");
+                text.append(strong, " Your first stamp will be Burlington, VT.");
                 box.append(text);
                 $("#siPlansLink").textContent = "Pick your plan";
                 return;

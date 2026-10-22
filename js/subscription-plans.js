@@ -193,95 +193,6 @@
         setInterval(tick, 1000);
     }
 
-    function initQuiz() {
-        const form = $("#planQuiz");
-        const steps = $$(".quiz-step", form);
-        const bar = $("#quizBar");
-        const result = $("#quizResult");
-        const answers = {};
-
-        const RESULTS = {
-            basic: { name: "Basic", why: "A focused box of local favorites that keeps the monthly cost low." },
-            premium: { name: "Premium", why: "You want the whole city, so you get more products, a signature item, and the digital city guide." },
-            gift: { name: "Gift", why: "A prepaid set of boxes with a personal note, and it never renews on its own." }
-        };
-
-        function showStep(index, focus = true) {
-            steps.forEach((step, stepIndex) => {
-                const active = stepIndex === index;
-                step.classList.toggle("is-active", active);
-                step.disabled = !active;
-            });
-            bar.style.width = (index / steps.length) * 100 + "%";
-            const first = $("input", steps[index]);
-            if (first && focus) {
-                first.focus({ preventScroll: true });
-            }
-        }
-
-        function finish() {
-            let plan = "basic";
-            if (answers.who === "gift") {
-                plan = "gift";
-            } else if (answers.depth === "full" || answers.budget === "high") {
-                plan = "premium";
-            }
-            bar.style.width = "100%";
-            steps.forEach((step) => {
-                step.classList.remove("is-active");
-                step.disabled = true;
-            });
-            form.hidden = true;
-            result.hidden = false;
-            $("#quizPlan").textContent = RESULTS[plan].name;
-            $("#quizWhy").textContent = RESULTS[plan].why;
-            $("#quizGo").href = "#" + plan;
-            $("#quizGo").dataset.target = plan;
-        }
-
-        form.addEventListener("change", (event) => {
-            const step = event.target.closest(".quiz-step");
-            const index = steps.indexOf(step);
-            answers[event.target.name] = event.target.value;
-            if (index === 0 && event.target.value === "gift") {
-                setTimeout(finish, 250);
-                return;
-            }
-            setTimeout(() => {
-                if (index < steps.length - 1) {
-                    showStep(index + 1);
-                } else {
-                    finish();
-                }
-            }, 250);
-        });
-
-        $("#quizGo").addEventListener("click", (event) => {
-            const card = document.getElementById(event.currentTarget.dataset.target);
-            if (!card) {
-                return;
-            }
-            event.preventDefault();
-            card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
-            card.classList.remove("is-spotlit");
-            void card.offsetWidth;
-            card.classList.add("is-spotlit");
-            setTimeout(() => $(".plan-card_cta", card).focus({ preventScroll: true }), reduceMotion ? 0 : 600);
-        });
-
-        $("#quizReset").addEventListener("click", () => {
-            $$("input", form).forEach((input) => {
-                input.checked = false;
-            });
-            Object.keys(answers).forEach((key) => delete answers[key]);
-            result.hidden = true;
-            form.hidden = false;
-            showStep(0);
-        });
-
-        showStep(0, false);
-    }
-
     function initCompare() {
         const table = $("#compareTable");
         const toggle = $("#diffToggle");
@@ -967,7 +878,6 @@
         initCountdown();
         initBilling();
         initCards();
-        initQuiz();
         initCompare();
         initFaq();
         initReveal();

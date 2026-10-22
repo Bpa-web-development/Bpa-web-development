@@ -485,7 +485,6 @@
     document.addEventListener("DOMContentLoaded", () => {
         initReveal();
         initBoxSwitch();
-        initJazz();
         initCountdown();
     });
 })();

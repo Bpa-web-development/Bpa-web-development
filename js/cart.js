@@ -248,8 +248,8 @@
             const plans = ["basic", "premium", "gift"].filter((plan) => M.catalog.plan(plan) && !M.cart.has(plan));
             $(".cart-more").hidden = plans.length === 0;
             $("#cartMoreLead").textContent = M.cart.items.length
-                ? "Add another plan for yourself or send a Gift box to someone who loves to travel."
-                : "Start with the plan that fits. You can switch or cancel anytime.";
+                ? "Add a plan or send a gift."
+                : "Switch or cancel anytime.";
             plans.forEach((plan) => {
                 const entry = M.catalog.plan(plan);
                 const term = entry.renews ? "monthly" : Object.keys(entry.prices)[0];
@@ -306,10 +306,10 @@
             const checkout = $("#cartCheckout");
             checkout.disabled = items.length === 0;
             $("#cartRenewNote").textContent = !items.length
-                ? "Add a plan to check out. You won't be charged until launch."
+                ? "Add a plan to check out."
                 : items.some((item) => M.catalog.plan(item.plan).renews)
-                    ? "Plans renew at the same price. Skip, switch or cancel anytime. You won't be charged until launch."
-                    : "Gift boxes are prepaid and never auto-renew. You won't be charged until launch.";
+                    ? "Renews at the same price. Cancel anytime. No charge until launch."
+                    : "Gifts are prepaid and never renew. No charge until launch.";
         }
 
         function render() {
@@ -443,13 +443,16 @@
         document.addEventListener("marlowby:purchase", (event) => {
             const detail = event.detail || {};
             const first = String(detail.name || "").split(/\s+/)[0] || "traveler";
-            $("#cartDoneText").textContent = "Thanks, " + first + ". Order " + detail.order + " is reserved and " + M.money(detail.total || 0) + " is due at launch. We'll email " + detail.email + " before your first box ships.";
+            $("#cartDoneText").textContent = "Thanks, " + first + ". Order " + detail.order + " is reserved. We'll email " + detail.email + " before it ships.";
             $("#cartDone").hidden = false;
             setStep(2);
         });
 
         $$("#cartItemsTitle").forEach((heading) => heading.setAttribute("tabindex", "-1"));
         render();
+        if (window.location.hash === "#checkout" && M.cart.items.length) {
+            window.setTimeout(() => $("#cartCheckout").click(), 300);
+        }
     }
 
     if (document.readyState === "loading") {

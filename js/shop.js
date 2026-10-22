@@ -17,7 +17,7 @@
 <dialog class="shop-drawer" id="shopCart" aria-labelledby="shopCartTitle">
     <div class="shop-drawer_head">
         <div>
-            <p class="shop-eyebrow">Your suitcase</p>
+            <p class="shop-eyebrow">Your cart</p>
             <h2 id="shopCartTitle" tabindex="-1">Cart <span class="shop-drawer_count" id="shopCartCount"></span></h2>
         </div>
         <button type="button" class="shop-close" data-shop-close aria-label="Close cart">&times;</button>
@@ -32,8 +32,8 @@
             <ul class="shop-lines" id="shopLines"></ul>
             <div class="shop-empty" id="shopEmpty">
                 <svg viewBox="0 0 120 90" aria-hidden="true"><rect x="14" y="22" width="92" height="60" rx="10"/><path d="M44 22v-8a6 6 0 0 1 6-6h20a6 6 0 0 1 6 6v8"/><path d="M14 46h92"/><circle cx="84" cy="62" r="11"/><path d="M78 62h12M84 56v12"/></svg>
-                <h3>Your suitcase is empty</h3>
-                <p>Pick a plan and your first city stamp is on its way.</p>
+                <h3>Your cart is empty</h3>
+                <p>Pick a plan to get your first stamp.</p>
                 <a class="shop-button shop-button--ghost" href="/html/SubscriptionPlans.html#plans" data-shop-close>Browse plans</a>
             </div>
         </div>
@@ -96,14 +96,14 @@
                 <div class="shop-totals_due"><dt>Due today</dt><dd id="shopCheckoutTotal">$0</dd></div>
             </dl>
             <button type="submit" class="shop-button" form="shopCheckoutForm" id="shopPlaceOrder">Place my order</button>
-            <p class="shop-fine">You won't be charged until launch. Cancel anytime.</p>
+            <p class="shop-fine">No charge until launch.</p>
         </div>
     </div>
 
     <div class="shop-view shop-done" data-view="done" hidden>
         <div class="shop-drawer_body">
             <svg class="shop-done_check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27 l8 8 l15 -17"/></svg>
-            <h3 id="shopDoneTitle" tabindex="-1">Your passport is stamped!</h3>
+            <h3 id="shopDoneTitle" tabindex="-1">Your order is confirmed</h3>
             <p id="shopDoneMessage"></p>
             <p class="shop-done_order">Order <strong id="shopOrderNumber"></strong></p>
             <p class="shop-done_saved" id="shopDoneSaved"></p>
@@ -148,7 +148,7 @@
             <p class="shop-form-error" id="shopAuthError" role="alert"></p>
             <button type="submit" class="shop-button shop-button--wide" id="shopAuthSubmit">Sign in</button>
         </form>
-        <p class="shop-secure">${LOCK_ICON}<span>Your email and profile are encrypted on this device with AES-256. Your password is never saved, only a salted PBKDF2 check.</span></p>
+        <p class="shop-secure">${LOCK_ICON}<span>Encrypted on this device. Your password is never saved.</span></p>
     </div>
 
     <div data-account-view="profile" hidden>
@@ -163,7 +163,7 @@
         <p class="shop-profile_since" id="shopProfileSince"></p>
         <h3 class="shop-step-title">Your subscriptions</h3>
         <ul class="shop-subs" id="shopSubs"></ul>
-        <p class="shop-subs_empty" id="shopSubsEmpty">No subscriptions yet. Anything you check out while signed in lands here.</p>
+        <p class="shop-subs_empty" id="shopSubsEmpty">No subscriptions yet.</p>
         <details class="shop-vault">
             <summary>${LOCK_ICON}<span>See what's actually saved on this device</span></summary>
             <p>This is the raw record in localStorage. Your email, name and subscriptions only exist inside the encrypted data.</p>
@@ -409,8 +409,8 @@
             $("#shopCartCount").textContent = count ? "(" + count + ")" : "";
             renderPromo();
             $("#shopRenewNote").textContent = items.some((item) => M.catalog.plan(item.plan).renews)
-                ? "Plans renew automatically at the same price. Skip, switch or cancel anytime."
-                : "Gift boxes are prepaid and never auto-renew.";
+                ? "Renews at the same price. Cancel anytime."
+                : "Gifts are prepaid and never renew.";
             if (!items.length && drawer.dataset.view === "checkout") {
                 showView("cart");
             }
@@ -514,7 +514,7 @@
             const save = $("#shopSave");
             save.replaceChildren();
             if (user) {
-                hint.textContent = "Signed in as " + user.firstName + ". Your subscriptions save to your account.";
+                hint.textContent = "Signed in as " + user.firstName + ".";
                 save.className = "shop-save is-signed-in";
                 save.innerHTML = LOCK_ICON;
                 save.appendChild(el("span", "", "This order saves to " + user.firstName + "'s encrypted account."));
@@ -721,6 +721,10 @@
         }
 
         $("#shopToCheckout").addEventListener("click", () => {
+            if (!document.getElementById("cartCheckout")) {
+                window.location.href = "/html/cart.html#checkout";
+                return;
+            }
             showView("checkout");
             prefillCheckout();
             renderSummary();
@@ -765,7 +769,7 @@
                 " reserved and your Marlowby passport just got its member stamp." + (discount.amount ? " You saved " + M.money(discount.amount) + " with " + discount.code + "." : "") +
                 (total >= M.catalog.reward().threshold ? " " + M.catalog.reward().label.charAt(0).toUpperCase() + M.catalog.reward().label.slice(1) + " is coming too." : "") + " We'll email " + email + " before it ships.";
             $("#shopOrderNumber").textContent = order;
-            $("#shopDoneSaved").textContent = saved ? "Saved to your encrypted account." : "Create an account next time to keep your orders in one place.";
+            $("#shopDoneSaved").textContent = saved ? "Saved to your account." : "Create an account to keep your orders.";
             M.cart.clear();
             showView("done");
             $("#shopCheckoutForm").reset();
