@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/shop.css">
     <link rel="stylesheet" href="/css/deals.css">
     <link rel="stylesheet" href="/css/SubscriptionPlans.css">
+    <link rel="stylesheet" href="/css/plan-finder.css">
     <link rel="stylesheet" href="/css/responsive.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +44,16 @@
             </button>
 
             <ul class="navbar-link-container" id="navbarLinks">
+                <li class="link-dropdown navbar-spotlight">
+                    <a class="navbar-link-item" href="/html/burlington.html"><span class="navbar-spotlight_dot" aria-hidden="true"></span>Spotlight</a>
+                    <ul class="sub-menu">
+                        <li><a href="/html/burlington.html#box">This Month's Box</a></li>
+                        <li><a href="/html/burlington.html#day">A Day in Burlington</a></li>
+                        <li><a href="/html/burlington.html#makers">Local Makers</a></li>
+                        <li><a href="/html/burlington.html#festival">Jazz Festival</a></li>
+                    </ul>
+                </li>
+
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/specials.html">Specials</a>
                     <ul class="sub-menu">
@@ -67,7 +78,7 @@
                     <ul class="sub-menu">
                         <li><a href="/html/our-mission.html#Story">Our Story</a></li>
                         <li><a href="/html/our-mission.html#Team">Our Team</a></li>
-                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
                     </ul>
                 </li>
 
@@ -77,6 +88,7 @@
                         <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#finder">Plan finder</a></li>
                     </ul>
                 </li>
 
@@ -117,12 +129,13 @@
                     <span class="visually-hidden">Pick your box. We'll pick the city.</span>
                     <span aria-hidden="true">Pick your box.<br><span class="plans-hero_accent">We'll pick</span><span class="scramble" id="heroScramble">the city.</span></span>
                 </h1>
-                <p class="plans-hero_lead">Every month Marlowby ships a curated box of goods from the small businesses of one U.S. city. Choose how much of the city you want, then watch the stamps pile up in your own Marlowby passport.</p>
+                <p class="plans-hero_lead">One city a month, boxed up by its small businesses. Collect a passport stamp with every delivery.</p>
 
                 <div class="plans-hero_actions">
                     <a class="plans-button" href="#plans">See the plans</a>
                     <a class="plans-button plans-button--ghost" href="/html/specials.html">Browse the deals</a>
                 </div>
+                <a class="plans-hero_finder" href="#finder">Not sure? Take the 30-second plan finder</a>
 
                 <article class="hero-box" aria-labelledby="heroBoxTitle">
                     <header class="hero-box_head">
@@ -234,7 +247,7 @@
             <div class="plans-section_header" data-reveal>
                 <p class="plans-eyebrow">Plans</p>
                 <h2 id="plans-title">Choose how you travel</h2>
-                <p>Commit longer and every box costs less. Shipping is always free.</p>
+                <p>Commit longer, pay less. Shipping is always free.</p>
 
                 <fieldset class="billing-switch">
                     <legend class="visually-hidden">Billing period</legend>
@@ -259,11 +272,9 @@
                             <p class="plan-card_billed" data-billed-basic>Billed monthly</p>
                             <ul class="plan-card_features">
                                 <li>4 to 5 local products</li>
-                                <li>Personal Marlowby passport</li>
-                                <li>A city stamp in every box</li>
-                                <li>Printed maker stories card</li>
-                                <li>Free U.S. shipping</li>
-                                <li>Skip or cancel anytime</li>
+                                <li>Passport and city stamps</li>
+                                <li>Maker stories card</li>
+                                <li>Free shipping, cancel anytime</li>
                             </ul>
                             <button type="button" class="plans-button plan-card_cta" data-plan="basic">Subscribe to Basic</button>
                             <button type="button" class="plan-card_flip" data-flip>Peek inside this month's box</button>
@@ -290,12 +301,9 @@
                             <p class="plan-card_billed" data-billed-premium>Billed monthly</p>
                             <ul class="plan-card_features">
                                 <li>7 to 9 local products</li>
-                                <li>Personal Marlowby passport</li>
-                                <li>A city stamp in every box</li>
-                                <li>One full-size signature item</li>
-                                <li>Digital city guide and playlist</li>
-                                <li>Early access to Specials</li>
-                                <li>Free U.S. shipping</li>
+                                <li>Passport and city stamps</li>
+                                <li>A full-size signature item</li>
+                                <li>City guide, playlist and early deals</li>
                             </ul>
                             <button type="button" class="plans-button plan-card_cta" data-plan="premium">Subscribe to Premium</button>
                             <button type="button" class="plan-card_flip" data-flip>Peek inside this month's box</button>
@@ -325,11 +333,9 @@
                                 <label class="pill-option"><input type="radio" name="giftMonths" value="12"><span>12 months</span></label>
                             </fieldset>
                             <ul class="plan-card_features">
-                                <li>Basic boxes, prepaid</li>
+                                <li>Prepaid Basic boxes</li>
                                 <li>A passport in their name</li>
-                                <li>A city stamp in every box</li>
                                 <li>Personal gift note</li>
-                                <li>Choose the start month</li>
                                 <li>Never renews automatically</li>
                             </ul>
                             <button type="button" class="plans-button plan-card_cta" data-plan="gift">Give a Gift</button>
@@ -339,7 +345,7 @@
                             <h3>This month's Gift box</h3>
                             <p class="plan-card_city" data-sample-city>Burlington, Vermont</p>
                             <ul class="plan-card_sample" data-sample="basic"></ul>
-                            <p class="plan-card_note">Arrives with a handwritten-style note card and your message.</p>
+                            <p class="plan-card_note">Arrives with your note.</p>
                             <button type="button" class="plan-card_flip" data-flip>Back to plan</button>
                         </div>
                     </div>
@@ -353,12 +359,12 @@
                 <div class="deal-sign_text">
                     <p class="plans-eyebrow">Deals and codes</p>
                     <h2 id="dealsTitle">Every deal lives on the Specials page</h2>
-                    <p>Tonight, <strong>MIDNIGHT</strong> takes 10% off everything for <span class="deal-sign_clock" data-flash-clock>00:00:00</span> more.</p>
+                    <p>Today, <strong>MIDNIGHT</strong> takes 10% off everything.</p>
                 </div>
                 <nav class="deal-sign_dir" aria-label="Deal directory">
-                    <a href="/html/specials.html#Daily"><b>Daily specials</b><small>3 deals</small></a>
+                    <a href="/html/specials.html#Daily"><b>Daily specials</b><small>2 deals</small></a>
                     <a href="/html/specials.html#Weekly"><b>Weekly deals</b><small>3 deals</small></a>
-                    <a href="/html/specials.html#Limited"><b>Limited offers</b><small>4 deals</small></a>
+                    <a href="/html/specials.html#Limited"><b>Limited offers</b><small>3 deals</small></a>
                     <a href="/html/specials.html#wallet"><b>Code wallet</b><small data-promo-total>7 codes</small></a>
                 </nav>
                 <a class="plans-button deal-sign_go" href="/html/specials.html">See all deals<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -367,44 +373,104 @@
 
 
 
-        <section class="plans-quiz" aria-labelledby="quizTitle">
-            <div class="plans-quiz_card" data-reveal>
-                <p class="plans-eyebrow">Not sure?</p>
-                <h2 id="quizTitle">Find your plan in three taps</h2>
-                <div class="plans-quiz_progress" aria-hidden="true"><span id="quizBar"></span></div>
+        <section class="plans-finder" id="finder" aria-labelledby="finderTitle">
+            <div class="finder" data-reveal>
+                <aside class="finder_aside">
+                    <p class="plans-eyebrow">Plan finder</p>
+                    <h2 id="finderTitle">Find your box in 30 seconds</h2>
+                    <p class="finder_lead">Four questions. One perfect plan. No email needed.</p>
+                    <ol class="finder_track" id="finderTrack">
+                        <li data-track="0"><span class="finder_track-num" aria-hidden="true">1</span><span class="finder_track-text"><b>Who it's for</b><small data-track-answer>Not answered</small></span></li>
+                        <li data-track="1"><span class="finder_track-num" aria-hidden="true">2</span><span class="finder_track-text"><b>Budget</b><small data-track-answer>Not answered</small></span></li>
+                        <li data-track="2"><span class="finder_track-num" aria-hidden="true">3</span><span class="finder_track-text"><b>What you love</b><small data-track-answer>Not answered</small></span></li>
+                        <li data-track="3"><span class="finder_track-num" aria-hidden="true">4</span><span class="finder_track-text"><b>How long</b><small data-track-answer>Not answered</small></span></li>
+                    </ol>
+                    <p class="finder_trust"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l7 3v5c0 4.5-3 8.4-7 10-4-1.6-7-5.5-7-10V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Free shipping on every plan. Skip or cancel anytime.</p>
+                </aside>
 
-                <div class="plans-quiz_form" id="planQuiz">
-                    <fieldset class="quiz-step is-active" data-step="0">
-                        <legend>Who is the box for?</legend>
-                        <div class="quiz-choices">
-                            <label><input type="radio" name="who" value="me"><span>Me</span></label>
-                            <label><input type="radio" name="who" value="gift"><span>Someone else</span></label>
+                <div class="finder_panel">
+                    <div class="finder_intro" id="finderIntro">
+                        <p class="finder_kicker">Not sure which plan fits?</p>
+                        <p class="finder_intro-text">We'll match you to a plan and do the savings math.</p>
+                        <div class="finder_actions">
+                            <button type="button" class="plans-button" id="finderStart">Start the plan finder</button>
+                            <button type="button" class="plans-button plans-button--ghost" id="finderLast" hidden>See your last match</button>
                         </div>
-                    </fieldset>
-                    <fieldset class="quiz-step" data-step="1" disabled>
-                        <legend>How much of the city do you want?</legend>
-                        <div class="quiz-choices">
-                            <label><input type="radio" name="depth" value="taste"><span>A little taste</span></label>
-                            <label><input type="radio" name="depth" value="full"><span>All of it</span></label>
-                        </div>
-                    </fieldset>
-                    <fieldset class="quiz-step" data-step="2" disabled>
-                        <legend>What feels right each month?</legend>
-                        <div class="quiz-choices">
-                            <label><input type="radio" name="budget" value="low"><span>Under $40</span></label>
-                            <label><input type="radio" name="budget" value="high"><span>Up to $60</span></label>
-                        </div>
-                    </fieldset>
-                </div>
-
-                <div class="plans-quiz_result" id="quizResult" aria-live="polite" hidden>
-                    <p class="plans-quiz_result-label">Your match</p>
-                    <p class="plans-quiz_result-plan" id="quizPlan"></p>
-                    <p id="quizWhy"></p>
-                    <div class="plans-quiz_result-actions">
-                        <a class="plans-button" id="quizGo" href="#plans">Show me this plan</a>
-                        <button type="button" class="plans-button plans-button--ghost" id="quizReset">Start over</button>
                     </div>
+
+                    <form class="finder_form" id="finderForm" novalidate hidden>
+                        <div class="finder_progress">
+                            <p class="finder_step-count" id="finderCount">Step 1 of 4</p>
+                            <div class="finder_bar" role="progressbar" aria-labelledby="finderCount" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"><span id="finderBar"></span></div>
+                        </div>
+
+                        <fieldset class="finder_step" data-step="0">
+                            <legend><span class="finder_q" tabindex="-1">Who is the box for?</span></legend>
+                            <div class="finder_options">
+                                <label class="finder_option"><input type="radio" name="who" value="me" data-label="Just me"><span class="finder_card"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="11" r="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 27c1.5-5.5 5.5-8 10-8s8.5 2.5 10 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><b>Just me</b><small>A treat for my own doorstep</small></span></label>
+                                <label class="finder_option"><input type="radio" name="who" value="home" data-label="My household"><span class="finder_card"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M5 15L16 6l11 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 13v13h16V13" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M13.5 26v-6h5v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><b>My household</b><small>Enough to share at home</small></span></label>
+                                <label class="finder_option"><input type="radio" name="who" value="gift" data-label="A gift"><span class="finder_card"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="5" y="12" width="22" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 12h24M16 12v15" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 12c-2-5-7-6-7-2.5S14 12 16 12zm0 0c2-5 7-6 7-2.5S18 12 16 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><b>A gift</b><small>Send someone on a road trip</small></span></label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="finder_step" data-step="1" hidden>
+                            <legend><span class="finder_q" tabindex="-1">What would you like to spend per box?</span></legend>
+                            <div class="finder_options">
+                                <label class="finder_option"><input type="radio" name="budget" value="low" data-label="Under $35"><span class="finder_card"><span class="finder_price" aria-hidden="true">$</span><b>Under $35</b><small>Keep it simple</small></span></label>
+                                <label class="finder_option"><input type="radio" name="budget" value="mid" data-label="$35 to $60"><span class="finder_card"><span class="finder_price" aria-hidden="true">$$</span><b>$35 to $60</b><small>A little more of the city</small></span></label>
+                                <label class="finder_option"><input type="radio" name="budget" value="high" data-label="Whatever it takes"><span class="finder_card"><span class="finder_price" aria-hidden="true">$$$</span><b>Whatever it takes</b><small>Send me everything</small></span></label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="finder_step" data-step="2" hidden>
+                            <legend><span class="finder_q" tabindex="-1">What are you most excited to unbox?</span></legend>
+                            <div class="finder_options">
+                                <label class="finder_option"><input type="radio" name="love" value="food" data-label="Food and treats"><span class="finder_card"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M11 5h10v4l2 3v14a2 2 0 01-2 2H11a2 2 0 01-2-2V12l2-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 15h14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 18.5l1.6 2.6h-3.2z" fill="currentColor"/></svg><b>Food and treats</b><small>Syrup, chocolate, snacks</small></span></label>
+                                <label class="finder_option"><input type="radio" name="love" value="made" data-label="Handmade goods"><span class="finder_card"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M7 10h15v9a6 6 0 01-6 6h-3a6 6 0 01-6-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M22 12h2a3 3 0 010 6h-2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 28h20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><b>Handmade goods</b><small>Mugs, socks, prints</small></span></label>
+                                <label class="finder_option"><input type="radio" name="love" value="all" data-label="A bit of everything"><span class="finder_card"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M4 11l12-6 12 6-12 6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 11v11l12 6 12-6V11M16 17v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><b>A bit of everything</b><small>Surprise me</small></span></label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="finder_step" data-step="3" hidden>
+                            <legend><span class="finder_q" tabindex="-1" data-q-self>How long do you want to travel?</span><span class="finder_q" tabindex="-1" data-q-gift hidden>How many boxes should they get?</span></legend>
+                            <div class="finder_options" data-terms-self>
+                                <label class="finder_option"><input type="radio" name="term" value="monthly" data-label="Month to month"><span class="finder_card"><b>Month to month</b><small>Full price, total freedom</small></span></label>
+                                <label class="finder_option"><input type="radio" name="term" value="half" data-label="6 months"><span class="finder_card"><span class="finder_save">Save 8%</span><b>6 months</b><small>Half a year of cities</small></span></label>
+                                <label class="finder_option"><input type="radio" name="term" value="annual" data-label="A full year"><span class="finder_card"><span class="finder_save">Save 15%</span><b>A full year</b><small>Twelve cities, lowest price</small></span></label>
+                            </div>
+                            <div class="finder_options" data-terms-gift hidden>
+                                <label class="finder_option"><input type="radio" name="term" value="3" data-label="3 boxes"><span class="finder_card"><b>3 boxes</b><small>A season of cities</small></span></label>
+                                <label class="finder_option"><input type="radio" name="term" value="6" data-label="6 boxes"><span class="finder_card"><b>6 boxes</b><small>Half a year of cities</small></span></label>
+                                <label class="finder_option"><input type="radio" name="term" value="12" data-label="12 boxes"><span class="finder_card"><span class="finder_save">Best value</span><b>12 boxes</b><small>A whole year of cities</small></span></label>
+                            </div>
+                        </fieldset>
+
+                        <div class="finder_nav">
+                            <button type="button" class="finder_back" id="finderBack">Back</button>
+                            <button type="submit" class="plans-button" id="finderNext" disabled>Next</button>
+                        </div>
+                    </form>
+
+                    <div class="finder_result" id="finderResult" hidden>
+                        <div class="finder_result-head">
+                            <p class="finder_kicker">Your best match</p>
+                            <p class="finder_badge" id="finderBadge" hidden></p>
+                        </div>
+                        <h3 class="finder_result-title" id="finderPlan" tabindex="-1">Premium</h3>
+                        <p class="finder_result-term" id="finderTerm"></p>
+                        <p class="finder_result-price"><span id="finderPrice"></span> <span class="finder_result-per" id="finderPer"></span></p>
+                        <p class="finder_result-save" id="finderSave" hidden></p>
+                        <h4 class="finder_why-title">Why it fits</h4>
+                        <ul class="finder_why" id="finderWhy"></ul>
+                        <p class="finder_box"><span>In this month's Burlington box</span><span id="finderBox"></span></p>
+                        <div class="finder_actions">
+                            <button type="button" class="plans-button" id="finderAdd">Add to cart</button>
+                            <a class="plans-button plans-button--ghost" href="#plans" id="finderCompare">Compare all plans</a>
+                        </div>
+                        <p class="finder_alt" id="finderAlt"></p>
+                        <button type="button" class="finder_restart" id="finderRestart">Start over</button>
+                    </div>
+                    <p class="visually-hidden" id="finderLive" aria-live="polite"></p>
                 </div>
             </div>
         </section>
@@ -501,30 +567,21 @@
 
             <details data-reveal>
                 <summary>When will I be charged?</summary>
-                <div class="plans-faq_body"><p>Monthly plans are charged on the 1st of each month, and boxes ship on the 5th. Six-month and yearly plans are charged once, on the day you subscribe.</p></div>
+                <div class="plans-faq_body"><p>Monthly plans bill on the 1st and ship on the 5th. Longer plans bill once, when you subscribe.</p></div>
             </details>
 
             <details data-reveal>
                 <summary>Can I skip a month or cancel?</summary>
-                <div class="plans-faq_body"><p>Yes. Skip or cancel from your account before the 1st and you won't be charged for that month's box.</p></div>
+                <div class="plans-faq_body"><p>Yes. Do it before the 1st and you won't be charged.</p></div>
             </details>
 
-            <details data-reveal>
-                <summary>How do you choose each month's city?</summary>
-                <div class="plans-faq_body"><p>We rotate through regions so every box feels new, and we look for cities with a strong community of small, independent makers. You can see earlier boxes on our <a href="/html/past-months.html">Past Months</a> page.</p></div>
-            </details>
-
-            <details data-reveal>
-                <summary>Can I change plans later?</summary>
-                <div class="plans-faq_body"><p>Yes. Upgrades and downgrades start with your next box. Switching from a yearly plan to monthly takes effect at your renewal date.</p></div>
-            </details>
             <p class="plans-faq_more" data-reveal>Still wondering? <a href="/html/faq.html">Read every FAQ</a> or <a href="/html/faq.html#helpdesk">ask the help desk</a>.</p>
         </section>
 
 
         <section class="plans-cta" aria-labelledby="ctaTitle" data-reveal>
             <h2 id="ctaTitle">Ready to explore your next city?</h2>
-            <p>Join Marlowby and support a new community of small businesses every month.</p>
+            <p>Support a new community of makers every month.</p>
             <div class="plans-cta_actions">
                 <button type="button" class="plans-button plans-button--light" data-plan="premium">Start with Premium</button>
                 <a class="plans-cta_link" href="/html/our-mission.html">Read about our mission</a>
@@ -534,10 +591,40 @@
     </main>
 
     <footer class="site-footer">
+        <section class="site-footer-news" aria-labelledby="footerNewsTitle">
+            <div class="site-footer-news_inner">
+                <div class="site-footer-news_copy">
+                    <h2 id="footerNewsTitle">Postcards from the road</h2>
+                    <p>One email when each box ships, plus subscriber-only codes. Unsubscribe anytime.</p>
+                </div>
+                <div>
+                    <form class="site-footer-news_form" data-newsletter novalidate>
+                        <label for="footerNewsEmail" class="visually-hidden">Email address</label>
+                        <div class="site-footer-news_field">
+                            <input type="email" id="footerNewsEmail" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-describedby="footerNewsMsg">
+                            <button type="submit">Subscribe</button>
+                        </div>
+                        <fieldset class="site-footer-news_topics">
+                            <legend>Send me:</legend>
+                            <label><input type="checkbox" name="topics" value="boxes" checked> New boxes</label>
+                            <label><input type="checkbox" name="topics" value="deals" checked> Deals</label>
+                            <label><input type="checkbox" name="topics" value="makers"> Maker stories</label>
+                        </fieldset>
+                        <p class="site-footer-news_msg" id="footerNewsMsg" role="status"></p>
+                    </form>
+                    <div class="site-footer-news_done" data-newsletter-done hidden>
+                        <p data-newsletter-text tabindex="-1" data-newsletter-focus>You're on the list.</p>
+                        <p class="site-footer-news_code"><strong>PASSPORT10</strong><button type="button" data-newsletter-copy="PASSPORT10">Copy code</button></p>
+                        <button type="button" class="site-footer-news_reset">Unsubscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="site-footer-inner">
             <div class="site-footer-brand">
                 <a href="../index.html" class="site-footer-logo">Marlowby</a>
-                <p>Explore your city, one box at a time. Every month we ship the best local products, small businesses and culture from a different U.S. city.</p>
+                <p>One city, one box, every month. Local goods from small businesses across the U.S.</p>
                 <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
             </div>
 
@@ -588,7 +675,11 @@
 
         <div class="site-footer-bottom">
             <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
-            <a href="#main-content" class="site-footer-top">Back to top</a>
+            <ul class="site-footer-legal">
+                <li><a href="/html/sitemap.html">Sitemap</a></li>
+                <li><button type="button" data-open-a11y>Accessibility options</button></li>
+                <li><a href="#main-content" class="site-footer-top">Back to top</a></li>
+            </ul>
         </div>
     </footer>
 
@@ -609,5 +700,6 @@
     <script src="/js/shop.js"></script>
     <script src="/js/deals.js"></script>
     <script src="/js/subscription-plans.js"></script>
+    <script src="/js/plan-finder.js"></script>
 </body>
 </html>

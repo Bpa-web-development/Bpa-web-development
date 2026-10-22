@@ -42,6 +42,16 @@
             </button>
 
             <ul class="navbar-link-container" id="navbarLinks">
+                <li class="link-dropdown navbar-spotlight">
+                    <a class="navbar-link-item" href="/html/burlington.html"><span class="navbar-spotlight_dot" aria-hidden="true"></span>Spotlight</a>
+                    <ul class="sub-menu">
+                        <li><a href="/html/burlington.html#box">This Month's Box</a></li>
+                        <li><a href="/html/burlington.html#day">A Day in Burlington</a></li>
+                        <li><a href="/html/burlington.html#makers">Local Makers</a></li>
+                        <li><a href="/html/burlington.html#festival">Jazz Festival</a></li>
+                    </ul>
+                </li>
+
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/specials.html">Specials</a>
                     <ul class="sub-menu">
@@ -66,7 +76,7 @@
                     <ul class="sub-menu">
                         <li><a href="/html/our-mission.html#Story">Our Story</a></li>
                         <li><a href="/html/our-mission.html#Team">Our Team</a></li>
-                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
                     </ul>
                 </li>
 
@@ -76,6 +86,7 @@
                         <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#finder">Plan finder</a></li>
                     </ul>
                 </li>
 
@@ -109,17 +120,14 @@
 
     <main id="main-content" class="cart-main">
         <section class="cart-hero" aria-labelledby="cartTitle">
-            <svg class="cart-hero_route" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-                <path d="M-20 190 C 220 60, 420 210, 640 110 S 1010 20, 1220 70" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="2 12" stroke-linecap="round"/>
-            </svg>
             <div class="cart-hero_inner">
-                <p class="cart-eyebrow">Your suitcase</p>
+                <p class="cart-eyebrow">Checkout</p>
                 <h1 id="cartTitle" tabindex="-1">Your cart</h1>
-                <p class="cart-hero_lead" id="cartLead">Every plan ships free, stamps your Marlowby passport and fills a box with goods from one city's small businesses.</p>
+                <p class="cart-hero_lead" id="cartLead">Free shipping on every box. Skip or cancel anytime.</p>
                 <ol class="cart-steps" id="cartSteps" aria-label="Checkout steps">
-                    <li class="is-current" aria-current="step"><span aria-hidden="true">1</span>Pack your suitcase</li>
-                    <li><span aria-hidden="true">2</span>Tell us where it ships</li>
-                    <li><span aria-hidden="true">3</span>Get your passport stamped</li>
+                    <li class="is-current" aria-current="step"><span aria-hidden="true">1</span>Cart</li>
+                    <li><span aria-hidden="true">2</span>Shipping</li>
+                    <li><span aria-hidden="true">3</span>Confirmation</li>
                 </ol>
             </div>
         </section>
@@ -129,15 +137,15 @@
                 <div class="cart-done" id="cartDone" tabindex="-1" hidden>
                     <svg viewBox="0 0 52 52" aria-hidden="true" focusable="false"><circle cx="26" cy="26" r="24"/><path d="M15 27 l8 8 l15 -17"/></svg>
                     <div>
-                        <h2 id="cartDoneTitle">Your passport is stamped!</h2>
+                        <h2 id="cartDoneTitle">Your order is confirmed</h2>
                         <p id="cartDoneText"></p>
                     </div>
                 </div>
 
                 <section class="cart-items" aria-labelledby="cartItemsTitle">
                     <div class="cart-items_head">
-                        <h2 id="cartItemsTitle">In your suitcase <span class="cart-count" id="cartCount"></span></h2>
-                        <button type="button" class="cart-text-button" id="cartClear" hidden>Empty my cart</button>
+                        <h2 id="cartItemsTitle">Your items <span class="cart-count" id="cartCount"></span></h2>
+                        <button type="button" class="cart-text-button" id="cartClear" hidden>Clear cart</button>
                     </div>
 
                     <div class="cart-undo" id="cartUndo" hidden>
@@ -156,18 +164,18 @@
                             <path d="M101 56 h20 M101 62 h12" class="cart-empty_lines"/>
                             <circle cx="44" cy="84" r="10" class="cart-empty_sticker"/>
                         </svg>
-                        <h2>Your suitcase is empty</h2>
-                        <p>Pick a plan and your first city stamp is on its way. Every box ships free and you can skip or cancel anytime.</p>
+                        <h2>Your cart is empty</h2>
+                        <p>Pick a plan to start your first city box.</p>
                         <div class="cart-empty_actions">
-                            <a class="cart-button" href="/html/SubscriptionPlans.html#plans">Browse the plans</a>
-                            <a class="cart-button cart-button--ghost" href="/html/specials.html">See today's deals</a>
+                            <a class="cart-button" href="/html/SubscriptionPlans.html#plans">Browse plans</a>
+                            <a class="cart-button cart-button--ghost" href="/html/specials.html">View current offers</a>
                         </div>
                     </div>
                 </section>
 
                 <section class="cart-more" aria-labelledby="cartMoreTitle">
-                    <h2 id="cartMoreTitle">Room for one more?</h2>
-                    <p class="cart-more_lead" id="cartMoreLead">Add another plan for yourself or send a Gift box to someone who loves to travel.</p>
+                    <h2 id="cartMoreTitle">Add to your order</h2>
+                    <p class="cart-more_lead" id="cartMoreLead">Add a plan or send a gift.</p>
                     <ul class="cart-more_list" id="cartMore"></ul>
                 </section>
             </div>
@@ -211,38 +219,68 @@
 
                     <button type="button" class="cart-button cart-button--wide" id="cartCheckout">
                         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-                        Check out securely
+                        Check out
                     </button>
-                    <p class="cart-fine" id="cartRenewNote">You won't be charged until launch. Cancel anytime.</p>
-                    <a class="cart-deals-link" href="/html/specials.html#wallet">Find more codes on the Specials page</a>
+                    <p class="cart-fine" id="cartRenewNote">No charge until launch.</p>
+                    <a class="cart-deals-link" href="/html/specials.html#wallet">See all current offers</a>
                 </section>
 
                 <a class="cart-month" href="/html/burlington.html">
-                    <span class="cart-month_label">Now shipping</span>
+                    <span class="cart-month_label">This month's box</span>
                     <span class="cart-month_city">The Burlington, VT box</span>
-                    <span class="cart-month_text">Maple syrup, small-batch chocolate and a taste of the Discover Jazz Festival. See everything inside this month's box.</span>
-                    <span class="cart-month_go">Visit this month's city <span aria-hidden="true">&rarr;</span></span>
+                    <span class="cart-month_text">Maple syrup, chocolate and more from Burlington makers.</span>
+                    <span class="cart-month_go">See what's inside <span aria-hidden="true">&rarr;</span></span>
                     <span class="cart-month_code" aria-hidden="true">BTV</span>
-                    <span class="cart-month_secret">Next month's city stays a secret until it ships.</span>
+                    <span class="cart-month_secret">Next city stays a secret.</span>
                 </a>
             </aside>
         </div>
 
-        <section class="cart-perks" aria-label="Why members love Marlowby">
+        <section class="cart-perks" aria-label="Included with every plan">
             <ul>
                 <li><strong>Free shipping</strong><span>On every box, every month.</span></li>
                 <li><strong>Skip or cancel anytime</strong><span>No calls and no fees.</span></li>
-                <li><strong>A new passport stamp</strong><span>Collect a city with every box.</span></li>
+                <li><strong>A new city each month</strong><span>Plus a passport stamp to keep.</span></li>
                 <li><strong>Small businesses first</strong><span>Every item comes from a local maker.</span></li>
             </ul>
         </section>
     </main>
 
     <footer class="site-footer">
+        <section class="site-footer-news" aria-labelledby="footerNewsTitle">
+            <div class="site-footer-news_inner">
+                <div class="site-footer-news_copy">
+                    <h2 id="footerNewsTitle">Postcards from the road</h2>
+                    <p>One email when each box ships, plus subscriber-only codes. Unsubscribe anytime.</p>
+                </div>
+                <div>
+                    <form class="site-footer-news_form" data-newsletter novalidate>
+                        <label for="footerNewsEmail" class="visually-hidden">Email address</label>
+                        <div class="site-footer-news_field">
+                            <input type="email" id="footerNewsEmail" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-describedby="footerNewsMsg">
+                            <button type="submit">Subscribe</button>
+                        </div>
+                        <fieldset class="site-footer-news_topics">
+                            <legend>Send me:</legend>
+                            <label><input type="checkbox" name="topics" value="boxes" checked> New boxes</label>
+                            <label><input type="checkbox" name="topics" value="deals" checked> Deals</label>
+                            <label><input type="checkbox" name="topics" value="makers"> Maker stories</label>
+                        </fieldset>
+                        <p class="site-footer-news_msg" id="footerNewsMsg" role="status"></p>
+                    </form>
+                    <div class="site-footer-news_done" data-newsletter-done hidden>
+                        <p data-newsletter-text tabindex="-1" data-newsletter-focus>You're on the list.</p>
+                        <p class="site-footer-news_code"><strong>PASSPORT10</strong><button type="button" data-newsletter-copy="PASSPORT10">Copy code</button></p>
+                        <button type="button" class="site-footer-news_reset">Unsubscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="site-footer-inner">
             <div class="site-footer-brand">
                 <a href="../index.html" class="site-footer-logo">Marlowby</a>
-                <p>Explore your city, one box at a time. Every month we ship the best local products, small businesses and culture from a different U.S. city.</p>
+                <p>One city, one box, every month. Local goods from small businesses across the U.S.</p>
                 <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
             </div>
 
@@ -293,7 +331,11 @@
 
         <div class="site-footer-bottom">
             <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
-            <a href="#main-content" class="site-footer-top">Back to top</a>
+            <ul class="site-footer-legal">
+                <li><a href="/html/sitemap.html">Sitemap</a></li>
+                <li><button type="button" data-open-a11y>Accessibility options</button></li>
+                <li><a href="#main-content" class="site-footer-top">Back to top</a></li>
+            </ul>
         </div>
     </footer>
 

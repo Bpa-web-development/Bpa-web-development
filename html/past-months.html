@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/shop.css">
     <link rel="stylesheet" href="/css/deals.css">
     <link rel="stylesheet" href="/css/past-months.css">
+    <link rel="stylesheet" href="/css/reviews.css">
     <link rel="stylesheet" href="/css/responsive.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,6 +43,16 @@
             </button>
 
             <ul class="navbar-link-container" id="navbarLinks">
+                <li class="link-dropdown navbar-spotlight">
+                    <a class="navbar-link-item" href="/html/burlington.html"><span class="navbar-spotlight_dot" aria-hidden="true"></span>Spotlight</a>
+                    <ul class="sub-menu">
+                        <li><a href="/html/burlington.html#box">This Month's Box</a></li>
+                        <li><a href="/html/burlington.html#day">A Day in Burlington</a></li>
+                        <li><a href="/html/burlington.html#makers">Local Makers</a></li>
+                        <li><a href="/html/burlington.html#festival">Jazz Festival</a></li>
+                    </ul>
+                </li>
+
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/specials.html">Specials</a>
                     <ul class="sub-menu">
@@ -66,7 +77,7 @@
                     <ul class="sub-menu">
                         <li><a href="/html/our-mission.html#Story">Our Story</a></li>
                         <li><a href="/html/our-mission.html#Team">Our Team</a></li>
-                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
                     </ul>
                 </li>
 
@@ -76,6 +87,7 @@
                         <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#finder">Plan finder</a></li>
                     </ul>
                 </li>
 
@@ -113,7 +125,7 @@
             <div class="pm-hero_inner">
                 <p class="pm-eyebrow">Past Months</p>
                 <h1 id="pmTitle">Every box is a <span>trip we already took.</span></h1>
-                <p class="pm-hero_lead">Flip back through the passport. Each month Marlowby shipped a box from one U.S. city, packed with goods from its small businesses and a story about the people who make them. Every city fact is backed by a <a href="/html/works-cited.html#past-months">source in our Works Cited</a>.</p>
+                <p class="pm-hero_lead">One city, one box, every month. Every fact is backed by a <a href="/html/works-cited.html#past-months">source in our Works Cited</a>.</p>
                 <nav class="pm-jump" aria-label="Jump to a month">
                     <a href="#January"><b>Jan</b><span>Savannah, GA</span></a>
                     <a href="#February"><b>Feb</b><span>Providence, RI</span></a>
@@ -135,7 +147,7 @@
                 <span class="pm-now_tag">This month</span>
                 <span class="pm-now_body">
                     <span class="pm-now_title" id="pmNowTitle">Burlington, VT is shipping now</span>
-                    <span class="pm-now_text">Maple syrup, small-batch chocolate and the Discover Jazz Festival. Step inside this month's box.</span>
+                    <span class="pm-now_text">Maple, chocolate and the Discover Jazz Festival.</span>
                 </span>
                 <span class="pm-now_go" aria-hidden="true">
                     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -148,13 +160,13 @@
                 <div class="pm-city_copy" data-pm-reveal>
                     <p class="pm-city_month">January 2026</p>
                     <h2 id="janTitle">Savannah, Georgia</h2>
-                    <p class="pm-city_story">We started the year somewhere warm. Savannah's historic district is laid out around 22 leafy squares shaded by live oaks and Spanish moss, and its kitchens run on pecans, peaches and slow afternoons.</p>
+                    <p class="pm-city_story">Live oaks, Spanish moss and 22 leafy squares. Kitchens run on pecans and peaches.</p>
                     <ul class="pm-items">
-                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Pecan pralines</b><small>Cooked in copper pots by a family candy kitchen</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Pecan pralines</b><small>From a family candy kitchen</small></li>
                         <li><span class="pm-items_dot" aria-hidden="true"></span><b>Georgia peach jam</b><small>Small-batch and barely sweetened</small></li>
-                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Lowcountry hot sauce</b><small>Aged peppers from a two-person kitchen</small></li>
-                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Live oak soy candle</b><small>Hand-poured, smells like a porch after rain</small></li>
-                        <li><span class="pm-items_dot pm-items_dot--gold" aria-hidden="true"></span><b>Hand-printed tea towel</b><small>Premium only, with a block-print of the squares</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Lowcountry hot sauce</b><small>From a two-person kitchen</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Live oak soy candle</b><small>Smells like a porch after rain</small></li>
+                        <li><span class="pm-items_dot pm-items_dot--gold" aria-hidden="true"></span><b>Hand-printed tea towel</b><small>Premium only, block-printed</small></li>
                     </ul>
                 </div>
                 <div class="pm-city_art" aria-hidden="true">
@@ -179,13 +191,13 @@
                 <div class="pm-city_copy" data-pm-reveal>
                     <p class="pm-city_month">February 2026</p>
                     <h2 id="febTitle">Providence, Rhode Island</h2>
-                    <p class="pm-city_story">A small capital with a big creative streak. Providence was once known for making jewelry, its art school keeps the streets full of makers, and on WaterFire nights bonfires burn right on the rivers downtown.</p>
+                    <p class="pm-city_story">A jewelry-making past, an art school full of makers, and WaterFire on the rivers.</p>
                     <ul class="pm-items">
-                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Coffee syrup</b><small>Stir it into milk for Rhode Island's official state drink</small></li>
-                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Sea salt caramels</b><small>Finished with salt from the Atlantic coast</small></li>
-                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Hand-stamped brass bracelet</b><small>From a jeweler in an old mill building</small></li>
-                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Riverfront art print</b><small>Screen-printed by a local design student</small></li>
-                        <li><span class="pm-items_dot pm-items_dot--gold" aria-hidden="true"></span><b>Wool knit beanie</b><small>Premium only, for a New England February</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Coffee syrup</b><small>For the official state drink</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Sea salt caramels</b><small>With Atlantic sea salt</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Hand-stamped brass bracelet</b><small>From a jeweler in an old mill</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Riverfront art print</b><small>By a local design student</small></li>
+                        <li><span class="pm-items_dot pm-items_dot--gold" aria-hidden="true"></span><b>Wool knit beanie</b><small>Premium only</small></li>
                     </ul>
                 </div>
                 <div class="pm-city_art" aria-hidden="true">
@@ -209,13 +221,13 @@
                 <div class="pm-city_copy" data-pm-reveal>
                     <p class="pm-city_month">March 2026</p>
                     <h2 id="marTitle">Lexington, Kentucky</h2>
-                    <p class="pm-city_story">Spring came early in the Horse Capital of the World. Lexington sits in the middle of the Bluegrass region, with rolling pastures, wooden fences, banjo music and farm kitchens that never skip dessert.</p>
+                    <p class="pm-city_story">Rolling Bluegrass pastures, banjo music and farm kitchens that never skip dessert.</p>
                     <ul class="pm-items">
-                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Sorghum caramels</b><small>Made with syrup pressed on a family farm</small></li>
-                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Smoked sea salt</b><small>Slow-smoked over oak by a two-person spice shop</small></li>
-                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Bluegrass playlist card</b><small>Picked by a local fiddle teacher</small></li>
-                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Horse country postcard set</b><small>Watercolors of the pastures in spring</small></li>
-                        <li><span class="pm-items_dot pm-items_dot--gold" aria-hidden="true"></span><b>Hand-thrown pottery bowl</b><small>Premium only, glazed in bluegrass green</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Sorghum caramels</b><small>Farm-pressed syrup</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Smoked sea salt</b><small>Oak-smoked by a tiny spice shop</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Bluegrass playlist card</b><small>Picked by a fiddle teacher</small></li>
+                        <li><span class="pm-items_dot" aria-hidden="true"></span><b>Horse country postcard set</b><small>Spring pasture watercolors</small></li>
+                        <li><span class="pm-items_dot pm-items_dot--gold" aria-hidden="true"></span><b>Hand-thrown pottery bowl</b><small>Premium only</small></li>
                     </ul>
                 </div>
                 <div class="pm-city_art" aria-hidden="true">
@@ -233,13 +245,144 @@
             </div>
         </article>
 
+        <section class="rv" id="reviews" aria-labelledby="rvTitleMain">
+            <div class="rv_inner">
+                <div class="rv_head">
+                    <div>
+                        <p class="rv_eyebrow">From our travelers</p>
+                        <h2 id="rvTitleMain">What subscribers say about every box</h2>
+                        <p class="rv_lead">Honest notes from the people who opened them.</p>
+                    </div>
+                    <button type="button" class="rv-button" id="rvWrite" aria-expanded="false" aria-controls="rvFormPanel">Write a review</button>
+                </div>
+
+                <div class="rv-summary">
+                    <div class="rv-summary_score">
+                        <p class="rv-summary_num"><span id="rvScore">4.8</span><span class="rv-summary_of">out of 5</span></p>
+                        <div id="rvScoreStars"></div>
+                        <p class="rv-summary_total" id="rvTotal">1,293 reviews</p>
+                    </div>
+                    <ul class="rv-bars" aria-label="Rating breakdown">
+                        <li class="rv-bar" aria-label="5 stars"><span class="rv-bar_label">5 stars</span><span class="rv-bar_track" aria-hidden="true"><span class="rv-bar_fill"></span></span><span class="rv-bar_pct" aria-hidden="true"></span></li>
+                        <li class="rv-bar" aria-label="4 stars"><span class="rv-bar_label">4 stars</span><span class="rv-bar_track" aria-hidden="true"><span class="rv-bar_fill"></span></span><span class="rv-bar_pct" aria-hidden="true"></span></li>
+                        <li class="rv-bar" aria-label="3 stars"><span class="rv-bar_label">3 stars</span><span class="rv-bar_track" aria-hidden="true"><span class="rv-bar_fill"></span></span><span class="rv-bar_pct" aria-hidden="true"></span></li>
+                        <li class="rv-bar" aria-label="2 stars"><span class="rv-bar_label">2 stars</span><span class="rv-bar_track" aria-hidden="true"><span class="rv-bar_fill"></span></span><span class="rv-bar_pct" aria-hidden="true"></span></li>
+                        <li class="rv-bar" aria-label="1 star"><span class="rv-bar_label">1 star</span><span class="rv-bar_track" aria-hidden="true"><span class="rv-bar_fill"></span></span><span class="rv-bar_pct" aria-hidden="true"></span></li>
+                    </ul>
+                    <dl class="rv-facts">
+                        <div><dt>Would recommend</dt><dd id="rvRecommend">96%</dd></div>
+                        <div><dt>Most loved item</dt><dd>Pure maple syrup</dd></div>
+                        <div><dt>Arrived on time</dt><dd>98%</dd></div>
+                    </dl>
+                </div>
+
+                <p class="rv-done" id="rvDone" tabindex="-1" role="status" hidden>Thanks for your review. It's at the top of the list now and will be public once our team checks it.</p>
+
+                <div class="rv-form" id="rvFormPanel" hidden>
+                    <form id="rvForm" novalidate>
+                        <h3 class="rv-form_title">Share your box</h3>
+                        <fieldset class="rv-pick" id="rvRatingSet" aria-describedby="rvRatingSetError">
+                            <legend>Your rating</legend>
+                            <div class="rv-pick_stars">
+                                <input type="radio" id="rvR5" name="rvRating" value="5"><label for="rvR5"><span class="visually-hidden">5 stars</span></label>
+                                <input type="radio" id="rvR4" name="rvRating" value="4"><label for="rvR4"><span class="visually-hidden">4 stars</span></label>
+                                <input type="radio" id="rvR3" name="rvRating" value="3"><label for="rvR3"><span class="visually-hidden">3 stars</span></label>
+                                <input type="radio" id="rvR2" name="rvRating" value="2"><label for="rvR2"><span class="visually-hidden">2 stars</span></label>
+                                <input type="radio" id="rvR1" name="rvRating" value="1"><label for="rvR1"><span class="visually-hidden">1 star</span></label>
+                            </div>
+                            <p class="rv-error" id="rvRatingSetError"></p>
+                        </fieldset>
+                        <div class="rv-form_row">
+                            <div class="rv-field">
+                                <label for="rvBox">Which box?</label>
+                                <select id="rvBox" aria-describedby="rvBoxError">
+                                    <option value="">Choose a box</option>
+                                    <option value="Burlington">Burlington, VT</option>
+                                    <option value="Lexington">Lexington, KY</option>
+                                    <option value="Providence">Providence, RI</option>
+                                    <option value="Savannah">Savannah, GA</option>
+                                </select>
+                                <p class="rv-error" id="rvBoxError"></p>
+                            </div>
+                            <div class="rv-field">
+                                <label for="rvPlan">Your plan</label>
+                                <select id="rvPlan">
+                                    <option value="Basic">Basic</option>
+                                    <option value="Premium">Premium</option>
+                                    <option value="Gift">Gift</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="rv-field">
+                            <label for="rvTitle">Review title</label>
+                            <input type="text" id="rvTitle" maxlength="70" aria-describedby="rvTitleError" placeholder="The maple syrup was unreal">
+                            <p class="rv-error" id="rvTitleError"></p>
+                        </div>
+                        <div class="rv-field">
+                            <label for="rvText">Your review</label>
+                            <textarea id="rvText" rows="4" maxlength="500" aria-describedby="rvCounter rvTextError"></textarea>
+                            <p class="rv-field_hint"><span id="rvTextError" class="rv-error"></span><span class="rv-counter" id="rvCounter" aria-live="polite">0 / 500</span></p>
+                        </div>
+                        <div class="rv-form_row">
+                            <div class="rv-field">
+                                <label for="rvName">First name and last initial</label>
+                                <input type="text" id="rvName" maxlength="30" autocomplete="name" aria-describedby="rvNameError">
+                                <p class="rv-error" id="rvNameError"></p>
+                            </div>
+                            <div class="rv-field">
+                                <label for="rvState">Home state <span class="rv-optional">(optional)</span></label>
+                                <input type="text" id="rvState" maxlength="24" autocomplete="address-level1">
+                            </div>
+                        </div>
+                        <div class="rv-form_actions">
+                            <button type="submit" class="rv-button">Post review</button>
+                            <button type="button" class="rv-button rv-button--ghost" id="rvCancel">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="rv-tools">
+                    <div class="rv-chips" role="group" aria-label="Filter by box">
+                        <button type="button" class="rv-chip" data-rv-filter="box" data-value="All" aria-pressed="true">All boxes</button>
+                        <button type="button" class="rv-chip" data-rv-filter="box" data-value="Burlington" aria-pressed="false">Burlington</button>
+                        <button type="button" class="rv-chip" data-rv-filter="box" data-value="Lexington" aria-pressed="false">Lexington</button>
+                        <button type="button" class="rv-chip" data-rv-filter="box" data-value="Providence" aria-pressed="false">Providence</button>
+                        <button type="button" class="rv-chip" data-rv-filter="box" data-value="Savannah" aria-pressed="false">Savannah</button>
+                    </div>
+                    <div class="rv-tools_right">
+                        <div class="rv-chips rv-chips--plan" role="group" aria-label="Filter by plan">
+                            <button type="button" class="rv-chip" data-rv-filter="plan" data-value="All" aria-pressed="true">Any plan</button>
+                            <button type="button" class="rv-chip" data-rv-filter="plan" data-value="Basic" aria-pressed="false">Basic</button>
+                            <button type="button" class="rv-chip" data-rv-filter="plan" data-value="Premium" aria-pressed="false">Premium</button>
+                            <button type="button" class="rv-chip" data-rv-filter="plan" data-value="Gift" aria-pressed="false">Gift</button>
+                        </div>
+                        <label class="rv-sort"><span>Sort by</span>
+                            <select id="rvSort">
+                                <option value="recent">Most recent</option>
+                                <option value="rating">Highest rated</option>
+                                <option value="helpful">Most helpful</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <p class="rv-count" id="rvCount" aria-live="polite"></p>
+                <ul class="rv-list" id="rvList"></ul>
+                <p class="rv-empty" id="rvEmpty" hidden>No featured reviews match those filters yet. Try another box or plan.</p>
+                <div class="rv-more_wrap">
+                    <button type="button" class="rv-button rv-button--ghost" id="rvMore" hidden>Show more reviews</button>
+                </div>
+                <p class="rv-disclaimer">Reviews are sample content written for a student project.</p>
+            </div>
+        </section>
+
         <section class="pm-next" aria-labelledby="pmNextTitle">
             <div class="pm-next_card" data-pm-reveal>
                 <div class="pm-next_seal" aria-hidden="true"><span>?</span></div>
                 <div>
                     <p class="pm-eyebrow">Next month</p>
                     <h2 id="pmNextTitle">The next stamp is a mystery.</h2>
-                    <p>We never say where the next box is going until it ships. Join now and your passport gets its next stamp the day it lands on your porch.</p>
+                    <p>We never say where until it ships. Join now and find out on your porch.</p>
                     <div class="pm-next_actions">
                         <a class="pm-button" href="/html/SubscriptionPlans.html#plans">Pick a plan</a>
                         <a class="pm-button pm-button--ghost" href="/html/burlington.html">See this month's box</a>
@@ -251,10 +394,40 @@
     </main>
 
     <footer class="site-footer">
+        <section class="site-footer-news" aria-labelledby="footerNewsTitle">
+            <div class="site-footer-news_inner">
+                <div class="site-footer-news_copy">
+                    <h2 id="footerNewsTitle">Postcards from the road</h2>
+                    <p>One email when each box ships, plus subscriber-only codes. Unsubscribe anytime.</p>
+                </div>
+                <div>
+                    <form class="site-footer-news_form" data-newsletter novalidate>
+                        <label for="footerNewsEmail" class="visually-hidden">Email address</label>
+                        <div class="site-footer-news_field">
+                            <input type="email" id="footerNewsEmail" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-describedby="footerNewsMsg">
+                            <button type="submit">Subscribe</button>
+                        </div>
+                        <fieldset class="site-footer-news_topics">
+                            <legend>Send me:</legend>
+                            <label><input type="checkbox" name="topics" value="boxes" checked> New boxes</label>
+                            <label><input type="checkbox" name="topics" value="deals" checked> Deals</label>
+                            <label><input type="checkbox" name="topics" value="makers"> Maker stories</label>
+                        </fieldset>
+                        <p class="site-footer-news_msg" id="footerNewsMsg" role="status"></p>
+                    </form>
+                    <div class="site-footer-news_done" data-newsletter-done hidden>
+                        <p data-newsletter-text tabindex="-1" data-newsletter-focus>You're on the list.</p>
+                        <p class="site-footer-news_code"><strong>PASSPORT10</strong><button type="button" data-newsletter-copy="PASSPORT10">Copy code</button></p>
+                        <button type="button" class="site-footer-news_reset">Unsubscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="site-footer-inner">
             <div class="site-footer-brand">
                 <a href="../index.html" class="site-footer-logo">Marlowby</a>
-                <p>Explore your city, one box at a time. Every month we ship the best local products, small businesses and culture from a different U.S. city.</p>
+                <p>One city, one box, every month. Local goods from small businesses across the U.S.</p>
                 <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
             </div>
 
@@ -305,7 +478,11 @@
 
         <div class="site-footer-bottom">
             <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
-            <a href="#main-content" class="site-footer-top">Back to top</a>
+            <ul class="site-footer-legal">
+                <li><a href="/html/sitemap.html">Sitemap</a></li>
+                <li><button type="button" data-open-a11y>Accessibility options</button></li>
+                <li><a href="#main-content" class="site-footer-top">Back to top</a></li>
+            </ul>
         </div>
     </footer>
 
@@ -315,5 +492,6 @@
     <script src="/js/shop.js"></script>
     <script src="/js/deals.js"></script>
     <script src="/js/past-months.js"></script>
+    <script src="/js/reviews.js"></script>
 </body>
 </html>

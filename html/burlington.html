@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="This month Marlowby ships a box from Burlington, Vermont. See every item inside, spend a day in Burlington and play the Discover Jazz Festival.">
+    <meta name="description" content="This month Marlowby ships a box from Burlington, Vermont. See every item inside, spend a day in Burlington and learn the history of the Discover Jazz Festival.">
 
     <title>Marlowby | This Month: Burlington, VT</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/Marlowby Logotemp.jpg">
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/shop.css">
     <link rel="stylesheet" href="/css/deals.css">
     <link rel="stylesheet" href="/css/burlington.css">
+    <link rel="stylesheet" href="/css/reviews.css">
     <link rel="stylesheet" href="/css/responsive.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,6 +43,16 @@
             </button>
 
             <ul class="navbar-link-container" id="navbarLinks">
+                <li class="link-dropdown navbar-spotlight">
+                    <a class="navbar-link-item" href="/html/burlington.html" aria-current="page"><span class="navbar-spotlight_dot" aria-hidden="true"></span>Spotlight</a>
+                    <ul class="sub-menu">
+                        <li><a href="/html/burlington.html#box">This Month's Box</a></li>
+                        <li><a href="/html/burlington.html#day">A Day in Burlington</a></li>
+                        <li><a href="/html/burlington.html#makers">Local Makers</a></li>
+                        <li><a href="/html/burlington.html#festival">Jazz Festival</a></li>
+                    </ul>
+                </li>
+
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/specials.html">Specials</a>
                     <ul class="sub-menu">
@@ -66,7 +77,7 @@
                     <ul class="sub-menu">
                         <li><a href="/html/our-mission.html#Story">Our Story</a></li>
                         <li><a href="/html/our-mission.html#Team">Our Team</a></li>
-                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
                     </ul>
                 </li>
 
@@ -76,6 +87,7 @@
                         <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#finder">Plan finder</a></li>
                     </ul>
                 </li>
 
@@ -114,10 +126,10 @@
                 <div class="btv-postmark" aria-hidden="true"><span>Now shipping</span><strong>BTV</strong><span>Burlington &middot; VT 05401</span></div>
                 <p class="plans-eyebrow">This month's spotlight</p>
                 <h1 id="btvTitle">Burlington, <span>Vermont</span></h1>
-                <p class="btv-hero_lead">A lake town with a big heart and an even bigger maple habit. This month's Marlowby box is packed with syrup, cheddar and handmade goods from the small businesses of Vermont's Queen City.</p>
+                <p class="btv-hero_lead">Maple, cheddar and handmade goods from the small businesses of Vermont's lakeside Queen City.</p>
                 <div class="btv-hero_actions">
                     <a class="plans-button" href="#box">See what's in the box</a>
-                    <a class="plans-button plans-button--night" href="#festival">Play the jazz festival</a>
+                    <a class="plans-button plans-button--night" href="#festival">Explore the jazz festival</a>
                 </div>
             </div>
 
@@ -187,7 +199,7 @@
             <div class="btv-head" data-reveal>
                 <p class="plans-eyebrow">Inside the box</p>
                 <h2 id="boxTitle">Eight tastes of the Queen City</h2>
-                <p>Basic boxes get five of these. Premium boxes get all eight. Every item comes from a Burlington-area maker with a story card that tells you who made it.</p>
+                <p>Basic gets five. Premium gets all eight, each from a local maker.</p>
             </div>
 
             <div class="btv-switch" role="group" aria-label="Show what's in a box">
@@ -202,7 +214,7 @@
                     </div>
                     <p class="btv-item_tier">In every box</p>
                     <h3>Pure maple syrup</h3>
-                    <p>Grade A amber, boiled down over a wood fire at a Green Mountain sugarhouse.</p>
+                    <p>Grade A amber, wood-fired at a Green Mountain sugarhouse.</p>
                 </li>
                 <li class="btv-item" data-tier="basic" data-reveal>
                     <div class="btv-item_art">
@@ -210,7 +222,7 @@
                     </div>
                     <p class="btv-item_tier">In every box</p>
                     <h3>Maple cream candies</h3>
-                    <p>Little maple leaves made from nothing but syrup, cooked and stirred by hand.</p>
+                    <p>Little maple leaves made from pure syrup.</p>
                 </li>
                 <li class="btv-item" data-tier="basic" data-reveal>
                     <div class="btv-item_art">
@@ -218,7 +230,7 @@
                     </div>
                     <p class="btv-item_tier">In every box</p>
                     <h3>Small-batch dark chocolate</h3>
-                    <p>Bean-to-bar chocolate from a tiny kitchen a few blocks from the lake, wrapped in local art.</p>
+                    <p>Bean-to-bar, from a kitchen near the lake.</p>
                 </li>
                 <li class="btv-item" data-tier="basic" data-reveal>
                     <div class="btv-item_art">
@@ -226,7 +238,7 @@
                     </div>
                     <p class="btv-item_tier">In every box</p>
                     <h3>Sharp cheddar crackers</h3>
-                    <p>Baked with aged Vermont cheddar for a snap that tastes like a farm stand.</p>
+                    <p>Baked with aged Vermont cheddar.</p>
                 </li>
                 <li class="btv-item" data-tier="basic" data-reveal>
                     <div class="btv-item_art">
@@ -234,7 +246,7 @@
                     </div>
                     <p class="btv-item_tier">In every box</p>
                     <h3>Letterpress lake postcard</h3>
-                    <p>A sunset over the Adirondacks, printed by hand on a vintage press.</p>
+                    <p>An Adirondack sunset, hand-printed on a vintage press.</p>
                 </li>
                 <li class="btv-item btv-item--premium" data-tier="premium" data-reveal>
                     <div class="btv-item_art">
@@ -242,7 +254,7 @@
                     </div>
                     <p class="btv-item_tier">Premium only</p>
                     <h3>Hand-thrown stoneware mug</h3>
-                    <p>Glazed the blue-grey of Lake Champlain in winter by a potter with a lakeside studio.</p>
+                    <p>Glazed the blue-grey of Lake Champlain in winter.</p>
                 </li>
                 <li class="btv-item btv-item--premium" data-tier="premium" data-reveal>
                     <div class="btv-item_art">
@@ -250,7 +262,7 @@
                     </div>
                     <p class="btv-item_tier">Premium only</p>
                     <h3>Wool-blend trail socks</h3>
-                    <p>Warm, tough socks made for a fall hike up into the Green Mountains.</p>
+                    <p>Built for a fall hike in the Green Mountains.</p>
                 </li>
                 <li class="btv-item btv-item--premium" data-tier="premium" data-reveal>
                     <div class="btv-item_art">
@@ -258,25 +270,43 @@
                     </div>
                     <p class="btv-item_tier">Premium only</p>
                     <h3>Apple cider donut mix</h3>
-                    <p>Fall in Vermont in a bag. Just add cider, a skillet and a cold morning.</p>
+                    <p>Fall in Vermont, in a bag.</p>
                 </li>
             </ul>
 
             <div class="btv-buy" data-reveal>
-                <p class="btv-buy_text" id="btvBuyText">Premium gets you all eight, plus a digital city guide and playlist.</p>
+                <p class="btv-buy_text" id="btvBuyText">Premium adds a city guide and playlist.</p>
                 <div class="btv-buy_actions">
                     <button type="button" class="plans-button plans-button--ghost" data-cart-plan="basic" data-cart-term="monthly">Add Basic &middot; $34 a box</button>
                     <button type="button" class="plans-button" data-cart-plan="premium" data-cart-term="monthly">Add Premium &middot; $59 a box</button>
                 </div>
                 <a class="btv-buy_link" href="/html/SubscriptionPlans.html#compare">Compare every plan</a>
             </div>
+            <div class="rv-strip" data-reveal>
+                <div class="rv-strip_score">
+                    <p class="rv-strip_num">4.9</p>
+                    <span class="rv-stars" role="img" aria-label="Rated 4.9 out of 5 stars"><span class="rv-star is-on" aria-hidden="true"></span><span class="rv-star is-on" aria-hidden="true"></span><span class="rv-star is-on" aria-hidden="true"></span><span class="rv-star is-on" aria-hidden="true"></span><span class="rv-star is-on" aria-hidden="true"></span></span>
+                    <p>From 212 Burlington subscribers</p>
+                    <a href="/html/past-months.html#reviews">Read all reviews</a>
+                </div>
+                <figure class="rv-quote">
+                    <span class="rv-stars" role="img" aria-label="Rated 5 out of 5 stars"><span class="rv-star is-on" aria-hidden="true"></span><span class="rv-star is-on" aria-hidden="true"></span><span class="rv-star is-on" aria-hidden="true"></span><span class="rv-star is-on" aria-hidden="true"></span><span class="rv-star is-on" aria-hidden="true"></span></span>
+                    <blockquote><p>The mug looks like the lake. I use it every morning.</p></blockquote>
+                    <figcaption><strong>Hannah P.</strong> <span>· Premium · Ohio</span></figcaption>
+                </figure>
+                <figure class="rv-quote">
+                    <span class="rv-stars" role="img" aria-label="Rated 5 out of 5 stars"><span class="rv-star is-on" aria-hidden="true"></span><span class="rv-star is-on" aria-hidden="true"></span><span class="rv-star is-on" aria-hidden="true"></span><span class="rv-star is-on" aria-hidden="true"></span><span class="rv-star is-on" aria-hidden="true"></span></span>
+                    <blockquote><p>My kids found the maple candies first. Worth it.</p></blockquote>
+                    <figcaption><strong>Marcus T.</strong> <span>· Basic · Texas</span></figcaption>
+                </figure>
+            </div>
         </section>
 
-        <section class="btv-day" aria-labelledby="dayTitle">
+        <section class="btv-day" id="day" aria-labelledby="dayTitle">
             <div class="btv-head" data-reveal>
                 <p class="plans-eyebrow">Spend a day in Burlington</p>
                 <h2 id="dayTitle">From the farmers market to the festival stage</h2>
-                <p>Every item in the box comes from somewhere in this town. Here is a day that walks you past all of them.</p>
+                <p>One day that walks you past every item in the box.</p>
             </div>
 
             <ol class="btv-day_list">
@@ -284,7 +314,7 @@
                     <p class="btv-stop_time">8 AM</p>
                     <div class="btv-stop_card">
                         <h3>Church Street Marketplace</h3>
-                        <p>Four car-free blocks of local shops, cafés and street performers. Browse the shelves at Crow Bookshop, then grab a coffee and people-watch.</p>
+                        <p>Four car-free blocks of shops and street music. Start at Crow Bookshop.</p>
                         <p class="btv-stop_box">In your box: the dark chocolate</p>
                     </div>
                 </li>
@@ -292,7 +322,7 @@
                     <p class="btv-stop_time">10 AM</p>
                     <div class="btv-stop_card">
                         <h3>The weekend farmers market</h3>
-                        <p>Vermont growers, bakers and cheesemakers set up downtown with bread, apples and more cheddar than you can carry.</p>
+                        <p>Local bread, apples and more cheddar than you can carry.</p>
                         <p class="btv-stop_box">In your box: the cheddar crackers</p>
                     </div>
                 </li>
@@ -300,7 +330,7 @@
                     <p class="btv-stop_time">1 PM</p>
                     <div class="btv-stop_card">
                         <h3>The Island Line Trail</h3>
-                        <p>A bike path that hugs the lake and then runs out onto a long marble causeway, right into the middle of Lake Champlain.</p>
+                        <p>A lakeside bike path out onto a marble causeway.</p>
                         <p class="btv-stop_box">In your box: the trail socks, if you go Premium</p>
                     </div>
                 </li>
@@ -308,7 +338,7 @@
                     <p class="btv-stop_time">4 PM</p>
                     <div class="btv-stop_card">
                         <h3>The South End on Pine Street</h3>
-                        <p>Peek into the kitchen at Lake Champlain Chocolates' flagship store, then head to Citizen Cider nearby in the South End.</p>
+                        <p>Lake Champlain Chocolates' kitchen, then Citizen Cider next door.</p>
                         <p class="btv-stop_box">In your box: the maple cream candies</p>
                     </div>
                 </li>
@@ -316,7 +346,7 @@
                     <p class="btv-stop_time">6 PM</p>
                     <div class="btv-stop_card">
                         <h3>Sunset at Waterfront Park</h3>
-                        <p>The sun drops behind the Adirondacks across the water and the whole sky goes orange. Grab a crêpe from The Skinny Pancake and find a bench.</p>
+                        <p>The sky goes orange over the Adirondacks. Grab a crêpe and a bench.</p>
                         <p class="btv-stop_box">In your box: the letterpress postcard</p>
                     </div>
                 </li>
@@ -324,76 +354,73 @@
                     <p class="btv-stop_time">9 PM</p>
                     <div class="btv-stop_card">
                         <h3>Jazz after dark</h3>
-                        <p>Music spills out of clubs and onto Church Street, and Leunig's is a favorite spot for a late set. Every June the Discover Jazz Festival takes over the whole city.</p>
-                        <a class="btv-stop_link" href="#festival">Play the festival below</a>
+                        <p>Late sets at Leunig's, and every June the jazz festival takes over.</p>
+                        <a class="btv-stop_link" href="#festival">Read about the festival below</a>
                     </div>
                 </li>
             </ol>
         </section>
 
-        <section class="btv-locals" aria-labelledby="localsTitle">
+        <section class="btv-locals" id="makers" aria-labelledby="localsTitle">
             <div class="btv-head" data-reveal>
                 <p class="plans-eyebrow">Real Burlington favorites</p>
                 <h2 id="localsTitle">The small businesses that make the Queen City</h2>
-                <p>These are real local shops, kitchens and makers worth a visit when you are in town. They are the spirit we pack into every Burlington box.</p>
+                <p>Real local spots worth a visit when you're in town.</p>
             </div>
 
             <ul class="btv-locals_list">
                 <li class="btv-local" data-reveal>
                     <p class="btv-local_tag">Chocolatier &middot; Pine Street</p>
                     <h3>Lake Champlain Chocolates</h3>
-                    <p>Making chocolate in Burlington since 1983. At the flagship store on Pine Street you can peek into the kitchen where the treats are made.</p>
+                    <p>Making chocolate in Burlington since 1983.</p>
                 </li>
                 <li class="btv-local" data-reveal>
                     <p class="btv-local_tag">Cidery &middot; South End</p>
                     <h3>Citizen Cider</h3>
-                    <p>A South End cidery that presses apples from regional farms into hard cider.</p>
+                    <p>Hard cider pressed from regional apples.</p>
                 </li>
                 <li class="btv-local" data-reveal>
                     <p class="btv-local_tag">Crêperie &middot; near the waterfront</p>
                     <h3>The Skinny Pancake</h3>
-                    <p>A crêpe spot that started right here in Burlington in 2003 and serves local food whenever it can.</p>
+                    <p>Local-food crêpes, born in Burlington in 2003.</p>
                 </li>
                 <li class="btv-local" data-reveal>
                     <p class="btv-local_tag">Bookstore &middot; Church Street</p>
                     <h3>Crow Bookshop</h3>
-                    <p>An independent bookstore on the Marketplace with shelves of new, used and bargain books.</p>
+                    <p>New, used and bargain books on the Marketplace.</p>
                 </li>
                 <li class="btv-local" data-reveal>
                     <p class="btv-local_tag">Bistro &middot; Church Street</p>
                     <h3>Leunig's Bistro &amp; Café</h3>
-                    <p>A Paris-style bistro on the corner of Church and College Streets, and a favorite place to catch live jazz.</p>
+                    <p>A Paris-style bistro with live jazz.</p>
                 </li>
                 <li class="btv-local" data-reveal>
                     <p class="btv-local_tag">Fry stand &middot; South Burlington</p>
                     <h3>Al's French Frys</h3>
-                    <p>A roadside classic that has been serving fries to Burlington since 1946.</p>
+                    <p>Serving fries to Burlington since 1946.</p>
                 </li>
             </ul>
 
             <div class="btv-didyou" data-reveal>
                 <p class="btv-didyou_label">Did you know?</p>
-                <p class="btv-didyou_text">Ben &amp; Jerry's scooped its very first cone in Burlington in 1978, inside an old gas station at the corner of St. Paul and College Streets.</p>
+                <p class="btv-didyou_text">Ben &amp; Jerry's scooped its first cone here in 1978, in an old gas station.</p>
             </div>
 
-            <p class="btv-locals_note">Marlowby is a student project. These businesses are not sponsors or partners, just places we love.</p>
+            <p class="btv-locals_note">A student project. These businesses are not sponsors.</p>
         </section>
 
-        <section class="plans-jazz" id="festival" aria-labelledby="jazzTitle">
+        <section class="plans-jazz btv-fest" id="festival" aria-labelledby="jazzTitle">
             <div class="plans-jazz_inner" id="jazz">
                 <div class="plans-jazz_copy" data-reveal>
-                    <p class="plans-eyebrow plans-jazz_taste"><span>A taste of Burlington</span><span class="plans-jazz_dot" aria-hidden="true">&middot;</span><span>from your Marlowby box</span></p>
-                    <h2 id="jazzTitle">Play the Discover Jazz Festival</h2>
-                    <p class="plans-jazz_lead">Every Marlowby box comes with a little of its city's culture, and Burlington's is jazz. Every June the whole town turns into one big stage. Blow the trumpet and each note that floats out unlocks a real fact about the festival.</p>
+                    <p class="plans-eyebrow plans-jazz_taste"><span>A taste of Burlington</span><span class="plans-jazz_dot" aria-hidden="true">&middot;</span><span>festival history</span></p>
+                    <h2 id="jazzTitle">The Discover Jazz Festival</h2>
+                    <p class="plans-jazz_lead">For more than forty years, early June has meant jazz in Burlington's theaters, clubs and streets.</p>
                 </div>
 
-                <div class="jazz_show">
-                    <div class="plans-jazz_stage" id="jazzStage">
-                        <span class="plans-jazz_spot" aria-hidden="true"></span>
-                        <span class="jazz_glow" aria-hidden="true"></span>
-                        <button type="button" class="jazz_horn" id="jazzHorn" aria-describedby="jazzHint">
-                            <span class="visually-hidden">Blow the trumpet</span>
-                            <svg viewBox="0 0 330 186" aria-hidden="true" focusable="false">
+                <div class="btv-fest_body">
+                    <figure class="btv-fest_art" data-reveal>
+                        <div class="btv-fest_frame">
+                            <svg class="btv-fest_horn" viewBox="0 0 330 186" aria-hidden="true" focusable="false">
                                 <defs>
                                     <linearGradient id="jazzCase" x1="0" y1="0" x2="1" y2="0">
                                         <stop offset="0" stop-color="#4a2c05"/>
@@ -452,7 +479,7 @@
                                     <path id="jazzSlides" d="M135 116 V129 A6 6 0 0 0 147 129 V116 M159 116 V123 A5 5 0 0 0 169 123 V116 M183 116 V136 A6 6 0 0 0 195 136 V116"/>
                                 </defs>
                                 <ellipse cx="170" cy="138" rx="150" ry="7" fill="url(#jazzFloor)"/>
-                                <g class="jazz_rings" id="jazzRings"></g>
+                                
                                 <g id="jazzBrass">
                                     <g fill="none" stroke-linecap="round">
                                         <use href="#jazzSlides" stroke="#4a2c05" stroke-width="6.5"/>
@@ -516,22 +543,37 @@
                                 </g>
                                 <g mask="url(#jazzFade)"><use href="#jazzBrass" transform="matrix(1 0 0 -0.5 0 207)"/></g>
                             </svg>
-                        </button>
-                        <ol class="jazz_staff" id="jazzStaff" aria-label="Notes you've played"></ol>
-                        <div class="plans-jazz_tools">
-                            <button type="button" class="jazz_sound" id="jazzSound" aria-pressed="true">Sound on</button>
-                            <button type="button" class="jazz_riff" id="jazzRiff" hidden>Play the encore riff</button>
-                            <p class="jazz_hint" id="jazzHint">Tap the trumpet to play the next note. Tap a note on the staff to hear its fact again.</p>
                         </div>
-                    </div>
+                        <figcaption>The sound of downtown every June.</figcaption>
+                    </figure>
 
-                    <div class="jazz_fact" id="jazzFact" aria-live="polite">
-                        <p class="jazz_count" id="jazzCount">Discover Jazz Festival &middot; 0 of 6 notes</p>
-                        <div class="jazz_meter" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-                        <p class="jazz_num" id="jazzNum" aria-hidden="true">&#9835;</p>
-                        <h3 class="jazz_title" id="jazzFactTitle">Fun facts are waiting inside</h3>
-                        <p class="jazz_text" id="jazzText">Tap the trumpet to play the first note.</p>
-                    </div>
+                    <ol class="btv-fest_timeline" data-reveal>
+                        <li>
+                            <p class="btv-fest_year">1930</p>
+                            <h3>The Flynn opens</h3>
+                            <p>The Art Deco Flynn opens on Main Street. Today it produces the festival.</p>
+                        </li>
+                        <li>
+                            <p class="btv-fest_year">1984</p>
+                            <h3>The first festival</h3>
+                            <p>The festival begins, and returns every June since.</p>
+                        </li>
+                        <li>
+                            <p class="btv-fest_year">Today</p>
+                            <h3>Five days of music</h3>
+                            <p>Five days, from lunchtime street sets to the Flynn Main Stage.</p>
+                        </li>
+                        <li>
+                            <p class="btv-fest_year">Downtown</p>
+                            <h3>Free on Church Street</h3>
+                            <p>Free stages along the Church Street Marketplace.</p>
+                        </li>
+                        <li>
+                            <p class="btv-fest_year">Next generation</p>
+                            <h3>Students on stage</h3>
+                            <p>Student bands share the bill with touring headliners.</p>
+                        </li>
+                    </ol>
                 </div>
 
                 <div class="jazz_guide" data-reveal>
@@ -540,22 +582,22 @@
                         <li>
                             <p class="jazz_guide-label">When</p>
                             <p class="jazz_guide-big">Early June</p>
-                            <p>Five days of shows in early June, from lunchtime sets to late-night jams.</p>
+                            <p>Five days in early June.</p>
                         </li>
                         <li>
                             <p class="jazz_guide-label">Where</p>
                             <p class="jazz_guide-big">All over downtown</p>
-                            <p>The Flynn Main Stage, clubs and restaurants downtown, and free stages along the Church Street Marketplace.</p>
+                            <p>The Flynn, downtown clubs and Church Street.</p>
                         </li>
                         <li>
                             <p class="jazz_guide-label">Who</p>
                             <p class="jazz_guide-big">Everyone</p>
-                            <p>Big touring names, Vermont musicians and local student jazz bands, sometimes on the same block.</p>
+                            <p>Headliners, locals and student bands.</p>
                         </li>
                         <li>
                             <p class="jazz_guide-label">Cost</p>
                             <p class="jazz_guide-big">Plenty is free</p>
-                            <p>Bring a blanket. Many outdoor sets cost nothing, so you can wander from stage to stage.</p>
+                            <p>Many outdoor sets are free.</p>
                         </li>
                     </ul>
                 </div>
@@ -568,7 +610,7 @@
                 <div class="btv-next_copy">
                     <p class="plans-eyebrow">What comes next</p>
                     <h2 id="nextTitle">Burlington is this month. Next month is a mystery.</h2>
-                    <p>We never say where the next box is headed until it ships. Pick a plan now and find out when it lands on your porch.</p>
+                    <p>We never say where until it ships. Find out on your porch.</p>
                     <div class="btv-next_clock" role="timer" aria-label="Time until the next box ships">
                         <div><span id="btvDays">00</span><small>days</small></div>
                         <div><span id="btvHours">00</span><small>hrs</small></div>
@@ -586,10 +628,40 @@
     </main>
 
     <footer class="site-footer">
+        <section class="site-footer-news" aria-labelledby="footerNewsTitle">
+            <div class="site-footer-news_inner">
+                <div class="site-footer-news_copy">
+                    <h2 id="footerNewsTitle">Postcards from the road</h2>
+                    <p>One email when each box ships, plus subscriber-only codes. Unsubscribe anytime.</p>
+                </div>
+                <div>
+                    <form class="site-footer-news_form" data-newsletter novalidate>
+                        <label for="footerNewsEmail" class="visually-hidden">Email address</label>
+                        <div class="site-footer-news_field">
+                            <input type="email" id="footerNewsEmail" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-describedby="footerNewsMsg">
+                            <button type="submit">Subscribe</button>
+                        </div>
+                        <fieldset class="site-footer-news_topics">
+                            <legend>Send me:</legend>
+                            <label><input type="checkbox" name="topics" value="boxes" checked> New boxes</label>
+                            <label><input type="checkbox" name="topics" value="deals" checked> Deals</label>
+                            <label><input type="checkbox" name="topics" value="makers"> Maker stories</label>
+                        </fieldset>
+                        <p class="site-footer-news_msg" id="footerNewsMsg" role="status"></p>
+                    </form>
+                    <div class="site-footer-news_done" data-newsletter-done hidden>
+                        <p data-newsletter-text tabindex="-1" data-newsletter-focus>You're on the list.</p>
+                        <p class="site-footer-news_code"><strong>PASSPORT10</strong><button type="button" data-newsletter-copy="PASSPORT10">Copy code</button></p>
+                        <button type="button" class="site-footer-news_reset">Unsubscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="site-footer-inner">
             <div class="site-footer-brand">
                 <a href="../index.html" class="site-footer-logo">Marlowby</a>
-                <p>Explore your city, one box at a time. Every month we ship the best local products, small businesses and culture from a different U.S. city.</p>
+                <p>One city, one box, every month. Local goods from small businesses across the U.S.</p>
                 <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
             </div>
 
@@ -640,7 +712,11 @@
 
         <div class="site-footer-bottom">
             <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
-            <a href="#main-content" class="site-footer-top">Back to top</a>
+            <ul class="site-footer-legal">
+                <li><a href="/html/sitemap.html">Sitemap</a></li>
+                <li><button type="button" data-open-a11y>Accessibility options</button></li>
+                <li><a href="#main-content" class="site-footer-top">Back to top</a></li>
+            </ul>
         </div>
     </footer>
 

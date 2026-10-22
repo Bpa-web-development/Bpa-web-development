@@ -42,6 +42,16 @@
             </button>
 
             <ul class="navbar-link-container" id="navbarLinks">
+                <li class="link-dropdown navbar-spotlight">
+                    <a class="navbar-link-item" href="/html/burlington.html"><span class="navbar-spotlight_dot" aria-hidden="true"></span>Spotlight</a>
+                    <ul class="sub-menu">
+                        <li><a href="/html/burlington.html#box">This Month's Box</a></li>
+                        <li><a href="/html/burlington.html#day">A Day in Burlington</a></li>
+                        <li><a href="/html/burlington.html#makers">Local Makers</a></li>
+                        <li><a href="/html/burlington.html#festival">Jazz Festival</a></li>
+                    </ul>
+                </li>
+
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/specials.html">Specials</a>
                     <ul class="sub-menu">
@@ -66,7 +76,7 @@
                     <ul class="sub-menu">
                         <li><a href="/html/our-mission.html#Story">Our Story</a></li>
                         <li><a href="/html/our-mission.html#Team">Our Team</a></li>
-                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
                     </ul>
                 </li>
 
@@ -76,6 +86,7 @@
                         <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#finder">Plan finder</a></li>
                     </ul>
                 </li>
 
@@ -113,7 +124,7 @@
             <section class="si-brand" aria-labelledby="siBrandTitle">
                 <p class="si-eyebrow">Your Marlowby passport</p>
                 <h1 id="siBrandTitle">Sign in and <span>keep collecting stamps.</span></h1>
-                <p class="si-lead">Your account keeps your plan, your orders and every city you've unboxed in one place.</p>
+                <p class="si-lead">Your plan, orders and stamps in one place.</p>
                 <div class="si-passport" aria-hidden="true">
                     <div class="si-passport_cover">
                         <span class="si-passport_stitch"></span>
@@ -147,9 +158,9 @@
                     </div>
                 </div>
                 <ul class="si-perks">
-                    <li><span class="si-perks_icon" aria-hidden="true">&#10003;</span>See your plan and every order in one place</li>
-                    <li><span class="si-perks_icon" aria-hidden="true">&#10003;</span>Check out faster next time</li>
-                    <li><span class="si-perks_icon" aria-hidden="true">&#10003;</span>Collect a stamp for every city you unbox</li>
+                    <li><span class="si-perks_icon" aria-hidden="true">&#10003;</span>Track every order</li>
+                    <li><span class="si-perks_icon" aria-hidden="true">&#10003;</span>Faster checkout</li>
+                    <li><span class="si-perks_icon" aria-hidden="true">&#10003;</span>A stamp for every city</li>
                 </ul>
             </section>
 
@@ -162,7 +173,7 @@
 
                     <div class="si-panel" role="tabpanel" id="siPanelSignin" aria-labelledby="siTabSignin">
                         <h2 class="si-title">Welcome back</h2>
-                        <p class="si-sub">Sign in with the email and password you used on this device.</p>
+                        <p class="si-sub">Use the email you signed up with.</p>
                         <form id="siSigninForm" class="si-form" novalidate>
                             <div class="si-field">
                                 <label for="siInEmail">Email</label>
@@ -185,7 +196,7 @@
 
                     <div class="si-panel" role="tabpanel" id="siPanelSignup" aria-labelledby="siTabSignup" hidden>
                         <h2 class="si-title">Create your account</h2>
-                        <p class="si-sub">It takes about ten seconds. Your passport starts with this month's stamp.</p>
+                        <p class="si-sub">Your passport starts with this month's stamp.</p>
                         <form id="siSignupForm" class="si-form" novalidate>
                             <div class="si-field">
                                 <label for="siUpName">Full name</label>
@@ -204,7 +215,7 @@
                                     <button type="button" class="si-eye" aria-controls="siUpPassword" aria-pressed="false">Show</button>
                                 </div>
                                 <div class="si-meter" aria-hidden="true"><span id="siMeterBar"></span></div>
-                                <p class="si-hint" id="siUpPasswordHint">At least 8 characters with a letter and a number. <span id="siMeterLabel"></span></p>
+                                <p class="si-hint" id="siUpPasswordHint">8+ characters, with a letter and a number. <span id="siMeterLabel"></span></p>
                                 <p class="si-error" id="siUpPasswordError"></p>
                             </div>
                             <p class="si-alert" id="siSignupAlert" role="alert"></p>
@@ -238,17 +249,47 @@
                 </div>
 
                 <p class="si-status" id="siStatus" role="status" aria-live="polite"></p>
-                <p class="si-note" id="siNote"><svg class="si-note_icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg> This is a demo account for a student project. It's stored only in this browser on this device, and your password is hashed and never leaves it. <a href="/html/SubscriptionPlans.html#plans">See the plans</a> without signing in.</p>
+                <p class="si-note" id="siNote"><svg class="si-note_icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg> Student project demo. Your account stays on this device. <a href="/html/SubscriptionPlans.html#plans">See the plans</a> without signing in.</p>
             </section>
 
         </div>
     </main>
 
     <footer class="site-footer">
+        <section class="site-footer-news" aria-labelledby="footerNewsTitle">
+            <div class="site-footer-news_inner">
+                <div class="site-footer-news_copy">
+                    <h2 id="footerNewsTitle">Postcards from the road</h2>
+                    <p>One email when each box ships, plus subscriber-only codes. Unsubscribe anytime.</p>
+                </div>
+                <div>
+                    <form class="site-footer-news_form" data-newsletter novalidate>
+                        <label for="footerNewsEmail" class="visually-hidden">Email address</label>
+                        <div class="site-footer-news_field">
+                            <input type="email" id="footerNewsEmail" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-describedby="footerNewsMsg">
+                            <button type="submit">Subscribe</button>
+                        </div>
+                        <fieldset class="site-footer-news_topics">
+                            <legend>Send me:</legend>
+                            <label><input type="checkbox" name="topics" value="boxes" checked> New boxes</label>
+                            <label><input type="checkbox" name="topics" value="deals" checked> Deals</label>
+                            <label><input type="checkbox" name="topics" value="makers"> Maker stories</label>
+                        </fieldset>
+                        <p class="site-footer-news_msg" id="footerNewsMsg" role="status"></p>
+                    </form>
+                    <div class="site-footer-news_done" data-newsletter-done hidden>
+                        <p data-newsletter-text tabindex="-1" data-newsletter-focus>You're on the list.</p>
+                        <p class="site-footer-news_code"><strong>PASSPORT10</strong><button type="button" data-newsletter-copy="PASSPORT10">Copy code</button></p>
+                        <button type="button" class="site-footer-news_reset">Unsubscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="site-footer-inner">
             <div class="site-footer-brand">
                 <a href="../index.html" class="site-footer-logo">Marlowby</a>
-                <p>Explore your city, one box at a time. Every month we ship the best local products, small businesses and culture from a different U.S. city.</p>
+                <p>One city, one box, every month. Local goods from small businesses across the U.S.</p>
                 <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
             </div>
 
@@ -299,7 +340,11 @@
 
         <div class="site-footer-bottom">
             <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
-            <a href="#main-content" class="site-footer-top">Back to top</a>
+            <ul class="site-footer-legal">
+                <li><a href="/html/sitemap.html">Sitemap</a></li>
+                <li><button type="button" data-open-a11y>Accessibility options</button></li>
+                <li><a href="#main-content" class="site-footer-top">Back to top</a></li>
+            </ul>
         </div>
     </footer>
 

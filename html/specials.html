@@ -43,6 +43,16 @@
             </button>
 
             <ul class="navbar-link-container" id="navbarLinks">
+                <li class="link-dropdown navbar-spotlight">
+                    <a class="navbar-link-item" href="/html/burlington.html"><span class="navbar-spotlight_dot" aria-hidden="true"></span>Spotlight</a>
+                    <ul class="sub-menu">
+                        <li><a href="/html/burlington.html#box">This Month's Box</a></li>
+                        <li><a href="/html/burlington.html#day">A Day in Burlington</a></li>
+                        <li><a href="/html/burlington.html#makers">Local Makers</a></li>
+                        <li><a href="/html/burlington.html#festival">Jazz Festival</a></li>
+                    </ul>
+                </li>
+
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/specials.html" aria-current="page">Specials</a>
                     <ul class="sub-menu">
@@ -67,7 +77,7 @@
                     <ul class="sub-menu">
                         <li><a href="/html/our-mission.html#Story">Our Story</a></li>
                         <li><a href="/html/our-mission.html#Team">Our Team</a></li>
-                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
                     </ul>
                 </li>
 
@@ -77,6 +87,7 @@
                         <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#finder">Plan finder</a></li>
                     </ul>
                 </li>
 
@@ -110,25 +121,12 @@
 
     <main id="main-content">
 
-        <aside class="deal-ribbon" aria-label="Current deals" data-ribbon>
-            <div class="deal-ribbon_inner">
-                <ul class="deal-ribbon_list">
-                    <li class="is-active">Tonight only: 10% off everything with <strong>MIDNIGHT</strong></li>
-                    <li>Pick a postcard below and win a code every day</li>
-                    <li>15% off a 12-month gift with <strong>HOLIDAY12</strong></li>
-                </ul>
-                <a class="deal-ribbon_link" href="/html/SubscriptionPlans.html#plans">See the plans</a>
-                <button type="button" class="deal-ribbon_pause">Pause</button>
-            </div>
-        </aside>
-
         <section class="sp-hero" aria-labelledby="spTitle">
             <div class="sp-marquee">
-                <div class="sp-marquee_bulbs" aria-hidden="true"></div>
                 <div class="sp-hero_text">
                     <p class="sp-eyebrow">Specials made with care</p>
                     <h1 id="spTitle">Good deals from people who <span>care.</span></h1>
-                    <p class="sp-lead">We run specials so a box full of a city's best goods fits every budget. Every code is real, every box ships free, and the small makers behind your goods still get paid in full.</p>
+                    <p class="sp-lead">Real codes, free shipping, and makers who still get paid in full.</p>
                     <div class="sp-hero_actions">
                         <a class="deal-button deal-button--light" href="#Daily">Today's specials</a>
                         <a class="deal-button deal-button--outline-light" href="#promise">Our promise to you</a>
@@ -143,22 +141,22 @@
 
             <div class="sp-board" data-reveal>
                 <div class="sp-board_head">
-                    <h2 id="boardTitle">Departures</h2>
-                    <p class="sp-board_clock" aria-hidden="true" data-board-clock>12:00 PM</p>
+                    <h2 id="boardTitle">Current offers</h2>
+                    <p class="sp-board_note">One code per order</p>
                 </div>
                 <table class="sp-board_table" aria-labelledby="boardTitle">
                     <thead>
-                        <tr><th scope="col">Leaves</th><th scope="col">Deal</th><th scope="col">Code</th><th scope="col"><span class="visually-hidden">Apply</span></th></tr>
+                        <tr><th scope="col">Offer</th><th scope="col">Ends</th><th scope="col">Code</th><th scope="col"><span class="visually-hidden">Apply</span></th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><span data-flap>TONIGHT</span></td><td>10% off everything</td><td><span class="sp-board_code" data-flap>MIDNIGHT</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="MIDNIGHT" aria-label="Board and apply MIDNIGHT">Board</button></td></tr>
-                        <tr><td><span data-flap>SUNDAY</span></td><td>$25 off the Road Trip Bundle</td><td><span class="sp-board_code" data-flap>BUNDLE25</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="BUNDLE25" aria-label="Board and apply BUNDLE25">Board</button></td></tr>
-                        <tr><td><span data-flap>SUNDAY</span></td><td>20% off yearly plans</td><td><span class="sp-board_code" data-flap>MAPLE20</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="MAPLE20" aria-label="Board and apply MAPLE20">Board</button></td></tr>
-                        <tr><td><span data-flap>DEC 31</span></td><td>15% off 12-month gifts</td><td><span class="sp-board_code" data-flap>HOLIDAY12</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="HOLIDAY12" aria-label="Board and apply HOLIDAY12">Board</button></td></tr>
-                        <tr><td><span data-flap>ANYTIME</span></td><td>15% off your whole order</td><td><span class="sp-board_code" data-flap>BURLINGTON15</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="BURLINGTON15" aria-label="Board and apply BURLINGTON15">Board</button></td></tr>
+                        <tr><td>10% off everything</td><td>Tonight</td><td><span class="sp-board_code">MIDNIGHT</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="MIDNIGHT" aria-label="Apply MIDNIGHT">Apply</button></td></tr>
+                        <tr><td>$25 off the Road Trip Bundle</td><td>Sunday</td><td><span class="sp-board_code">BUNDLE25</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="BUNDLE25" aria-label="Apply BUNDLE25">Apply</button></td></tr>
+                        <tr><td>20% off yearly plans</td><td>Sunday</td><td><span class="sp-board_code">MAPLE20</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="MAPLE20" aria-label="Apply MAPLE20">Apply</button></td></tr>
+                        <tr><td>15% off 12-month gifts</td><td>Dec 31</td><td><span class="sp-board_code">HOLIDAY12</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="HOLIDAY12" aria-label="Apply HOLIDAY12">Apply</button></td></tr>
+                        <tr><td>15% off your whole order</td><td>Ongoing</td><td><span class="sp-board_code">BURLINGTON15</span></td><td><button type="button" class="sp-board_go" data-no-flash data-promo-apply="BURLINGTON15" aria-label="Apply BURLINGTON15">Apply</button></td></tr>
                     </tbody>
                 </table>
-                <p class="sp-board_status"><span class="sp-board_light" aria-hidden="true"></span><span data-board-status>All deals on time</span></p>
+                <p class="sp-board_status"><span class="sp-board_light" aria-hidden="true"></span><span data-board-status>All codes active</span></p>
             </div>
         </section>
 
@@ -180,29 +178,28 @@
             <div class="sp-section_header" data-reveal>
                 <p class="sp-eyebrow">Our promise to you</p>
                 <h2 id="promiseTitle">You come first, before any deal</h2>
-                <p>Deals are nice, but how you feel when the box lands on your porch matters more. These four promises come with every Marlowby order, coupon or not.</p>
             </div>
 
             <ul class="sp-care_list">
                 <li class="sp-care_item" data-reveal>
                     <span class="sp-care_icon" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false"><path d="M6 14 h18 v14 h-18 z" fill="#e3a83b"/><path d="M24 18 h6 l4 5 v5 h-10 z" fill="#b0491f"/><circle cx="12" cy="30" r="3.5" fill="#1d2a3a"/><circle cx="29" cy="30" r="3.5" fill="#1d2a3a"/><path d="M2 18 h6 M1 22 h5" stroke="#5f7d64" stroke-width="2" stroke-linecap="round"/></svg></span>
                     <h3>Free shipping, always</h3>
-                    <p>Every box ships free to every state. No minimum, no code needed, no surprise at checkout.</p>
+                    <p>To every state, with no minimum.</p>
                 </li>
                 <li class="sp-care_item" data-reveal>
                     <span class="sp-care_icon" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false"><rect x="6" y="8" width="28" height="26" rx="4" fill="#fbf6ee" stroke="#1d2a3a" stroke-width="2.5"/><path d="M6 15 h28" stroke="#1d2a3a" stroke-width="2.5"/><path d="M13 5 v6 M27 5 v6" stroke="#1d2a3a" stroke-width="2.5" stroke-linecap="round"/><path d="M14 25 l4 4 8 -9" fill="none" stroke="#5f7d64" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                     <h3>Skip or cancel anytime</h3>
-                    <p>Going on vacation? Skip a month. Need a break? Cancel in two taps. No calls, no fees, no guilt.</p>
+                    <p>Two taps. No calls, no fees.</p>
                 </li>
                 <li class="sp-care_item" data-reveal>
                     <span class="sp-care_icon" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false"><path d="M6 10 q0 -4 4 -4 h20 q4 0 4 4 v14 q0 4 -4 4 h-12 l-7 6 v-6 h-1 q-4 0 -4 -4 z" fill="#5f7d64"/><circle cx="14" cy="17" r="2" fill="#fbf6ee"/><circle cx="20" cy="17" r="2" fill="#fbf6ee"/><circle cx="26" cy="17" r="2" fill="#fbf6ee"/></svg></span>
                     <h3>Real people, real help</h3>
-                    <p>Questions about a box, a code or a gift? Our help desk is run by people, not bots. <a href="/html/faq.html#helpdesk">Ask the help desk</a></p>
+                    <p>People, not bots. <a href="/html/faq.html#helpdesk">Ask the help desk</a></p>
                 </li>
                 <li class="sp-care_item" data-reveal>
                     <span class="sp-care_icon" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false"><path d="M20 34 C8 26 4 20 4 14 a8 8 0 0 1 16 -3 a8 8 0 0 1 16 3 c0 6 -4 12 -16 20 z" fill="#b0491f"/><path d="M11 13 q2 -4 6 -3" fill="none" stroke="#f4d6c4" stroke-width="2" stroke-linecap="round"/></svg></span>
                     <h3>The happy box promise</h3>
-                    <p>If something arrives broken or just isn't right, tell us and we will make it right with a replacement or a refund.</p>
+                    <p>Not right? We replace it or refund you.</p>
                 </li>
             </ul>
         </section>
@@ -212,12 +209,7 @@
                 <div class="sp-local_copy" data-reveal>
                     <p class="sp-eyebrow">Deals that give back</p>
                     <h2 id="localTitle">Every deal still pays a local maker in full</h2>
-                    <p>When you use a code, Marlowby covers the discount, not the small business that made your goods. You save, and the maker still gets their full price.</p>
-                    <ul class="sp-local_points">
-                        <li><b>Makers are paid fairly.</b> We agree on a fair price with each maker before anything goes in a box, and a coupon never changes it.</li>
-                        <li><b>Money stays in the city.</b> Your box is bought from shops, farms and studios in that month's city, so the money you spend helps their neighborhood.</li>
-                        <li><b>A new spotlight every month.</b> Each box puts new small makers in front of curious people all across the country. This month it's Burlington.</li>
-                    </ul>
+                    <p>We cover every discount, so the maker always gets full price.</p>
                     <a class="deal-button" href="/html/burlington.html">Meet this month's city</a>
                 </div>
 
@@ -244,17 +236,16 @@
         <section class="sp-section" id="Daily" aria-labelledby="dailyTitle">
             <div class="sp-section_header" data-reveal>
                 <p class="sp-eyebrow">Daily specials</p>
-                <h2 id="dailyTitle">A little something every day</h2>
-                <p>A flash code, a postcard prize and a maker pick, fresh every morning, because you deserve a small treat.</p>
+                <h2 id="dailyTitle">Today at Marlowby</h2>
+                <p>Refreshed every morning.</p>
             </div>
 
             <div class="deals-grid">
                 <article class="deal deal--flash" aria-labelledby="flashTitle" data-reveal>
                     <div class="deal_main">
-                        <p class="deal_tag">Tonight only</p>
+                        <p class="deal_tag">Today's code</p>
                         <h3 id="flashTitle">10% off everything</h3>
-                        <p>Good on every plan and every gift until midnight. Tomorrow brings a new deal.</p>
-                        <p class="deal_clock"><span class="visually-hidden">This deal ends at midnight.</span><span aria-hidden="true" data-flash-clock>00:00:00</span><span class="deal_clock-label" aria-hidden="true">left tonight</span></p>
+                        <p>Every plan and gift box, through midnight.</p>
                     </div>
                     <div class="deal_stub">
                         <p class="deal_code-label">Code</p>
@@ -265,7 +256,7 @@
                 </article>
 
                 <article class="deal deal--maker" aria-labelledby="makerTitle" data-reveal>
-                    <p class="deal_tag">Maker of the day</p>
+                    <p class="deal_tag">Featured maker</p>
                     <h3 id="makerTitle" data-maker-name>Pure maple syrup</h3>
                     <p data-maker-blurb>Tapped in the Green Mountains and boiled down in a wood-fired sugarhouse.</p>
                     <p class="deal_fine" data-maker-box>In every Basic and Premium box this month.</p>
@@ -273,38 +264,21 @@
                 </article>
             </div>
 
-            <div class="sp-pick" data-reveal>
-                <div class="sp-pick_text">
-                    <p class="sp-eyebrow">Daily prize</p>
-                    <h3 id="pickTitle">Pick a postcard</h3>
-                    <p id="pickHelp">Three postcards, three secret codes. Choose one a day and keep what you find.</p>
-                    <p class="sp-pick_result" id="pickResult" role="status"></p>
-                    <div class="sp-pick_actions" id="pickActions" hidden>
-                        <button type="button" class="deal-button" id="pickApply">Apply my code</button>
-                        <button type="button" class="deal-button deal-button--ghost" id="pickCopy" data-promo-copy="" data-promo-copy-from="pickCode">Copy</button>
-                    </div>
-                </div>
-                <div class="sp-pick_cards" role="group" aria-labelledby="pickTitle">
-                    <button type="button" class="sp-postcard" data-pick="0" aria-describedby="pickHelp"><span class="sp-postcard_inner"><span class="sp-postcard_front" aria-hidden="true"><span class="sp-postcard_stamp">1</span><span class="sp-postcard_word">Lake</span></span><span class="sp-postcard_back" aria-hidden="true"></span></span><span class="visually-hidden">Pick postcard 1</span></button>
-                    <button type="button" class="sp-postcard" data-pick="1" aria-describedby="pickHelp"><span class="sp-postcard_inner"><span class="sp-postcard_front" aria-hidden="true"><span class="sp-postcard_stamp">2</span><span class="sp-postcard_word">Maple</span></span><span class="sp-postcard_back" aria-hidden="true"></span></span><span class="visually-hidden">Pick postcard 2</span></button>
-                    <button type="button" class="sp-postcard" data-pick="2" aria-describedby="pickHelp"><span class="sp-postcard_inner"><span class="sp-postcard_front" aria-hidden="true"><span class="sp-postcard_stamp">3</span><span class="sp-postcard_word">Peaks</span></span><span class="sp-postcard_back" aria-hidden="true"></span></span><span class="visually-hidden">Pick postcard 3</span></button>
-                </div>
-            </div>
         </section>
 
 
         <section class="sp-section sp-section--tint" id="Weekly" aria-labelledby="weeklyTitle">
             <div class="sp-section_header" data-reveal>
                 <p class="sp-eyebrow">Weekly deals</p>
-                <h2 id="weeklyTitle">This week's favorite ways to save</h2>
-                <p>These run all week and reset on Sunday night. <strong data-week-left>Ends Sunday.</strong></p>
+                <h2 id="weeklyTitle">This week's offers</h2>
+                <p><strong data-week-left>Ends Sunday.</strong></p>
             </div>
 
             <div class="deals-grid">
                 <article class="deal deal--bundle" aria-labelledby="bundleTitle" data-reveal>
                     <p class="deal_tag">Bundle and save</p>
                     <h3 id="bundleTitle">The Road Trip Bundle</h3>
-                    <p>A year of Premium for you plus a 3-month Gift for someone you love. Both passports get stamped.</p>
+                    <p>A Premium year for you, plus a 3-month gift.</p>
                     <p class="deal_price"><s data-deal-was>$699</s> <strong data-deal-now>$674</strong></p>
                     <p class="deal_fine">Code BUNDLE25 is added for you.</p>
                     <button type="button" class="deal-button" data-deal-add="premium:annual,gift:3" data-deal-code="BUNDLE25">Add the bundle</button>
@@ -313,7 +287,7 @@
                 <article class="deal deal--coupon" aria-labelledby="yearlyTitle" data-reveal>
                     <p class="deal_tag">Yearly members</p>
                     <h3 id="yearlyTitle">20% off any yearly plan</h3>
-                    <p>Stacks on top of the yearly price drop. Here's a Premium year with the code.</p>
+                    <p>Stacks on the yearly price drop.</p>
                     <p class="deal_price"><s data-deal-was>$600</s> <strong data-deal-now>$480</strong></p>
                     <p class="deal_code deal_code--dark">MAPLE20</p>
                     <div class="deal_actions">
@@ -325,7 +299,7 @@
                 <article class="deal deal--friend" aria-labelledby="friendTitle" data-reveal>
                     <p class="deal_tag">Bring a friend</p>
                     <h3 id="friendTitle">Make your own code</h3>
-                    <p>Type your first name and share the code. Your friend gets $10 off their first order.</p>
+                    <p>Share it. Your friend gets $10 off.</p>
                     <label class="deal_label" for="refName">Your first name</label>
                     <input class="deal_input" type="text" id="refName" autocomplete="given-name" maxlength="20">
                     <p class="deal_code deal_code--dark deal_code--ref" id="refCode" aria-live="polite">YOURNAME-MB10</p>
@@ -338,15 +312,14 @@
         <section class="sp-section" id="Limited" aria-labelledby="limitedTitle">
             <div class="sp-section_header" data-reveal>
                 <p class="sp-eyebrow">Limited offers</p>
-                <h2 id="limitedTitle">Here for a short stay</h2>
-                <p>Seasonal codes and thank-you gifts for our travelers, here for a little while.</p>
+                <h2 id="limitedTitle">Seasonal offers</h2>
             </div>
 
             <div class="deals-grid">
                 <article class="deal deal--holiday" aria-labelledby="holidayTitle" data-reveal>
                     <p class="deal_tag">Gift season</p>
                     <h3 id="holidayTitle">Give a whole year of cities</h3>
-                    <p>Twelve prepaid boxes and a passport in their name, with 15% off through December 31.</p>
+                    <p>Twelve prepaid boxes, 15% off through Dec 31.</p>
                     <p class="deal_price"><s data-deal-was>$349</s> <strong data-deal-now>$297</strong></p>
                     <p class="deal_code deal_code--dark">HOLIDAY12</p>
                     <button type="button" class="deal-button" data-deal-add="gift:12" data-deal-code="HOLIDAY12">Add a 12-month gift</button>
@@ -354,7 +327,7 @@
 
                 <article class="deal deal--reward" aria-labelledby="rewardTitle" data-reveal>
                     <svg class="deal_tote" viewBox="0 0 80 80" aria-hidden="true"><path d="M28 26c0-10 24-10 24 0" fill="none" stroke="#1d2a3a" stroke-width="4" stroke-linecap="round"/><path d="M14 26h52l-5 46H19z" fill="#e3a83b" stroke="#1d2a3a" stroke-width="3" stroke-linejoin="round"/><text x="40" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#1d2a3a">BTV</text></svg>
-                    <p class="deal_tag">Free goodie</p>
+                    <p class="deal_tag">Free gift</p>
                     <h3 id="rewardTitle">A free tote at $300</h3>
                     <p class="deal_reward-text" data-reward-text>Your cart is empty.</p>
                     <div class="deal_meter" aria-hidden="true"><span data-reward-fill></span></div>
@@ -374,7 +347,7 @@
                 <article class="deal deal--exit-offer" aria-labelledby="newTitle" data-reveal>
                     <p class="deal_tag">New members</p>
                     <h3 id="newTitle">$10 off your first box</h3>
-                    <p>New to Marlowby? Take $10 off any plan or gift box.</p>
+                    <p>Any plan or gift box.</p>
                     <p class="deal_code deal_code--dark">PASSPORT10</p>
                     <div class="deal_actions">
                         <button type="button" class="deal-button" data-promo-apply="PASSPORT10">Apply code</button>
@@ -382,14 +355,6 @@
                     </div>
                 </article>
 
-                <article class="deal deal--mystery" aria-labelledby="mysteryTitle" data-reveal>
-                    <div>
-                        <p class="deal_tag">Mystery mail</p>
-                        <h3 id="mysteryTitle">There's a postcard with your name on it</h3>
-                        <p>Flip it over to find a secret code from this month's city.</p>
-                    </div>
-                    <button type="button" class="deal-button deal-button--light" data-open-postcard>Open my postcard</button>
-                </article>
             </div>
         </section>
 
@@ -397,8 +362,8 @@
         <section class="sp-section sp-wallet" id="wallet" aria-labelledby="walletTitle">
             <div class="sp-section_header" data-reveal>
                 <p class="sp-eyebrow">Your code wallet</p>
-                <h2 id="walletTitle">Every code, one tap away</h2>
-                <p>Every code here really works at checkout. No fine print, no bait and switch.</p>
+                <h2 id="walletTitle">All active codes</h2>
+                <p>One code per order. Apply here or at checkout.</p>
             </div>
 
             <p class="sp-wallet_status" id="walletStatus" role="status">No code in your cart yet.</p>
@@ -415,41 +380,49 @@
         </section>
 
 
-        <section class="sp-honest" aria-labelledby="honestTitle" data-reveal>
-            <div class="sp-honest_card">
-                <p class="sp-eyebrow">How we pick deals</p>
-                <h2 id="honestTitle">Honest deals, every time</h2>
-                <ul class="sp-honest_list">
-                    <li>We never raise a price just so we can mark it down.</li>
-                    <li>When a deal says it ends, it really ends, so nobody feels tricked.</li>
-                    <li>One code per order keeps things simple and fair for everyone.</li>
-                    <li>If a code ever fails at checkout, <a href="/html/faq.html#helpdesk">tell the help desk</a> and we will honor it.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="sp-steps" aria-labelledby="stepsTitle">
-            <h2 id="stepsTitle" class="visually-hidden">How codes work</h2>
-            <ol>
-                <li data-reveal><span class="sp-steps_num" aria-hidden="true">1</span><h3>Pick a code</h3><p>Grab one from this page, the postcard, or a friend.</p></li>
-                <li data-reveal><span class="sp-steps_num" aria-hidden="true">2</span><h3>Tap Apply</h3><p>It goes straight into your cart. You can also type it in the cart.</p></li>
-                <li data-reveal><span class="sp-steps_num" aria-hidden="true">3</span><h3>Check out</h3><p>The savings show at checkout and on your order. One code per order.</p></li>
-            </ol>
-        </section>
-
         <section class="sp-cta" aria-labelledby="spCtaTitle" data-reveal>
             <h2 id="spCtaTitle">Ready when you are</h2>
-            <p>Pick a plan, keep the savings, and know that a small business in this month's city gets paid in full for your box.</p>
+            <p>Keep the savings. The maker still gets paid in full.</p>
             <a class="deal-button deal-button--light" href="/html/SubscriptionPlans.html#plans">Choose a plan</a>
         </section>
 
     </main>
 
     <footer class="site-footer">
+        <section class="site-footer-news" aria-labelledby="footerNewsTitle">
+            <div class="site-footer-news_inner">
+                <div class="site-footer-news_copy">
+                    <h2 id="footerNewsTitle">Postcards from the road</h2>
+                    <p>One email when each box ships, plus subscriber-only codes. Unsubscribe anytime.</p>
+                </div>
+                <div>
+                    <form class="site-footer-news_form" data-newsletter novalidate>
+                        <label for="footerNewsEmail" class="visually-hidden">Email address</label>
+                        <div class="site-footer-news_field">
+                            <input type="email" id="footerNewsEmail" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-describedby="footerNewsMsg">
+                            <button type="submit">Subscribe</button>
+                        </div>
+                        <fieldset class="site-footer-news_topics">
+                            <legend>Send me:</legend>
+                            <label><input type="checkbox" name="topics" value="boxes" checked> New boxes</label>
+                            <label><input type="checkbox" name="topics" value="deals" checked> Deals</label>
+                            <label><input type="checkbox" name="topics" value="makers"> Maker stories</label>
+                        </fieldset>
+                        <p class="site-footer-news_msg" id="footerNewsMsg" role="status"></p>
+                    </form>
+                    <div class="site-footer-news_done" data-newsletter-done hidden>
+                        <p data-newsletter-text tabindex="-1" data-newsletter-focus>You're on the list.</p>
+                        <p class="site-footer-news_code"><strong>PASSPORT10</strong><button type="button" data-newsletter-copy="PASSPORT10">Copy code</button></p>
+                        <button type="button" class="site-footer-news_reset">Unsubscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="site-footer-inner">
             <div class="site-footer-brand">
                 <a href="../index.html" class="site-footer-logo">Marlowby</a>
-                <p>Explore your city, one box at a time. Every month we ship the best local products, small businesses and culture from a different U.S. city.</p>
+                <p>One city, one box, every month. Local goods from small businesses across the U.S.</p>
                 <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
             </div>
 
@@ -500,7 +473,11 @@
 
         <div class="site-footer-bottom">
             <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
-            <a href="#main-content" class="site-footer-top">Back to top</a>
+            <ul class="site-footer-legal">
+                <li><a href="/html/sitemap.html">Sitemap</a></li>
+                <li><button type="button" data-open-a11y>Accessibility options</button></li>
+                <li><a href="#main-content" class="site-footer-top">Back to top</a></li>
+            </ul>
         </div>
     </footer>
 

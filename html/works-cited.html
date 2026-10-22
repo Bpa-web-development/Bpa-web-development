@@ -43,6 +43,16 @@
             </button>
 
             <ul class="navbar-link-container" id="navbarLinks">
+                <li class="link-dropdown navbar-spotlight">
+                    <a class="navbar-link-item" href="/html/burlington.html"><span class="navbar-spotlight_dot" aria-hidden="true"></span>Spotlight</a>
+                    <ul class="sub-menu">
+                        <li><a href="/html/burlington.html#box">This Month's Box</a></li>
+                        <li><a href="/html/burlington.html#day">A Day in Burlington</a></li>
+                        <li><a href="/html/burlington.html#makers">Local Makers</a></li>
+                        <li><a href="/html/burlington.html#festival">Jazz Festival</a></li>
+                    </ul>
+                </li>
+
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/specials.html">Specials</a>
                     <ul class="sub-menu">
@@ -67,7 +77,7 @@
                     <ul class="sub-menu">
                         <li><a href="/html/our-mission.html#Story">Our Story</a></li>
                         <li><a href="/html/our-mission.html#Team">Our Team</a></li>
-                        <li><a href="/html/our-mission.html#Contact">Contact us</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
                     </ul>
                 </li>
 
@@ -77,6 +87,7 @@
                         <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
                         <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#finder">Plan finder</a></li>
                     </ul>
                 </li>
 
@@ -114,7 +125,7 @@
             <div class="wc-hero_inner">
                 <p class="wc-eyebrow">Sources and credits</p>
                 <h1 id="wcTitle">Works Cited</h1>
-                <p class="wc-hero_lead">Every font, image, fact, tool and bit of help behind this site, listed in APA 7th edition style.</p>
+                <p class="wc-hero_lead">Every source behind this site, in APA 7th edition style.</p>
                 <nav class="wc-jump" aria-label="Works Cited sections">
                     <a href="#fonts">Fonts</a>
                     <a href="#images">Images</a>
@@ -130,7 +141,7 @@
 
             <section class="wc-note" aria-labelledby="wcNoteTitle">
                 <h2 id="wcNoteTitle">About Marlowby</h2>
-                <p>Marlowby is a fictional company created for the Business Professionals of America Website Design Team event. The real businesses, places and events named on this site, such as the Flynn, Lake Champlain Chocolates, Citizen Cider, The Skinny Pancake, Crow Bookshop, Leunig's Bistro, Al's French Frys and Ben &amp; Jerry's, are not affiliated with Marlowby and did not sponsor or endorse this project. They are mentioned only to describe Burlington, Vermont. Places and events named on the Past Months page, such as WaterFire Providence, are described the same way.</p>
+                <p>Marlowby is a fictional company made for the BPA Website Design Team event. Real businesses and places named on this site, like Lake Champlain Chocolates and WaterFire Providence, are not affiliated with or endorsing this project.</p>
             </section>
 
             <section class="wc-group" id="fonts" aria-labelledby="wcFonts">
@@ -204,7 +215,7 @@
                 <ul class="wc-list">
                     <li>Anthropic. (2026). <cite>Claude</cite> [Large language model]. https://claude.ai</li>
                 </ul>
-                <p>Our team used Claude to help write and debug HTML, CSS and JavaScript, plan page layouts, draft and edit page copy, fact-check Burlington and past-city details and run accessibility, validation and link tests. Every suggestion was reviewed, edited and approved by our team members before it went on the site.</p>
+                <p>We used Claude to help with code, layouts, copy, fact-checking and testing. Our team reviewed and approved every change.</p>
                 <p class="wc-callout">Before submitting, complete the BPA AI Usage and Documentation Form describing how Claude was used.</p>
             </section>
 
@@ -212,10 +223,40 @@
     </main>
 
     <footer class="site-footer">
+        <section class="site-footer-news" aria-labelledby="footerNewsTitle">
+            <div class="site-footer-news_inner">
+                <div class="site-footer-news_copy">
+                    <h2 id="footerNewsTitle">Postcards from the road</h2>
+                    <p>One email when each box ships, plus subscriber-only codes. Unsubscribe anytime.</p>
+                </div>
+                <div>
+                    <form class="site-footer-news_form" data-newsletter novalidate>
+                        <label for="footerNewsEmail" class="visually-hidden">Email address</label>
+                        <div class="site-footer-news_field">
+                            <input type="email" id="footerNewsEmail" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-describedby="footerNewsMsg">
+                            <button type="submit">Subscribe</button>
+                        </div>
+                        <fieldset class="site-footer-news_topics">
+                            <legend>Send me:</legend>
+                            <label><input type="checkbox" name="topics" value="boxes" checked> New boxes</label>
+                            <label><input type="checkbox" name="topics" value="deals" checked> Deals</label>
+                            <label><input type="checkbox" name="topics" value="makers"> Maker stories</label>
+                        </fieldset>
+                        <p class="site-footer-news_msg" id="footerNewsMsg" role="status"></p>
+                    </form>
+                    <div class="site-footer-news_done" data-newsletter-done hidden>
+                        <p data-newsletter-text tabindex="-1" data-newsletter-focus>You're on the list.</p>
+                        <p class="site-footer-news_code"><strong>PASSPORT10</strong><button type="button" data-newsletter-copy="PASSPORT10">Copy code</button></p>
+                        <button type="button" class="site-footer-news_reset">Unsubscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="site-footer-inner">
             <div class="site-footer-brand">
                 <a href="../index.html" class="site-footer-logo">Marlowby</a>
-                <p>Explore your city, one box at a time. Every month we ship the best local products, small businesses and culture from a different U.S. city.</p>
+                <p>One city, one box, every month. Local goods from small businesses across the U.S.</p>
                 <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
             </div>
 
@@ -266,7 +307,11 @@
 
         <div class="site-footer-bottom">
             <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
-            <a href="#main-content" class="site-footer-top">Back to top</a>
+            <ul class="site-footer-legal">
+                <li><a href="/html/sitemap.html">Sitemap</a></li>
+                <li><button type="button" data-open-a11y>Accessibility options</button></li>
+                <li><a href="#main-content" class="site-footer-top">Back to top</a></li>
+            </ul>
         </div>
     </footer>
 

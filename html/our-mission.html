@@ -3,12 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Favicon & Title -->
     <title>Marlowby | Our Mission</title>
@@ -45,12 +39,22 @@
                 
             <ul class="navbar-link-container">
                 <!-- Specials Dropdown -->
+                <li class="link-dropdown navbar-spotlight">
+                    <a class="navbar-link-item" href="/html/burlington.html"><span class="navbar-spotlight_dot" aria-hidden="true"></span>Spotlight</a>
+                    <ul class="sub-menu">
+                        <li><a href="/html/burlington.html#box">This Month's Box</a></li>
+                        <li><a href="/html/burlington.html#day">A Day in Burlington</a></li>
+                        <li><a href="/html/burlington.html#makers">Local Makers</a></li>
+                        <li><a href="/html/burlington.html#festival">Jazz Festival</a></li>
+                    </ul>
+                </li>
+
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/specials.html">Specials</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Daily Specials</a></li>
-                        <li><a href="#">Weekly Deals</a></li>
-                        <li><a href="#">Limited Offers</a></li>
+                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
+                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
+                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
                     </ul>
                 </li>
 
@@ -58,12 +62,12 @@
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/past-months.html">Past Months</a>
                     <ul class="sub-menu">
-                        <li><a href="#">January 2026</a></li>
-                        <li><a href="#">February 2026</a></li>
-                        <li><a href="#">March 2026</a></li>
+                        <li><a href="/html/past-months.html#January">January 2026</a></li>
+                        <li><a href="/html/past-months.html#February">February 2026</a></li>
+                        <li><a href="/html/past-months.html#March">March 2026</a></li>
                     </ul>
                 </li>
-                <!-- <li><a href="#">Limited Offers</a></li>
+                <!-- <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
                     </ul>
                 </li>    -->
 
@@ -71,9 +75,9 @@
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/our-mission.html">Our Mission</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Our Story</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
+                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
                     </ul>
                 </li>
                     
@@ -81,9 +85,10 @@
                 <li class="link-dropdown">
                     <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Basic Plan</a></li>
-                        <li><a href="#">Premium Plan</a></li>
-                        <li><a href="#">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#finder">Plan finder</a></li>
                     </ul>
                 </li>
 
@@ -94,7 +99,7 @@
 
                 <!-- Shopping Cart -->
                 <li>
-                    <a class="navbar-link-item" href="/html/cart.html">
+                    <a class="navbar-link-item" href="/html/cart.html" aria-label="Cart">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </a>
                 </li>
@@ -106,7 +111,7 @@
 
     <!--Hero Section--------------------------------------------->
 
-    <section class="mission_hero">
+    <section class="mission_hero" id="Story">
         <div class="mission_hero_container">
 
             <div class="mission_hero_text">
@@ -117,7 +122,7 @@
                    Discover America’s vibrant cities from home. Marlowby delivers monthly curated boxes filled with unique local products and independent makers.
                 </p>
 
-                <a href="#mission" class="mission_hero_btn">Explore Our Mission</a>
+                <a href="#Team" class="mission_hero_btn">Explore Our Mission</a>
             </div>
 
             <div class="mission_hero_img">
@@ -137,7 +142,7 @@
     </section>
 
     <!--Team Cards Section--------------------------------------->
-    <section class="team_cards_section">
+    <section class="team_cards_section" id="Team">
         <div class="team_cards_header">
             <h2>Meet Our Team</h2>
             <p>Meet the dedicated team members who drive our mission and bring our vision to life.</p>
