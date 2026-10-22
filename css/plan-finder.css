@@ -1,0 +1,638 @@
+.plans-hero_finder {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    color: var(--plans-clay-dark);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+}
+
+.plans-hero_finder::after {
+    content: "\2192";
+    text-decoration: none;
+    transition: translate 0.2s ease;
+}
+
+.plans-hero_finder:hover::after {
+    translate: 3px 0;
+}
+
+.plans-finder {
+    padding: 4.5rem 1.5rem;
+    scroll-margin-top: 7rem;
+}
+
+.finder {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.6fr);
+    max-width: 1120px;
+    margin: 0 auto;
+    border: 1px solid var(--plans-line);
+    border-radius: var(--plans-radius);
+    background: var(--plans-card);
+    box-shadow: 0 1px 2px rgba(29, 42, 58, 0.04), 0 24px 48px -30px rgba(29, 42, 58, 0.45);
+    overflow: hidden;
+}
+
+.finder_aside {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2.5rem 2.25rem;
+    background:
+        radial-gradient(ellipse 80% 50% at 0% 0%, rgba(227, 168, 59, 0.14), transparent 70%),
+        var(--plans-ink);
+    color: var(--plans-paper);
+}
+
+.finder_aside .plans-eyebrow {
+    margin: 0;
+    color: var(--plans-gold);
+}
+
+.plans-page .finder_aside h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+    text-wrap: balance;
+}
+
+.finder_lead {
+    margin: 0;
+    color: rgba(251, 246, 238, 0.8);
+}
+
+.finder_track {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.finder_track li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 12px;
+    transition: background-color 0.2s ease;
+}
+
+.finder_track li.is-current {
+    background: rgba(251, 246, 238, 0.08);
+}
+
+.finder_track-num {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border: 1px solid rgba(251, 246, 238, 0.35);
+    border-radius: 50%;
+    color: rgba(251, 246, 238, 0.85);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.finder_track li.is-current .finder_track-num {
+    border-color: var(--plans-gold);
+    color: var(--plans-gold);
+}
+
+.finder_track li.is-done .finder_track-num {
+    border-color: var(--plans-gold);
+    background: var(--plans-gold);
+    color: var(--plans-ink);
+}
+
+.finder_track-text {
+    display: grid;
+    min-width: 0;
+}
+
+.finder_track-text b {
+    font-size: 0.95rem;
+}
+
+.finder_track-text small {
+    overflow: hidden;
+    color: rgba(251, 246, 238, 0.7);
+    font-size: 0.82rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.finder_track li.is-done small {
+    color: var(--plans-gold);
+}
+
+.finder_trust {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: auto 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(251, 246, 238, 0.14);
+    color: rgba(251, 246, 238, 0.78);
+    font-size: 0.85rem;
+    line-height: 1.45;
+}
+
+.finder_trust svg {
+    flex: none;
+    width: 1.35rem;
+    height: 1.35rem;
+    color: var(--plans-gold);
+}
+
+.finder_panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    padding: 2.5rem 2.75rem;
+}
+
+.finder_kicker {
+    margin: 0;
+    color: var(--plans-clay);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.finder_intro {
+    display: grid;
+    gap: 1rem;
+    max-width: 34rem;
+}
+
+.finder_intro-text {
+    margin: 0;
+    color: var(--plans-ink-soft);
+    font-size: 1.1rem;
+}
+
+.finder_actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.finder_form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.finder_progress {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.finder_step-count {
+    margin: 0;
+    color: var(--plans-muted);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.finder_bar {
+    height: 4px;
+    border-radius: 999px;
+    background: var(--plans-paper-deep);
+    overflow: hidden;
+}
+
+.finder_bar span {
+    display: block;
+    width: 25%;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--plans-clay);
+    transition: width 0.35s ease;
+}
+
+.finder_step {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.finder_step legend {
+    width: 100%;
+    margin-bottom: 1.25rem;
+    padding: 0;
+}
+
+.finder_q {
+    display: block;
+    color: var(--plans-ink);
+    font: 700 clamp(1.35rem, 2.2vw, 1.7rem) / 1.25 var(--plans-heading);
+}
+
+.finder_q:focus {
+    outline: none;
+}
+
+.finder_q:focus-visible {
+    outline: 3px solid var(--plans-gold);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.finder_options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem;
+}
+
+.finder_option {
+    position: relative;
+    display: flex;
+    cursor: pointer;
+}
+
+.finder_option input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.finder_card {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    padding: 1.15rem 1.1rem 1.2rem;
+    border: 1px solid var(--plans-line);
+    border-radius: 14px;
+    background: #fff;
+    color: var(--plans-ink);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.finder_card::after {
+    content: "";
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    border: 1.5px solid #cfc4b1;
+    border-radius: 50%;
+    background: #fff;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.finder_card svg {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.4rem;
+    color: var(--plans-clay);
+}
+
+.finder_card b {
+    font-size: 1rem;
+}
+
+.finder_card small {
+    color: var(--plans-muted);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.finder_price {
+    margin-bottom: 0.35rem;
+    color: var(--plans-clay);
+    font: 700 1.25rem var(--plans-heading);
+    letter-spacing: 0.04em;
+}
+
+.finder_save {
+    order: -1;
+    margin-bottom: 0.4rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(95, 125, 100, 0.14);
+    color: var(--plans-sage-text);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.finder_option:hover .finder_card {
+    border-color: #cdbfa8;
+    box-shadow: 0 10px 22px -18px rgba(29, 42, 58, 0.5);
+}
+
+.finder_option input:focus-visible + .finder_card {
+    outline: 3px solid var(--plans-gold);
+    outline-offset: 2px;
+}
+
+.finder_option input:checked + .finder_card {
+    border-color: var(--plans-clay);
+    background: #fffaf5;
+    box-shadow: inset 0 0 0 1px var(--plans-clay);
+}
+
+.finder_option input:checked + .finder_card::after {
+    border-color: var(--plans-clay);
+    background: var(--plans-clay) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 80% no-repeat;
+}
+
+.finder_nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--plans-line);
+}
+
+.finder_nav .plans-button {
+    margin-left: auto;
+}
+
+.finder_back,
+.finder_restart {
+    padding: 0.6rem 0.25rem;
+    border: 0;
+    background: none;
+    color: var(--plans-ink-soft);
+    font: 700 0.95rem var(--plans-body);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    cursor: pointer;
+}
+
+.finder_back:hover,
+.finder_restart:hover {
+    color: var(--plans-clay-dark);
+}
+
+.finder_result {
+    display: grid;
+    gap: 0.5rem;
+    justify-items: start;
+}
+
+.finder_result.is-in {
+    animation: finder-in 0.45s ease both;
+}
+
+@keyframes finder-in {
+    from { opacity: 0; translate: 0 10px; }
+    to { opacity: 1; translate: 0 0; }
+}
+
+.finder_result-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.finder_badge {
+    margin: 0;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(227, 168, 59, 0.18);
+    color: #7a5212;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.plans-page .finder_result-title {
+    margin: 0.25rem 0 0;
+    font-size: clamp(2rem, 3.4vw, 2.6rem);
+}
+
+.finder_result-title:focus {
+    outline: none;
+}
+
+.finder_result-term {
+    margin: 0;
+    color: var(--plans-muted);
+}
+
+.finder_result-price {
+    margin: 0.4rem 0 0;
+    color: var(--plans-ink);
+}
+
+#finderPrice {
+    font: 700 2rem var(--plans-heading);
+}
+
+.finder_result-per {
+    color: var(--plans-muted);
+    font-size: 0.95rem;
+}
+
+.finder_result-save {
+    margin: 0;
+    color: var(--plans-sage-text);
+    font-weight: 700;
+    font-size: 0.92rem;
+}
+
+.finder_why-title {
+    margin: 1rem 0 0.25rem;
+    font: 700 0.78rem var(--plans-body);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--plans-ink-soft);
+}
+
+.finder_why {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.finder_why li {
+    position: relative;
+    padding-left: 1.75rem;
+    color: var(--plans-ink-soft);
+    line-height: 1.5;
+}
+
+.finder_why li::before {
+    content: "";
+    position: absolute;
+    top: 0.2rem;
+    left: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    background: var(--plans-sage) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 80% no-repeat;
+}
+
+.finder_box {
+    display: grid;
+    gap: 0.2rem;
+    width: 100%;
+    margin: 1rem 0 0.25rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--plans-line);
+    border-radius: 12px;
+    background: var(--plans-paper);
+    color: var(--plans-ink-soft);
+    font-size: 0.92rem;
+    box-sizing: border-box;
+}
+
+.finder_box span:first-child {
+    color: var(--plans-ink);
+    font-weight: 700;
+}
+
+.finder_alt {
+    margin: 0.5rem 0 0;
+    color: var(--plans-muted);
+    font-size: 0.9rem;
+}
+
+.finder_alt a {
+    color: var(--plans-clay-dark);
+    font-weight: 700;
+}
+
+@media (max-width: 900px) {
+    .finder {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .finder_aside {
+        padding: 2rem 1.5rem;
+    }
+
+    .finder_track {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.4rem;
+    }
+
+    .finder_track li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+        padding: 0.5rem;
+    }
+
+    .finder_track-text b {
+        font-size: 0.78rem;
+    }
+
+    .finder_track-text small {
+        font-size: 0.72rem;
+    }
+
+    .finder_trust {
+        margin-top: 0;
+    }
+
+    .finder_panel {
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .plans-finder {
+        padding-block: 3rem;
+    }
+
+    .finder_options {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .finder_card {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        column-gap: 0.85rem;
+        align-items: center;
+        padding: 0.95rem 2.6rem 0.95rem 1rem;
+    }
+
+    .finder_card svg,
+    .finder_price {
+        grid-row: span 2;
+        margin: 0;
+    }
+
+    .finder_price {
+        min-width: 2.2rem;
+    }
+
+    .finder_card b,
+    .finder_card small {
+        grid-column: 2;
+    }
+
+    .finder_save {
+        grid-column: 2;
+        justify-self: start;
+        margin-bottom: 0.2rem;
+    }
+
+    .finder_card::after {
+        top: 50%;
+        translate: 0 -50%;
+    }
+
+    .finder_track-text small {
+        display: none;
+    }
+
+    .finder_actions .plans-button {
+        flex: 1 1 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .finder_bar span,
+    .finder_card,
+    .finder_track li {
+        transition: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .finder_card:not(:has(svg, .finder_price)) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .finder_card:not(:has(svg, .finder_price)) > * {
+        grid-column: 1;
+    }
+}
+
+.finder [hidden] {
+    display: none !important;
+}
+
+@media (max-width: 640px) {
+    .is-finder-view .deal-ticket {
+        opacity: 0;
+        pointer-events: none;
+    }
+}

@@ -526,7 +526,7 @@
 
 .fq-helpdesk {
     padding: 4.5rem 1.5rem;
-    background: var(--fq-paper-deep);
+    background: linear-gradient(180deg, var(--fq-paper) 0%, var(--fq-paper-deep) 18%, var(--fq-paper-deep) 82%, var(--fq-paper) 100%);
     scroll-margin-top: 4rem;
 }
 

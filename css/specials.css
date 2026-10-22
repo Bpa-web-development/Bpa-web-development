@@ -1655,3 +1655,552 @@ tr.is-applied .sp-board_go {
         width: calc(100% - 32px);
     }
 }
+
+.specials-page {
+    --sp-card-radius: 18px;
+    --sp-card-border: 1px solid #e6ddcd;
+    --sp-card-shadow: 0 1px 2px rgba(29, 42, 58, 0.04), 0 16px 36px -26px rgba(29, 42, 58, 0.45);
+    --sp-card-pad: 1.75rem;
+    --sp-ink-deep: #152030;
+    --sp-fade: linear-gradient(180deg, var(--sp-paper) 0%, var(--sp-paper-deep) 22%, var(--sp-paper-deep) 78%, var(--sp-paper) 100%);
+}
+
+.specials-page .sp-eyebrow {
+    letter-spacing: 0.18em;
+}
+
+.specials-page .sp-hero {
+    position: relative;
+    isolation: isolate;
+    padding-block: 4rem 8rem;
+    color: var(--sp-paper);
+}
+
+.specials-page .sp-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0 calc(50% - 50vw);
+    z-index: -1;
+    background:
+        radial-gradient(ellipse 45% 55% at 82% 30%, rgba(227, 168, 59, 0.14), transparent 70%),
+        linear-gradient(180deg, var(--sp-ink-deep) 0%, var(--sp-ink) 58%, #2a3646 70%, #5b6470 80%, #b9b4ab 91%, var(--sp-paper) 100%);
+}
+
+.specials-page .sp-marquee {
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.specials-page .sp-marquee_bulbs {
+    display: none;
+}
+
+.specials-page .sp-marquee .sp-eyebrow {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    color: var(--sp-gold);
+}
+
+.specials-page .sp-marquee h1 {
+    color: #fff;
+    text-shadow: none;
+    text-wrap: balance;
+}
+
+.specials-page .sp-marquee h1 span,
+.specials-page .sp-hero h1 span {
+    color: var(--sp-gold);
+    text-shadow: none;
+    rotate: none;
+}
+
+.specials-page .sp-marquee .sp-lead {
+    color: rgba(251, 246, 238, 0.82);
+}
+
+.specials-page .sp-marquee .sp-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(251, 246, 238, 0.16);
+}
+
+.specials-page .sp-marquee .sp-stats div {
+    padding: 0 1.75rem 0 0;
+    margin-right: 1.75rem;
+    border: 0;
+    border-right: 1px solid rgba(251, 246, 238, 0.16);
+    border-radius: 0;
+    background: none;
+}
+
+.specials-page .sp-marquee .sp-stats div:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: 0;
+}
+
+.specials-page .sp-marquee .sp-stats dt {
+    color: rgba(251, 246, 238, 0.7);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+}
+
+.specials-page .sp-marquee .sp-stats dd {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.specials-page .sp-marquee .deal-button--light:hover:not(:disabled) {
+    border-color: var(--sp-gold);
+    background: var(--sp-gold);
+}
+
+.specials-page .sp-marquee :focus-visible {
+    outline-color: var(--sp-gold);
+}
+
+.specials-page .sp-board {
+    border: 1px solid rgba(251, 246, 238, 0.12);
+    border-radius: var(--sp-card-radius);
+    background: rgba(12, 19, 29, 0.55);
+    box-shadow: 0 30px 60px -34px rgba(0, 0, 0, 0.8);
+}
+
+.specials-page .sp-jump {
+    background: rgba(251, 246, 238, 0.94);
+    border-block: 0;
+    box-shadow: 0 1px 0 var(--sp-line), 0 10px 22px -18px rgba(29, 42, 58, 0.45);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.specials-page .sp-section,
+.specials-page .sp-care,
+.specials-page .sp-wallet {
+    padding-block: 5rem;
+}
+
+.specials-page .sp-section_header {
+    margin-bottom: 2.75rem;
+}
+
+.specials-page .sp-section_header h2,
+.specials-page .sp-care h2,
+.specials-page .sp-local h2 {
+    text-wrap: balance;
+}
+
+.specials-page .deal,
+.specials-page .sp-care_item,
+.specials-page .sp-coupon,
+.specials-page .sp-steps li,
+.specials-page .sp-honest_card {
+    border: var(--sp-card-border);
+    border-radius: var(--sp-card-radius);
+    background: #fff;
+    box-shadow: var(--sp-card-shadow);
+}
+
+.specials-page .deal {
+    padding: var(--sp-card-pad);
+    transition: box-shadow 0.25s ease, translate 0.25s ease;
+}
+
+.specials-page .deal:not(.deal--flash):not(.deal--mystery):hover {
+    translate: 0 -3px;
+    box-shadow: 0 1px 2px rgba(29, 42, 58, 0.05), 0 22px 44px -26px rgba(29, 42, 58, 0.55);
+}
+
+.specials-page .deal .deal_tag {
+    background: rgba(227, 168, 59, 0.16);
+    color: #7a5212;
+    letter-spacing: 0.12em;
+}
+
+.specials-page .deal .deal_code {
+    border: 1px solid #d8ccb6;
+    border-radius: 8px;
+    background: var(--sp-paper);
+    color: var(--sp-ink);
+    font-size: 1.15rem;
+    letter-spacing: 0.16em;
+}
+
+.specials-page .deal--flash {
+    border: 0;
+    background: var(--sp-ink);
+}
+
+.specials-page .deal--flash .deal_main {
+    background:
+        radial-gradient(ellipse 70% 90% at 0% 0%, rgba(227, 168, 59, 0.16), transparent 60%),
+        var(--sp-ink);
+}
+
+.specials-page .deal--flash .deal_tag {
+    background: var(--sp-gold);
+    color: var(--sp-ink);
+}
+
+.specials-page .deal--flash .deal_stub {
+    background: var(--sp-ink-deep);
+}
+
+.specials-page .deal--flash .deal_code {
+    border-color: rgba(251, 246, 238, 0.35);
+    background: transparent;
+    color: #fff;
+}
+
+.specials-page .deal--mystery {
+    border: 0;
+    background:
+        radial-gradient(ellipse 40% 120% at 100% 0%, rgba(227, 168, 59, 0.2), transparent 60%),
+        linear-gradient(135deg, var(--sp-ink) 0%, var(--sp-ink-deep) 100%);
+}
+
+.specials-page .deal--mystery .deal_tag {
+    background: rgba(227, 168, 59, 0.18);
+    color: var(--sp-gold);
+}
+
+.specials-page .sp-pick {
+    border: var(--sp-card-border);
+    border-radius: var(--sp-card-radius);
+    background:
+        radial-gradient(ellipse 50% 80% at 0% 100%, rgba(227, 168, 59, 0.12), transparent 60%),
+        #fff;
+    box-shadow: var(--sp-card-shadow);
+    color: var(--sp-ink);
+}
+
+.specials-page .sp-pick .sp-eyebrow {
+    color: var(--sp-clay);
+}
+
+.specials-page .sp-pick h3 {
+    color: var(--sp-ink);
+}
+
+.specials-page .sp-pick p {
+    color: var(--sp-ink-soft);
+}
+
+.specials-page .sp-pick .deal-button {
+    border-color: var(--sp-clay);
+    background: var(--sp-clay);
+    color: #fff;
+}
+
+.specials-page .sp-pick .deal-button--ghost {
+    border-color: var(--sp-clay);
+    background: transparent;
+    color: var(--sp-clay-dark);
+}
+
+.specials-page .sp-pick .deal-button:hover:not(:disabled) {
+    border-color: var(--sp-clay-dark);
+    background: var(--sp-clay-dark);
+    color: #fff;
+}
+
+.specials-page .sp-pick :focus-visible {
+    outline-color: var(--sp-clay);
+}
+
+.specials-page .sp-section--tint::before {
+    background: var(--sp-fade);
+}
+
+.specials-page .sp-local {
+    padding-block: 10rem;
+    background:
+        radial-gradient(ellipse 55% 45% at 85% 50%, rgba(227, 168, 59, 0.14), transparent 70%),
+        linear-gradient(180deg, var(--sp-paper) 0%, #b9b4ab 9%, #5b6470 18%, #2a3646 26%, var(--sp-ink) 34%, var(--sp-ink) 66%, #2a3646 74%, #5b6470 82%, #b9b4ab 91%, var(--sp-paper) 100%);
+}
+
+.specials-page .sp-local .sp-eyebrow {
+    color: var(--sp-gold);
+}
+
+.specials-page .sp-coupon {
+    border-width: 1px;
+}
+
+.specials-page .sp-coupon::before,
+.specials-page .sp-coupon::after {
+    border-width: 1px;
+    border-color: #e6ddcd;
+}
+
+.specials-page .sp-coupon.is-applied {
+    border-color: var(--sp-sage);
+    box-shadow: 0 0 0 3px rgba(95, 125, 100, 0.18), var(--sp-card-shadow);
+}
+
+.specials-page .sp-honest_card {
+    background:
+        radial-gradient(ellipse 60% 120% at 100% 0%, rgba(227, 168, 59, 0.1), transparent 60%),
+        #fff;
+}
+
+.specials-page .sp-cta {
+    border-radius: 24px;
+    background:
+        radial-gradient(ellipse 50% 90% at 0% 0%, rgba(227, 168, 59, 0.2), transparent 60%),
+        linear-gradient(135deg, var(--sp-ink) 0%, var(--sp-ink-deep) 100%);
+    box-shadow: 0 30px 60px -36px rgba(21, 32, 48, 0.9);
+}
+
+.specials-page .sp-coupon_code {
+    border: 1px solid #d8ccb6;
+    border-radius: 8px;
+    background: var(--sp-paper);
+    color: var(--sp-ink);
+    letter-spacing: 0.14em;
+}
+
+.specials-page .sp-coupon.is-applied .sp-coupon_code {
+    border-color: var(--sp-sage-text);
+    color: var(--sp-sage-text);
+}
+
+.specials-page .sp-coupon_actions {
+    border-top: 1px solid #eee5d6;
+}
+
+.specials-page .sp-check {
+    max-width: 40rem;
+    border: var(--sp-card-border);
+    border-radius: var(--sp-card-radius);
+    box-shadow: var(--sp-card-shadow);
+}
+
+.specials-page .sp-wallet_status {
+    border: 1px solid #e6ddcd;
+    border-radius: 999px;
+    background: #fff;
+    font-weight: 400;
+}
+
+.specials-page .sp-local {
+    background:
+        radial-gradient(ellipse 55% 45% at 85% 50%, rgba(227, 168, 59, 0.14), transparent 70%),
+        linear-gradient(180deg, rgba(29, 42, 58, 0) 0, rgba(29, 42, 58, 0.18) 2.5rem, rgba(29, 42, 58, 0.5) 5rem, rgba(29, 42, 58, 0.85) 7.5rem, var(--sp-ink) 9rem, var(--sp-ink) calc(100% - 9rem), rgba(29, 42, 58, 0.85) calc(100% - 7.5rem), rgba(29, 42, 58, 0.5) calc(100% - 5rem), rgba(29, 42, 58, 0.18) calc(100% - 2.5rem), rgba(29, 42, 58, 0) 100%),
+        var(--sp-paper);
+}
+
+@media (max-width: 960px) {
+    .specials-page .sp-hero {
+        padding-block: 3rem 7rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .specials-page .sp-marquee .sp-stats div {
+        padding-right: 1rem;
+        margin-right: 1rem;
+    }
+
+    .specials-page .sp-local {
+        padding-block: 8rem;
+    }
+
+    .specials-page .sp-section,
+    .specials-page .sp-care,
+    .specials-page .sp-wallet {
+        padding-block: 3.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .specials-page .deal {
+        transition: none;
+    }
+}
+
+.specials-page .sp-hero {
+    padding-block: 4.5rem 11rem;
+}
+
+.specials-page .sp-hero::before {
+    background:
+        radial-gradient(ellipse 45% 40% at 82% 22%, rgba(227, 168, 59, 0.1), transparent 70%),
+        linear-gradient(180deg, var(--sp-ink-deep) 0%, #1d2a3a calc(100% - 9rem), #1e2b3a calc(100% - 8.36rem), #212e3d calc(100% - 7.71rem), #2a3644 calc(100% - 7.07rem), #394450 calc(100% - 6.43rem), #4e5760 calc(100% - 5.79rem), #686e73 calc(100% - 5.14rem), #85898a calc(100% - 4.5rem), #a4a5a3 calc(100% - 3.86rem), #c0bfba calc(100% - 3.21rem), #d8d5cf calc(100% - 2.57rem), #eae6df calc(100% - 1.93rem), #f5f1e9 calc(100% - 1.29rem), #faf5ed calc(100% - 0.64rem), #fbf6ee 100%);
+}
+
+.specials-page .sp-local {
+    padding-block: 10rem;
+    background:
+        radial-gradient(ellipse 50% 30% at 85% 50%, rgba(227, 168, 59, 0.1), transparent 70%),
+        linear-gradient(180deg, #fbf6ee 0%, #faf5ed 0.57rem, #f5f1e9 1.14rem, #eae6df 1.71rem, #d8d5cf 2.29rem, #c0bfba 2.86rem, #a4a5a3 3.43rem, #85898a 4rem, #686e73 4.57rem, #4e5760 5.14rem, #394450 5.71rem, #2a3644 6.29rem, #212e3d 6.86rem, #1e2b3a 7.43rem, #1d2a3a 8rem, #1d2a3a calc(100% - 8rem), #1e2b3a calc(100% - 7.43rem), #212e3d calc(100% - 6.86rem), #2a3644 calc(100% - 6.29rem), #394450 calc(100% - 5.71rem), #4e5760 calc(100% - 5.14rem), #686e73 calc(100% - 4.57rem), #85898a calc(100% - 4rem), #a4a5a3 calc(100% - 3.43rem), #c0bfba calc(100% - 2.86rem), #d8d5cf calc(100% - 2.29rem), #eae6df calc(100% - 1.71rem), #f5f1e9 calc(100% - 1.14rem), #faf5ed calc(100% - 0.57rem), #fbf6ee 100%);
+}
+
+.specials-page .sp-board {
+    padding: 1.75rem;
+    border: 1px solid rgba(251, 246, 238, 0.14);
+    background: rgba(13, 20, 31, 0.6);
+    color: var(--sp-paper);
+    box-shadow: 0 24px 50px -30px rgba(0, 0, 0, 0.7);
+}
+
+.specials-page .sp-board_head {
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(251, 246, 238, 0.14);
+}
+
+.specials-page .sp-board h2 {
+    color: #fff;
+    font-family: var(--sp-heading);
+    font-size: 1.35rem;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.sp-board_note {
+    margin: 0;
+    color: rgba(251, 246, 238, 0.68);
+    font-size: 0.8rem;
+}
+
+.specials-page .sp-board_table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.specials-page .sp-board_table th {
+    padding: 0.6rem 0.5rem;
+    color: rgba(251, 246, 238, 0.62);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+}
+
+.specials-page .sp-board_table td {
+    padding: 0.85rem 0.5rem;
+    border-top: 1px solid rgba(251, 246, 238, 0.09);
+    background: none;
+    border-radius: 0;
+}
+
+.specials-page .sp-board_table td:first-child {
+    white-space: normal;
+    color: #fff;
+    font-weight: 700;
+}
+
+.specials-page .sp-board_table td:nth-child(2) {
+    color: rgba(251, 246, 238, 0.72);
+    white-space: nowrap;
+}
+
+.specials-page .sp-board_table tr.is-applied td {
+    background: rgba(227, 168, 59, 0.1);
+}
+
+.specials-page .sp-board_code {
+    color: var(--sp-gold);
+    font-weight: 700;
+    font-size: 0.86rem;
+    letter-spacing: 0.08em;
+}
+
+.specials-page .sp-board_go {
+    padding: 0.4rem 0.9rem;
+    border: 1px solid rgba(251, 246, 238, 0.4);
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
+}
+
+.specials-page .sp-board_go:hover,
+.specials-page .sp-board_go.is-done,
+.specials-page tr.is-applied .sp-board_go {
+    border-color: var(--sp-gold);
+    background: var(--sp-gold);
+    color: var(--sp-ink);
+}
+
+.specials-page .sp-board_status {
+    margin-top: 0.9rem;
+    color: rgba(251, 246, 238, 0.75);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.specials-page .sp-board_light {
+    animation: none;
+}
+
+.specials-page .deal-ticket {
+    display: none !important;
+}
+
+.specials-page .deals-grid:has(> .deal--flash) {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+}
+
+.specials-page .deal--flash .deal_main {
+    background: var(--sp-ink);
+}
+
+.specials-page .deal .deal_tag {
+    background: none;
+    padding: 0;
+    color: var(--sp-clay);
+}
+
+.specials-page .deal--flash .deal_tag {
+    background: none;
+    color: var(--sp-gold);
+}
+
+.specials-page .deal--flash {
+    grid-column: auto;
+}
+
+.specials-page .deal--flash .deal_main::after {
+    display: none;
+}
+
+.specials-page .deal--flash .deal_stub {
+    border-left: 1px dashed rgba(251, 246, 238, 0.25);
+}
+
+.specials-page .deal--reward .deal_tote {
+    display: none;
+}
+
+@media (max-width: 860px) {
+    .specials-page .deals-grid:has(> .deal--flash) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .specials-page .sp-hero {
+        padding-block: 3rem 10rem;
+    }
+
+    .specials-page .sp-local {
+        padding-block: 9.5rem;
+    }
+
+    .specials-page .sp-board {
+        padding: 1.25rem;
+    }
+
+    .specials-page .sp-board_table th:nth-child(2),
+    .specials-page .sp-board_table td:nth-child(2) {
+        display: none;
+    }
+}

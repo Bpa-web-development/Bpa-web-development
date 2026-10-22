@@ -162,8 +162,8 @@
     overflow: hidden;
     padding: 12rem max(1.5rem, env(safe-area-inset-right, 0px)) 12rem max(1.5rem, env(safe-area-inset-left, 0px));
     background:
-        linear-gradient(180deg, var(--plans-paper) 0%, #f7e4c9 14%, #ecb98a 32%, #b86d4f 50%, #5b3a44 66%, #2a2a3c 80%, rgba(20, 29, 41, 0.6) 92%, rgba(20, 29, 41, 0) 100%) top / 100% 11rem no-repeat,
-        linear-gradient(0deg, var(--plans-paper) 0%, #e6e4df 16%, #a9b6c9 36%, #5f7393 56%, #2b3a52 76%, rgba(20, 29, 41, 0.6) 90%, rgba(20, 29, 41, 0) 100%) bottom / 100% 11rem no-repeat,
+        linear-gradient(180deg, #fbf6ee 0%, #faf5ed 0.86rem, #f5f0e8 1.71rem, #e9e5de 2.57rem, #d6d3cc 3.43rem, #bdbbb5 4.29rem, #9f9e9b 5.14rem, #7f8180 6rem, #616567 6.86rem, #464c51 7.71rem, #303840 8.57rem, #212a34 9.43rem, #18212d 10.29rem, #151e2a 11.14rem, #141d29 12rem) top / 100% 12rem no-repeat,
+        linear-gradient(180deg, #141d29 calc(12rem - 12rem), #151e2a calc(12rem - 11.14rem), #18212d calc(12rem - 10.29rem), #212a34 calc(12rem - 9.43rem), #303840 calc(12rem - 8.57rem), #464c51 calc(12rem - 7.71rem), #616567 calc(12rem - 6.86rem), #7f8180 calc(12rem - 6rem), #9f9e9b calc(12rem - 5.14rem), #bdbbb5 calc(12rem - 4.29rem), #d6d3cc calc(12rem - 3.43rem), #e9e5de calc(12rem - 2.57rem), #f5f0e8 calc(12rem - 1.71rem), #faf5ed calc(12rem - 0.86rem), #fbf6ee 12rem) bottom / 100% 12rem no-repeat,
         radial-gradient(ellipse 55% 45% at 72% 45%, rgba(227, 168, 59, 0.14), transparent 75%),
         radial-gradient(ellipse 45% 40% at 14% 55%, rgba(176, 73, 31, 0.2), transparent 75%),
         #141d29;
@@ -511,8 +511,8 @@
 
 .btv-hero::after {
     content: "";
-    height: 7rem;
-    background: linear-gradient(180deg, var(--btv-night), #3b3f4d 30%, #b7aa98 70%, var(--plans-paper));
+    height: 9rem;
+    background: linear-gradient(180deg, #141d29 0%, #151e2a 0.64rem, #18212d 1.29rem, #212a34 1.93rem, #303840 2.57rem, #464c51 3.21rem, #616567 3.86rem, #7f8180 4.5rem, #9f9e9b 5.14rem, #bdbbb5 5.79rem, #d6d3cc 6.43rem, #e9e5de 7.07rem, #f5f0e8 7.71rem, #faf5ed 8.36rem, #fbf6ee 9rem);
 }
 
 .btv-hero_text {
@@ -1586,4 +1586,187 @@
 .jazz_glow,
 .jazz_flyer {
     will-change: transform, opacity;
+}
+
+.btv-fest .plans-jazz_inner {
+    max-width: 1100px;
+}
+
+.btv-fest_body {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: 3.5rem;
+    margin: 3rem 0 3.5rem;
+}
+
+.btv-fest_art {
+    display: grid;
+    gap: 0.9rem;
+    margin: 0;
+}
+
+.btv-fest_frame {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    max-width: 100%;
+    padding: 2rem;
+    border: 1px solid rgba(227, 168, 59, 0.35);
+    border-radius: 24px;
+    background: radial-gradient(ellipse 70% 60% at 50% 55%, rgba(227, 168, 59, 0.12), transparent 75%), rgba(251, 246, 238, 0.04);
+    box-sizing: border-box;
+}
+
+.btv-fest_horn {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.btv-fest_horn *,
+.btv-fest_horn {
+    animation: none !important;
+    transition: none !important;
+}
+
+.btv-fest_art figcaption {
+    color: rgba(251, 246, 238, 0.7);
+    font-size: 0.9rem;
+    font-style: italic;
+    text-align: center;
+}
+
+.btv-fest_timeline {
+    position: relative;
+    display: grid;
+    gap: 1.6rem;
+    margin: 0;
+    padding: 0 0 0 2rem;
+    list-style: none;
+}
+
+.btv-fest_timeline::before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    left: 0.4rem;
+    width: 1px;
+    background: linear-gradient(180deg, rgba(227, 168, 59, 0), rgba(227, 168, 59, 0.6) 10%, rgba(227, 168, 59, 0.6) 90%, rgba(227, 168, 59, 0));
+}
+
+.btv-fest_timeline li {
+    position: relative;
+    display: grid;
+    gap: 0.3rem;
+}
+
+.btv-fest_timeline li::before {
+    content: "";
+    position: absolute;
+    top: 0.35rem;
+    left: -1.9rem;
+    width: 0.65rem;
+    height: 0.65rem;
+    border: 2px solid var(--plans-gold);
+    border-radius: 50%;
+    background: #141d29;
+}
+
+.btv-fest_year {
+    margin: 0;
+    color: var(--plans-gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.btv-fest_timeline h3 {
+    margin: 0;
+    color: var(--plans-paper);
+    font: 700 1.25rem "Playfair Display", Georgia, serif;
+}
+
+.btv-fest_timeline li > p:last-child {
+    margin: 0;
+    max-width: 34rem;
+    color: rgba(251, 246, 238, 0.8);
+    line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+    .btv-fest_body {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+    }
+
+    .btv-fest_frame {
+        padding: 1.25rem;
+    }
+}
+
+.btv-fest_body {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+    align-items: start;
+    gap: 4rem;
+}
+
+.btv-fest_frame {
+    aspect-ratio: 5 / 4;
+    padding: 1.5rem 1.75rem;
+    border-radius: 18px;
+}
+
+.btv-fest_horn {
+    max-width: 12.5rem;
+}
+
+.btv-fest_art figcaption {
+    font-size: 0.85rem;
+}
+
+@media (max-width: 860px) {
+    .btv-fest_body {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+    }
+
+    .btv-fest_art {
+        width: 100%;
+        max-width: 16rem;
+        justify-self: center;
+    }
+}
+
+.btv-facts {
+    padding-bottom: 1.5rem;
+}
+
+@media (max-width: 720px) {
+    .btv-scene {
+        margin-top: 0.5rem;
+        height: clamp(170px, 50vw, 300px);
+    }
+
+    .btv-scene svg {
+        object-fit: cover;
+    }
+
+    .btv-facts {
+        gap: 1.25rem 1rem;
+        padding-top: 1.5rem;
+        padding-bottom: 2rem;
+    }
+
+    .btv-facts b {
+        font-size: 1.35rem;
+    }
+
+    .btv-facts span {
+        font-size: 0.82rem;
+        line-height: 1.35;
+    }
 }

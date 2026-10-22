@@ -789,3 +789,250 @@
         transition: none !important;
     }
 }
+
+.si-page .si {
+    background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(227, 168, 59, 0.1), transparent 70%),
+        linear-gradient(180deg, var(--si-paper-deep) 0%, var(--si-paper) 22rem, var(--si-paper) 100%);
+    padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3.5rem, 7vw, 6rem);
+}
+
+.si-page .si-wrap {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: 0;
+    align-items: stretch;
+    width: min(68rem, 100% - 3rem);
+    margin-block: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e6ddcd;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(29, 42, 58, 0.05), 0 28px 60px -34px rgba(29, 42, 58, 0.55);
+}
+
+.si-page .si-brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2rem, 4vw, 3.25rem);
+    background:
+        radial-gradient(ellipse 70% 55% at 0% 0%, rgba(227, 168, 59, 0.16), transparent 65%),
+        linear-gradient(160deg, #22314a 0%, var(--si-ink) 55%, #152030 100%);
+}
+
+.si-page .si-eyebrow {
+    font-size: 0.75rem;
+}
+
+.si-page .si-brand h1 {
+    font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+    line-height: 1.12;
+}
+
+.si-page .si-lead {
+    margin-bottom: 1.75rem;
+    color: rgba(251, 246, 238, 0.8);
+    font-size: 1rem;
+}
+
+.si-page .si-passport {
+    width: min(22rem, 100%);
+    margin-bottom: 1.75rem;
+    transform: none;
+    box-shadow: 0 22px 44px -22px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(226, 191, 110, 0.18);
+}
+
+.si-page .si-passport:hover {
+    transform: translateY(-3px);
+}
+
+.si-page .si-perks {
+    gap: 0.6rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(251, 246, 238, 0.14);
+    font-size: 0.95rem;
+}
+
+.si-page .si-perks_icon {
+    width: 1.35rem;
+    height: 1.35rem;
+    border: 1px solid rgba(227, 168, 59, 0.6);
+    background: transparent;
+    color: var(--si-gold);
+    font-size: 0.75rem;
+}
+
+.si-page .si-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2rem, 4vw, 3.25rem);
+    border: 0;
+    border-radius: 0;
+    background: #fff;
+    box-shadow: none;
+}
+
+.si-page .si-tabs {
+    gap: 0;
+    margin-bottom: 2rem;
+    padding: 0;
+    border-bottom: 1px solid #e6ddcd;
+    border-radius: 0;
+    background: none;
+}
+
+.si-page .si-tab {
+    margin-bottom: -1px;
+    padding: 0.85rem 0.5rem;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    color: var(--si-muted);
+}
+
+.si-page .si-tab:hover {
+    color: var(--si-ink);
+}
+
+.si-page .si-tab[aria-selected="true"] {
+    border-bottom-color: var(--si-clay);
+    background: none;
+    color: var(--si-ink);
+    box-shadow: none;
+}
+
+.si-page .si-title {
+    font-size: 1.85rem;
+}
+
+.si-page .si-sub {
+    margin-bottom: 1.75rem;
+    font-size: 0.95rem;
+}
+
+.si-page .si-form {
+    gap: 1.1rem;
+}
+
+.si-page .si-field label {
+    margin-bottom: 0.45rem;
+    font-size: 0.9rem;
+}
+
+.si-page .si-field input {
+    min-height: 2.9rem;
+    border: 1px solid #cfc4b1;
+    border-radius: 10px;
+    background: #fffdf9;
+}
+
+.si-page .si-field input:hover {
+    border-color: #a99d88;
+}
+
+.si-page .si-field input:focus {
+    border-color: var(--si-clay);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(176, 73, 31, 0.18);
+}
+
+.si-page .si-eye {
+    background: var(--si-paper-deep);
+}
+
+.si-page .si-submit,
+.si-page .si-ghost {
+    min-height: 3rem;
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+.si-page .si-form .si-submit {
+    margin-top: 0.35rem;
+}
+
+.si-page .si-submit:hover,
+.si-page .si-ghost:hover {
+    transform: none;
+}
+
+.si-page .si-switch {
+    font-size: 0.95rem;
+}
+
+.si-page .si-link {
+    font-size: 0.95rem;
+}
+
+.si-page .si-note {
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #eee5d6;
+}
+
+.si-page .si-stats div,
+.si-page .si-plan {
+    border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+    .si-page .si {
+        background: linear-gradient(180deg, var(--si-paper-deep) 0%, var(--si-paper) 18rem, var(--si-paper) 100%);
+    }
+
+    .si-page .si-wrap {
+        grid-template-columns: minmax(0, 1fr);
+        width: min(36rem, 100% - 2rem);
+    }
+
+    .si-page .si-brand {
+        text-align: left;
+    }
+
+    .si-page .si-lead,
+    .si-page .si-passport {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .si-page .si-perks {
+        justify-items: start;
+    }
+
+    .si-page .si-passport {
+        display: none;
+    }
+
+    .si-page .si-card {
+        border-top: 1px solid #e6ddcd;
+    }
+}
+
+@media (max-width: 640px) {
+    .si-page .si-wrap {
+        width: auto;
+        margin: 0 max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
+    }
+
+    .si-page .si {
+        padding-block: 1.5rem 3rem;
+    }
+
+    .si-page .si-brand,
+    .si-page .si-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .si-page .si-brand h1 {
+        font-size: 1.75rem;
+    }
+
+    .si-page .si-lead {
+        margin-bottom: 1.25rem;
+    }
+
+    .si-page .si-perks {
+        padding-top: 1.1rem;
+    }
+}

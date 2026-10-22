@@ -78,15 +78,15 @@
 .pm-hero {
     position: relative;
     padding-block: 4.5rem 0;
-    background: linear-gradient(180deg, #121a27, #1d2a3a 70%, #243246);
+    background: linear-gradient(180deg, #121a27, #1d2a3a 70%, #1f2c3e);
     color: var(--pm-paper);
 }
 
 .pm-hero::after {
     content: "";
     display: block;
-    height: 5rem;
-    background: linear-gradient(180deg, #243246, #8f8c8a 55%, var(--pm-paper));
+    height: 11rem;
+    background: linear-gradient(180deg, #1f2c3e 0%, #202d3e 0.79rem, #233041 1.57rem, #2c3848 2.36rem, #3b4653 3.14rem, #505963 3.93rem, #6a7076 4.71rem, #878a8d 5.5rem, #a4a6a5 6.29rem, #c0c0bc 7.07rem, #d8d6d0 7.86rem, #eae6df 8.64rem, #f5f1e9 9.43rem, #faf5ed 10.21rem, #fbf6ee 11rem);
 }
 
 .pm-hero_inner {
@@ -542,4 +542,17 @@
 .pm-jump a[aria-current="location"] {
     background: rgba(251, 246, 238, 0.18);
     box-shadow: inset 0 0 0 2px var(--pm-gold);
+}
+
+.pm-hero_lead a {
+    color: var(--pm-gold);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
+.pm-hero_lead a:hover,
+.pm-hero_lead a:focus-visible {
+    color: #fff;
 }
