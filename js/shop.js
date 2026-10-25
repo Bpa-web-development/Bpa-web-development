@@ -89,6 +89,7 @@
                 <textarea id="shopNote" name="note" rows="3" maxlength="200"></textarea>
             </div>
             <div class="shop-save" id="shopSave"></div>
+            <p class="shop-form-error" id="shopCheckoutError" role="alert"></p>
         </form>
         <div class="shop-drawer_foot">
             <dl class="shop-totals">
@@ -148,7 +149,7 @@
             <p class="shop-form-error" id="shopAuthError" role="alert"></p>
             <button type="submit" class="shop-button shop-button--wide" id="shopAuthSubmit">Sign in</button>
         </form>
-        <p class="shop-secure">${LOCK_ICON}<span>Encrypted on this device. Your password is never saved.</span></p>
+        <p class="shop-secure">${LOCK_ICON}<span>Passwords are hashed with bcrypt and never stored as text.</span></p>
     </div>
 
     <div data-account-view="profile" hidden>
@@ -165,8 +166,8 @@
         <ul class="shop-subs" id="shopSubs"></ul>
         <p class="shop-subs_empty" id="shopSubsEmpty">No subscriptions yet.</p>
         <details class="shop-vault">
-            <summary>${LOCK_ICON}<span>See what's actually saved on this device</span></summary>
-            <p>This is the raw record in localStorage. Your email, name and subscriptions only exist inside the encrypted data.</p>
+            <summary>${LOCK_ICON}<span>See how your account is protected</span></summary>
+            <p>Your account lives in our database. Your password is stored only as a one-way bcrypt hash, and you stay signed in with a cookie that page scripts can't read.</p>
             <pre id="shopVault"></pre>
         </details>
         <div class="shop-profile_actions">
@@ -174,7 +175,7 @@
             <button type="button" class="shop-button shop-button--danger" id="shopDeleteStart">Delete account</button>
         </div>
         <form class="shop-delete" id="shopDeleteForm" novalidate hidden>
-            <p>This removes your account and its subscriptions from this device. Enter your password to confirm.</p>
+            <p>This permanently deletes your account and its saved orders. Enter your password to confirm.</p>
             <div class="shop-field">
                 <label for="shopDeletePassword">Password</label>
                 <input type="password" id="shopDeletePassword" autocomplete="current-password">
@@ -242,7 +243,6 @@
         const toast = $("#shopToast");
         const views = $$(".shop-view", drawer);
         let toastTimer = 0;
-        let lastCount = M.cart.count();
         const onCartPage = document.body.dataset.page === "cart";
         if (onCartPage) {
             $("#shopFullCart").hidden = true;
@@ -298,58 +298,25 @@
         });
 
         const navCarts = $$(".navbar-cart");
-        const container = $(".navbar-container");
         const toggle = $("#navbarToggle");
-        if (container) {
-            const mobileCart = el("button", "shop-mobile-cart");
-            mobileCart.type = "button";
-            mobileCart.innerHTML = CART_ICON;
-            if (toggle && toggle.parentNode === container) {
-                container.insertBefore(mobileCart, toggle);
-            } else {
-                container.appendChild(mobileCart);
-            }
-            navCarts.push(mobileCart);
-        }
 
         navCarts.forEach((link) => {
-            link.classList.add("shop-cart-trigger");
-            link.appendChild(el("span", "shop-badge"));
-            link.lastChild.setAttribute("aria-hidden", "true");
             link.addEventListener("click", (event) => {
-                event.preventDefault();
-                if (onCartPage) {
-                    const nav = $(".navbar.is-open");
-                    if (nav && toggle) {
-                        toggle.click();
-                    }
-                    const title = $("#cartTitle");
-                    if (title) {
-                        title.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
-                        title.focus({ preventScroll: true });
-                    }
+                if (!onCartPage) {
                     return;
                 }
-                const page = $(".navbar-cart");
-                window.location.href = page ? page.href : "/html/cart.html";
-            });
-        });
-
-        function renderBadges() {
-            const count = M.cart.count();
-            navCarts.forEach((link) => {
-                const badge = $(".shop-badge", link);
-                badge.textContent = count > 9 ? "9+" : String(count);
-                badge.hidden = count === 0;
-                link.setAttribute("aria-label", count ? "Cart, " + count + (count === 1 ? " item" : " items") : "Cart, empty");
-                if (count !== lastCount && !reduceMotion) {
-                    badge.classList.remove("is-bumped");
-                    void badge.offsetWidth;
-                    badge.classList.add("is-bumped");
+                event.preventDefault();
+                const nav = $(".navbar.is-open");
+                if (nav && toggle) {
+                    toggle.click();
+                }
+                const title = $("#cartTitle");
+                if (title) {
+                    title.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+                    title.focus({ preventScroll: true });
                 }
             });
-            lastCount = count;
-        }
+        });
 
         function stepper(item) {
             const wrap = el("div", "shop-qty");
@@ -415,7 +382,6 @@
                 showView("cart");
             }
             renderSummary();
-            renderBadges();
         }
 
         function renderPromo() {
@@ -517,7 +483,7 @@
                 hint.textContent = "Signed in as " + user.firstName + ".";
                 save.className = "shop-save is-signed-in";
                 save.innerHTML = LOCK_ICON;
-                save.appendChild(el("span", "", "This order saves to " + user.firstName + "'s encrypted account."));
+                save.appendChild(el("span", "", "This order saves to " + user.firstName + "'s account."));
             } else {
                 hint.append(document.createTextNode("Have an account? "));
                 const button = el("button", "shop-link", "Sign in");
@@ -533,24 +499,11 @@
                 text.append(link, document.createTextNode(" to keep this order."));
                 save.appendChild(text);
             }
-            $$(".navbar-sign-in, a[href$='sign-in.html']").forEach((link) => {
-                const isNav = link.classList.contains("navbar-sign-in");
+            $$("a[href$='sign-in.html']:not(.navbar a)").forEach((link) => {
                 if (!link.dataset.shopLabel) {
                     link.dataset.shopLabel = link.textContent.trim();
                 }
-                if (user) {
-                    link.replaceChildren();
-                    if (isNav) {
-                        const avatar = el("span", "shop-nav-avatar", initials(user.name));
-                        avatar.setAttribute("aria-hidden", "true");
-                        link.append(avatar);
-                    }
-                    link.append(document.createTextNode(isNav ? user.firstName : "My Account"));
-                    link.setAttribute("aria-label", (isNav ? user.firstName : "My Account") + ", account for " + user.name);
-                } else {
-                    link.textContent = link.dataset.shopLabel;
-                    link.removeAttribute("aria-label");
-                }
+                link.textContent = user ? "My Account" : link.dataset.shopLabel;
                 link.classList.toggle("is-signed-in", Boolean(user));
             });
         }
@@ -742,22 +695,42 @@
                 return;
             }
             const button = $("#shopPlaceOrder");
+            const errorBox = $("#shopCheckoutError");
+            const label = button.textContent;
+            errorBox.textContent = "";
             button.disabled = true;
+            button.textContent = "Placing your order…";
             const lines = M.cart.items.map((item) => Object.assign({}, item));
-            const order = M.orderNumber();
-            const discount = M.cart.discount();
-            const total = M.cart.total();
             const name = $("#shopName").value.trim();
             const email = $("#shopEmail").value.trim();
             const zip = $("#shopZip").value.trim();
-            let saved = false;
-            if (M.account.user) {
-                try {
-                    await M.account.addSubscriptions(lines, { order, zip, promo: discount.amount ? discount.code : "" });
-                    saved = true;
-                } catch (error) {
-                }
+            let result;
+            try {
+                result = await M.orders.place({
+                    name,
+                    email,
+                    zip,
+                    note: M.cart.has("gift") ? $("#shopNote").value.trim() : "",
+                    items: lines,
+                    promo: M.cart.promoCode
+                });
+            } catch (error) {
+                const fieldIds = { name: "shopName", email: "shopEmail", zip: "shopZip" };
+                Object.keys(error.fields || {}).forEach((field) => {
+                    if (fieldIds[field]) {
+                        setError(document.getElementById(fieldIds[field]), error.fields[field]);
+                    }
+                });
+                errorBox.textContent = error.message;
+                button.disabled = false;
+                button.textContent = label;
+                announce(error.message);
+                return;
             }
+            const order = result.order.number;
+            const total = result.order.total;
+            const discount = { code: result.order.promo, amount: result.order.discount };
+            const saved = Boolean(result.user);
             try {
                 localStorage.setItem("marlowbyPlan", JSON.stringify({ plan: lines[0].plan, billing: lines[0].term, order }));
             } catch (error) {
@@ -767,13 +740,15 @@
             const unique = names.filter((value, index) => names.indexOf(value) === index);
             $("#shopDoneMessage").textContent = "Thanks, " + firstName + ". Your " + (unique.length > 1 ? unique.slice(0, -1).join(", ") + " and " + unique[unique.length - 1] : unique[0]) + (lines.length > 1 ? " boxes are" : " box is") +
                 " reserved and your Marlowby passport just got its member stamp." + (discount.amount ? " You saved " + M.money(discount.amount) + " with " + discount.code + "." : "") +
-                (total >= M.catalog.reward().threshold ? " " + M.catalog.reward().label.charAt(0).toUpperCase() + M.catalog.reward().label.slice(1) + " is coming too." : "") + " We'll email " + email + " before it ships.";
+                (total >= M.catalog.reward().threshold ? " " + M.catalog.reward().label.charAt(0).toUpperCase() + M.catalog.reward().label.slice(1) + " is coming too." : "") +
+                (result.emailed ? " Your confirmation is on its way to " + email + "." : " We'll email " + email + " before it ships.");
             $("#shopOrderNumber").textContent = order;
             $("#shopDoneSaved").textContent = saved ? "Saved to your account." : "Create an account to keep your orders.";
             M.cart.clear();
             showView("done");
             $("#shopCheckoutForm").reset();
             button.disabled = false;
+            button.textContent = label;
             $("#shopDoneTitle").focus();
             announce("Order " + order + " placed. " + M.money(total) + " due at launch.");
             document.dispatchEvent(new CustomEvent("marlowby:purchase", { detail: { lines, order, name, email, total, saved, promo: discount.code, discount: discount.amount } }));
@@ -842,16 +817,12 @@
                 list.appendChild(li);
             });
             $("#shopSubsEmpty").hidden = user.subscriptions.length > 0;
-            const record = M.account.storedRecord();
-            if (record) {
-                const clip = (text) => (text.length > 44 ? text.slice(0, 44) + "…" : text);
+            const security = user.security;
+            if (security) {
                 $("#shopVault").textContent = JSON.stringify({
-                    id: clip(record.id),
-                    salt: record.salt,
-                    iterations: record.iterations,
-                    verifier: clip(record.verifier),
-                    iv: record.iv,
-                    data: clip(record.data)
+                    email: user.email,
+                    password: security.hashPreview + " (" + security.passwordStorage + ")",
+                    session: security.session
                 }, null, 2);
             }
         }
@@ -893,7 +864,7 @@
             }
             const button = $("#shopAuthSubmit");
             button.disabled = true;
-            button.textContent = authMode === "signup" ? "Encrypting your account…" : "Unlocking…";
+            button.textContent = authMode === "signup" ? "Creating your account…" : "Signing in…";
             modal.classList.add("is-busy");
             const payload = {
                 name: $("#shopAuthName").value,
@@ -962,8 +933,8 @@
                 setAuthMode("signup");
                 renderProfile();
                 $("#shopAuthEmail").focus();
-                announce("Your account was deleted from this device.");
-                $("#shopAuthError").textContent = "Your account was deleted from this device.";
+                announce("Your account was deleted.");
+                $("#shopAuthError").textContent = "Your account was deleted. We emailed you a confirmation.";
             } catch (error) {
                 setError(input, error.message);
                 input.focus();

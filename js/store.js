@@ -4,10 +4,10 @@
     const KEYS = {
         cart: "marlowbyCart",
         promo: "marlowbyPromo",
-        accounts: "marlowbyAccounts",
-        session: "marlowbySession",
-        lock: "marlowbyLock"
+        userHint: "marlowbyUserHint"
     };
+
+    const LEGACY_KEYS = ["marlowbyAccounts", "marlowbySession", "marlowbyLock"];
 
     const DEFAULT_CATALOG = {
         currency: "USD",
@@ -34,12 +34,6 @@
     };
 
     const MAX_QTY = 5;
-    const ITERATIONS = 250000;
-    const MAX_FAILURES = 5;
-    const LOCK_MS = 30000;
-
-    const encoder = new TextEncoder();
-    const decoder = new TextDecoder();
 
     function emit(name, detail) {
         document.dispatchEvent(new CustomEvent("marlowby:" + name, { detail }));
@@ -276,91 +270,63 @@
             cart.load();
             emit("cart", cart.snapshot({ reason: "sync" }));
         }
-        if (event.key === KEYS.accounts && account.user && !readAccounts().users[account.user.id]) {
-            account.signOut();
+        if (event.key === KEYS.userHint && !event.newValue && account.user) {
+            account.user = null;
+            emit("account", { user: null, reason: "signout" });
+        } else if (event.key === KEYS.userHint && event.newValue && !account.user) {
+            account.restore();
         }
     });
 
-    function toHex(buffer) {
-        return Array.from(new Uint8Array(buffer), (byte) => byte.toString(16).padStart(2, "0")).join("");
+    function fail(message, code, fields) {
+        const error = new Error(message);
+        error.code = code;
+        error.fields = fields || {};
+        return error;
     }
 
-    function toBase64(buffer) {
-        let text = "";
-        new Uint8Array(buffer).forEach((byte) => (text += String.fromCharCode(byte)));
-        return btoa(text);
-    }
-
-    function fromBase64(text) {
-        return Uint8Array.from(atob(text), (char) => char.charCodeAt(0));
-    }
-
-    function sameBytes(a, b) {
-        if (a.length !== b.length) {
-            return false;
+    // Talks to the serverless API in /api. The session lives in an HttpOnly cookie,
+    // so page scripts never see it.
+    async function api(path, options) {
+        const settings = options || {};
+        let response;
+        try {
+            response = await fetch("/api/" + path, {
+                method: settings.method || "GET",
+                credentials: "same-origin",
+                headers: settings.body ? { "Content-Type": "application/json" } : {},
+                body: settings.body ? JSON.stringify(settings.body) : undefined
+            });
+        } catch (error) {
+            throw fail("We couldn't reach Marlowby. Check your internet connection and try again.", "network");
         }
-        let diff = 0;
-        for (let i = 0; i < a.length; i += 1) {
-            diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+        let data = {};
+        try {
+            data = await response.json();
+        } catch (error) {
         }
-        return diff === 0;
+        if (!response.ok) {
+            const problem = data.error || {};
+            throw fail(problem.message || "Something went wrong. Please try again.", problem.code || "http_" + response.status, problem.fields);
+        }
+        return data;
     }
 
-    const cryptoReady = Boolean(window.crypto && window.crypto.subtle);
+    LEGACY_KEYS.forEach((key) => {
+        removeKey(localStorage, key);
+        removeKey(sessionStorage, key);
+    });
 
     function normalizeEmail(email) {
         return String(email || "").trim().toLowerCase();
     }
 
-    async function emailId(email) {
-        const digest = await crypto.subtle.digest("SHA-256", encoder.encode("marlowby-account:" + normalizeEmail(email)));
-        return toHex(digest);
-    }
-
-    async function deriveSecrets(password, salt, iterations) {
-        const base = await crypto.subtle.importKey("raw", encoder.encode(password), "PBKDF2", false, ["deriveBits"]);
-        const bits = new Uint8Array(await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt, iterations }, base, 512));
-        return { verifier: toHex(bits.slice(0, 32)), keyBytes: bits.slice(32) };
-    }
-
-    function importAesKey(keyBytes) {
-        return crypto.subtle.importKey("raw", keyBytes, { name: "AES-GCM" }, false, ["encrypt", "decrypt"]);
-    }
-
-    async function encryptProfile(key, id, profile) {
-        const iv = crypto.getRandomValues(new Uint8Array(12));
-        const cipher = await crypto.subtle.encrypt({ name: "AES-GCM", iv, additionalData: encoder.encode(id) }, key, encoder.encode(JSON.stringify(profile)));
-        return { iv: toBase64(iv), data: toBase64(cipher) };
-    }
-
-    async function decryptProfile(key, id, record) {
-        const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: fromBase64(record.iv), additionalData: encoder.encode(id) }, key, fromBase64(record.data));
-        return JSON.parse(decoder.decode(plain));
-    }
-
-    function readAccounts() {
-        const store = readJson(localStorage, KEYS.accounts, null);
-        return store && store.users ? store : { version: 1, users: {} };
-    }
-
-    function writeAccounts(store) {
-        return writeJson(localStorage, KEYS.accounts, store);
-    }
-
-    function lockState() {
-        const lock = readJson(sessionStorage, KEYS.lock, { failures: 0, until: 0 });
-        return lock && typeof lock.failures === "number" ? lock : { failures: 0, until: 0 };
-    }
-
-    function fail(message, code) {
-        const error = new Error(message);
-        error.code = code;
-        return error;
-    }
-
     function checkPassword(password) {
         if (password.length < 8) {
             return "Use at least 8 characters.";
+        }
+        if (new TextEncoder().encode(password).length > 72) {
+            return "Use 72 characters or fewer.";
         }
         if (!/[A-Za-z]/.test(password) || !/\d/.test(password)) {
             return "Mix in at least one letter and one number.";
@@ -380,185 +346,97 @@
 
     const account = {
         user: null,
-        key: null,
-        available: cryptoReady,
-        iterations: ITERATIONS,
+        available: typeof fetch === "function",
         checkPassword,
         passwordStrength,
         normalizeEmail,
-        async startSession(id, keyBytes, profile) {
-            this.user = { id, profile };
-            this.key = await importAesKey(keyBytes);
-            writeJson(sessionStorage, KEYS.session, { id, key: toBase64(keyBytes) });
-            emit("account", { user: this.publicUser(), reason: "signin" });
+        setUser(user, reason) {
+            this.user = user || null;
+            if (this.user) {
+                writeJson(localStorage, KEYS.userHint, { firstName: this.user.firstName, name: this.user.name });
+            } else {
+                removeKey(localStorage, KEYS.userHint);
+            }
+            emit("account", { user: this.publicUser(), reason });
+            return this.publicUser();
         },
         publicUser() {
             if (!this.user) {
                 return null;
             }
-            const profile = this.user.profile;
+            const user = this.user;
             return {
-                name: profile.name,
-                firstName: profile.name.split(/\s+/)[0],
-                email: profile.email,
-                zip: profile.zip || "",
-                created: profile.created,
-                subscriptions: profile.subscriptions.slice()
+                name: user.name,
+                firstName: user.firstName || user.name.split(/\s+/)[0],
+                email: user.email,
+                zip: user.zip || "",
+                created: user.created,
+                subscriptions: (user.subscriptions || []).slice(),
+                security: user.security || null
             };
         },
         async signUp({ name, email, password }) {
-            if (!cryptoReady) {
-                throw fail("Accounts need a secure connection. Open the site through Live Server or https.", "crypto");
-            }
-            const store = readAccounts();
-            const id = await emailId(email);
-            if (store.users[id]) {
-                throw fail("There's already an account for that email. Try signing in.", "exists");
-            }
-            const salt = crypto.getRandomValues(new Uint8Array(16));
-            const secrets = await deriveSecrets(password, salt, ITERATIONS);
-            const profile = {
-                name: name.trim(),
-                email: email.trim(),
-                zip: "",
-                created: new Date().toISOString(),
-                subscriptions: []
-            };
-            const key = await importAesKey(secrets.keyBytes);
-            const sealed = await encryptProfile(key, id, profile);
-            store.users[id] = { salt: toBase64(salt), iterations: ITERATIONS, verifier: secrets.verifier, iv: sealed.iv, data: sealed.data };
-            if (!writeAccounts(store)) {
-                throw fail("This browser won't let us save an account right now.", "storage");
-            }
-            await this.startSession(id, secrets.keyBytes, profile);
-            return this.publicUser();
+            const data = await api("auth/register", { method: "POST", body: { name: name.trim(), email: normalizeEmail(email), password } });
+            this.emailed = Boolean(data.emailed);
+            return this.setUser(data.user, "signin");
         },
         async signIn({ email, password }) {
-            if (!cryptoReady) {
-                throw fail("Accounts need a secure connection. Open the site through Live Server or https.", "crypto");
-            }
-            const lock = lockState();
-            if (lock.until > Date.now()) {
-                throw fail("Too many tries. Wait " + Math.ceil((lock.until - Date.now()) / 1000) + " seconds and try again.", "locked");
-            }
-            const id = await emailId(email);
-            const record = readAccounts().users[id];
-            const salt = record ? fromBase64(record.salt) : crypto.getRandomValues(new Uint8Array(16));
-            const secrets = await deriveSecrets(password, salt, record ? record.iterations : ITERATIONS);
-            if (!record || !sameBytes(secrets.verifier, record.verifier)) {
-                lock.failures += 1;
-                if (lock.failures >= MAX_FAILURES) {
-                    lock.failures = 0;
-                    lock.until = Date.now() + LOCK_MS;
-                }
-                writeJson(sessionStorage, KEYS.lock, lock);
-                throw fail("That email and password don't match an account on this device.", "mismatch");
-            }
-            removeKey(sessionStorage, KEYS.lock);
-            const key = await importAesKey(secrets.keyBytes);
-            const profile = await decryptProfile(key, id, record);
-            await this.startSession(id, secrets.keyBytes, profile);
-            return this.publicUser();
+            const data = await api("auth/login", { method: "POST", body: { email: normalizeEmail(email), password } });
+            return this.setUser(data.user, "signin");
         },
         async restore() {
-            const session = readJson(sessionStorage, KEYS.session, null);
-            if (!cryptoReady || !session || !session.id) {
-                return null;
-            }
-            const record = readAccounts().users[session.id];
-            if (!record) {
-                removeKey(sessionStorage, KEYS.session);
-                return null;
-            }
             try {
-                const key = await importAesKey(fromBase64(session.key));
-                const profile = await decryptProfile(key, session.id, record);
-                this.user = { id: session.id, profile };
-                this.key = key;
-                emit("account", { user: this.publicUser(), reason: "restore" });
-                return this.publicUser();
+                const data = await api("auth/me");
+                if (data.user) {
+                    return this.setUser(data.user, "restore");
+                }
+                if (readJson(localStorage, KEYS.userHint, null)) {
+                    this.setUser(null, "expired");
+                }
             } catch (error) {
-                removeKey(sessionStorage, KEYS.session);
-                return null;
             }
-        },
-        async persist() {
-            const store = readAccounts();
-            const record = store.users[this.user.id];
-            if (!record) {
-                this.signOut();
-                throw fail("This account was removed on this device.", "missing");
-            }
-            const sealed = await encryptProfile(this.key, this.user.id, this.user.profile);
-            record.iv = sealed.iv;
-            record.data = sealed.data;
-            writeAccounts(store);
+            return null;
         },
         async update(changes) {
             if (!this.user) {
                 return null;
             }
-            Object.assign(this.user.profile, changes);
-            await this.persist();
-            emit("account", { user: this.publicUser(), reason: "update" });
-            return this.publicUser();
-        },
-        async addSubscriptions(lines, details) {
-            if (!this.user) {
-                return null;
-            }
-            const now = new Date().toISOString();
-            lines.forEach((line) => {
-                this.user.profile.subscriptions.push({
-                    plan: line.plan,
-                    term: line.term,
-                    qty: line.qty,
-                    due: catalog.dueToday(line.plan, line.term) * line.qty,
-                    order: details.order,
-                    promo: details.promo || "",
-                    saved: details.saved || 0,
-                    date: now
-                });
-            });
-            if (details.zip) {
-                this.user.profile.zip = details.zip;
-            }
-            await this.persist();
-            emit("account", { user: this.publicUser(), reason: "subscriptions" });
-            return this.publicUser();
+            const data = await api("account", { method: "PATCH", body: changes });
+            return this.setUser(data.user, "update");
         },
         signOut() {
-            this.user = null;
-            this.key = null;
-            removeKey(sessionStorage, KEYS.session);
-            emit("account", { user: null, reason: "signout" });
+            const request = api("auth/logout", { method: "POST", body: {} }).catch(() => {});
+            this.setUser(null, "signout");
+            return request;
         },
         async remove(password) {
             if (!this.user) {
                 return false;
             }
-            const store = readAccounts();
-            const record = store.users[this.user.id];
-            if (record) {
-                const secrets = await deriveSecrets(password, fromBase64(record.salt), record.iterations);
-                if (!sameBytes(secrets.verifier, record.verifier)) {
-                    throw fail("That password isn't right.", "mismatch");
-                }
-                delete store.users[this.user.id];
-                writeAccounts(store);
-            }
-            this.signOut();
+            await api("account", { method: "DELETE", body: { password } });
+            this.setUser(null, "signout");
             return true;
-        },
-        storedRecord() {
-            if (!this.user) {
-                return null;
+        }
+    };
+
+    // Orders are priced again on the server from plans.json, so the browser can't change a price.
+    const orders = {
+        async place({ name, email, zip, note, items, promo }) {
+            const data = await api("orders", {
+                method: "POST",
+                body: {
+                    name,
+                    email,
+                    zip,
+                    note: note || "",
+                    promo: promo || "",
+                    items: items.map((item) => ({ plan: item.plan, term: item.term, qty: item.qty }))
+                }
+            });
+            if (data.user) {
+                account.setUser(data.user, "subscriptions");
             }
-            const record = readAccounts().users[this.user.id];
-            return record ? Object.assign({ id: this.user.id }, record) : null;
-        },
-        count() {
-            return Object.keys(readAccounts().users).length;
+            return data;
         }
     };
 
@@ -569,9 +447,8 @@
         catalog,
         cart,
         account,
-        ready: Promise.all([catalogReady, accountReady]).then(() => window.Marlowby),
-        orderNumber() {
-            return "MB" + Date.now().toString(36).toUpperCase().slice(-6) + toHex(crypto.getRandomValues(new Uint8Array(2))).toUpperCase();
-        }
+        orders,
+        api,
+        ready: Promise.all([catalogReady, accountReady]).then(() => window.Marlowby)
     };
 })();

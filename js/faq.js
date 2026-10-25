@@ -191,19 +191,6 @@
         }
     }
 
-    function ticketId() {
-        const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-        let id = "";
-        const values = new Uint32Array(6);
-        if (window.crypto && window.crypto.getRandomValues) {
-            window.crypto.getRandomValues(values);
-        } else {
-            values.forEach((value, index) => (values[index] = Math.floor(Math.random() * 1e9)));
-        }
-        values.forEach((value) => (id += chars[value % chars.length]));
-        return "HD-" + id;
-    }
-
     function initHelpdesk() {
         const form = $("#fqTicket");
         if (!form) {
@@ -213,6 +200,7 @@
         const list = $("#fqTicketsList");
         const emptyNote = $("#fqTicketsEmpty");
         const message = $("#tkMessage");
+        const honeypot = $("#tkWebsite");
         const counter = $("#tkCount");
         const fields = {
             name: $("#tkName"),
@@ -328,7 +316,28 @@
         message.addEventListener("input", updateCounter);
         updateCounter();
 
-        form.addEventListener("submit", (event) => {
+        const submitButton = $("button[type=submit]", form);
+
+        async function sendTicket(payload) {
+            if (window.Marlowby && window.Marlowby.api) {
+                return window.Marlowby.api("contact", { method: "POST", body: payload });
+            }
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                credentials: "same-origin",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                const error = new Error((data.error && data.error.message) || "We couldn't send your ticket. Please try again.");
+                error.fields = (data.error && data.error.fields) || {};
+                throw error;
+            }
+            return data;
+        }
+
+        form.addEventListener("submit", async (event) => {
             event.preventDefault();
             const results = Object.keys(checks).map((key) => [key, checks[key]()]);
             const firstBad = results.find(([, ok]) => !ok);
@@ -338,23 +347,52 @@
                 return;
             }
             const order = fields.order.value.trim().toUpperCase();
-            const ticket = {
-                id: ticketId(),
-                created: Date.now(),
+            const payload = {
                 name: fields.name.value.trim(),
                 email: fields.email.value.trim(),
                 order,
                 topic: fields.topic.value,
-                message: message.value.trim()
+                message: message.value.trim(),
+                website: honeypot ? honeypot.value : ""
+            };
+            const label = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending…";
+            let result;
+            try {
+                result = await sendTicket(payload);
+            } catch (error) {
+                const fieldErrors = error.fields || {};
+                Object.keys(fieldErrors).forEach((key) => {
+                    const field = key === "message" ? message : fields[key];
+                    if (field) {
+                        setError(field, fieldErrors[key]);
+                    }
+                });
+                say(error.message || "We couldn't send your ticket. Please try again.");
+                submitButton.disabled = false;
+                submitButton.textContent = label;
+                return;
+            }
+            submitButton.disabled = false;
+            submitButton.textContent = label;
+            const ticket = {
+                id: result.ticket.id,
+                created: Date.parse(result.ticket.created) || Date.now(),
+                name: payload.name,
+                email: payload.email,
+                order,
+                topic: payload.topic,
+                message: payload.message
             };
             tickets = [ticket].concat(tickets).slice(0, 20);
-            const stored = saveTickets(tickets);
+            saveTickets(tickets);
             render();
             fields.order.value = "";
             fields.topic.value = "";
             message.value = "";
             updateCounter();
-            say("Ticket " + ticket.id + " sent. We'll email " + ticket.email + " within one business day." + (stored ? "" : " This browser couldn't save it, so it will disappear when you leave."));
+            say("Ticket " + ticket.id + " sent." + (result.emailed ? " We emailed a copy to " + ticket.email + "." : "") + " We'll reply within one business day.");
             const first = $(".fq-tk_id", list);
             if (first) {
                 first.setAttribute("tabindex", "-1");

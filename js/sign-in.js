@@ -228,7 +228,7 @@
 
         $("#siSigninForm").addEventListener("submit", (event) => {
             event.preventDefault();
-            submit(event.target, ["siInEmail", "siInPassword"], $("#siSigninAlert"), $("#siSigninSubmit"), "Unlocking…", () => M.account.signIn({
+            submit(event.target, ["siInEmail", "siInPassword"], $("#siSigninAlert"), $("#siSigninSubmit"), "Signing in…", () => M.account.signIn({
                 email: $("#siInEmail").value.trim(),
                 password: $("#siInPassword").value
             }));
@@ -301,7 +301,9 @@
             const detail = event.detail || {};
             render(detail.user);
             if (detail.reason === "signin") {
-                status.textContent = "You're signed in as " + detail.user.firstName + ".";
+                status.textContent = fresh && M.account.emailed
+                    ? "Account created. We sent a welcome email to " + detail.user.email + "."
+                    : "You're signed in as " + detail.user.firstName + ".";
                 $("#siHello").focus();
             } else if (detail.reason === "signout") {
                 status.textContent = "You've signed out. See you next month.";
@@ -310,7 +312,7 @@
         });
 
         if (!M.account.available) {
-            const warn = "Accounts need a secure connection. Open the site through Live Server or https to sign in.";
+            const warn = "This browser can't reach our account service. Please update your browser and try again.";
             $("#siSigninAlert").textContent = warn;
             $("#siSignupAlert").textContent = warn;
         }

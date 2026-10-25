@@ -112,7 +112,6 @@
                 const pct = Math.round((sums[i] / total) * 100);
                 $(".rv-bar_fill", bar).style.width = pct + "%";
                 $(".rv-bar_pct", bar).textContent = pct + "%";
-                bar.setAttribute("aria-label", 5 - i + " stars: " + pct + " percent of reviews");
             });
         }
 

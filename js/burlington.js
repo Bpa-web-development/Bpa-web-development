@@ -35,80 +35,6 @@
         });
     }
 
-    const confetti = { pieces: [], running: false };
-
-    function launchConfetti(originX, originY, count = 140) {
-        if (reduceMotion) {
-            return;
-        }
-        const canvas = $("#confetti");
-        const context = canvas.getContext("2d");
-        const startX = originX === undefined ? window.innerWidth / 2 : originX;
-        const startY = originY === undefined ? window.innerHeight / 2 : originY;
-        const colors = ["#b0491f", "#e3a83b", "#5f7d64", "#1d2a3a", "#f4d6c4"];
-
-        for (let i = 0; i < count; i += 1) {
-            confetti.pieces.push({
-                x: startX + (Math.random() - 0.5) * 60,
-                y: startY,
-                vx: (Math.random() - 0.5) * 14,
-                vy: Math.random() * -14 - 4,
-                size: Math.random() * 7 + 5,
-                spin: Math.random() * Math.PI,
-                spinSpeed: (Math.random() - 0.5) * 0.3,
-                color: colors[Math.floor(Math.random() * colors.length)],
-                life: 0
-            });
-        }
-
-        if (typeof canvas.showPopover === "function") {
-            if (canvas.matches(":popover-open")) {
-                canvas.hidePopover();
-            }
-            canvas.showPopover();
-        } else {
-            canvas.classList.add("is-active");
-        }
-
-        if (confetti.running) {
-            return;
-        }
-        confetti.running = true;
-        const ratio = window.devicePixelRatio || 1;
-        canvas.width = window.innerWidth * ratio;
-        canvas.height = window.innerHeight * ratio;
-        context.setTransform(ratio, 0, 0, ratio, 0, 0);
-
-        function frame() {
-            context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-            confetti.pieces = confetti.pieces.filter((piece) => piece.life < 170 && piece.y < window.innerHeight + 40);
-            confetti.pieces.forEach((piece) => {
-                piece.vy += 0.35;
-                piece.vx *= 0.99;
-                piece.x += piece.vx;
-                piece.y += piece.vy;
-                piece.spin += piece.spinSpeed;
-                piece.life += 1;
-                context.save();
-                context.translate(piece.x, piece.y);
-                context.rotate(piece.spin);
-                context.fillStyle = piece.color;
-                context.fillRect(-piece.size / 2, -piece.size / 4, piece.size, piece.size / 2);
-                context.restore();
-            });
-            if (confetti.pieces.length) {
-                requestAnimationFrame(frame);
-            } else {
-                confetti.running = false;
-                context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-                if (typeof canvas.hidePopover === "function" && canvas.matches(":popover-open")) {
-                    canvas.hidePopover();
-                }
-                canvas.classList.remove("is-active");
-            }
-        }
-        requestAnimationFrame(frame);
-    }
 
     const JAZZ_NOTES = [
         { freq: 523.25, valves: [], glow: "227, 168, 59", title: "Since 1984", text: "The Burlington Discover Jazz Festival has filled the city with music every June since 1984. That is more than forty years of jazz." },
@@ -367,8 +293,6 @@
             wrap.classList.add("is-encore");
             count.textContent = "Discover Jazz Festival \u00b7 Encore! All 6 notes";
             riff.hidden = false;
-            const rect = wrap.getBoundingClientRect();
-            launchConfetti(rect.left + rect.width / 2, rect.top + rect.height / 3, 70);
             [523.25, 622.25, 783.99, 1046.5].forEach((freq, step) => window.setTimeout(() => tone(freq), step * 140));
         }
 
@@ -411,8 +335,6 @@
                     press(step.valves);
                     blast(JAZZ_NOTES[position % JAZZ_NOTES.length].glow);
                     if (position === JAZZ_RIFF.length - 1) {
-                        const rect = stage.getBoundingClientRect();
-                        launchConfetti(rect.left + rect.width * 0.8, rect.top + rect.height * 0.3, 90);
                         busy = false;
                         riff.disabled = false;
                     }

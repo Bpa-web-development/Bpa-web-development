@@ -152,22 +152,6 @@
                     $("[data-flip]", flipped ? back : front).focus({ preventScroll: true });
                 });
             });
-
-            if (finePointer && !reduceMotion) {
-                card.addEventListener("pointermove", (event) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = (event.clientX - rect.left) / rect.width - 0.5;
-                    const y = (event.clientY - rect.top) / rect.height - 0.5;
-                    card.style.setProperty("--tilt-x", (y * -8).toFixed(2) + "deg");
-                    card.style.setProperty("--tilt-y", (x * 10).toFixed(2) + "deg");
-                    card.style.setProperty("--glow-x", ((x + 0.5) * 100).toFixed(1) + "%");
-                    card.style.setProperty("--glow-y", ((y + 0.5) * 100).toFixed(1) + "%");
-                });
-                card.addEventListener("pointerleave", () => {
-                    card.style.setProperty("--tilt-x", "0deg");
-                    card.style.setProperty("--tilt-y", "0deg");
-                });
-            }
         });
     }
 
@@ -278,80 +262,6 @@
         });
     }
 
-    const confetti = { pieces: [], running: false };
-
-    function launchConfetti(originX, originY, count = 140) {
-        if (reduceMotion) {
-            return;
-        }
-        const canvas = $("#confetti");
-        const context = canvas.getContext("2d");
-        const startX = originX === undefined ? window.innerWidth / 2 : originX;
-        const startY = originY === undefined ? window.innerHeight / 2 : originY;
-        const colors = ["#b0491f", "#e3a83b", "#5f7d64", "#1d2a3a", "#f4d6c4"];
-
-        for (let i = 0; i < count; i += 1) {
-            confetti.pieces.push({
-                x: startX + (Math.random() - 0.5) * 60,
-                y: startY,
-                vx: (Math.random() - 0.5) * 14,
-                vy: Math.random() * -14 - 4,
-                size: Math.random() * 7 + 5,
-                spin: Math.random() * Math.PI,
-                spinSpeed: (Math.random() - 0.5) * 0.3,
-                color: colors[Math.floor(Math.random() * colors.length)],
-                life: 0
-            });
-        }
-
-        if (typeof canvas.showPopover === "function") {
-            if (canvas.matches(":popover-open")) {
-                canvas.hidePopover();
-            }
-            canvas.showPopover();
-        } else {
-            canvas.classList.add("is-active");
-        }
-
-        if (confetti.running) {
-            return;
-        }
-        confetti.running = true;
-        const ratio = window.devicePixelRatio || 1;
-        canvas.width = window.innerWidth * ratio;
-        canvas.height = window.innerHeight * ratio;
-        context.setTransform(ratio, 0, 0, ratio, 0, 0);
-
-        function frame() {
-            context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-            confetti.pieces = confetti.pieces.filter((piece) => piece.life < 170 && piece.y < window.innerHeight + 40);
-            confetti.pieces.forEach((piece) => {
-                piece.vy += 0.35;
-                piece.vx *= 0.99;
-                piece.x += piece.vx;
-                piece.y += piece.vy;
-                piece.spin += piece.spinSpeed;
-                piece.life += 1;
-                context.save();
-                context.translate(piece.x, piece.y);
-                context.rotate(piece.spin);
-                context.fillStyle = piece.color;
-                context.fillRect(-piece.size / 2, -piece.size / 4, piece.size, piece.size / 2);
-                context.restore();
-            });
-            if (confetti.pieces.length) {
-                requestAnimationFrame(frame);
-            } else {
-                confetti.running = false;
-                context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-                if (typeof canvas.hidePopover === "function" && canvas.matches(":popover-open")) {
-                    canvas.hidePopover();
-                }
-                canvas.classList.remove("is-active");
-            }
-        }
-        requestAnimationFrame(frame);
-    }
 
     function syncCatalog(data) {
         if (!data || !data.plans) {
@@ -434,7 +344,6 @@
         markCards();
 
         document.addEventListener("marlowby:purchase", (event) => {
-            launchConfetti();
             const first = event.detail.lines.find((line) => line.plan !== "gift") || event.detail.lines[0];
             if (passportApi.stampMember && first) {
                 passportApi.stampMember(M.catalog.plan(first.plan).name);
@@ -785,96 +694,8 @@
         }
     }
 
-    function initScramble() {
-        const target = $("#heroScramble");
-        const words = [CITIES[0].name + ".", "a mystery.", "somewhere new.", "the city."];
-        const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        if (reduceMotion) {
-            return;
-        }
-        let index = 0;
-        function scrambleTo(word, done) {
-            const from = target.textContent;
-            const length = Math.max(from.length, word.length);
-            let frame = 0;
-            const total = 22;
-            function step() {
-                let output = "";
-                for (let i = 0; i < length; i += 1) {
-                    const settleAt = (i / length) * total * 0.7 + total * 0.3;
-                    if (frame >= settleAt) {
-                        output += word[i] || "";
-                    } else if (word[i] === " " || word[i] === ".") {
-                        output += word[i];
-                    } else {
-                        output += glyphs[Math.floor(Math.random() * glyphs.length)].toLowerCase();
-                    }
-                }
-                target.textContent = output;
-                frame += 1;
-                if (frame <= total) {
-                    requestAnimationFrame(step);
-                } else {
-                    target.textContent = word;
-                    done();
-                }
-            }
-            step();
-        }
-        function next() {
-            const word = words[index % words.length];
-            index += 1;
-            const pause = word === "the city." ? 4200 : 1500;
-            scrambleTo(word, () => setTimeout(next, pause));
-        }
-        setTimeout(next, 3000);
-    }
-
-
-    function initRoad() {
-        const fill = $("#roadFill");
-        const box = $("#roadBox");
-        let ticking = false;
-        function update() {
-            const max = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0;
-            fill.style.transform = "scaleY(" + progress.toFixed(4) + ")";
-            box.style.setProperty("--progress", progress.toFixed(4));
-            box.classList.toggle("is-arrived", progress > 0.98);
-            ticking = false;
-        }
-        window.addEventListener("scroll", () => {
-            if (!ticking) {
-                ticking = true;
-                requestAnimationFrame(update);
-            }
-        }, { passive: true });
-        window.addEventListener("resize", update);
-        update();
-    }
-
-    function initMagnetic() {
-        if (!finePointer || reduceMotion) {
-            return;
-        }
-        $$(".plans-button").forEach((button) => {
-            button.addEventListener("pointermove", (event) => {
-                const rect = button.getBoundingClientRect();
-                const x = event.clientX - rect.left - rect.width / 2;
-                const y = event.clientY - rect.top - rect.height / 2;
-                button.style.translate = (x * 0.18).toFixed(1) + "px " + (y * 0.3).toFixed(1) + "px";
-            });
-            button.addEventListener("pointerleave", () => {
-                button.style.translate = "";
-            });
-        });
-    }
-
     document.addEventListener("DOMContentLoaded", () => {
         initPassport();
-        initScramble();
-        initRoad();
-        initMagnetic();
         initCountdown();
         initBilling();
         initCards();

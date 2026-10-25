@@ -7,7 +7,6 @@
     }
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     const $ = (selector, root = document) => root.querySelector(selector);
     const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
     const SEEN_KEY = "marlowbyPopups";
@@ -109,10 +108,6 @@
         }
     }
 
-    function anyDialogOpen() {
-        return Boolean(document.querySelector("dialog[open]"));
-    }
-
     function copyText(text) {
         if (navigator.clipboard && window.isSecureContext) {
             return navigator.clipboard.writeText(text).then(() => true, () => fallbackCopy(text));
@@ -197,15 +192,6 @@
             }
         }
 
-        function openExit() {
-            if (exit.open || anyDialogOpen() || hasPromo()) {
-                return;
-            }
-            markSeen("exit");
-            exit.showModal();
-            $("#dealExitTitle").focus();
-        }
-
         $("#dealFlip").addEventListener("click", () => {
             card.classList.remove("is-wiggling");
             flip(true);
@@ -276,42 +262,6 @@
 
         document.addEventListener("marlowby:cart", refreshTicket);
         refreshTicket();
-
-        const seen = readSeen();
-        const popupPage = document.body.matches(".plans-page, .specials-page");
-        if (popupPage && !seen.welcome) {
-            let fired = false;
-            const fire = () => {
-                if (fired || readSeen().welcome || readSeen().auto) {
-                    return;
-                }
-                if (anyDialogOpen() || hasPromo()) {
-                    window.setTimeout(fire, 4000);
-                    return;
-                }
-                fired = true;
-                window.removeEventListener("scroll", onScroll);
-                openPostcard("auto");
-            };
-            const onScroll = () => {
-                const progress = window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-                if (progress > 0.6) {
-                    fire();
-                }
-            };
-            window.setTimeout(fire, 45000);
-            window.addEventListener("scroll", onScroll, { passive: true });
-        }
-
-        if (popupPage && finePointer && !seen.exit) {
-            const armedAt = Date.now() + 20000;
-            document.documentElement.addEventListener("mouseleave", (event) => {
-                const now = readSeen();
-                if (event.clientY <= 0 && Date.now() > armedAt && !now.exit && !now.auto && !hasPromo() && !anyDialogOpen()) {
-                    openExit();
-                }
-            });
-        }
 
         initRibbon();
         initDealsSection();
