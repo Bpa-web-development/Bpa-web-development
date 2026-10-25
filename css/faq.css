@@ -952,3 +952,17 @@
         scroll-behavior: auto !important;
     }
 }
+
+/* Spam trap: hidden from people, filled in by bots */
+.fq-hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.fq-contact_value a {
+    color: inherit;
+    text-underline-offset: 3px;
+}

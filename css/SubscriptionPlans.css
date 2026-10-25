@@ -846,20 +846,6 @@
     overflow: hidden;
 }
 
-.plan-card_face::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 0%), rgba(255, 255, 255, 0.35), transparent 45%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.plan-card:hover .plan-card_face::after {
-    opacity: 1;
-}
-
 .plan-card_back {
     transform: rotateY(180deg);
     background: var(--plans-ink);

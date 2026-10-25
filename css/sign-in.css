@@ -1036,3 +1036,16 @@
         padding-top: 1.1rem;
     }
 }
+
+.si-legal {
+    margin: 0 0 0.75rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #5b6470;
+}
+
+.si-legal a {
+    color: #8a3615;
+    font-weight: 700;
+    text-underline-offset: 3px;
+}

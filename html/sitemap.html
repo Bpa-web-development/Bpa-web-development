@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Browse the Marlowby site directory to find monthly city boxes, subscription plans, past destinations, current offers and customer help.">
+    <meta name="description" content="Marlowby sitemap: every page and section of the site, from subscription plans and this month's Burlington box to deals, past months and help.">
 
-    <title>Site Directory and Sitemap | Marlowby</title>
+    <title>Marlowby | Sitemap</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/Marlowby Logotemp.jpg">
 
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <script src="/js/navbar.js" defer></script>
     <link rel="stylesheet" href="/css/nav-footer.css">
     <link rel="stylesheet" href="/css/shop.css">
     <link rel="stylesheet" href="/css/deals.css">
     <link rel="stylesheet" href="/css/sitemap.css">
     <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/polish.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,83 +29,162 @@
 
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <nav class="navbar" aria-label="Main">
+    <!-- site-nav:start (generated from partials/navbar.html, run `npm run nav:sync` after editing) -->
+    <nav class="navbar" id="siteNav" aria-label="Main">
         <div class="navbar-container">
-            <div class="company-logo">
-                <a href="../index.html" class="company-logo-link">
-                    <img class="circular-logo"
-                    src="/assets/images/Marlowby Logotemp.jpg"
-                    alt="">
-                    <span class="company-logo-name">Marlowby</span>
-                </a>
+            <a class="navbar-brand" href="/" aria-label="Marlowby home">
+                <span class="navbar-brand_mark">
+                    <picture>
+                        <source srcset="/assets/images/marlowby-logo-128.webp" type="image/webp">
+                        <img class="navbar-brand_logo" src="/assets/images/marlowby-logo-128.jpg" alt="" width="44" height="44">
+                    </picture>
+                </span>
+                <span class="navbar-brand_text">
+                    <span class="navbar-brand_name">Marlowby</span>
+                    <span class="navbar-brand_tag">One city, one box</span>
+                </span>
+            </a>
+
+            <div class="navbar-drawer" id="navbarDrawer">
+                <ul class="navbar-link-container" id="navbarLinks">
+                    <li class="navbar-drawer-only">
+                        <a class="navbar-link-item" href="/">Home</a>
+                    </li>
+
+                    <li class="link-dropdown">
+                        <a class="navbar-link-item" href="/html/burlington.html">Spotlight<span class="navbar-tag" aria-hidden="true">BTV</span></a>
+                        <button type="button" class="navbar-sub-toggle" aria-expanded="false" aria-controls="navSubSpotlight">
+                            <span class="visually-hidden">Show Spotlight links</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <div class="navbar-panel" id="navSubSpotlight">
+                            <ul class="sub-menu">
+                                <li><a href="/html/burlington.html#box"><strong>This Month's Box</strong><span>What's inside the Burlington, VT box</span></a></li>
+                                <li><a href="/html/burlington.html#day"><strong>A Day in Burlington</strong><span>Plan a day around the box</span></a></li>
+                                <li><a href="/html/burlington.html#makers"><strong>Local Makers</strong><span>The small businesses behind it</span></a></li>
+                                <li><a href="/html/burlington.html#festival"><strong>Jazz Festival</strong><span>Burlington's summer music scene</span></a></li>
+                            </ul>
+                            <div class="navbar-feature navbar-feature--spotlight">
+                                <svg class="navbar-feature_stamp" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="32" cy="32" r="23" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 3"/><text x="32" y="37" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="15" font-weight="700" fill="currentColor">BTV</text></svg>
+                                <p class="navbar-feature_kicker">Now shipping</p>
+                                <p class="navbar-feature_title">Burlington, Vermont</p>
+                                <p class="navbar-feature_meta">Next box ships <span data-nav-ship>on the 5th</span></p>
+                                <a class="navbar-feature_link" href="/html/burlington.html#box">See the box <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="link-dropdown">
+                        <a class="navbar-link-item" href="/html/specials.html">Specials</a>
+                        <button type="button" class="navbar-sub-toggle" aria-expanded="false" aria-controls="navSubSpecials">
+                            <span class="visually-hidden">Show Specials links</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <div class="navbar-panel" id="navSubSpecials">
+                            <ul class="sub-menu">
+                                <li><a href="/html/specials.html#Daily"><strong>Daily Specials</strong><span>Tonight's code and maker of the day</span></a></li>
+                                <li><a href="/html/specials.html#Weekly"><strong>Weekly Deals</strong><span>Bundles that reset every Sunday</span></a></li>
+                                <li><a href="/html/specials.html#Limited"><strong>Limited Offers</strong><span>Gift deals and the free tote</span></a></li>
+                                <li><a href="/html/specials.html#wallet"><strong>Code Wallet</strong><span>Every code that works at checkout</span></a></li>
+                            </ul>
+                            <div class="navbar-feature navbar-feature--code">
+                                <p class="navbar-feature_kicker">Tonight only</p>
+                                <p class="navbar-feature_code">MIDNIGHT</p>
+                                <p class="navbar-feature_meta">10% off every plan and gift box</p>
+                                <a class="navbar-feature_link" href="/html/specials.html#Daily">Use tonight's code <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="link-dropdown">
+                        <a class="navbar-link-item" href="/html/past-months.html">Past Months</a>
+                        <button type="button" class="navbar-sub-toggle" aria-expanded="false" aria-controls="navSubPast">
+                            <span class="visually-hidden">Show Past Months links</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <div class="navbar-panel" id="navSubPast">
+                            <ul class="sub-menu">
+                                <li><a href="/html/past-months.html#January"><strong>January 2026</strong><span>Savannah, GA</span></a></li>
+                                <li><a href="/html/past-months.html#February"><strong>February 2026</strong><span>Providence, RI</span></a></li>
+                                <li><a href="/html/past-months.html#March"><strong>March 2026</strong><span>Lexington, KY</span></a></li>
+                                <li><a href="/html/past-months.html#reviews"><strong>Subscriber Reviews</strong><span>What members said about each box</span></a></li>
+                            </ul>
+                            <div class="navbar-feature navbar-feature--stamps">
+                                <p class="navbar-feature_kicker">Stamps so far</p>
+                                <p class="navbar-feature_stamps" aria-hidden="true"><span>SAV</span><span>PVD</span><span>LEX</span><span class="is-now">BTV</span></p>
+                                <p class="navbar-feature_meta">Four cities, one passport. Next month stays a secret.</p>
+                                <a class="navbar-feature_link" href="/html/past-months.html">See every box <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="link-dropdown link-dropdown--end">
+                        <a class="navbar-link-item" href="/html/our-mission.html">Our Mission</a>
+                        <button type="button" class="navbar-sub-toggle" aria-expanded="false" aria-controls="navSubMission">
+                            <span class="visually-hidden">Show Our Mission links</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <div class="navbar-panel" id="navSubMission">
+                            <ul class="sub-menu">
+                                <li><a href="/html/our-mission.html#Story"><strong>Our Story</strong><span>Why we started Marlowby</span></a></li>
+                                <li><a href="/html/our-mission.html#Team"><strong>Our Team</strong><span>The people behind the boxes</span></a></li>
+                                <li><a href="/html/faq.html"><strong>FAQs and Help</strong><span>Answers and the help desk</span></a></li>
+                                <li><a href="/html/faq.html#contact"><strong>Contact Us</strong><span>Email, phone and hours</span></a></li>
+                            </ul>
+                            <div class="navbar-feature navbar-feature--quote">
+                                <p class="navbar-feature_kicker">Our promise</p>
+                                <p class="navbar-feature_quote">Every box pays a local maker in full, even when you use a code.</p>
+                                <a class="navbar-feature_link" href="/html/our-mission.html#Story">Read our story <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="link-dropdown link-dropdown--end">
+                        <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
+                        <button type="button" class="navbar-sub-toggle" aria-expanded="false" aria-controls="navSubPlans">
+                            <span class="visually-hidden">Show Subscription Plans links</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <div class="navbar-panel" id="navSubPlans">
+                            <ul class="sub-menu">
+                                <li><a href="/html/SubscriptionPlans.html#basic"><strong>Basic Plan</strong><span>5 local goods every month</span></a></li>
+                                <li><a href="/html/SubscriptionPlans.html#premium"><strong>Premium Plan</strong><span>8 local goods every month</span></a></li>
+                                <li><a href="/html/SubscriptionPlans.html#gift"><strong>Gift Plan</strong><span>3, 6 or 12 prepaid boxes</span></a></li>
+                                <li><a href="/html/SubscriptionPlans.html#compare"><strong>Compare Plans</strong><span>Every difference side by side</span></a></li>
+                                <li><a href="/html/SubscriptionPlans.html#finder"><strong>Plan Finder</strong><span>Four questions, one match</span></a></li>
+                            </ul>
+                            <div class="navbar-feature navbar-feature--price">
+                                <p class="navbar-feature_kicker">Plans start at</p>
+                                <p class="navbar-feature_price"><sup>$</sup>29<span>/box</span></p>
+                                <p class="navbar-feature_meta">Free shipping. Skip or cancel anytime.</p>
+                                <a class="navbar-feature_link" href="/html/SubscriptionPlans.html#finder">Find my plan <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="navbar-drawer-only navbar-drawer-actions">
+                        <a class="navbar-sign-in navbar-sign-in--drawer" href="/html/sign-in.html">Sign In</a>
+                        <a class="navbar-cta navbar-cta--drawer" href="/html/SubscriptionPlans.html#plans">Subscribe</a>
+                    </li>
+                </ul>
+                <p class="navbar-drawer-note navbar-drawer-only">
+                    <span class="navbar-drawer-note_mark" aria-hidden="true">BTV</span>
+                    <span>Now shipping from Burlington, Vermont. Next box ships <span data-nav-ship>on the 5th</span>.</span>
+                </p>
             </div>
 
-            <button type="button" class="navbar-toggle" id="navbarToggle" aria-expanded="false" aria-controls="navbarLinks">
-                <span class="navbar-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span class="navbar-toggle-label">Menu</span>
-            </button>
-
-            <ul class="navbar-link-container" id="navbarLinks">
-                <li class="link-dropdown navbar-spotlight">
-                    <a class="navbar-link-item" href="/html/burlington.html"><span class="navbar-spotlight_dot" aria-hidden="true"></span>Spotlight</a>
-                    <ul class="sub-menu">
-                        <li><a href="/html/burlington.html#box">This Month's Box</a></li>
-                        <li><a href="/html/burlington.html#day">A Day in Burlington</a></li>
-                        <li><a href="/html/burlington.html#makers">Local Makers</a></li>
-                        <li><a href="/html/burlington.html#festival">Jazz Festival</a></li>
-                    </ul>
-                </li>
-
-                <li class="link-dropdown">
-                    <a class="navbar-link-item" href="/html/specials.html">Specials</a>
-                    <ul class="sub-menu">
-                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
-                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
-                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
-                    </ul>
-                </li>
-
-                <li class="link-dropdown">
-                    <a class="navbar-link-item" href="/html/past-months.html">Past Months</a>
-                    <ul class="sub-menu">
-                        <li><a href="/html/burlington.html">This Month: Burlington, VT</a></li>
-                        <li><a href="/html/past-months.html#January">January 2026</a></li>
-                        <li><a href="/html/past-months.html#February">February 2026</a></li>
-                        <li><a href="/html/past-months.html#March">March 2026</a></li>
-                    </ul>
-                </li>
-
-                <li class="link-dropdown">
-                    <a class="navbar-link-item" href="/html/our-mission.html">Our Mission</a>
-                    <ul class="sub-menu">
-                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
-                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
-                        <li><a href="/html/faq.html#contact">Contact us</a></li>
-                    </ul>
-                </li>
-
-                <li class="link-dropdown">
-                    <a class="navbar-link-item" href="/html/SubscriptionPlans.html">Subscription Plans</a>
-                    <ul class="sub-menu">
-                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
-                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
-                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
-                        <li><a href="/html/SubscriptionPlans.html#finder">Plan finder</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a class="navbar-link-item navbar-sign-in" href="/html/sign-in.html">Sign In</a>
-                </li>
-
-                <li>
-                    <a class="navbar-link-item navbar-cart" href="/html/cart.html" aria-label="Cart">
-                        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>
-                    </a>
-                </li>
-            </ul>
+            <div class="navbar-actions">
+                <a class="navbar-sign-in" href="/html/sign-in.html">Sign In</a>
+                <a class="navbar-cart" href="/html/cart.html" aria-label="Cart">
+                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>
+                    <span class="navbar-cart_badge" aria-hidden="true" hidden></span>
+                </a>
+                <a class="navbar-cta" href="/html/SubscriptionPlans.html#plans"><span class="navbar-cta_label">Subscribe</span><span class="navbar-cta_stub" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+                <button type="button" class="navbar-toggle" id="navbarToggle" aria-expanded="false" aria-controls="navbarDrawer">
+                    <span class="navbar-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                    <span class="visually-hidden navbar-toggle-label">Open menu</span>
+                </button>
+            </div>
         </div>
+        <div class="navbar-scrim" data-nav-close hidden></div>
     </nav>
+    <!-- site-nav:end -->
 
     <div class="accessibility">
         <button
@@ -129,9 +211,10 @@
                     <label for="smFilter" class="visually-hidden">Search the sitemap</label>
                     <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
                     <input type="search" id="smFilter" placeholder="Try &quot;gift&quot;, &quot;codes&quot; or &quot;Savannah&quot;" autocomplete="off" aria-describedby="smCount">
+                    <button type="submit" class="visually-hidden">Search</button>
                 </form>
                 <p class="sm-count" id="smCount" role="status">Showing all 32 pages and sections.</p>
-                <ul class="sm-popular" aria-label="Popular pages">
+                <ul class="sm-popular" role="list" aria-label="Popular pages">
                     <li><a href="/html/burlington.html">This month: Burlington</a></li>
                     <li><a href="/html/SubscriptionPlans.html#finder">Plan finder</a></li>
                     <li><a href="/html/specials.html#wallet">Promo codes</a></li>
@@ -207,6 +290,7 @@
                         <li data-sitemap-item><a href="/html/faq.html#helpdesk">Help desk</a><span>Open a ticket.</span></li>
                         <li data-sitemap-item><a href="/html/faq.html#contact">Contact us</a><span>Email, phone or mail.</span></li>
                         <li data-sitemap-item><a href="/html/works-cited.html">Works Cited</a><span>Our sources.</span></li>
+                        <li data-sitemap-item><a href="/html/privacy.html">Privacy Policy</a><span>Your data and our cookies.</span></li>
                         <li data-sitemap-item><a href="/html/sitemap.html" aria-current="page">Sitemap</a><span>You are here.</span></li>
                     </ul>
                 </section>
@@ -220,7 +304,7 @@
             <div class="site-footer-news_inner">
                 <div class="site-footer-news_copy">
                     <h2 id="footerNewsTitle">Postcards from the road</h2>
-                    <p>One email when each box ships, plus subscriber-only codes. Unsubscribe anytime.</p>
+                    <p>One email when each box ships, plus subscriber-only codes. Unsubscribe anytime. See our <a href="/html/privacy.html">Privacy Policy</a>.</p>
                 </div>
                 <div>
                     <form class="site-footer-news_form" data-newsletter novalidate>
@@ -293,6 +377,7 @@
                         <li><a href="/html/faq.html#contact">Contact us</a></li>
                         <li><a href="/html/faq.html">FAQs and help</a></li>
                         <li><a href="/html/works-cited.html">Works Cited</a></li>
+                        <li><a href="/html/privacy.html">Privacy Policy</a></li>
                     </ul>
                 </div>
             </nav>
@@ -301,6 +386,7 @@
         <div class="site-footer-bottom">
             <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
             <ul class="site-footer-legal">
+                <li><a href="/html/privacy.html">Privacy and cookies</a></li>
                 <li><a href="/html/sitemap.html" aria-current="page">Sitemap</a></li>
                 <li><button type="button" data-open-a11y>Accessibility options</button></li>
                 <li><a href="#main-content" class="site-footer-top">Back to top</a></li>

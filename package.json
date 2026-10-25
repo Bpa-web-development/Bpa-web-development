@@ -1,0 +1,26 @@
+{
+  "name": "marlowby",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marlowby: Explore Your City, One Box at a Time. BPA Website Design and Development Team project.",
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "db:migrate": "node scripts/migrate.mjs",
+    "nav:sync": "node scripts/sync-navbar.mjs",
+    "nav:check": "node scripts/sync-navbar.mjs --check",
+    "test": "node --test tests/*.test.mjs",
+    "account:create": "node scripts/create-account.mjs"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "bcryptjs": "^3.0.3",
+    "nodemailer": "^7.0.13"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.3.15"
+  }
+}

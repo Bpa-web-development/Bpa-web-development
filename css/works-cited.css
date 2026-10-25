@@ -162,3 +162,83 @@
         padding: 1.4rem;
     }
 }
+
+/* Privacy Policy page (html/privacy.html) reuses the Works Cited layout */
+.pp-body {
+    max-width: 860px;
+}
+
+.pp-group > p:last-child,
+.pp-group > ul:last-child {
+    margin-bottom: 0;
+}
+
+.pp-list {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0 0 1rem;
+    padding-left: 1.2rem;
+    line-height: 1.6;
+}
+
+.pp-list li::marker {
+    color: var(--wc-clay);
+}
+
+.pp-table-wrap {
+    margin: 0 0 1rem;
+    overflow-x: auto;
+    border: 1px solid var(--wc-line);
+    border-radius: 12px;
+}
+
+.pp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.pp-table th,
+.pp-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--wc-line);
+    text-align: left;
+    vertical-align: top;
+}
+
+.pp-table thead th {
+    background: var(--wc-paper-deep);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.pp-table tbody tr:last-child > * {
+    border-bottom: 0;
+}
+
+.pp-table tbody th {
+    min-width: 9rem;
+    font-weight: 700;
+}
+
+.pp-table code {
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+}
+
+.pp-button {
+    padding: 0.65rem 1.2rem;
+    border: 1.5px solid var(--wc-clay);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--wc-clay-dark);
+    font: 700 0.95rem var(--wc-body);
+    cursor: pointer;
+}
+
+.pp-button:hover {
+    background: var(--wc-clay);
+    color: #fff;
+}

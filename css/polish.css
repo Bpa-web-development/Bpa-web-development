@@ -1,0 +1,115 @@
+/*
+ * Shared finish for the shop pages (not loaded on Home or Our Mission).
+ * Replaces the soft glows and long smoky fades with flat ink panels,
+ * crisp section edges and one postal motif: a faint postmark in the corner.
+ */
+
+:root {
+    --mb-ink: #17222f;
+    --mb-ink-2: #1d2a3a;
+    --mb-paper: #fbf6ee;
+    --mb-gold: #e3a83b;
+    --mb-postmark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='120' viewBox='0 0 260 120' fill='none' stroke='%23e3a83b' stroke-opacity='.22' stroke-width='2'%3E%3Ccircle cx='60' cy='60' r='44'/%3E%3Ccircle cx='60' cy='60' r='36' stroke-dasharray='3 5'/%3E%3Cpath d='M112 34c12-8 24 8 36 0s24-8 36 0 24 8 36 0 24-8 36 0M112 52c12-8 24 8 36 0s24-8 36 0 24 8 36 0 24-8 36 0M112 70c12-8 24 8 36 0s24-8 36 0 24 8 36 0 24-8 36 0M112 88c12-8 24 8 36 0s24-8 36 0 24 8 36 0 24-8 36 0'/%3E%3C/svg%3E");
+}
+
+/* Dark call-to-action cards: flat ink, a hairline frame and a postmark. */
+body .plans-cta,
+body .btv-next_card,
+body .pm-next_card,
+body.specials-page .sp-cta,
+body .sp-cta,
+body .fq-cta {
+    background: var(--mb-postmark) right 1.5rem top 1.25rem / 220px auto no-repeat, var(--mb-ink);
+    box-shadow: inset 0 0 0 1px rgba(227, 168, 59, 0.22), 0 24px 48px -32px rgba(23, 34, 47, 0.7);
+    border-radius: 20px;
+}
+
+body .btv-next_seal,
+body .pm-next_seal {
+    background: none;
+    animation: none;
+}
+
+body .btv-next_seal span,
+body .pm-next_seal span {
+    animation: none;
+}
+
+/* Dark heroes end on a clean edge instead of a 9 to 12rem grey fade. */
+body .btv-hero::after,
+body .pm-hero::after,
+body.cart-page .cart-hero::after {
+    display: none;
+}
+
+body .btv-hero {
+    background: var(--mb-ink);
+}
+
+body.cart-page .cart-hero {
+    padding-block: 3.5rem 9rem;
+    background: var(--mb-ink);
+}
+
+body.specials-page .sp-hero::before {
+    bottom: 0;
+    background: var(--mb-ink);
+}
+
+/* Dark bands in the middle of a page: solid, with crisp top and bottom. */
+body .plans-jazz,
+body.specials-page .sp-local {
+    padding-block: 6rem;
+    background: var(--mb-ink);
+}
+
+body .sp-local {
+    background: #2c4535;
+}
+
+/* Tinted sections: one flat tone with a fine rule, no blurred bands. */
+body.specials-page .sp-section--tint::before {
+    background: #f4ecdf;
+    border-block: 1px solid rgba(23, 34, 47, 0.08);
+}
+
+body .pm-city {
+    border-block: 1px solid rgba(23, 34, 47, 0.06);
+}
+
+/* Small glows on cards and panels. */
+body .btv-hero .jazz_fact,
+body .jazz_fact {
+    background: rgba(251, 246, 238, 0.05);
+}
+
+body.specials-page .deal--flash .deal_main,
+body.specials-page .deal--mystery,
+body.specials-page .sp-honest_card,
+body .deal--mystery {
+    background: var(--mb-ink);
+}
+
+body.specials-page .sp-pick,
+body .sp-pick {
+    background: var(--mb-ink-2);
+}
+
+body .finder_aside {
+    background: var(--mb-ink);
+}
+
+body .site-footer-news_inner {
+    background: rgba(251, 246, 238, 0.04);
+}
+
+/* The hero no longer needs room for a fade */
+body.specials-page .sp-hero {
+    padding-block: 4.5rem 5rem;
+}
+
+@media (max-width: 760px) {
+    body.specials-page .sp-hero {
+        padding-block: 3rem 3.5rem;
+    }
+}
