@@ -1,0 +1,724 @@
+/* Discover Jazz Festival section on the Spotlight page (html/burlington.html).
+   Works as a plain layout without JavaScript; js/jazz.js adds the GSAP motion. */
+
+.jz {
+    --jz-ink: #111922;
+    --jz-ink-2: #18222e;
+    --jz-paper: #fbf6ee;
+    --jz-muted: rgba(251, 246, 238, 0.72);
+    --jz-gold: #e3a83b;
+    --jz-clay: #b0491f;
+    --jz-air: #2f4a6b;
+    --jz-sage: #4f6b55;
+    --jz-heading: "Playfair Display", Georgia, serif;
+    --jz-body: "Lato", "Helvetica Neue", Arial, sans-serif;
+    --jz-pad: max(1.5rem, calc((100vw - 1120px) / 2));
+
+    position: relative;
+    overflow: hidden;
+    background: var(--jz-ink);
+    color: var(--jz-paper);
+    font-family: var(--jz-body);
+    scroll-margin-top: 4rem;
+}
+
+.jz p,
+.jz h2,
+.jz h3,
+.jz ol,
+.jz ul {
+    margin: 0;
+}
+
+.jz-eyebrow {
+    color: var(--jz-gold);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+/* Intro: copy on the left, a small lit stage on the right */
+.jz-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 3rem;
+    padding: 7rem var(--jz-pad) 4rem;
+}
+
+.jz-copy {
+    display: grid;
+    gap: 1.4rem;
+    max-width: 34rem;
+}
+
+.jz-title {
+    font-family: var(--jz-heading);
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    color: var(--jz-paper);
+}
+
+.jz-line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+}
+
+.jz-line > span {
+    display: inline-block;
+}
+
+.jz-title em {
+    color: var(--jz-gold);
+    font-style: italic;
+}
+
+.jz-lead {
+    max-width: 30rem;
+    color: var(--jz-muted);
+    font-size: 1.12rem;
+    line-height: 1.65;
+}
+
+.jz-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.1rem;
+}
+
+.jz-play {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 3rem;
+    padding: 0 1.4rem 0 0.5rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--jz-gold);
+    color: var(--jz-ink);
+    font: 700 1rem var(--jz-body);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.jz-play:hover {
+    background: #edb84f;
+}
+
+.jz-play:active {
+    transform: scale(0.97);
+}
+
+.jz-play:focus-visible {
+    outline: 3px solid var(--jz-paper);
+    outline-offset: 3px;
+}
+
+.jz-play_icon {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    background: var(--jz-ink);
+}
+
+.jz-play_icon::before {
+    content: "";
+    margin-left: 3px;
+    border-style: solid;
+    border-width: 6px 0 6px 10px;
+    border-color: transparent transparent transparent var(--jz-gold);
+}
+
+.jz-play.is-playing .jz-play_icon::before {
+    width: 10px;
+    height: 12px;
+    margin: 0;
+    border: 0;
+    background: linear-gradient(90deg, var(--jz-gold) 0 3px, transparent 3px 7px, var(--jz-gold) 7px 10px);
+}
+
+.jz-play_note {
+    color: rgba(251, 246, 238, 0.6);
+    font-size: 0.85rem;
+}
+
+.jz-stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 5 / 4;
+    isolation: isolate;
+}
+
+/* A stage light: a soft cone from the top and a pool on the floor */
+.jz-spot {
+    position: absolute;
+    inset: -7rem 18% 14%;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(255, 226, 160, 0.22), rgba(255, 226, 160, 0.04) 75%, transparent);
+    clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%);
+    transform-origin: 50% 0;
+}
+
+.jz-floor {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 16%;
+    z-index: -1;
+    height: 16%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(255, 226, 160, 0.2), transparent);
+}
+
+.jz-horn {
+    display: block;
+    width: 78%;
+    height: auto;
+    overflow: visible;
+}
+
+.jz-valve,
+.jz-bell {
+    transform-box: fill-box;
+    transform-origin: 50% 0;
+}
+
+.jz-bell {
+    transform-origin: 0% 50%;
+}
+
+.jz-notes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.jz-note {
+    position: absolute;
+    color: var(--jz-gold);
+    font: 700 1.8rem/1 var(--jz-heading);
+    will-change: transform, opacity;
+}
+
+.jz-eq {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: 4%;
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 2.6rem;
+}
+
+.jz-eq span {
+    flex: 1;
+    height: 100%;
+    border-radius: 2px 2px 0 0;
+    background: linear-gradient(180deg, var(--jz-gold), rgba(227, 168, 59, 0.25));
+    transform: scaleY(0.12);
+    transform-origin: 50% 100%;
+    opacity: 0.8;
+}
+
+/* The trumpet's display case: a glass box on a dark wood plinth with a brass plaque.
+   The frosted glass uses backdrop-filter, adapted from MDN Web Docs, "backdrop-filter"
+   (the .box example: a see-through background plus backdrop-filter: blur()):
+   https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter
+   Changed: a very light blur, glass reflections drawn with linear-gradient on ::after, and a
+   brass trim on ::before. */
+.jz-case {
+    position: relative;
+    width: 100%;
+    margin: 0;
+}
+
+.jz-case .jz-stage {
+    overflow: hidden;
+    border: 1px solid rgba(255, 244, 207, 0.22);
+    border-bottom: 0;
+    border-radius: 10px 10px 0 0;
+    background:
+        radial-gradient(120% 70% at 50% 0%, rgba(255, 226, 160, 0.1), transparent 60%),
+        rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(2px);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+        inset 0 -40px 60px rgba(0, 0, 0, 0.35),
+        0 30px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* Brass trim along the top of the case */
+.jz-case .jz-stage::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 3;
+    height: 6px;
+    background: linear-gradient(90deg, #6b4108, #e9b44c 30%, #fff4cf 50%, #e9b44c 70%, #6b4108);
+}
+
+/* Reflections on the front glass */
+.jz-case .jz-stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+        linear-gradient(115deg, transparent 0 14%, rgba(255, 255, 255, 0.09) 14% 22%, transparent 22% 26%, rgba(255, 255, 255, 0.05) 26% 28%, transparent 28%),
+        linear-gradient(115deg, transparent 0 72%, rgba(255, 255, 255, 0.04) 72% 80%, transparent 80%);
+}
+
+.jz-case .jz-spot {
+    inset: 0 18% 14%;
+}
+
+.jz-case .jz-eq {
+    bottom: 3%;
+    height: 1.6rem;
+    opacity: 0.7;
+}
+
+/* Plinth and plaque */
+.jz-case_plaque {
+    position: relative;
+    display: grid;
+    gap: 0.25rem;
+    padding: 1rem 1.25rem 1.1rem;
+    border-radius: 0 0 8px 8px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 30%),
+        linear-gradient(90deg, #2a1a10, #3d2718 50%, #2a1a10);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.45);
+    color: rgba(251, 246, 238, 0.86);
+    font-size: 0.88rem;
+    line-height: 1.45;
+    text-align: center;
+}
+
+.jz-case_kicker {
+    justify-self: center;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #f6d27a, #c88a24);
+    color: #2a1a05;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.jz-case_name {
+    color: var(--jz-gold);
+    font: 700 1.2rem/1.2 var(--jz-heading);
+}
+
+.jz-case_text {
+    max-width: 34rem;
+    justify-self: center;
+}
+
+/* The set list: festival history as a row of concert tickets */
+.jz-set {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    padding: 3rem 0 4rem;
+}
+
+.jz-set_head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding: 0 var(--jz-pad);
+}
+
+.jz-set_title {
+    margin-top: 0.5rem;
+    font-family: var(--jz-heading);
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    line-height: 1.15;
+    color: var(--jz-paper);
+}
+
+.jz-counter {
+    display: grid;
+    justify-items: end;
+    line-height: 1;
+}
+
+.jz-counter_year {
+    font-family: var(--jz-heading);
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(227, 168, 59, 0.85);
+    font-variant-numeric: tabular-nums;
+}
+
+.jz-counter_label {
+    margin-top: 0.4rem;
+    color: var(--jz-muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+/* The set list is a carousel: native sideways scroll with snapping (swipe, trackpad,
+   arrow keys), plus arrows, dots and mouse drag from js/jazz.js. */
+.jz-carousel {
+    display: grid;
+    gap: 1.5rem;
+    min-width: 0;
+}
+
+.jz-track {
+    display: flex;
+    gap: 1.25rem;
+    padding: 0.75rem var(--jz-pad) 1rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--jz-pad);
+    scrollbar-width: none;
+    list-style: none;
+    outline: none;
+}
+
+.jz-track::-webkit-scrollbar {
+    display: none;
+}
+
+.jz-track:focus-visible {
+    box-shadow: inset 0 0 0 3px var(--jz-gold);
+    border-radius: 18px;
+}
+
+.jz-track.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
+}
+
+.jz-track.is-gliding {
+    scroll-snap-type: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .jz-track {
+        cursor: grab;
+    }
+}
+
+.jz-card {
+    --band: var(--jz-gold);
+    --notch: radial-gradient(circle 9px at 0 3.4rem, transparent 8.5px, #000 9px) left / 51% 100% no-repeat,
+        radial-gradient(circle 9px at 100% 3.4rem, transparent 8.5px, #000 9px) right / 51% 100% no-repeat;
+    position: relative;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 0.7rem;
+    min-height: 17rem;
+    padding: 1.25rem 1.4rem 1.3rem;
+    border-radius: 14px;
+    background: var(--jz-paper);
+    color: var(--jz-ink);
+    -webkit-mask: var(--notch);
+    mask: var(--notch);
+    flex: 0 0 min(80vw, 21rem);
+    scroll-snap-align: start;
+    transform-origin: 50% 100%;
+    rotate: var(--tilt, 0deg);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.jz-has-carousel .jz-card:not(.is-active) {
+    transform: scale(0.94);
+}
+
+.jz-has-carousel .jz-card.is-active {
+    transform: translateY(-6px);
+}
+
+.jz-card--clay { --band: var(--jz-clay); }
+.jz-card--air { --band: var(--jz-air); }
+.jz-card--sage { --band: var(--jz-sage); }
+
+/* Perforation between the ticket's header and body */
+.jz-card::before {
+    content: "";
+    position: absolute;
+    left: 1.1rem;
+    right: 1.1rem;
+    top: 3.4rem;
+    border-top: 2px dashed rgba(17, 25, 34, 0.18);
+}
+
+.jz-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 6px;
+    background: var(--band);
+}
+
+.jz-card_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 1.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.jz-card_num {
+    color: #6a5a45;
+}
+
+.jz-card_when {
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    background: var(--band);
+    color: #fff;
+    letter-spacing: 0.1em;
+}
+
+.jz-card--gold .jz-card_when {
+    color: var(--jz-ink);
+}
+
+.jz-card h3 {
+    margin-top: 0.9rem;
+    font-family: var(--jz-heading);
+    font-size: 1.45rem;
+    line-height: 1.15;
+}
+
+.jz-card_text {
+    color: #3b4859;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+.jz-card_tag {
+    justify-self: start;
+    padding-top: 0.7rem;
+    border-top: 1px solid rgba(17, 25, 34, 0.12);
+    color: #6a5a45;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.jz-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 var(--jz-pad);
+}
+
+.jz-controls[hidden] {
+    display: none;
+}
+
+.jz-arrow {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 3rem;
+    height: 3rem;
+    border: 1.5px solid rgba(251, 246, 238, 0.35);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--jz-paper);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.jz-arrow:hover:not(:disabled) {
+    border-color: var(--jz-gold);
+    background: var(--jz-gold);
+    color: var(--jz-ink);
+}
+
+.jz-arrow:active:not(:disabled) {
+    transform: scale(0.92);
+}
+
+.jz-arrow:focus-visible,
+.jz-dot:focus-visible {
+    outline: 3px solid var(--jz-gold);
+    outline-offset: 3px;
+}
+
+.jz-arrow:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.jz-dots {
+    display: flex;
+    gap: 0.25rem;
+}
+
+/* 24px tap target around a small dot */
+.jz-dot {
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+.jz-dot::before {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: rgba(251, 246, 238, 0.35);
+    translate: -50% -50%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.jz-dot[aria-current="true"]::before {
+    width: 1.3rem;
+    background: var(--jz-gold);
+}
+
+.jz-meter {
+    flex: 1;
+    height: 2px;
+    background: rgba(251, 246, 238, 0.12);
+    overflow: hidden;
+}
+
+.jz-meter span {
+    display: block;
+    height: 100%;
+    background: var(--jz-gold);
+    transform: scaleX(0.2);
+    transform-origin: 0 50%;
+}
+
+/* Field guide */
+.jz-guide {
+    display: grid;
+    gap: 1.5rem;
+    padding: 2rem var(--jz-pad) 6rem;
+}
+
+.jz-guide_title {
+    font-family: var(--jz-heading);
+    font-size: 1.5rem;
+    color: var(--jz-paper);
+}
+
+.jz-guide_list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    padding: 0;
+    list-style: none;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(251, 246, 238, 0.12);
+}
+
+.jz-guide_list li {
+    display: grid;
+    align-content: start;
+    gap: 0.35rem;
+    padding: 1.4rem 1.4rem 1.5rem;
+    background: var(--jz-ink-2);
+}
+
+.jz-guide_list p {
+    color: var(--jz-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.jz-guide_list .jz-guide_label {
+    color: var(--jz-gold);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.jz-guide_list .jz-guide_big {
+    color: var(--jz-paper);
+    font-family: var(--jz-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+@media (max-width: 899px) {
+    .jz-intro {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.5rem;
+        padding-top: 5rem;
+        padding-bottom: 2rem;
+    }
+
+    .jz-case {
+        width: min(100%, 26rem);
+        justify-self: center;
+    }
+
+    .jz-spot {
+        inset: -1.5rem 18% 14%;
+    }
+
+    .jz-counter {
+        justify-items: start;
+    }
+
+    .jz-controls {
+        justify-content: space-between;
+    }
+
+    .jz-meter {
+        display: none;
+    }
+
+    .jz-guide_list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .jz-guide_list {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jz-card {
+        transition: none;
+    }
+}

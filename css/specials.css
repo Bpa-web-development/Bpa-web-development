@@ -2204,3 +2204,99 @@ tr.is-applied .sp-board_go {
         display: none;
     }
 }
+
+/* Fix: the jump bar fills the space behind the floating navbar once it sticks
+   (js/specials.js adds .is-stuck), so cards no longer peek through above it. */
+.specials-page .sp-jump.is-stuck::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    height: var(--sp-nav-h, 0px);
+    background: #fbf6ee;
+    pointer-events: none;
+}
+
+/* Fix: the applied code in "Current offers" gets a clean highlight: a gold bar on the left
+   and a light tint, instead of a muddy block. The Apply button keeps one width, so the
+   columns no longer jump when it changes to "Applied". */
+.specials-page .sp-board_table tr.is-applied td {
+    background: rgba(227, 168, 59, 0.08);
+}
+
+.specials-page .sp-board_table tr.is-applied td:first-child {
+    box-shadow: inset 3px 0 0 var(--sp-gold);
+}
+
+.specials-page .sp-board_table td:first-child,
+.specials-page .sp-board_table th:first-child {
+    padding-left: 0.85rem;
+}
+
+.specials-page .sp-board_go {
+    min-width: 5.5rem;
+    text-align: center;
+}
+
+/* Fix: the gold focus ring was hard to see on the light sections (about 2:1 against the
+   paper background). Light areas now use a navy ring and dark areas keep the gold one,
+   so the ring has at least 3:1 contrast everywhere (WCAG 2.2 SC 1.4.11 Non-text Contrast). */
+.specials-page :focus-visible {
+    outline-color: var(--sp-ink, #1d2a3a);
+}
+
+.specials-page :is(.sp-hero, .sp-local, .sp-cta, .deal--flash) :focus-visible {
+    outline-color: var(--sp-gold);
+}
+
+/* Fix: on phones each offer in "Current offers" is one tidy card: the offer on top, then the
+   code and its button on one line, with no stray divider or half-width strip. */
+@media (max-width: 640px) {
+    .specials-page .sp-board_table tr {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 0.35rem 0.75rem;
+        padding: 0.8rem 0.85rem;
+        border: 1px solid rgba(251, 246, 238, 0.1);
+        border-radius: 12px;
+        background: rgba(251, 246, 238, 0.04);
+    }
+
+    .specials-page .sp-board_table td,
+    .specials-page .sp-board_table td:first-child {
+        padding: 0;
+        border-top: 0;
+        background: none;
+        text-align: left;
+    }
+
+    .specials-page .sp-board_table td:first-child {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        font-size: 0.92rem;
+    }
+
+    .specials-page .sp-board_table td:nth-child(3) {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .specials-page .sp-board_table td:last-child {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .specials-page .sp-board_table tr.is-applied {
+        border-color: rgba(227, 168, 59, 0.55);
+        background: rgba(227, 168, 59, 0.08);
+    }
+
+    .specials-page .sp-board_table tr.is-applied td {
+        background: none;
+    }
+
+    .specials-page .sp-board_table tr.is-applied td:first-child {
+        box-shadow: none;
+    }
+}

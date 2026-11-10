@@ -242,3 +242,12 @@
     background: var(--wc-clay);
     color: #fff;
 }
+
+/* "Used for" note under each code source */
+.wc-used {
+    display: block;
+    margin-top: 0.2rem;
+    color: #5b6675;
+    font-size: 0.9em;
+    text-indent: 0;
+}

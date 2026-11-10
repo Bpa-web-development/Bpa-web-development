@@ -19,9 +19,22 @@ body .pm-next_card,
 body.specials-page .sp-cta,
 body .sp-cta,
 body .fq-cta {
-    background: var(--mb-postmark) right 1.5rem top 1.25rem / 220px auto no-repeat, var(--mb-ink);
+    background: var(--mb-postmark) right 1.5rem bottom 1.25rem / 200px auto no-repeat, var(--mb-ink);
     box-shadow: inset 0 0 0 1px rgba(227, 168, 59, 0.22), 0 24px 48px -32px rgba(23, 34, 47, 0.7);
     border-radius: 20px;
+}
+
+/* Fix: the postmark used to sit in the top corner, where it ran into long headings.
+   It now sits in the bottom corner, and phones leave it out because the card is too narrow. */
+@media (max-width: 640px) {
+    body .plans-cta,
+    body .btv-next_card,
+    body .pm-next_card,
+    body.specials-page .sp-cta,
+    body .sp-cta,
+    body .fq-cta {
+        background: var(--mb-ink);
+    }
 }
 
 body .btv-next_seal,
@@ -112,4 +125,28 @@ body.specials-page .sp-hero {
     body.specials-page .sp-hero {
         padding-block: 3rem 3.5rem;
     }
+}
+
+/* Headline words slide up out of a mask (js/motion.js). The doubled class outranks the
+   pages' own "h1 span" accent rules, so only the original accent span keeps its look. */
+main :is(h1, h2) span.mo-word.mo-word,
+main :is(h1, h2) span.mo-word_in.mo-word_in {
+    display: inline-block;
+    color: inherit;
+    font-style: inherit;
+    text-shadow: inherit;
+    rotate: none;
+}
+
+main :is(h1, h2) span.mo-word.mo-word {
+    overflow: clip;
+    padding: 0.04em 0.08em 0.12em;
+    margin: -0.04em -0.08em -0.12em;
+    vertical-align: top;
+}
+
+/* "A day in Burlington": js/motion.js draws the timeline as you scroll. */
+.has-motion .btv-day_list::before {
+    transform: scaleY(var(--day-progress, 1));
+    transform-origin: 50% 0;
 }

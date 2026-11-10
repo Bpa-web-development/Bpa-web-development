@@ -197,385 +197,739 @@ body {
 /* Accessibility Button */
 .accessibility {
     position: fixed;
-    bottom: 35px;
-    right: 35px;
+    bottom: 24px;
+    right: 24px;
     z-index: 9999;
 }
 
-/* Accessibility Icon */
+/* Accessibility Icon: a navy circle with a white figure, in the site's colors */
 .accessibility-icon {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    border: 3px solid #fbf6ee;
+    border-radius: 50%;
+    background: #1d2a3a;
+    color: #fff;
+    box-shadow: 0 8px 22px -6px rgba(17, 25, 34, 0.55);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.accessibility-icon .a11y-svg {
+    width: 30px;
+    height: 30px;
+    stroke-width: 2.2;
+}
+
+.accessibility-icon:hover {
+    background: #26364a;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px -8px rgba(17, 25, 34, 0.6);
+}
+
+.accessibility-icon:focus-visible {
+    outline: 3px solid #b0491f;
+    outline-offset: 3px;
+}
+
+/* A small label that slides out on hover or keyboard focus */
+.accessibility-icon_tip {
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 50%;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: #1d2a3a;
+    color: #fff;
+    font: 700 0.8rem/1.2 var(--font-body);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(6px, -50%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.accessibility-icon:hover .accessibility-icon_tip,
+.accessibility-icon:focus-visible .accessibility-icon_tip {
+    opacity: 1;
+    transform: translate(0, -50%);
+}
+
+.accessibility-icon.hidden {
+    visibility: hidden;
+}
+
+.a11y-svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+    flex: none;
+}
+
+/* ACCESSIBILITY MENU (a modal <dialog>) */
+.accessibility-panel {
+    display: none;
+    flex-direction: column;
+    width: min(440px, calc(100vw - 2rem));
+    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
+    margin: auto 1rem 1rem auto;
+    padding: 0;
+    border: 1px solid #e6dccb;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fbf6ee;
+    color: #1d2a3a;
+    box-shadow: 0 24px 60px -12px rgba(17, 25, 34, 0.45);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.accessibility-panel[open] {
+    display: flex;
+}
+
+.accessibility-panel::backdrop {
+    background: rgba(17, 25, 34, 0.4);
+}
+
+.accessibility-panel :focus-visible {
+    outline: 3px solid #b0491f;
+    outline-offset: 2px;
+}
+
+.accessibility-panel button {
+    font: inherit;
+    color: inherit;
+}
+
+.accessibility-panel .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* HEADER */
+.accessibility-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 70px;
-    height: 70px;
-    cursor: pointer;
+    gap: 0.85rem;
+    padding: 1.1rem 1rem 1.1rem 1.25rem;
+    background: #1d2a3a;
+    color: #fff;
+}
 
+.accessibility-header_badge {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.6rem;
+    height: 2.6rem;
     border-radius: 50%;
-}
-/* Accessibility Icon Image */
-.accessibility-icon img {
-    width: 70px;
-    height: 70px;
-    object-fit: contain;
-
-    border-radius: 50%;
+    background: rgba(251, 246, 238, 0.12);
 }
 
-.accessibility-icon.hidden{
-    display: none;
+.accessibility-header_text {
+    flex: 1;
+    min-width: 0;
 }
 
-
-/*ACCESSIBILITY MENU*/
-#accessibilityMenu{
-    max-width: fit-content;
-    height: fit-content;
-    margin: 5rem;
-    display: none;
-    position: fixed;
-
+/* The #accessibilityMenu prefix keeps each page's own heading styles out of the menu. */
+#accessibilityMenu .accessibility-header h2 {
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.2;
+    text-align: left;
+    text-transform: none;
 }
 
-
-#accessibility-overlay {
-    
-
-    inset: 0;
-    z-index: 10000;
-
-    display: none;
-    flex-direction: column;
-    flex: center;
-
-    background: rgba(0, 0, 0, 0.25);
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition:
-        opacity 0.25s ease,
-        visibility 0.25s ease;
+.accessibility-header p {
+    margin: 0.15rem 0 0;
+    color: rgba(251, 246, 238, 0.78);
+    font-size: 0.82rem;
 }
-
-
-#accessibility-overlay.open {
-    opacity: 1;
-    visibility: visible;
-    display: flex;
-    flex-direction: column;
-
-    border-radius: 1.5rem;
-}
-
-
-/*PANEL*/
-
-.accessibility-panel {
-    width: min(820px, 100%);
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-
-    overflow-y: auto;
-
-    background: #f3f5fb;
-
-    box-shadow:
-        -5px 0 25px rgba(0, 0, 0, 0.15);
-    border-radius: 1.5rem;
-}
-
-
-/*HEADER*/
-
-.accessibility-header {
-    position: relative;
-
-    height: 9rem;
-    border-radius: 1.5rem 1.5rem 0 0;
-
-    padding: 20px 30px 30px;
-
-    background: #1674ed;
-
-    color: white;
-}
-
-
-.accessibility-header h2 {
-    margin: 25px 0 0;
-    padding: 1rem 0;
-
-    text-align: center;
-
-    font-family: var(--font-family);
-    font-size: 36px;
-    font-weight: 500;
-}
-
 
 .accessibility-close {
-    position: absolute;
-
-    top: 15px;
-    left: 20px;
-
-    border: none;
-    background: transparent;
-
-    color: white;
-
-    font-size: 42px;
-    font-family: var(--font-family);
-    line-height: 1;
-
-    cursor: pointer;
-}
-
-
-.accessibility-language {
-    position: absolute;
-
-    top: 20px;
-    right: 35px;
-
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 5px 10px;
-
-    font-size: 20px;
-    font-family: var(--font-family);
-}
-
-
-/*TOP BUTTONS*/
-
-.accessibility-top-buttons {
-    /* position: absolute; */
-
-    left: 5px;
-    right: 5px;
-    bottom: 30px;
-
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 18px;
-
-    padding: 15px 30px;
-}
-
-
-.accessibility-top-button {
-    min-height: 65px;
+    place-items: center;
+    flex: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-self: flex-start;
     border: none;
-    border-radius: 30px;
-    max-width: 250px;
-
-    background: white;
-
-    color: #1674ed;
-
-    font-size: 22px;
-    font-family: var(--font-family);
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    transition: transform 0.15s ease;
-}
-
-
-.accessibility-top-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-
-.accessibility-button-icon img {
-    width: 5rem;
-    height: 100%;
-
-    object-fit: contain;
-
-}
-
-/*SETTINGS*/
-
-.accessibility-settings {
-    margin: 0 25px 30px;
-
-    padding: 25px;
-
-    border-radius: 22px;
-
-    background: white;
-}
-
-
-.accessibility-section-title {
-    margin: 0 0 20px;
-
-    font-family: var(--font-family);
-    font-size: 28px;
-    font-weight: 500;
-}
-
-
-.accessibility-option {
-    min-height: 95px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 25px;
-
-    border-bottom: 1px solid #e5e7ec;
-}
-
-
-.accessibility-option:last-child {
-    border-bottom: none;
-}
-
-.accessibility-option-info{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.accessibility-option-info h4 {
-    margin: 0 0 5px;
-
-    font-family: var(--font-family);
-    font-size: 23px;
-    font-weight: 500;
-}
-
-
-.accessibility-option-info p {
-    margin: 0;
-
-    color: #667085;
-
-    font-size: 18px;
-    font-family: var(--font-family);
-}
-
-
-.accessibility-option-icon {
-    width: 3.75rem;
-    height: 3.75rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     border-radius: 50%;
-
-    background: #f2f7fc;
-
-
-}
-
-.accessibility-option-icon img{
-    height: 50%;
-    width: 50%;
-}
-
-
-/*TOGGLE*/
-
-.accessibility-toggle {
-    width: 170px;
-}
-
-
-.toggle-button {
-    width: 170px;
-    height: 55px;
-
-    padding: 5px;
-
-    display: flex;
-
-    border: none;
-    border-radius: 30px;
-
-    background: #edf2f7;
-
+    background: transparent;
+    color: #fff !important;
     cursor: pointer;
-    transition: var(--slower-transition);
 }
 
+.accessibility-close:hover {
+    background: rgba(251, 246, 238, 0.14);
+}
 
-.toggle-button span {
-    width: 50%;
+.accessibility-header :focus-visible {
+    outline-color: #e3a83b;
+}
 
+/* BODY: the part that scrolls */
+.accessibility-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 1rem 1rem 0.5rem;
+}
+
+.accessibility-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.accessibility-action {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 25px;
-
-    font-size: 17px;
-    font-weight: 600;
-    font-family: var(--font-family);
+    gap: 0.45rem;
+    min-height: 2.75rem;
+    padding: 0 0.75rem;
+    border: 1px solid #e6dccb;
+    border-radius: 999px;
+    background: #fff;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-
-.toggle-button.active {
-    background: #e1edff;
-    transition: var(--slower-transition);
+.accessibility-action .a11y-svg {
+    width: 18px;
+    height: 18px;
 }
 
-
-.toggle-button.active .toggle-on {
-    background: #1674ed;
-    color: white;
+.accessibility-action:hover,
+.accessibility-action[aria-expanded="true"] {
+    border-color: #1d2a3a;
 }
 
-
-.toggle-button:not(.active) .toggle-off {
-    background: white;
-    color: #263143;
-
-    box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: var(--transition);
-
+.accessibility-action[aria-expanded="true"] {
+    background: #f1e8d9;
 }
 
+/* STATEMENT */
+.accessibility-statement {
+    margin-bottom: 1rem;
+    padding: 0.9rem 1rem;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid #e6dccb;
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
 
-/*FOOTER*/
+.accessibility-statement h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1rem;
+}
 
-.accessibility-footer {
-    height: 2rem;
+.accessibility-statement p {
+    margin: 0 0 0.5rem;
+}
 
-    padding: 10px 30px;
-    border-radius: 0 0 1.5rem 1.5rem;
+.accessibility-statement p:last-child {
+    margin: 0;
+}
 
+.accessibility-statement a {
+    color: #a3421b;
+    font-weight: 700;
+}
+
+/* GROUPS */
+.accessibility-group {
+    margin-bottom: 1.1rem;
+}
+
+#accessibilityMenu .accessibility-statement h3 {
+    color: #1d2a3a;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    letter-spacing: 0;
+    line-height: 1.3;
+    text-transform: none;
+}
+
+#accessibilityMenu .accessibility-group_title {
+    font-family: var(--font-body);
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+    color: #5b4a36;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* PROFILES: rows with a switch */
+.accessibility-profiles {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid #e6dccb;
+    border-radius: 14px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.accessibility-profile {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-
-    background: #1674ed;
-
-    color: white;
-
-    font-size: 20px;
-    font-family: var(--font-family);
+    gap: 0.75rem;
+    padding: 0.7rem 0.85rem;
 }
 
-
-.accessibility-footer-brand {
-    font-weight: 600;
-    font-family: var(--font-family);
+.accessibility-profile + .accessibility-profile {
+    border-top: 1px solid #efe6d6;
 }
 
+.accessibility-profile_icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 10px;
+    background: #f1e8d9;
+    color: #1d2a3a;
+}
+
+.accessibility-profile_icon .a11y-svg {
+    width: 19px;
+    height: 19px;
+}
+
+.accessibility-profile_text {
+    display: grid;
+    flex: 1;
+    min-width: 0;
+}
+
+.accessibility-profile_name {
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.accessibility-profile_desc {
+    color: #5d6673;
+    font-size: 0.8rem;
+}
+
+/* SWITCH */
+.accessibility-switch {
+    position: relative;
+    flex: none;
+    width: 3rem;
+    height: 1.75rem;
+    padding: 0;
+    border: 2px solid #8a94a3;
+    border-radius: 999px;
+    background: #e9edf2;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.accessibility-switch_thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(1.75rem - 8px);
+    height: calc(1.75rem - 8px);
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(17, 25, 34, 0.35);
+    transition: transform 0.2s ease;
+}
+
+.accessibility-switch[aria-checked="true"] {
+    border-color: #1d2a3a;
+    background: #1d2a3a;
+}
+
+.accessibility-switch[aria-checked="true"] .accessibility-switch_thumb {
+    transform: translateX(1.25rem);
+}
+
+/* TEXT SIZE STEPPER */
+.accessibility-size {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 0.6rem 0.6rem 0.85rem;
+    border: 1px solid #e6dccb;
+    border-radius: 14px;
+    background: #fff;
+}
+
+#accessibilityMenu .accessibility-size .accessibility-group_title {
+    margin: 0;
+}
+
+.accessibility-stepper {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.accessibility-step {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid #e6dccb;
+    border-radius: 50%;
+    background: #fbf6ee;
+    cursor: pointer;
+}
+
+.accessibility-step:hover:not(:disabled) {
+    border-color: #1d2a3a;
+}
+
+.accessibility-step:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.accessibility-step_value {
+    min-width: 3.6rem;
+    text-align: center;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/* TOOL TILES: toggle buttons in a grid */
+.accessibility-tiles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
+.accessibility-tile {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 0.4rem;
+    min-height: 5.25rem;
+    padding: 0.7rem 0.4rem;
+    border: 1px solid #e6dccb;
+    border-radius: 14px;
+    background: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.accessibility-tile:hover {
+    border-color: #1d2a3a;
+}
+
+.accessibility-tile_label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.accessibility-tile_check {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: grid;
+    place-items: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    background: #e3a83b;
+    color: #1d2a3a;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.accessibility-tile_check .a11y-svg {
+    width: 12px;
+    height: 12px;
+    stroke-width: 3.5;
+}
+
+.accessibility-tile[aria-pressed="true"] {
+    border-color: #1d2a3a;
+    background: #1d2a3a;
+    color: #fff;
+}
+
+.accessibility-tile[aria-pressed="true"] .accessibility-tile_check {
+    opacity: 1;
+    transform: none;
+}
+
+/* READ ALOUD */
+.accessibility-listen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    min-height: 3rem;
+    border: none;
+    border-radius: 999px;
+    background: #b0491f;
+    color: #fff !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.accessibility-listen:hover {
+    background: #973c17;
+}
+
+.accessibility-listen[aria-pressed="true"] {
+    background: #1d2a3a;
+}
+
+.accessibility-hint {
+    margin: 0.4rem 0 0;
+    color: #5d6673;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.accessibility-status {
+    min-height: 1.2em;
+    margin: 0;
+    color: #1d2a3a;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* FOOTER */
+.accessibility-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid #e6dccb;
+    background: #f1e8d9;
+    color: #5b4a36;
+    font-size: 0.85rem;
+}
+
+.accessibility-footer a {
+    color: #1d2a3a;
+    font-weight: 700;
+}
+
+@media (max-width: 480px) {
+    .accessibility {
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .accessibility-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .accessibility-icon_tip {
+        display: none;
+    }
+
+    /* On a phone the menu is a sheet along the bottom of the screen */
+    .accessibility-panel {
+        width: 100vw;
+        max-width: 100vw;
+        max-height: 88vh;
+        max-height: 88dvh;
+        margin: auto 0 0;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .accessibility-tiles {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ===== What the settings do ===== */
+
+/* Seizure Safety, ADHD Friendly and Stop animation: no CSS motion. Animations and transitions
+   finish instantly instead of being removed, so anything that fades in still ends up visible.
+   Based on WCAG Technique C39 (prefers-reduced-motion), applied from a setting:
+   https://www.w3.org/WAI/WCAG21/Techniques/css/C39 */
+html.accessibility-seizure *,
+html.accessibility-seizure *::before,
+html.accessibility-seizure *::after,
+html.accessibility-adhd *,
+html.accessibility-adhd *::before,
+html.accessibility-adhd *::after,
+html.accessibility-motion *,
+html.accessibility-motion *::before,
+html.accessibility-motion *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+}
+
+/* Color tools work as one filter on the whole page, so they can be combined.
+   Based on MDN Web Docs, "filter" (contrast(), grayscale() and saturate()):
+   https://developer.mozilla.org/en-US/docs/Web/CSS/filter
+   A filter on the root element does not break position: fixed (Filter Effects Module, W3C). */
+html.accessibility-contrast,
+html.accessibility-mono,
+html.accessibility-lowsat,
+html.accessibility-seizure {
+    filter: contrast(var(--a11y-contrast, 1)) grayscale(var(--a11y-gray, 0)) saturate(var(--a11y-sat, 1));
+}
+
+html.accessibility-contrast {
+    --a11y-contrast: 1.35;
+}
+
+html.accessibility-mono {
+    --a11y-gray: 1;
+}
+
+/* Seizure Safety tones down strong color, a common trigger, the same way Soft color does. */
+html.accessibility-lowsat,
+html.accessibility-seizure {
+    --a11y-sat: 0.55;
+}
+
+/* Low Vision and Underline links: underlined links (WCAG 2.2 SC 1.4.1 Use of Color).
+   Low Vision also gets bigger text from js/accessibility.js (SC 1.4.4 Resize Text). */
+html.accessibility-vision main a,
+html.accessibility-vision footer a,
+html.accessibility-links main a,
+html.accessibility-links footer a {
+    text-decoration: underline !important;
+    text-decoration-thickness: 0.1em !important;
+    text-underline-offset: 0.18em;
+}
+
+html.accessibility-vision {
+    font-size: 118.75%;
+}
+
+html.accessibility-vision body {
+    line-height: 1.6;
+}
+
+/* With bigger text the desktop navbar would run into itself, so it keeps its normal size there
+   (css/navbar.css sizes everything with --nb-rem). The phone menu has room and grows. */
+@media (min-width: 1181px) {
+    html.accessibility-bigtext .navbar {
+        --nb-rem: calc(1rem / var(--a11y-scale, 1));
+    }
+}
+
+/* Low Vision and Strong focus: a thick, two-color focus ring that shows on light and dark.
+   Based on WCAG 2.2 SC 2.4.7 Focus Visible and Technique C40 (two-color focus indicator):
+   https://www.w3.org/WAI/WCAG22/Techniques/css/C40 */
+html.accessibility-vision :focus-visible,
+html.accessibility-focus :focus-visible {
+    outline: 4px solid #ffbf47 !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 0 7px #0b0c0c !important;
+}
+
+/* Dyslexia Friendly and Readable font: a plain sans-serif font.
+   Follows the British Dyslexia Association's dyslexia friendly style guide ("Creating a
+   dyslexia friendly workplace"), which suggests sans-serif fonts such as Verdana, Tahoma and
+   Arial, and left-aligned text that isn't justified:
+   https://www.bdadyslexia.org.uk/advice/employers/creating-a-dyslexia-friendly-workplace/dyslexia-friendly-style-guide */
+html.accessibility-dyslexia body,
+html.accessibility-dyslexia body *,
+html.accessibility-font body,
+html.accessibility-font body * {
+    font-family: Verdana, Tahoma, Arial, sans-serif !important;
+}
+
+/* Dyslexia Friendly and Text spacing: the spacing values from WCAG 2.2 SC 1.4.12 Text Spacing
+   (line height 1.5, letter spacing 0.12em, word spacing 0.16em).
+   Based on Steve Faulkner's "Text spacing bookmarklet", which applies the same values:
+   https://www.html5accessibility.com/tests/tsbookmarklet.html */
+html.accessibility-dyslexia main *,
+html.accessibility-spacing main * {
+    line-height: 1.5 !important;
+    letter-spacing: 0.12em !important;
+    word-spacing: 0.16em !important;
+}
+
+/* Dyslexia Friendly and Align left: no centered or justified paragraphs (BDA style guide). */
+html.accessibility-dyslexia main :is(p, li, h1, h2, h3, h4, dd, dt, blockquote, figcaption),
+html.accessibility-align main :is(p, li, h1, h2, h3, h4, dd, dt, blockquote, figcaption) {
+    text-align: left !important;
+}
+
+/* Mark headings: a clear outline around every heading so the page's outline is easy to scan. */
+html.accessibility-headings main :is(h1, h2, h3, h4, h5, h6) {
+    outline: 2px dashed #b0491f !important;
+    outline-offset: 4px;
+}
+
+/* Big cursor: a larger arrow drawn as an SVG.
+   Based on MDN Web Docs, "cursor" (url() with a fallback keyword):
+   https://developer.mozilla.org/en-US/docs/Web/CSS/cursor */
+html.accessibility-cursor,
+html.accessibility-cursor * {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24'%3E%3Cpath d='M4 2.5l14.5 10.2-6.3 1.2 3.7 7.1-2.7 1.4-3.7-7.1-5.5 4.3z' fill='%23111922' stroke='%23fff' stroke-width='1.3' stroke-linejoin='round'/%3E%3C/svg%3E") 6 4, auto !important;
+}
+
+/* Hide images: pictures are hidden but keep their space, so the layout doesn't jump. */
+html.accessibility-noimg main :is(img, picture, video, svg[role="img"]),
+html.accessibility-noimg main [style*="background-image"] {
+    visibility: hidden !important;
+}
+
+/* Reading guide: a thin line just under the pointer, with a light edge so it shows on any
+   background. Reading mask: dims everything except a band around the pointer. */
+.accessibility-reading-guide {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    z-index: 9998;
+    pointer-events: none;
+    background: #b0491f;
+    box-shadow: 0 0 0 2px rgba(251, 246, 238, 0.85);
+    will-change: transform;
+}
+
+.accessibility-reading-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    z-index: 9997;
+    pointer-events: none;
+    box-shadow: 0 0 0 100vmax rgba(17, 25, 34, 0.55);
+    will-change: transform;
+}
