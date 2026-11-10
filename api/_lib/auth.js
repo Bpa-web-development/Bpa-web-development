@@ -10,6 +10,10 @@ const SESSION_DAYS = Number(process.env.SESSION_DAYS) || 30;
 // Compared against when an email has no account, so a wrong email takes as long as a wrong password.
 const DUMMY_HASH = "$2b$12$dlBp8FkACPeoGSx0AQzo4eVyINhO.fhjxpyBWLsN9VVzl53ryOqVG";
 
+// Password hashing with bcrypt. bcrypt.hash() makes a fresh random salt and stores it inside the
+// hash; bcrypt.compare() reads that salt back out to check a password.
+// Usage from the bcryptjs README: https://www.npmjs.com/package/bcryptjs
+// (the promise form of bcrypt.hash(password, rounds) and bcrypt.compare(password, hash)).
 export function hashPassword(password) {
     return bcrypt.hash(password, BCRYPT_COST);
 }
@@ -18,6 +22,8 @@ export async function verifyPassword(password, hash) {
     return bcrypt.compare(password, hash || DUMMY_HASH);
 }
 
+// SHA-256 of a session token, as in the Node.js docs, "Crypto: hash.update() and hash.digest()"
+// https://nodejs.org/api/crypto.html#class-hash
 function hashToken(token) {
     return createHash("sha256").update(token).digest("hex");
 }
@@ -33,6 +39,8 @@ function readCookie(req, name) {
     return "";
 }
 
+// Cookie attributes (HttpOnly, Secure, SameSite, Max-Age) as described in MDN Web Docs,
+// "Set-Cookie header": https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie
 function sessionCookie(value, maxAge) {
     return [
         `${COOKIE_NAME}=${value}`,
@@ -44,6 +52,7 @@ function sessionCookie(value, maxAge) {
     ].filter(Boolean).join("; ");
 }
 
+// randomBytes() from the Node.js docs, "crypto.randomBytes(size)": https://nodejs.org/api/crypto.html#cryptorandombytessize-callback
 // Sessions are random 256-bit tokens. Only their SHA-256 hash is stored, so a leaked
 // database can't be used to sign in as anyone.
 export async function startSession(res, userId, req) {
