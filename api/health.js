@@ -10,7 +10,7 @@ export default route({
             const row = await one("SELECT to_regclass('public.users') IS NOT NULL AS ready");
             if (!row || !row.ready) database = "connected, but tables are missing (run npm run db:migrate)";
         } catch (error) {
-            database = error.code === "db_not_configured" ? "DATABASE_URL is not set" : "cannot connect";
+            database = error.code === "db_not_configured" ? "no database connected (connect Neon under Vercel > Storage, then redeploy)" : "cannot connect (check the DATABASE_URL value in Vercel)";
         }
         sendJson(res, database === "ok" ? 200 : 503, {
             ok: database === "ok",
