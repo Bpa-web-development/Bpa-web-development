@@ -49,6 +49,9 @@
         return name.split(/\s+/).filter(Boolean).map((part) => part[0]).join("").slice(0, 2).toUpperCase();
     }
 
+    // Adapted from MDN Web Docs, "Date.prototype.toLocaleDateString()" (Using options)
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+    // Changed: month and year only, like "Oct 2026".
     function formatDate(iso) {
         const date = new Date(iso);
         if (Number.isNaN(date.getTime())) {
@@ -75,12 +78,19 @@
             card.classList.add("is-switching");
         }
 
+        // Sign in / Create account tabs.
+        // Adapted from W3Schools, "How To Create Tabs" (the openCity function)
+        // https://www.w3schools.com/howto/howto_js_tabs.asp
+        // Changed: loops over our two tabs, uses aria-selected and the hidden attribute in place of
+        // the "active" class and style.display, so screen readers know which tab is open.
         function selectTab(name, focus) {
             active = name;
+            // Hide every tab panel and mark every tab button as not selected...
             Object.keys(tabs).forEach((key) => {
                 const on = key === name;
                 tabs[key].tab.setAttribute("aria-selected", String(on));
                 tabs[key].tab.tabIndex = on ? 0 : -1;
+                // ...then show only the panel for the tab that was picked.
                 tabs[key].panel.hidden = !on;
             });
             flash();
@@ -122,9 +132,17 @@
         document.querySelectorAll(".si-eye").forEach((button) => {
             const input = document.getElementById(button.getAttribute("aria-controls"));
             button.setAttribute("aria-label", "Show password");
+            // Show / hide password.
+            // Adapted from W3Schools, "How To Toggle Password Visibility"
+            // https://www.w3schools.com/howto/howto_js_toggle_password.asp
+            // Changed: a button instead of a checkbox, and the button's label says what it will do.
             button.addEventListener("click", () => {
                 const show = input.type === "password";
-                input.type = show ? "text" : "password";
+                if (input.type === "password") {
+                    input.type = "text";
+                } else {
+                    input.type = "password";
+                }
                 button.textContent = show ? "Hide" : "Show";
                 button.setAttribute("aria-pressed", String(show));
                 button.setAttribute("aria-label", show ? "Hide password" : "Show password");

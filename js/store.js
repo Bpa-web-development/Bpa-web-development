@@ -35,10 +35,19 @@
 
     const MAX_QTY = 5;
 
+    // Tells the rest of the site when the cart or account changes, with a custom event.
+    // Adapted from MDN Web Docs, "Creating and triggering events" (Adding custom data, CustomEvent())
+    // https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events
+    // Changed: every event name starts with "marlowby:" and is sent on document.
     function emit(name, detail) {
         document.dispatchEvent(new CustomEvent("marlowby:" + name, { detail }));
     }
 
+    // Saving and loading the cart, account and settings in the browser.
+    // Based on W3Schools, "HTML Web Storage API" (localStorage.setItem / localStorage.getItem)
+    // https://www.w3schools.com/html/html5_webstorage.asp
+    // Changed: values are stored as JSON so whole objects fit, and a try/catch keeps the page
+    // working when storage is blocked (for example in some private browsing windows).
     function readJson(storage, key, fallback) {
         try {
             const value = JSON.parse(storage.getItem(key) || "null");
@@ -64,7 +73,20 @@
         }
     }
 
-    const money = (value) => { const amount = Number(value); const cents = Math.round(amount * 100) % 100 !== 0; return "$" + amount.toLocaleString("en-US", { minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: 2 }); };
+    // Formats a price as US dollars, like $29 or $49.50.
+    // Adapted from MDN Web Docs, "Intl.NumberFormat" (style: "currency" example)
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+    // Changed: US dollars instead of euros, and whole-dollar prices drop the ".00".
+    const money = (value) => {
+        const amount = Number(value);
+        const cents = Math.round(amount * 100) % 100 !== 0;
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: cents ? 2 : 0,
+            maximumFractionDigits: 2
+        }).format(amount);
+    };
 
     const catalog = {
         data: DEFAULT_CATALOG,
@@ -117,6 +139,7 @@
         }
     };
 
+    // Loads plan prices from plans.json (MDN "Using the Fetch API", same as api() above).
     const catalogReady = fetch("/data/plans.json", { cache: "no-cache" })
         .then((response) => (response.ok ? response.json() : Promise.reject(new Error(String(response.status)))))
         .then((data) => {
@@ -287,6 +310,11 @@
 
     // Talks to the serverless API in /api. The session lives in an HttpOnly cookie,
     // so page scripts never see it.
+    // Adapted from MDN Web Docs, "Using the Fetch API" (the async getData() example: fetch,
+    // check response.ok, then read response.json())
+    // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    // Changed: sends JSON with the login cookie, and turns the server's error message into
+    // an Error the forms can show.
     async function api(path, options) {
         const settings = options || {};
         let response;

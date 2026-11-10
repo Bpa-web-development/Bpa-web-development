@@ -6,6 +6,8 @@
         return;
     }
 
+    // Checks the visitor's "reduce motion" setting with window.matchMedia().
+    // From MDN Web Docs, "Window: matchMedia() method": https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const $ = (selector, root = document) => root.querySelector(selector);
     const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -211,6 +213,9 @@
         return node;
     }
 
+    // Adapted from MDN Web Docs, "Date.prototype.toLocaleDateString()" (Using options)
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+    // Changed: a short month, like "Oct 27, 2026", with no weekday.
     function formatDate(iso) {
         return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
     }
@@ -279,6 +284,12 @@
             }
         }
 
+        // The cart drawer and account window close from their X button, the Escape key, or a
+        // click on the dark area around them.
+        // Adapted from W3Schools, "How To Create a Modal Box" ("When the user clicks anywhere
+        // outside of the modal, close it"): https://www.w3schools.com/howto/howto_css_modals.asp
+        // Changed: built on <dialog> and showModal() (MDN, see navbar.js), so focus stays inside
+        // and Escape works, and it fades out before closing.
         [drawer, modal].forEach((dialog) => {
             dialog.addEventListener("click", (event) => {
                 if (event.target === dialog || event.target.closest("[data-shop-close]")) {
@@ -312,6 +323,8 @@
                 }
                 const title = $("#cartTitle");
                 if (title) {
+                    // Smooth scroll adapted from MDN, "Element: scrollIntoView() method"
+                    // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
                     title.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
                     title.focus({ preventScroll: true });
                 }
@@ -512,6 +525,11 @@
             return name.split(/\s+/).filter(Boolean).map((part) => part[0]).join("").slice(0, 2).toUpperCase();
         }
 
+        // "Added to cart" pop-up.
+        // Adapted from W3Schools, "How To Create a Snackbar / Toast"
+        // https://www.w3schools.com/howto/howto_js_snackbar.asp
+        // Changed: shows for 4.2 seconds instead of 3, restarts its animation if you add another
+        // item while it's still showing, and is skipped on the cart page.
         function showToast(message) {
             if (onCartPage) {
                 return;
@@ -520,8 +538,10 @@
             toast.hidden = false;
             toast.classList.remove("is-showing");
             void toast.offsetWidth;
+            // Add the "is-showing" class to the toast...
             toast.classList.add("is-showing");
             window.clearTimeout(toastTimer);
+            // ...and after a few seconds, remove it again.
             toastTimer = window.setTimeout(() => {
                 toast.classList.remove("is-showing");
                 window.setTimeout(() => (toast.hidden = true), 300);
@@ -605,6 +625,12 @@
             renderCart();
             openDialog(drawer);
             $("#shopCartTitle").focus();
+            // Staggered entrance adapted from GSAP docs, "Staggers" and "gsap.fromTo()"
+            // https://gsap.com/resources/getting-started/Staggers
+            // https://gsap.com/docs/v3/GSAP/gsap.fromTo()
+            if (window.gsap && !reduceMotion) {
+                gsap.fromTo("#shopLines .shop-line", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out", stagger: 0.06, clearProps: "transform,opacity,visibility" });
+            }
         }
 
         const rules = {
@@ -617,6 +643,13 @@
             shopDeletePassword: (value) => (value ? "" : "Please enter your password.")
         };
 
+        // Checkout and account form checks.
+        // Adapted from MDN Web Docs, "Client-side form validation" (the showError() example:
+        // check again on every input once a field has an error, write the message into the
+        // field's error element, and stop the form from sending while anything is wrong)
+        // https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation
+        // Changed: our own rules per field instead of input.validity, and aria-invalid plus
+        // aria-describedby so screen readers read the message.
         function setError(input, message) {
             const field = input.closest(".shop-field");
             const error = $("#" + input.id + "Error");

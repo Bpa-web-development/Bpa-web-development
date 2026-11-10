@@ -1,6 +1,8 @@
 (function () {
     "use strict";
 
+    // Checks the visitor's "reduce motion" setting with window.matchMedia().
+    // From MDN Web Docs, "Window: matchMedia() method": https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
@@ -49,6 +51,10 @@
     const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
     const money = (value) => "$" + value.toLocaleString("en-US");
 
+    // Rolls a price from its old value to its new one.
+    // Adapted from MDN Web Docs, "Window: requestAnimationFrame() method" (the step(timestamp) example)
+    // https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame
+    // Changed: animates a number instead of a position, with an ease-out curve.
     function animateNumber(element, from, to, duration = 450) {
         if (reduceMotion || from === to) {
             element.textContent = to;
@@ -165,13 +171,38 @@
         const target = FIRST_SHIP;
         $("#nextMonthName").textContent = target.toLocaleString("en-US", { month: "long" });
         const pad = (value) => String(value).padStart(2, "0");
+        // Adapted from W3Schools, "How To Create a Countdown Timer"
+        // https://www.w3schools.com/howto/howto_js_countdown.asp
+        // Changed: stops at zero instead of showing "EXPIRED", pads to two digits,
+        // and writes each unit into its own box.
+        const countDownDate = target.getTime();
+        // Digit flip adapted from GSAP docs, "gsap.fromTo()"
+        // https://gsap.com/docs/v3/GSAP/gsap.fromTo()
+        // Changed: only runs on the box whose number actually changed.
+        function setDigit(node, value) {
+            if (node.textContent === value) {
+                return;
+            }
+            node.textContent = value;
+            if (window.gsap && !reduceMotion) {
+                gsap.fromTo(node, { yPercent: -40, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.3, ease: "power2.out" });
+            }
+        }
         function tick() {
-            const remaining = Math.max(0, target - new Date());
-            const seconds = Math.floor(remaining / 1000);
-            fields.days.textContent = pad(Math.floor(seconds / 86400));
-            fields.hours.textContent = pad(Math.floor((seconds % 86400) / 3600));
-            fields.mins.textContent = pad(Math.floor((seconds % 3600) / 60));
-            fields.secs.textContent = pad(seconds % 60);
+            // Find the distance between now and the count down date
+            const now = new Date().getTime();
+            const distance = Math.max(0, countDownDate - now);
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            setDigit(fields.days, pad(days));
+            setDigit(fields.hours, pad(hours));
+            setDigit(fields.mins, pad(minutes));
+            setDigit(fields.secs, pad(seconds));
         }
         tick();
         setInterval(tick, 1000);
@@ -203,6 +234,11 @@
         });
     }
 
+    // Animated FAQ: each answer slides open to its full height and closes back to zero.
+    // Adapted from W3Schools, "How To Create an Accordion" (animated slide-down version)
+    // https://www.w3schools.com/howto/howto_js_accordion.asp
+    // Changed: uses <details> so it still works without JavaScript, animates height instead of
+    // max-height, and opening one question closes the others.
     function initFaq() {
         $$(".plans-faq details").forEach((details) => {
             const summary = $("summary", details);
@@ -248,14 +284,19 @@
             return;
         }
         document.documentElement.classList.add("has-reveal");
-        const observer = new IntersectionObserver((entries) => {
+        // Adapted from MDN Web Docs, "Intersection Observer API"
+        // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+        // Changed: each element is revealed once, then no longer watched.
+        const options = { root: null, rootMargin: "0px 0px -40px 0px", threshold: 0.15 };
+        const callback = (entries, observer) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("is-visible");
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+        };
+        const observer = new IntersectionObserver(callback, options);
         targets.forEach((element, index) => {
             element.style.setProperty("--reveal-delay", (index % 3) * 90 + "ms");
             observer.observe(element);

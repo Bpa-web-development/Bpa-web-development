@@ -1,379 +1,381 @@
+// Page motion for the shop pages (never loaded on Home or Our Mission), built on GSAP and ScrollTrigger.
+// Each page gets the same hero entrance and scroll reveals, plus one or two moments of its own.
+// Without GSAP, or with reduced motion, nothing here runs and every page stays fully readable.
 (function () {
     "use strict";
 
-    const CART_KEY = "marlowbyCart";
-    const USER_KEY = "marlowbyUserHint";
-    const MOBILE = window.matchMedia("(max-width: 1180px)");
-    const REDUCE_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
+    if (!gsap || !ScrollTrigger) {
+        return;
+    }
+    gsap.registerPlugin(ScrollTrigger);
 
-    function readJson(key, fallback) {
-        try {
-            const value = JSON.parse(localStorage.getItem(key) || "null");
-            return value === null ? fallback : value;
-        } catch (error) {
-            return fallback;
-        }
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+    const has = (selector) => Boolean($(selector));
+
+    // Things that animate on their own and should be left alone.
+    const SKIP = ".navbar, .site-footer, #festival, .cookie-notice, [hidden]";
+
+    // Cards and blocks that rise in as they scroll into view.
+    const REVEAL = [
+        "[data-reveal]", "[data-pm-reveal]",
+        ".fq-group_head", ".fq-helpdesk > *", ".fq-tickets_list > li", ".fq-contact_grid > li", ".fq-cta",
+        ".cart-summary", ".cart-perks > *",
+        ".si-card",
+        ".sm-group",
+        ".wc-note", ".wc-group",
+        ".pm-now_card", ".rv > *"
+    ].join(", ");
+
+    // Section titles on the shop pages that get the word-by-word entrance.
+    const SECTION_TITLES = [
+        ".plans-section_header h2", ".plans-compare_header h2", ".plans-faq > h2", ".plans-cta h2",
+        ".sp-section_header h2", ".sp-local_copy h2", ".sp-cta h2",
+        ".fq-section_head h2", ".fq-cta h2",
+        ".pm-city_copy h2",
+        ".btv-head h2", ".btv-next_copy h2"
+    ].join(", ");
+
+    // Wrap each word of a heading so it can slide up out of a mask. Screen readers still read the text.
+    function splitWords(element) {
+        const words = [];
+        (function walk(node) {
+            Array.from(node.childNodes).forEach((child) => {
+                if (child.nodeType === Node.TEXT_NODE) {
+                    if (!child.textContent.trim()) {
+                        return;
+                    }
+                    const fragment = document.createDocumentFragment();
+                    child.textContent.split(/(\s+)/).forEach((part) => {
+                        if (!part) {
+                            return;
+                        }
+                        if (/^\s+$/.test(part)) {
+                            fragment.appendChild(document.createTextNode(part));
+                            return;
+                        }
+                        const outer = document.createElement("span");
+                        const inner = document.createElement("span");
+                        outer.className = "mo-word";
+                        inner.className = "mo-word_in";
+                        inner.textContent = part;
+                        outer.appendChild(inner);
+                        fragment.appendChild(outer);
+                        words.push(inner);
+                    });
+                    child.replaceWith(fragment);
+                } else if (child.nodeType === Node.ELEMENT_NODE && !child.classList.contains("visually-hidden")) {
+                    walk(child);
+                }
+            });
+        })(element);
+        return words;
     }
 
-    function normalizePath(path) {
-        const clean = path.replace(/\/+$/, "") || "/";
-        return clean === "/" ? "/index.html" : clean;
-    }
-
-    function linkPath(link) {
-        return normalizePath(new URL(link.getAttribute("href"), location.href).pathname);
-    }
-
-    function nextShipDate(now) {
-        const ship = new Date(now.getFullYear(), now.getMonth(), 5, 9, 0, 0);
-        if (now >= ship) {
-            ship.setMonth(ship.getMonth() + 1);
-        }
-        return ship;
-    }
-
-    function shipLabel(now) {
-        const ship = nextShipDate(now);
-        const days = Math.ceil((ship - now) / 86400000);
-        const date = ship.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-        if (days <= 1) {
-            return ship.getDate() === now.getDate() ? "today" : "tomorrow";
-        }
-        return "on " + date;
-    }
-
-    function initials(name) {
-        return String(name || "").split(/\s+/).filter(Boolean).map((part) => part[0]).join("").slice(0, 2).toUpperCase();
-    }
-
-    // Cookie notice. The site only uses strictly necessary storage, so this informs
-    // rather than asks; the choice is remembered so it shows once per browser.
-    const NOTICE_KEY = "marlowbyCookieNotice";
-    const NOTICE_VERSION = "2026-10-25";
-
-    function initCookieNotice() {
-        const notice = document.createElement("section");
-        notice.className = "cookie-notice";
-        notice.setAttribute("aria-labelledby", "cookieNoticeTitle");
-        notice.hidden = true;
-        notice.innerHTML = `
-            <h2 class="cookie-notice_title" id="cookieNoticeTitle">Cookies on Marlowby</h2>
-            <p class="cookie-notice_text">We use one essential cookie to keep you signed in and your browser's storage to remember your cart and settings. No ads, analytics or tracking cookies.</p>
-            <div class="cookie-notice_actions">
-                <button type="button" class="cookie-notice_ok">Got it</button>
-                <a class="cookie-notice_link" href="/html/privacy.html#cookies">Privacy and cookies</a>
-            </div>`;
-        document.body.appendChild(notice);
-
-        function show(focus) {
-            notice.hidden = false;
-            document.documentElement.classList.add("cookie-notice-open");
-            requestAnimationFrame(() => notice.classList.add("is-shown"));
-            if (focus) {
-                notice.querySelector(".cookie-notice_ok").focus();
-            }
-        }
-
-        function hide() {
-            try {
-                localStorage.setItem(NOTICE_KEY, NOTICE_VERSION);
-            } catch (error) {
-                // Storage blocked: the notice simply shows again next time.
-            }
-            notice.classList.remove("is-shown");
-            document.documentElement.classList.remove("cookie-notice-open");
-            window.setTimeout(() => (notice.hidden = true), REDUCE_MOTION.matches ? 0 : 250);
-        }
-
-        notice.querySelector(".cookie-notice_ok").addEventListener("click", hide);
-        document.addEventListener("click", (event) => {
-            if (event.target.closest("[data-cookie-notice-open]")) {
-                show(true);
-            }
-        });
-
-        let seen = null;
-        try {
-            seen = localStorage.getItem(NOTICE_KEY);
-        } catch (error) {
-            seen = null;
-        }
-        if (seen !== NOTICE_VERSION) {
-            window.setTimeout(() => show(false), 600);
-        }
-    }
-
-    function init() {
-        initCookieNotice();
-        const navbar = document.getElementById("siteNav");
-        if (!navbar) {
+    // Count a number up from zero, keeping its decimals and any text around it.
+    function countUp(element, duration = 1.1) {
+        const match = element.textContent.match(/^(\D*)(\d+(?:\.\d+)?)(.*)$/);
+        if (!match) {
             return;
         }
-        const toggle = document.getElementById("navbarToggle");
-        const drawer = document.getElementById("navbarDrawer");
-        const links = document.getElementById("navbarLinks");
-        const scrim = navbar.querySelector(".navbar-scrim");
-        const dropdowns = Array.from(navbar.querySelectorAll(".link-dropdown"));
-        const here = normalizePath(location.pathname);
-
-        navbar.classList.add("is-enhanced");
-
-        Array.from(links.children).forEach((item, index) => item.style.setProperty("--i", index));
-
-        navbar.querySelectorAll(".navbar-link-item, .navbar-sign-in, .navbar-cart").forEach((link) => {
-            if (linkPath(link) === here) {
-                link.setAttribute("aria-current", "page");
-            }
+        const decimals = (match[2].split(".")[1] || "").length;
+        const target = parseFloat(match[2]);
+        const state = { value: 0 };
+        gsap.to(state, {
+            value: target,
+            duration,
+            ease: "power2.out",
+            onUpdate: () => (element.textContent = match[1] + state.value.toFixed(decimals) + match[3]),
+            onComplete: () => (element.textContent = match[1] + match[2] + match[3])
         });
-
-        dropdowns.forEach((item) => {
-            const top = item.querySelector(":scope > .navbar-link-item");
-            const onThisPage = Array.from(item.querySelectorAll(".sub-menu a")).some((link) => linkPath(link) === here);
-            if (onThisPage && top.getAttribute("aria-current") !== "page") {
-                top.classList.add("is-current");
-            }
-            item.dataset.current = String(onThisPage);
-        });
-
-        function setDropdown(item, open) {
-            item.classList.toggle("is-open", open);
-            item.querySelector(".navbar-sub-toggle").setAttribute("aria-expanded", String(open));
-        }
-
-        function closeDropdowns(except) {
-            dropdowns.forEach((item) => {
-                if (item !== except) {
-                    setDropdown(item, false);
-                }
-            });
-        }
-
-        dropdowns.forEach((item) => {
-            const button = item.querySelector(".navbar-sub-toggle");
-            button.addEventListener("click", () => {
-                const open = !item.classList.contains("is-open");
-                closeDropdowns(item);
-                setDropdown(item, open);
-                item.classList.remove("is-dismissed");
-            });
-            item.addEventListener("mouseleave", () => item.classList.remove("is-dismissed"));
-            item.addEventListener("focusout", (event) => {
-                if (!MOBILE.matches && !item.contains(event.relatedTarget)) {
-                    setDropdown(item, false);
-                }
-            });
-        });
-
-        function setOpen(open, returnFocus) {
-            if (open) {
-                navbar.style.setProperty("--nav-bottom", Math.round(navbar.getBoundingClientRect().bottom) + "px");
-            }
-            navbar.classList.toggle("is-open", open);
-            toggle.setAttribute("aria-expanded", String(open));
-            toggle.querySelector(".navbar-toggle-label").textContent = open ? "Close menu" : "Open menu";
-            document.documentElement.classList.toggle("nav-locked", open && MOBILE.matches);
-            if (MOBILE.matches) {
-                drawer.inert = !open;
-                if (open) {
-                    scrim.hidden = false;
-                } else {
-                    window.setTimeout(() => {
-                        if (!navbar.classList.contains("is-open")) {
-                            scrim.hidden = true;
-                        }
-                    }, REDUCE_MOTION.matches ? 0 : 300);
-                }
-            }
-            if (open) {
-                dropdowns.forEach((item) => setDropdown(item, item.dataset.current === "true"));
-                const first = drawer.querySelector(".navbar-link-item");
-                window.setTimeout(() => first && first.focus(), REDUCE_MOTION.matches ? 0 : 80);
-            } else if (returnFocus) {
-                toggle.focus();
-            }
-        }
-
-        toggle.addEventListener("click", () => setOpen(!navbar.classList.contains("is-open"), false));
-        scrim.addEventListener("click", () => setOpen(false, true));
-
-        links.addEventListener("click", (event) => {
-            if (event.target.closest("a") && navbar.classList.contains("is-open")) {
-                setOpen(false, false);
-            }
-        });
-
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") {
-                if (navbar.classList.contains("is-open")) {
-                    setOpen(false, true);
-                    return;
-                }
-                const open = dropdowns.find((item) => item.classList.contains("is-open") || item.matches(":hover") || item.contains(document.activeElement));
-                if (open) {
-                    setDropdown(open, false);
-                    open.classList.add("is-dismissed");
-                    if (open.contains(document.activeElement)) {
-                        open.querySelector(".navbar-sub-toggle").focus();
-                    }
-                }
-                return;
-            }
-            if (event.key === "Tab" && navbar.classList.contains("is-open") && MOBILE.matches) {
-                const focusable = Array.from(navbar.querySelectorAll("a[href], button")).filter((el) => el.getClientRects().length > 0 && getComputedStyle(el).visibility !== "hidden");
-                const first = focusable[0];
-                const last = focusable[focusable.length - 1];
-                if (event.shiftKey && document.activeElement === first) {
-                    event.preventDefault();
-                    last.focus();
-                } else if (!event.shiftKey && document.activeElement === last) {
-                    event.preventDefault();
-                    first.focus();
-                }
-            }
-        });
-
-        document.addEventListener("click", (event) => {
-            if (!navbar.contains(event.target)) {
-                closeDropdowns(null);
-            }
-        });
-
-        function syncMode() {
-            if (MOBILE.matches) {
-                drawer.inert = !navbar.classList.contains("is-open");
-            } else {
-                drawer.inert = false;
-                scrim.hidden = true;
-                if (navbar.classList.contains("is-open")) {
-                    setOpen(false, false);
-                }
-                closeDropdowns(null);
-            }
-        }
-        MOBILE.addEventListener("change", syncMode);
-        syncMode();
-
-        navbar.querySelectorAll("[data-nav-ship]").forEach((el) => (el.textContent = shipLabel(new Date())));
-
-        // One gold indicator that glides to the hovered link and rests on the current page.
-        const indicator = document.createElement("span");
-        indicator.className = "navbar-indicator is-instant";
-        indicator.setAttribute("aria-hidden", "true");
-        links.appendChild(indicator);
-        navbar.classList.add("has-indicator");
-        const topLinks = Array.from(links.querySelectorAll(":scope > li:not(.navbar-drawer-only) > .navbar-link-item"));
-        const resting = topLinks.find((link) => link.getAttribute("aria-current") === "page" || link.classList.contains("is-current"));
-
-        function moveIndicator(link) {
-            if (MOBILE.matches || !link) {
-                indicator.classList.remove("is-visible");
-                return;
-            }
-            const box = links.getBoundingClientRect();
-            const rect = link.getBoundingClientRect();
-            const style = getComputedStyle(link);
-            const left = rect.left - box.left + parseFloat(style.paddingLeft);
-            const width = rect.width - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
-            indicator.style.setProperty("--x", left.toFixed(1) + "px");
-            indicator.style.width = width.toFixed(1) + "px";
-            indicator.classList.add("is-visible");
-        }
-
-        topLinks.forEach((link) => {
-            const item = link.parentElement;
-            item.addEventListener("mouseenter", () => moveIndicator(link));
-            item.addEventListener("focusin", () => moveIndicator(link));
-        });
-        links.addEventListener("mouseleave", () => moveIndicator(resting));
-        links.addEventListener("focusout", (event) => {
-            if (!links.contains(event.relatedTarget)) {
-                moveIndicator(resting);
-            }
-        });
-
-        function placeResting() {
-            indicator.classList.add("is-instant");
-            moveIndicator(resting);
-            requestAnimationFrame(() => indicator.classList.remove("is-instant"));
-        }
-        placeResting();
-        window.addEventListener("resize", placeResting);
-        MOBILE.addEventListener("change", placeResting);
-        if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(placeResting);
-        }
-
-        const onScroll = () => navbar.classList.toggle("is-scrolled", window.scrollY > 8);
-        window.addEventListener("scroll", onScroll, { passive: true });
-        onScroll();
-
-        const cart = navbar.querySelector(".navbar-cart");
-        const badge = cart.querySelector(".navbar-cart_badge");
-        let lastCount = null;
-
-        function renderCount(count) {
-            badge.textContent = count > 9 ? "9+" : String(count);
-            badge.hidden = count === 0;
-            cart.setAttribute("aria-label", count ? "Cart, " + count + (count === 1 ? " item" : " items") : "Cart, empty");
-            if (lastCount !== null && count !== lastCount && !REDUCE_MOTION.matches) {
-                badge.classList.remove("is-bumped");
-                void badge.offsetWidth;
-                badge.classList.add("is-bumped");
-            }
-            lastCount = count;
-        }
-
-        function storedCount() {
-            const items = readJson(CART_KEY, []);
-            return Array.isArray(items) ? items.reduce((total, item) => total + (Number(item && item.qty) || 0), 0) : 0;
-        }
-
-        const signIns = Array.from(navbar.querySelectorAll(".navbar-sign-in"));
-        signIns.forEach((link) => (link.dataset.label = link.textContent.trim()));
-
-        function renderUser(user) {
-            signIns.forEach((link) => {
-                link.replaceChildren();
-                if (user && user.firstName) {
-                    const avatar = document.createElement("span");
-                    avatar.className = "navbar-avatar";
-                    avatar.setAttribute("aria-hidden", "true");
-                    avatar.textContent = initials(user.name || user.firstName);
-                    link.append(avatar, document.createTextNode(user.firstName));
-                    link.setAttribute("aria-label", "Your account, signed in as " + (user.name || user.firstName));
-                } else {
-                    link.textContent = link.dataset.label;
-                    link.removeAttribute("aria-label");
-                }
-                link.classList.toggle("is-signed-in", Boolean(user && user.firstName));
-            });
-        }
-
-        renderCount(storedCount());
-        renderUser(readJson(USER_KEY, null));
-
-        document.addEventListener("marlowby:cart", (event) => {
-            renderCount(event.detail && typeof event.detail.count === "number" ? event.detail.count : storedCount());
-        });
-        document.addEventListener("marlowby:account", (event) => renderUser(event.detail ? event.detail.user : null));
-        window.addEventListener("storage", (event) => {
-            if (event.key === CART_KEY) {
-                renderCount(storedCount());
-            }
-            if (event.key === USER_KEY) {
-                renderUser(readJson(USER_KEY, null));
-            }
-        });
-
-        window.MarlowbyNav = {
-            close: () => setOpen(false, false),
-            cart
-        };
     }
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", init);
-    } else {
-        init();
+    function onEnter(element, callback, start = "top 85%") {
+        ScrollTrigger.create({ trigger: element, start, once: true, onEnter: () => callback(element) });
+    }
+
+    // Pattern from the GSAP docs, "gsap.matchMedia()": everything inside runs only while the media
+    // query matches, and GSAP undoes it all if the visitor turns on reduced motion.
+    // https://gsap.com/docs/v3/GSAP/gsap.matchMedia()
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+        document.documentElement.classList.add("has-motion");
+
+        // The pages' own CSS reveal (data-reveal) is replaced by the GSAP one, so the two never fight.
+        $$("[data-reveal], [data-pm-reveal]").forEach((element) => {
+            element.removeAttribute("data-reveal");
+            element.removeAttribute("data-pm-reveal");
+            element.setAttribute("data-mo", "");
+        });
+
+        // ---- Hero: eyebrow, the headline word by word, then the rest ----
+        const title = $("main h1");
+        const hero = title && title.closest("section");
+        if (hero) {
+            const words = splitWords(title);
+            const pick = (selectors) => selectors.map((s) => $(s, hero)).filter(Boolean);
+            const eyebrow = $("[class*='eyebrow']", hero);
+            // The lead paragraph is often the page's largest text, so it only slides and never starts
+            // invisible: hiding it would hold back Largest Contentful Paint until the fade ended.
+            const lead = $("[class*='lead']", hero);
+            const follow = pick(["[class*='_actions']", ".plans-hero_finder", ".fq-search", ".sm-search", ".wc-jump"]);
+
+            const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
+            if (eyebrow) {
+                intro.from(eyebrow, { y: 14, opacity: 0, duration: 0.5 });
+            }
+            intro.from(words, { yPercent: 115, duration: 0.95, stagger: 0.055, ease: "power4.out" }, eyebrow ? "-=0.2" : 0);
+            if (lead) {
+                intro.from(lead, { y: 18, duration: 0.6 }, "-=0.65");
+            }
+            if (follow.length) {
+                intro.from(follow, { y: 18, opacity: 0, duration: 0.6, stagger: 0.08 }, lead ? "-=0.52" : "-=0.65");
+            }
+            heroMoments(hero, intro);
+        }
+
+        // ---- Scroll reveals, batched so neighbours arrive one after another ----
+        // Adapted from the GSAP docs, "ScrollTrigger.batch()"
+        // https://gsap.com/docs/v3/Plugins/ScrollTrigger/static.batch()/
+        // Changed: each card reveals once (no onLeave/onEnterBack), and GSAP's inline styles are
+        // cleared afterwards so the cards' own hover effects keep working.
+        let reveal = $$(REVEAL).filter((element) => !element.closest(SKIP) && !(hero && hero.contains(element)));
+        // The money flow on Specials reveals step by step instead of as one block.
+        reveal = reveal.flatMap((element) => (element.matches(".sp-flow") ? Array.from(element.children) : [element]));
+        if (reveal.length) {
+            gsap.set(reveal, { opacity: 0, y: 36, transition: "none" });
+            ScrollTrigger.batch(reveal, {
+                start: "top 90%",
+                once: true,
+                onEnter: (batch) => gsap.to(batch, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.09,
+                    ease: "power3.out",
+                    overwrite: true,
+                    clearProps: "opacity,transform,transition"
+                })
+            });
+        }
+
+        // The below-the-fold moments wait until the browser is idle, so setting them up
+        // never holds up the first paint or the visitor's first tap.
+        const later = window.requestIdleCallback || ((callback) => setTimeout(callback, 200));
+        later(() => {
+            pageMoments();
+            ScrollTrigger.refresh();
+        });
+
+        // Filters and dynamic content change the page height without a scroll, so re-measure.
+        let pending = 0;
+        const observer = new ResizeObserver(() => {
+            clearTimeout(pending);
+            pending = setTimeout(() => ScrollTrigger.refresh(), 150);
+        });
+        observer.observe(document.body);
+
+        return () => {
+            observer.disconnect();
+            document.documentElement.classList.remove("has-motion");
+        };
+    });
+
+    // Extra beats that belong in each page's hero timeline.
+    function heroMoments(hero, intro) {
+        // Subscription Plans: the "Now shipping" box slides in and its items tick down.
+        const box = $(".hero-box", hero);
+        if (box) {
+            intro.from(box, { x: 40, rotation: 1.5, opacity: 0, duration: 0.9, clearProps: "transform" }, 0.35)
+                .from($$(".hero-box_list li", box), { x: -14, opacity: 0, duration: 0.45, stagger: 0.06 }, "-=0.45");
+        }
+
+        // Specials: the stats pop in and the offer board flips row by row like a departures board.
+        if (hero.matches(".sp-hero")) {
+            intro.from($$(".sp-stats > div", hero), { y: 16, opacity: 0, duration: 0.5, stagger: 0.08 }, "-=0.4");
+            const board = $(".sp-board", hero);
+            if (board) {
+                intro.from(board, { y: 40, opacity: 0, duration: 0.8 }, 0.45)
+                    .from($$(".sp-board_table tbody tr", board), {
+                        rotationX: -90,
+                        transformOrigin: "50% 0%",
+                        transformPerspective: 700,
+                        opacity: 0,
+                        duration: 0.55,
+                        stagger: 0.09,
+                        ease: "back.out(1.6)",
+                        clearProps: "transform"
+                    }, "-=0.35");
+            }
+        }
+
+        // Help desk: topic chips pop in and the desk card lands with a postmark thud.
+        if (hero.matches(".fq-hero")) {
+            intro.from($$(".fq-chip", hero), { y: 12, scale: 0.9, opacity: 0, duration: 0.4, stagger: 0.05, clearProps: "transform" }, "-=0.35");
+            const card = $(".fq-desk-card", hero);
+            if (card) {
+                intro.from(card, { y: 40, rotation: -2, opacity: 0, duration: 0.9, clearProps: "transform" }, 0.4)
+                    .from($(".fq-desk-card_postmark", card), { scale: 1.6, rotation: -25, opacity: 0, duration: 0.5, ease: "back.out(2.2)" }, "-=0.35");
+            }
+        }
+
+        // Past months: the dotted route draws itself across the hero, then each city pin drops in.
+        const route = $(".pm-hero_route", hero);
+        if (route) {
+            intro.from($$(".pm-jump a", hero), { y: 14, opacity: 0, duration: 0.45, stagger: 0.07 }, "-=0.4")
+                .fromTo(route, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.6, ease: "power2.inOut", clearProps: "clipPath" }, 0.3)
+                .from($$("circle", route), { scale: 0, transformOrigin: "50% 50%", duration: 0.45, stagger: 0.3, ease: "back.out(3)" }, 0.6);
+        }
+
+        // Cart: the checkout steps line up.
+        if (has(".cart-steps")) {
+            intro.from($$(".cart-steps li", hero), { y: 12, opacity: 0, duration: 0.45, stagger: 0.08 }, "-=0.35");
+        }
+
+        // Sign in: the passport drops onto the desk and the city stamps thud onto its page.
+        const passport = $(".si-passport", hero);
+        if (passport) {
+            intro.from(passport, { y: 50, rotation: -12, opacity: 0, duration: 1, ease: "power3.out", clearProps: "transform" }, 0.3)
+                .from($$(".si-mini", passport), {
+                    scale: 1.9,
+                    rotation: (i) => (i % 2 ? 18 : -18),
+                    opacity: 0,
+                    duration: 0.4,
+                    stagger: 0.2,
+                    ease: "back.out(2.4)",
+                    clearProps: "transform"
+                }, "-=0.35")
+                .from($$(".si-perks li", hero), { x: -14, opacity: 0, duration: 0.45, stagger: 0.08 }, "-=0.5");
+        }
+
+        // Sitemap: popular links pop in.
+        if (has(".sm-popular")) {
+            intro.from($$(".sm-popular li", hero), { y: 12, opacity: 0, duration: 0.4, stagger: 0.06 }, "-=0.3");
+        }
+
+        // Burlington: the postmark stamps on and the jump buttons settle.
+        const postmark = $(".btv-postmark", hero);
+        if (postmark) {
+            intro.from(postmark, { scale: 1.6, rotation: -20, opacity: 0, duration: 0.55, ease: "back.out(2)" }, 0)
+                .from($(".btv-scene", hero), { y: 40, opacity: 0, duration: 1.2, ease: "power2.out" }, 0.2);
+        }
+    }
+
+    // Scroll moments further down each page.
+    function pageMoments() {
+        // Plans: prices count up the first time each card comes into view.
+        $$(".plan-card_amount").forEach((amount) => onEnter(amount, countUp, "top 90%"));
+
+        // Specials: the money flow icons pop as their step arrives.
+        $$(".sp-flow_icon").forEach((icon) => {
+            gsap.from(icon, {
+                scale: 0,
+                rotation: -30,
+                duration: 0.6,
+                ease: "back.out(2.5)",
+                scrollTrigger: { trigger: icon, start: "top 88%", once: true }
+            });
+        });
+
+        // Past months: each city's stamp turns as you scroll past it, and its big fact counts up.
+        $$(".pm-city").forEach((city) => {
+            const stamp = $(".pm-stamp", city);
+            if (stamp) {
+                gsap.fromTo(stamp, { rotation: -14, scale: 0.88 }, {
+                    rotation: 10,
+                    scale: 1,
+                    ease: "none",
+                    scrollTrigger: { trigger: city, start: "top bottom", end: "bottom top", scrub: 0.8 }
+                });
+            }
+            const fact = $(".pm-city_fact b", city);
+            if (fact) {
+                onEnter(fact, countUp, "top 90%");
+            }
+        });
+
+        // Burlington: the sun sinks into the lake as you scroll down past the hero.
+        const scene = $(".btv-scene svg");
+        if (scene) {
+            gsap.to($$(":scope > circle", scene), {
+                y: 70,
+                ease: "none",
+                scrollTrigger: { trigger: scene, start: "top 60%", end: "bottom top", scrub: 0.6 }
+            });
+        }
+
+        // Section titles slide up word by word, like the page headline, as each one scrolls in.
+        $$(SECTION_TITLES).filter((title) => !title.closest(SKIP)).forEach((title) => {
+            const words = splitWords(title);
+            gsap.set(words, { yPercent: 115 });
+            onEnter(title, () => gsap.to(words, { yPercent: 0, duration: 0.8, stagger: 0.045, ease: "power4.out" }), "top 88%");
+        });
+
+        // Burlington, "A day in Burlington": the coloured timeline draws itself down the page as you
+        // read, and each stop's time slides in beside it.
+        const day = $(".btv-day_list");
+        if (day) {
+            gsap.fromTo(day, { "--day-progress": 0 }, {
+                "--day-progress": 1,
+                ease: "none",
+                scrollTrigger: { trigger: day, start: "top 75%", end: "bottom 60%", scrub: 0.5 }
+            });
+            $$(".btv-stop_time", day).forEach((time) => {
+                gsap.from(time, {
+                    x: -24,
+                    opacity: 0,
+                    duration: 0.6,
+                    ease: "power3.out",
+                    scrollTrigger: { trigger: time, start: "top 80%", once: true }
+                });
+            });
+        }
+
+        // Plans, "Compare plans": the table's rows cascade in from the left.
+        const compare = $("#compareTable");
+        if (compare) {
+            gsap.from($$("tbody tr", compare), {
+                x: -20,
+                opacity: 0,
+                duration: 0.5,
+                stagger: 0.05,
+                ease: "power2.out",
+                clearProps: "transform,opacity",
+                scrollTrigger: { trigger: compare, start: "top 80%", once: true }
+            });
+        }
+
+        // Past months: each city's goods tick in one after another.
+        $$(".pm-items").forEach((list) => {
+            gsap.from(list.children, {
+                x: -16,
+                opacity: 0,
+                duration: 0.45,
+                stagger: 0.07,
+                ease: "power2.out",
+                scrollTrigger: { trigger: list, start: "top 85%", once: true }
+            });
+        });
+
+        // Specials, "Your code wallet": the saved codes flip over like cards being dealt. The list is
+        // filled in by specials.js, so the codes are looked up when the wallet scrolls into view.
+        const wallet = $("#walletList");
+        if (wallet) {
+            onEnter(wallet, () => {
+                gsap.from(wallet.children, {
+                    rotationY: -80,
+                    transformPerspective: 800,
+                    transformOrigin: "0% 50%",
+                    opacity: 0,
+                    duration: 0.7,
+                    stagger: 0.08,
+                    ease: "power3.out",
+                    clearProps: "transform,opacity"
+                });
+            }, "top 85%");
+        }
     }
 })();

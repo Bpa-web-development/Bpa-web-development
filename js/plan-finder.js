@@ -3,6 +3,8 @@
 
     const $ = (selector, root = document) => root.querySelector(selector);
     const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+    // Checks the visitor's "reduce motion" setting with window.matchMedia().
+    // From MDN Web Docs, "Window: matchMedia() method": https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const KEY = "marlowbyFinder";
     const FALLBACK = {
@@ -165,6 +167,7 @@
             });
         }
 
+        // Marks each step as done or current, like W3Schools' fixStepIndicator() (see show() below).
         function track() {
             const names = ["who", "budget", "love", "term"];
             $$("[data-track]").forEach((item, index) => {
@@ -180,6 +183,13 @@
             });
         }
 
+        // Shows one question at a time.
+        // Adapted from W3Schools, "How To Create a Form with Multiple Steps" (showTab() and
+        // fixStepIndicator()): https://www.w3schools.com/howto/howto_js_form_steps.asp
+        // Like showTab(), it shows only the current step, hides Back on the first step and renames
+        // Next on the last one, then updates the step markers (track(), our fixStepIndicator()).
+        // Changed: uses the hidden attribute, adds a progress bar and step count, and Next stays
+        // disabled until the question is answered.
         function show(index, focus = true) {
             current = index;
             steps.forEach((step, position) => {
@@ -197,6 +207,11 @@
             track();
             if (focus) {
                 question(index).focus({ preventScroll: true });
+            }
+            // Step slide-in adapted from GSAP docs, "gsap.fromTo()"
+            // https://gsap.com/docs/v3/GSAP/gsap.fromTo()
+            if (window.gsap && !reduceMotion && focus) {
+                gsap.fromTo(steps[index], { autoAlpha: 0, x: 24 }, { autoAlpha: 1, x: 0, duration: 0.35, ease: "power2.out", clearProps: "transform,opacity,visibility" });
             }
         }
 
@@ -362,6 +377,8 @@
                 const target = document.getElementById(link.getAttribute("href").slice(1));
                 if (target && target.classList.contains("plan-card")) {
                     event.preventDefault();
+                    // Smooth scroll adapted from MDN, "Element: scrollIntoView() method"
+                    // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
                     target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
                     target.classList.remove("is-spotlit");
                     void target.offsetWidth;

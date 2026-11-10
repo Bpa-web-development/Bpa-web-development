@@ -1,465 +1,410 @@
 (function () {
     "use strict";
 
+    const M = window.Marlowby;
+    if (!M) {
+        return;
+    }
+
+    // Checks the visitor's "reduce motion" setting with window.matchMedia().
+    // From MDN Web Docs, "Window: matchMedia() method": https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const $ = (selector, root = document) => root.querySelector(selector);
     const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
-    const TICKET_KEY = "marlowbyTickets";
-    const MESSAGE_MAX = 600;
-    const STEPS = ["Received", "Assigned", "Answered"];
+    const SEEN_KEY = "marlowbyPopups";
 
-    function escapeRegex(text) {
-        return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    }
+    const WELCOME = { code: "BURLINGTON15", city: "Burlington", state: "Vermont" };
+    const EXIT = { code: "PASSPORT10" };
 
-    function initStatus() {
-        const badge = $("#fqStatus");
-        const text = $("#fqStatusText");
-        if (!badge) {
-            return;
-        }
-        const render = () => {
-            const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", weekday: "short", hour: "numeric", minute: "numeric", hourCycle: "h23" }).formatToParts(new Date());
-            const get = (type) => (parts.find((part) => part.type === type) || {}).value;
-            const day = get("weekday");
-            const hour = Number(get("hour"));
-            const weekday = !["Sat", "Sun"].includes(day);
-            const open = weekday && hour >= 9 && hour < 18;
-            badge.classList.toggle("is-open", open);
-            if (open) {
-                text.textContent = "Open now until 6pm ET";
-            } else if (weekday && hour < 9) {
-                text.textContent = "Closed. Opens today at 9am ET";
-            } else {
-                text.textContent = "Closed. Tickets are still welcome";
-            }
-        };
-        render();
-        window.setInterval(render, 60000);
-    }
+    const TICKET_ICON = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg>';
 
-    function initAnswers() {
-        const input = $("#fqSearch");
-        const clear = $("#fqClear");
-        const count = $("#fqCount");
-        const empty = $("#fqEmpty");
-        const emptyTerm = $("#fqEmptyTerm");
-        const groups = $$(".fq-group");
-        const items = $$(".fq-item");
-        const chips = $$(".fq-chip");
-        let topic = "all";
+    const TEMPLATE = `
+<dialog class="deal-pop deal-pop--postcard" id="dealPostcard" aria-labelledby="dealPostcardTitle">
+    <button type="button" class="deal-pop_close" data-deal-close aria-label="Close">&times;</button>
+    <p class="deal-pop_eyebrow">You've got mail</p>
+    <h2 id="dealPostcardTitle" tabindex="-1">A postcard from ${WELCOME.city}</h2>
+    <div class="postcard" id="dealCard">
+        <div class="postcard_inner">
+            <div class="postcard_face postcard_front" id="dealCardFront">
+                <div class="postcard_scene" aria-hidden="true">
+                    <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice">
+                        <rect width="320" height="180" fill="#f4c27a"/>
+                        <circle cx="236" cy="70" r="30" fill="#f8e3b3"/>
+                        <path d="M0 112 L60 70 L110 104 L170 52 L232 100 L284 74 L320 96 V180 H0Z" fill="#5f7d64"/>
+                        <path d="M0 132 L70 104 L130 128 L200 96 L260 124 L320 112 V180 H0Z" fill="#3f5a46"/>
+                        <rect y="142" width="320" height="38" fill="#2c4a6b"/>
+                        <path d="M20 156 h40 M90 164 h60 M190 154 h50 M260 166 h40" stroke="#9cc0d8" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M150 142 v-14 l10 -8 l10 8 v14" fill="#b0491f"/>
+                    </svg>
+                </div>
+                <p class="postcard_greeting" aria-hidden="true"><span>Greetings from</span><strong>${WELCOME.city}</strong></p>
+                <button type="button" class="deal-button deal-button--light postcard_flip" id="dealFlip">Flip it over</button>
+            </div>
+            <div class="postcard_face postcard_back" id="dealCardBack" inert>
+                <div class="postcard_note">
+                    <p class="postcard_hand">Wish you were here! The maple syrup is unreal. Here's 15% off your whole first order, on us.</p>
+                    <p class="postcard_sign">Love, the Marlowby crew</p>
+                </div>
+                <div class="postcard_side">
+                    <span class="postcard_stamp" aria-hidden="true">VT<small>15%</small></span>
+                    <p class="postcard_code"><span>Your code</span><strong>${WELCOME.code}</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="deal-pop_actions">
+        <button type="button" class="deal-button" data-promo-apply="${WELCOME.code}">Use 15% off</button>
+        <button type="button" class="deal-button deal-button--ghost" data-promo-copy="${WELCOME.code}">Copy code</button>
+    </div>
+    <button type="button" class="deal-pop_skip" data-deal-close>Maybe later</button>
+</dialog>
 
-        items.forEach((item) => {
-            const summary = $("summary", item);
-            const body = $(".fq-item_body", item);
-            item.dataset.text = (summary.textContent + " " + body.textContent).toLowerCase();
-            summary.dataset.original = summary.innerHTML;
-            $$("p", body).forEach((p) => (p.dataset.original = p.innerHTML));
-            item.addEventListener("toggle", () => {
-                if (!item.open) {
-                    return;
-                }
-                $$(".fq-item", item.parentElement).forEach((other) => {
-                    if (other !== item && other.open) {
-                        other.open = false;
-                    }
-                });
-            });
-        });
+<dialog class="deal-pop deal-pop--exit" id="dealExit" aria-labelledby="dealExitTitle">
+    <button type="button" class="deal-pop_close" data-deal-close aria-label="Close">&times;</button>
+    <div class="deal-exit_tag" aria-hidden="true"><span>$10</span><small>off</small></div>
+    <p class="deal-pop_eyebrow">Before you hit the road</p>
+    <h2 id="dealExitTitle" tabindex="-1">Take $10 for the trip</h2>
+    <p class="deal-exit_text">Your passport is still waiting for its first stamp. Use this code on any plan or gift box.</p>
+    <p class="deal-exit_code"><strong>${EXIT.code}</strong></p>
+    <div class="deal-pop_actions">
+        <button type="button" class="deal-button" data-promo-apply="${EXIT.code}">Use $10 off</button>
+        <button type="button" class="deal-button deal-button--ghost" data-promo-copy="${EXIT.code}">Copy code</button>
+    </div>
+    <button type="button" class="deal-pop_skip" data-deal-close>No thanks, I'll pay full price</button>
+</dialog>
 
-        function highlight(element, pattern) {
-            element.innerHTML = element.dataset.original;
-            if (!pattern) {
-                return;
-            }
-            const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
-            const nodes = [];
-            while (walker.nextNode()) {
-                nodes.push(walker.currentNode);
-            }
-            nodes.forEach((node) => {
-                const value = node.nodeValue;
-                pattern.lastIndex = 0;
-                if (!pattern.test(value)) {
-                    return;
-                }
-                pattern.lastIndex = 0;
-                const fragment = document.createDocumentFragment();
-                let last = 0;
-                value.replace(pattern, (match, offset) => {
-                    fragment.appendChild(document.createTextNode(value.slice(last, offset)));
-                    const mark = document.createElement("mark");
-                    mark.textContent = match;
-                    fragment.appendChild(mark);
-                    last = offset + match.length;
-                    return match;
-                });
-                fragment.appendChild(document.createTextNode(value.slice(last)));
-                node.parentNode.replaceChild(fragment, node);
-            });
-        }
+<button type="button" class="deal-ticket" id="dealTicket" hidden>${TICKET_ICON}<span>15% off</span></button>`;
 
-        function apply() {
-            const query = input.value.trim().toLowerCase();
-            const words = query.split(/\s+/).filter(Boolean);
-            const pattern = words.length ? new RegExp(words.map(escapeRegex).join("|"), "gi") : null;
-            let shown = 0;
-            items.forEach((item) => {
-                const group = item.closest(".fq-group").dataset.group;
-                const topicOk = topic === "all" || topic === group;
-                const textOk = words.every((word) => item.dataset.text.includes(word));
-                const visible = topicOk && textOk;
-                item.hidden = !visible;
-                highlight($("summary", item), visible ? pattern : null);
-                $$(".fq-item_body p", item).forEach((p) => highlight(p, visible ? pattern : null));
-                if (visible) {
-                    shown += 1;
-                }
-            });
-            groups.forEach((group) => {
-                group.hidden = !$$(".fq-item", group).some((item) => !item.hidden);
-            });
-            clear.hidden = !query;
-            empty.hidden = shown > 0;
-            emptyTerm.textContent = query ? "“" + input.value.trim() + "”" : "that topic";
-            if (!query && topic === "all") {
-                count.textContent = "";
-            } else {
-                count.textContent = shown === 0 ? "No answers match." : shown + (shown === 1 ? " answer matches." : " answers match.");
-            }
-        }
+    const SEEN_DAYS = 7;
 
-        let timer = 0;
-        input.addEventListener("input", () => {
-            window.clearTimeout(timer);
-            timer = window.setTimeout(apply, 120);
-        });
-        $("#fqSearchForm").addEventListener("submit", (event) => {
-            event.preventDefault();
-            apply();
-            const first = items.find((item) => !item.hidden);
-            if (first) {
-                first.open = true;
-                $("summary", first).focus();
-            }
-        });
-        clear.addEventListener("click", () => {
-            input.value = "";
-            apply();
-            input.focus();
-        });
-
-        chips.forEach((chip) => {
-            chip.addEventListener("click", () => {
-                topic = chip.dataset.topic;
-                chips.forEach((other) => {
-                    const on = other === chip;
-                    other.classList.toggle("is-active", on);
-                    other.setAttribute("aria-pressed", String(on));
-                });
-                apply();
-                if (topic !== "all") {
-                    const target = $("#" + topic);
-                    if (target && !target.hidden) {
-                        target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
-                    }
-                }
-            });
-        });
-
-        const hash = window.location.hash.slice(1);
-        const start = chips.find((chip) => chip.dataset.topic === hash);
-        if (start) {
-            start.click();
-        }
-    }
-
-    function readTickets() {
+    function readStore(store) {
         try {
-            const list = JSON.parse(localStorage.getItem(TICKET_KEY) || "[]");
-            return Array.isArray(list) ? list : [];
+            return JSON.parse(store.getItem(SEEN_KEY) || "{}") || {};
         } catch (error) {
-            return [];
+            return {};
         }
     }
 
-    function saveTickets(list) {
+    function readSeen() {
+        const seen = Object.assign({}, readStore(sessionStorage));
+        const kept = readStore(localStorage);
+        const cutoff = Date.now() - SEEN_DAYS * 86400000;
+        Object.keys(kept).forEach((name) => {
+            if (kept[name] > cutoff) {
+                seen[name] = 1;
+            }
+        });
+        return seen;
+    }
+
+    function markSeen(name) {
+        const session = readStore(sessionStorage);
+        session[name] = 1;
+        session.auto = 1;
+        const kept = readStore(localStorage);
+        kept[name] = Date.now();
         try {
-            localStorage.setItem(TICKET_KEY, JSON.stringify(list));
-            return true;
+            sessionStorage.setItem(SEEN_KEY, JSON.stringify(session));
+            localStorage.setItem(SEEN_KEY, JSON.stringify(kept));
         } catch (error) {
-            return false;
         }
     }
 
-    function initHelpdesk() {
-        const form = $("#fqTicket");
-        if (!form) {
-            return;
+    // Copies a promo code.
+    // Adapted from W3Schools, "How To Copy Text to the Clipboard"
+    // https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+    // Changed: copies the code's text directly instead of a text field, reports success instead
+    // of an alert, and falls back to a hidden <textarea> on older browsers.
+    function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+            return navigator.clipboard.writeText(text).then(() => true, () => fallbackCopy(text));
         }
-        const live = $("#fqLive");
-        const list = $("#fqTicketsList");
-        const emptyNote = $("#fqTicketsEmpty");
-        const message = $("#tkMessage");
-        const honeypot = $("#tkWebsite");
-        const counter = $("#tkCount");
-        const fields = {
-            name: $("#tkName"),
-            email: $("#tkEmail"),
-            order: $("#tkOrder"),
-            topic: $("#tkTopic"),
-            message
-        };
-        let tickets = readTickets();
-
-        function say(text) {
-            live.textContent = "";
-            window.setTimeout(() => (live.textContent = text), 60);
-        }
-
-        function render() {
-            list.replaceChildren();
-            emptyNote.hidden = tickets.length > 0;
-            tickets.forEach((ticket) => {
-                const li = document.createElement("li");
-                li.className = "fq-tk";
-                const top = document.createElement("div");
-                top.className = "fq-tk_top";
-                const id = document.createElement("p");
-                id.className = "fq-tk_id";
-                id.textContent = ticket.id;
-                const date = document.createElement("p");
-                date.className = "fq-tk_date";
-                date.textContent = new Date(ticket.created).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
-                top.append(id, date);
-                const topicLine = document.createElement("p");
-                topicLine.className = "fq-tk_topic";
-                topicLine.textContent = ticket.topic + (ticket.order ? " · " + ticket.order : "");
-                const steps = document.createElement("ol");
-                steps.className = "fq-tk_steps";
-                steps.setAttribute("aria-label", "Ticket status: " + STEPS[0]);
-                STEPS.forEach((step, index) => {
-                    const item = document.createElement("li");
-                    item.textContent = step;
-                    if (index === 0) {
-                        item.classList.add("is-done");
-                        item.setAttribute("aria-current", "step");
-                    }
-                    steps.appendChild(item);
-                });
-                const remove = document.createElement("button");
-                remove.type = "button";
-                remove.className = "fq-tk_remove";
-                remove.textContent = "Remove ticket";
-                remove.setAttribute("aria-label", "Remove ticket " + ticket.id);
-                remove.addEventListener("click", () => {
-                    tickets = tickets.filter((entry) => entry.id !== ticket.id);
-                    saveTickets(tickets);
-                    render();
-                    say("Ticket " + ticket.id + " removed.");
-                    const next = $(".fq-tk_remove", list);
-                    (next || fields.name).focus();
-                });
-                li.append(top, topicLine, steps, remove);
-                list.appendChild(li);
-            });
-        }
-
-        function setError(field, text) {
-            const wrap = field.closest(".fq-field");
-            const error = $(".fq-error", wrap);
-            error.textContent = text;
-            wrap.classList.toggle("has-error", Boolean(text));
-            if (text) {
-                field.setAttribute("aria-invalid", "true");
-            } else {
-                field.removeAttribute("aria-invalid");
-            }
-            return !text;
-        }
-
-        const checks = {
-            name: () => setError(fields.name, fields.name.value.trim().length >= 2 ? "" : "Please enter your name."),
-            email: () => setError(fields.email, /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(fields.email.value.trim()) ? "" : "Please enter a valid email address, like you@example.com."),
-            order: () => {
-                const value = fields.order.value.trim();
-                return setError(fields.order, !value || /^MB-?[A-Z0-9]{4,14}$/i.test(value) ? "" : "Order numbers start with MB, like MB-4821.");
-            },
-            topic: () => setError(fields.topic, fields.topic.value ? "" : "Please choose a topic."),
-            message: () => setError(message, message.value.trim().length >= 10 ? "" : "Please tell us a little more, at least 10 characters.")
-        };
-
-        Object.keys(fields).forEach((key) => {
-            const field = fields[key];
-            field.addEventListener(field.tagName === "SELECT" ? "change" : "blur", () => {
-                if (field.value.trim() || field.closest(".fq-field").classList.contains("has-error")) {
-                    checks[key]();
-                }
-            });
-            field.addEventListener("input", () => {
-                if (field.closest(".fq-field").classList.contains("has-error")) {
-                    checks[key]();
-                }
-            });
-        });
-
-        fields.order.addEventListener("input", () => {
-            const caret = fields.order.selectionStart;
-            fields.order.value = fields.order.value.toUpperCase();
-            fields.order.setSelectionRange(caret, caret);
-        });
-
-        function updateCounter() {
-            const length = message.value.length;
-            counter.textContent = length + " of " + MESSAGE_MAX + " characters";
-            counter.classList.toggle("is-near", length > MESSAGE_MAX - 60);
-        }
-        message.addEventListener("input", updateCounter);
-        updateCounter();
-
-        const submitButton = $("button[type=submit]", form);
-
-        async function sendTicket(payload) {
-            if (window.Marlowby && window.Marlowby.api) {
-                return window.Marlowby.api("contact", { method: "POST", body: payload });
-            }
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                credentials: "same-origin",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-            const data = await response.json().catch(() => ({}));
-            if (!response.ok) {
-                const error = new Error((data.error && data.error.message) || "We couldn't send your ticket. Please try again.");
-                error.fields = (data.error && data.error.fields) || {};
-                throw error;
-            }
-            return data;
-        }
-
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            const results = Object.keys(checks).map((key) => [key, checks[key]()]);
-            const firstBad = results.find(([, ok]) => !ok);
-            if (firstBad) {
-                fields[firstBad[0]].focus();
-                say("Please fix the highlighted fields.");
-                return;
-            }
-            const order = fields.order.value.trim().toUpperCase();
-            const payload = {
-                name: fields.name.value.trim(),
-                email: fields.email.value.trim(),
-                order,
-                topic: fields.topic.value,
-                message: message.value.trim(),
-                website: honeypot ? honeypot.value : ""
-            };
-            const label = submitButton.textContent;
-            submitButton.disabled = true;
-            submitButton.textContent = "Sending…";
-            let result;
-            try {
-                result = await sendTicket(payload);
-            } catch (error) {
-                const fieldErrors = error.fields || {};
-                Object.keys(fieldErrors).forEach((key) => {
-                    const field = key === "message" ? message : fields[key];
-                    if (field) {
-                        setError(field, fieldErrors[key]);
-                    }
-                });
-                say(error.message || "We couldn't send your ticket. Please try again.");
-                submitButton.disabled = false;
-                submitButton.textContent = label;
-                return;
-            }
-            submitButton.disabled = false;
-            submitButton.textContent = label;
-            const ticket = {
-                id: result.ticket.id,
-                created: Date.parse(result.ticket.created) || Date.now(),
-                name: payload.name,
-                email: payload.email,
-                order,
-                topic: payload.topic,
-                message: payload.message
-            };
-            tickets = [ticket].concat(tickets).slice(0, 20);
-            saveTickets(tickets);
-            render();
-            fields.order.value = "";
-            fields.topic.value = "";
-            message.value = "";
-            updateCounter();
-            say("Ticket " + ticket.id + " sent." + (result.emailed ? " We emailed a copy to " + ticket.email + "." : "") + " We'll reply within one business day.");
-            const first = $(".fq-tk_id", list);
-            if (first) {
-                first.setAttribute("tabindex", "-1");
-                first.focus();
-            }
-        });
-
-        function prefill() {
-            const M = window.Marlowby;
-            const user = M && M.account && typeof M.account.publicUser === "function" ? M.account.publicUser() : null;
-            if (!user) {
-                return;
-            }
-            if (!fields.name.value) {
-                fields.name.value = user.name || "";
-            }
-            if (!fields.email.value) {
-                fields.email.value = user.email || "";
-            }
-        }
-        document.addEventListener("marlowby:account", prefill);
-        prefill();
-        render();
+        return Promise.resolve(fallbackCopy(text));
     }
 
-    function initCopy() {
-        const button = $("#fqCopyEmail");
-        const value = $("#fqEmail");
-        if (!button) {
-            return;
+    function fallbackCopy(text) {
+        const area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        let ok = false;
+        try {
+            ok = document.execCommand("copy");
+        } catch (error) {
         }
-        let timer = 0;
-        function done(ok) {
-            button.textContent = ok ? "Copied!" : "Press Ctrl+C to copy";
-            button.classList.toggle("is-done", ok);
-            window.clearTimeout(timer);
-            timer = window.setTimeout(() => {
-                button.textContent = "Copy email";
-                button.classList.remove("is-done");
-            }, 2000);
-        }
-        function selectText() {
-            const range = document.createRange();
-            range.selectNodeContents(value);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-        button.addEventListener("click", () => {
-            const text = value.textContent.trim();
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(() => done(true), () => {
-                    selectText();
-                    done(false);
-                });
-            } else {
-                selectText();
-                done(false);
-            }
-        });
+        area.remove();
+        return ok;
+    }
+
+    function pad(value) {
+        return String(value).padStart(2, "0");
     }
 
     function init() {
-        initStatus();
-        initAnswers();
-        initHelpdesk();
-        initCopy();
+        const host = document.createElement("div");
+        host.className = "deal-root";
+        host.innerHTML = TEMPLATE;
+        document.body.appendChild(host);
+
+        const postcard = $("#dealPostcard");
+        const exit = $("#dealExit");
+        const ticket = $("#dealTicket");
+        const card = $("#dealCard");
+
+        function say(message) {
+            if (M.shop && M.shop.announce) {
+                M.shop.announce(message);
+            }
+        }
+
+        function hasPromo() {
+            return Boolean(M.cart.discount().code);
+        }
+
+        function refreshTicket() {
+            ticket.hidden = !document.body.matches(".plans-page, .specials-page") || !readSeen().welcome || hasPromo();
+        }
+
+        function flip(open) {
+            card.classList.toggle("is-flipped", open);
+            $("#dealCardFront").inert = open;
+            $("#dealCardBack").inert = !open;
+        }
+
+        function close(dialog) {
+            if (!dialog.open) {
+                return;
+            }
+            dialog.classList.add("is-closing");
+            window.setTimeout(() => {
+                dialog.classList.remove("is-closing");
+                dialog.close();
+                refreshTicket();
+            }, reduceMotion ? 0 : 200);
+        }
+
+        // The welcome postcard is a <dialog> opened with showModal().
+        // Adapted from MDN Web Docs, "<dialog>: The Dialog element" (Creating a modal dialog)
+        // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog
+        // Changed: remembers that you've seen it, and the card gives a little wiggle to show it flips.
+        function openPostcard(source) {
+            if (postcard.open) {
+                return;
+            }
+            markSeen("welcome");
+            flip(false);
+            postcard.showModal();
+            $("#dealPostcardTitle").focus();
+            if (source !== "button" && !reduceMotion) {
+                window.setTimeout(() => postcard.open && !card.classList.contains("is-flipped") && card.classList.add("is-wiggling"), 900);
+            }
+        }
+
+        $("#dealFlip").addEventListener("click", () => {
+            card.classList.remove("is-wiggling");
+            flip(true);
+            $(".deal-pop_actions [data-promo-apply]", postcard).focus();
+            say("The postcard says: 15% off your whole first order with code " + WELCOME.code + ".");
+        });
+
+        [postcard, exit].forEach((dialog) => {
+            dialog.addEventListener("click", (event) => {
+                if (event.target === dialog || event.target.closest("[data-deal-close]")) {
+                    close(dialog);
+                }
+            });
+            dialog.addEventListener("cancel", (event) => {
+                event.preventDefault();
+                close(dialog);
+            });
+        });
+
+        ticket.addEventListener("click", () => {
+            openPostcard("button");
+            flip(true);
+        });
+
+        document.addEventListener("click", (event) => {
+            const apply = event.target.closest("[data-promo-apply]");
+            if (apply && M.shop) {
+                const result = M.shop.applyPromo(apply.dataset.promoApply);
+                const dialog = apply.closest("dialog.deal-pop");
+                if (dialog) {
+                    close(dialog);
+                }
+                if (result.ok && !("noFlash" in apply.dataset)) {
+                    flashLabel(apply, "Applied!");
+                }
+                refreshTicket();
+                return;
+            }
+            const copy = event.target.closest("[data-promo-copy]");
+            if (copy) {
+                const target = copy.dataset.promoCopyFrom ? document.getElementById(copy.dataset.promoCopyFrom) : null;
+                const code = target ? target.textContent.trim() : copy.dataset.promoCopy;
+                copyText(code).then((ok) => {
+                    flashLabel(copy, ok ? "Copied!" : "Press Ctrl+C");
+                    say(ok ? code + " copied to your clipboard." : "Select the code and copy it.");
+                });
+            }
+            const opener = event.target.closest("[data-open-postcard]");
+            if (opener) {
+                openPostcard("button");
+            }
+        });
+
+        const labelTimers = new WeakMap();
+        function flashLabel(button, text) {
+            if (!labelTimers.has(button)) {
+                button.dataset.label = button.textContent;
+            }
+            window.clearTimeout(labelTimers.get(button));
+            button.textContent = text;
+            button.classList.add("is-done");
+            labelTimers.set(button, window.setTimeout(() => {
+                button.textContent = button.dataset.label;
+                button.classList.remove("is-done");
+                labelTimers.delete(button);
+            }, 1600));
+        }
+
+        document.addEventListener("marlowby:cart", refreshTicket);
+        refreshTicket();
+
+        initRibbon();
+        initDealsSection();
+    }
+
+    function initRibbon() {
+        const ribbon = $("[data-ribbon]");
+        if (!ribbon) {
+            return;
+        }
+        const items = $$(".deal-ribbon_list li", ribbon);
+        const pause = $(".deal-ribbon_pause", ribbon);
+        let index = 0;
+        let paused = reduceMotion;
+        let hovering = false;
+        pause.textContent = paused ? "Play" : "Pause";
+        function show(next) {
+            items[index].classList.remove("is-active");
+            index = (next + items.length) % items.length;
+            items[index].classList.add("is-active");
+        }
+        window.setInterval(() => {
+            if (!paused && !hovering && !document.hidden) {
+                show(index + 1);
+            }
+        }, 4500);
+        pause.addEventListener("click", () => {
+            paused = !paused;
+            pause.textContent = paused ? "Play" : "Pause";
+        });
+        ribbon.addEventListener("mouseenter", () => (hovering = true));
+        ribbon.addEventListener("mouseleave", () => (hovering = false));
+        ribbon.addEventListener("focusin", () => (hovering = true));
+        ribbon.addEventListener("focusout", () => (hovering = false));
+    }
+
+    function parseAdds(text) {
+        return String(text || "").split(",").map((pair) => pair.trim().split(":")).filter((pair) => pair.length === 2);
+    }
+
+    function dealPrice(adds, code) {
+        const was = adds.reduce((total, [plan, term]) => total + M.catalog.dueToday(plan, term), 0);
+        const promo = code ? M.catalog.promo(code) : null;
+        if (!promo) {
+            return { was, now: was };
+        }
+        const eligible = promo.terms ? adds.filter(([, term]) => promo.terms.includes(term)).reduce((total, [plan, term]) => total + M.catalog.dueToday(plan, term), 0) : was;
+        const off = promo.type === "percent" ? eligible * promo.value / 100 : Math.min(promo.value, eligible);
+        return { was, now: Math.max(0, Math.round((was - off) * 100) / 100) };
+    }
+
+    function initDealsSection() {
+        $$("[data-flash-clock]").forEach((clock) => {
+            const tick = () => {
+                const now = new Date();
+                const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+                const left = Math.max(0, Math.floor((midnight - now) / 1000));
+                clock.textContent = pad(Math.floor(left / 3600)) + ":" + pad(Math.floor((left % 3600) / 60)) + ":" + pad(left % 60);
+            };
+            tick();
+            window.setInterval(tick, 1000);
+        });
+
+        const addButtons = $$("[data-deal-add]");
+        function renderPrices() {
+            addButtons.forEach((button) => {
+                const scope = button.closest(".deal") || document;
+                const price = dealPrice(parseAdds(button.dataset.dealAdd), button.dataset.dealCode);
+                $$("[data-deal-was]", scope).forEach((node) => (node.textContent = M.money(price.was)));
+                $$("[data-deal-now]", scope).forEach((node) => (node.textContent = M.money(price.now)));
+            });
+        }
+        renderPrices();
+        document.addEventListener("marlowby:catalog", renderPrices);
+        addButtons.forEach((button) => {
+            const label = button.textContent;
+            button.addEventListener("click", () => {
+                if (!M.shop) {
+                    return;
+                }
+                parseAdds(button.dataset.dealAdd).forEach(([plan, term]) => M.shop.add(plan, term, button));
+                if (button.dataset.dealCode) {
+                    M.shop.applyPromo(button.dataset.dealCode);
+                }
+                button.classList.add("is-done");
+                button.textContent = "Added to your cart!";
+                window.setTimeout(() => {
+                    button.textContent = label;
+                    button.classList.remove("is-done");
+                }, 1800);
+            });
+        });
+
+        const refInput = $("#refName");
+        const refCode = $("#refCode");
+        if (refInput && refCode) {
+            const suffix = (M.catalog.data.referral || { suffix: "-MB10" }).suffix;
+            const render = () => {
+                const clean = refInput.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 12);
+                refCode.textContent = (clean.length >= 2 ? clean : "YOURNAME") + suffix;
+                refCode.classList.toggle("is-ready", clean.length >= 2);
+                $$("[data-ref-action]").forEach((button) => (button.disabled = clean.length < 2));
+            };
+            try {
+                const passport = JSON.parse(localStorage.getItem("marlowbyPassport") || "{}") || {};
+                if (passport.name) {
+                    refInput.value = passport.name.split(/\s+/)[0];
+                }
+            } catch (error) {
+            }
+            refInput.addEventListener("input", render);
+            render();
+        }
+
+        const meters = $$("[data-reward-fill]");
+        if (meters.length) {
+            const render = () => {
+                const reward = M.catalog.reward();
+                const total = M.cart.total();
+                const left = Math.max(0, reward.threshold - total);
+                meters.forEach((meter) => {
+                    const card = meter.closest(".deal") || document.body;
+                    meter.style.width = Math.min(100, (total / reward.threshold) * 100) + "%";
+                    $$("[data-reward-text]", card).forEach((text) => {
+                        text.textContent = left === 0 ? "Unlocked! Your tote ships with your first box." : total ? "Your cart is at " + M.money(total) + ". Just " + M.money(left) + " to go." : "Your cart is empty. Fill it to " + M.money(reward.threshold) + ".";
+                    });
+                    card.classList.toggle("is-unlocked", left === 0);
+                });
+            };
+            document.addEventListener("marlowby:cart", render);
+            render();
+        }
     }
 
     if (document.readyState === "loading") {

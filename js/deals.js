@@ -6,393 +6,458 @@
         return;
     }
 
+    // Checks the visitor's "reduce motion" setting with window.matchMedia().
+    // From MDN Web Docs, "Window: matchMedia() method": https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const $ = (selector, root = document) => root.querySelector(selector);
     const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
-    const SEEN_KEY = "marlowbyPopups";
 
-    const WELCOME = { code: "BURLINGTON15", city: "Burlington", state: "Vermont" };
-    const EXIT = { code: "PASSPORT10" };
+    const PLAN_INK = { basic: "#4a6650", premium: "#1d2a3a", gift: "#b0491f" };
+    const PLAN_NOTES = {
+        basic: "A taste of each city, picked by our local scouts.",
+        premium: "The whole city, plus a full-size signature item.",
+        gift: "Prepaid boxes and a personal note. Never auto-renews."
+    };
 
-    const TICKET_ICON = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg>';
-
-    const TEMPLATE = `
-<dialog class="deal-pop deal-pop--postcard" id="dealPostcard" aria-labelledby="dealPostcardTitle">
-    <button type="button" class="deal-pop_close" data-deal-close aria-label="Close">&times;</button>
-    <p class="deal-pop_eyebrow">You've got mail</p>
-    <h2 id="dealPostcardTitle" tabindex="-1">A postcard from ${WELCOME.city}</h2>
-    <div class="postcard" id="dealCard">
-        <div class="postcard_inner">
-            <div class="postcard_face postcard_front" id="dealCardFront">
-                <div class="postcard_scene" aria-hidden="true">
-                    <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice">
-                        <rect width="320" height="180" fill="#f4c27a"/>
-                        <circle cx="236" cy="70" r="30" fill="#f8e3b3"/>
-                        <path d="M0 112 L60 70 L110 104 L170 52 L232 100 L284 74 L320 96 V180 H0Z" fill="#5f7d64"/>
-                        <path d="M0 132 L70 104 L130 128 L200 96 L260 124 L320 112 V180 H0Z" fill="#3f5a46"/>
-                        <rect y="142" width="320" height="38" fill="#2c4a6b"/>
-                        <path d="M20 156 h40 M90 164 h60 M190 154 h50 M260 166 h40" stroke="#9cc0d8" stroke-width="3" stroke-linecap="round"/>
-                        <path d="M150 142 v-14 l10 -8 l10 8 v14" fill="#b0491f"/>
-                    </svg>
-                </div>
-                <p class="postcard_greeting" aria-hidden="true"><span>Greetings from</span><strong>${WELCOME.city}</strong></p>
-                <button type="button" class="deal-button deal-button--light postcard_flip" id="dealFlip">Flip it over</button>
-            </div>
-            <div class="postcard_face postcard_back" id="dealCardBack" inert>
-                <div class="postcard_note">
-                    <p class="postcard_hand">Wish you were here! The maple syrup is unreal. Here's 15% off your whole first order, on us.</p>
-                    <p class="postcard_sign">Love, the Marlowby crew</p>
-                </div>
-                <div class="postcard_side">
-                    <span class="postcard_stamp" aria-hidden="true">VT<small>15%</small></span>
-                    <p class="postcard_code"><span>Your code</span><strong>${WELCOME.code}</strong></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="deal-pop_actions">
-        <button type="button" class="deal-button" data-promo-apply="${WELCOME.code}">Use 15% off</button>
-        <button type="button" class="deal-button deal-button--ghost" data-promo-copy="${WELCOME.code}">Copy code</button>
-    </div>
-    <button type="button" class="deal-pop_skip" data-deal-close>Maybe later</button>
-</dialog>
-
-<dialog class="deal-pop deal-pop--exit" id="dealExit" aria-labelledby="dealExitTitle">
-    <button type="button" class="deal-pop_close" data-deal-close aria-label="Close">&times;</button>
-    <div class="deal-exit_tag" aria-hidden="true"><span>$10</span><small>off</small></div>
-    <p class="deal-pop_eyebrow">Before you hit the road</p>
-    <h2 id="dealExitTitle" tabindex="-1">Take $10 for the trip</h2>
-    <p class="deal-exit_text">Your passport is still waiting for its first stamp. Use this code on any plan or gift box.</p>
-    <p class="deal-exit_code"><strong>${EXIT.code}</strong></p>
-    <div class="deal-pop_actions">
-        <button type="button" class="deal-button" data-promo-apply="${EXIT.code}">Use $10 off</button>
-        <button type="button" class="deal-button deal-button--ghost" data-promo-copy="${EXIT.code}">Copy code</button>
-    </div>
-    <button type="button" class="deal-pop_skip" data-deal-close>No thanks, I'll pay full price</button>
-</dialog>
-
-<button type="button" class="deal-ticket" id="dealTicket" hidden>${TICKET_ICON}<span>15% off</span></button>`;
-
-    const SEEN_DAYS = 7;
-
-    function readStore(store) {
-        try {
-            return JSON.parse(store.getItem(SEEN_KEY) || "{}") || {};
-        } catch (error) {
-            return {};
+    function el(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) {
+            node.className = className;
         }
+        if (text !== undefined) {
+            node.textContent = text;
+        }
+        return node;
     }
 
-    function readSeen() {
-        const seen = Object.assign({}, readStore(sessionStorage));
-        const kept = readStore(localStorage);
-        const cutoff = Date.now() - SEEN_DAYS * 86400000;
-        Object.keys(kept).forEach((name) => {
-            if (kept[name] > cutoff) {
-                seen[name] = 1;
-            }
+    function titleFor(item) {
+        const entry = M.catalog.plan(item.plan);
+        return entry.name + (entry.renews ? " plan" : " box");
+    }
+
+    function giftRate(term) {
+        return M.catalog.price("gift", term) / Number(term);
+    }
+
+    function lineSavings(item) {
+        const entry = M.catalog.plan(item.plan);
+        if (!entry) {
+            return 0;
+        }
+        if (entry.renews) {
+            const monthly = M.catalog.price(item.plan, "monthly");
+            const months = M.catalog.months(item.plan, item.term);
+            return Math.max(0, (monthly - M.catalog.price(item.plan, item.term)) * months * item.qty);
+        }
+        const terms = Object.keys(entry.prices).sort((a, b) => Number(a) - Number(b));
+        const base = giftRate(terms[0]);
+        return Math.max(0, Math.round((base * Number(item.term) - M.catalog.price(item.plan, item.term)) * item.qty * 100) / 100);
+    }
+
+    function termOptions(item) {
+        const entry = M.catalog.plan(item.plan);
+        return Object.keys(entry.prices).map((term) => {
+            const price = M.catalog.price(item.plan, term);
+            const label = entry.renews
+                ? M.catalog.termLabel(item.plan, term) + ", " + M.money(price) + " a box"
+                : term + " boxes, " + M.money(price) + " prepaid";
+            return { term, label };
         });
-        return seen;
-    }
-
-    function markSeen(name) {
-        const session = readStore(sessionStorage);
-        session[name] = 1;
-        session.auto = 1;
-        const kept = readStore(localStorage);
-        kept[name] = Date.now();
-        try {
-            sessionStorage.setItem(SEEN_KEY, JSON.stringify(session));
-            localStorage.setItem(SEEN_KEY, JSON.stringify(kept));
-        } catch (error) {
-        }
-    }
-
-    function copyText(text) {
-        if (navigator.clipboard && window.isSecureContext) {
-            return navigator.clipboard.writeText(text).then(() => true, () => fallbackCopy(text));
-        }
-        return Promise.resolve(fallbackCopy(text));
-    }
-
-    function fallbackCopy(text) {
-        const area = document.createElement("textarea");
-        area.value = text;
-        area.setAttribute("readonly", "");
-        area.style.position = "fixed";
-        area.style.opacity = "0";
-        document.body.appendChild(area);
-        area.select();
-        let ok = false;
-        try {
-            ok = document.execCommand("copy");
-        } catch (error) {
-        }
-        area.remove();
-        return ok;
-    }
-
-    function pad(value) {
-        return String(value).padStart(2, "0");
     }
 
     function init() {
-        const host = document.createElement("div");
-        host.className = "deal-root";
-        host.innerHTML = TEMPLATE;
-        document.body.appendChild(host);
+        const lines = $("#cartLines");
+        const empty = $("#cartEmpty");
+        const undoBox = $("#cartUndo");
+        const message = $("#cartPromoMsg");
+        let undoItem = null;
+        let undoTimer = 0;
+        let fresh = "";
 
-        const postcard = $("#dealPostcard");
-        const exit = $("#dealExit");
-        const ticket = $("#dealTicket");
-        const card = $("#dealCard");
-
-        function say(message) {
-            if (M.shop && M.shop.announce) {
-                M.shop.announce(message);
-            }
-        }
-
-        function hasPromo() {
-            return Boolean(M.cart.discount().code);
-        }
-
-        function refreshTicket() {
-            ticket.hidden = !document.body.matches(".plans-page, .specials-page") || !readSeen().welcome || hasPromo();
-        }
-
-        function flip(open) {
-            card.classList.toggle("is-flipped", open);
-            $("#dealCardFront").inert = open;
-            $("#dealCardBack").inert = !open;
-        }
-
-        function close(dialog) {
-            if (!dialog.open) {
-                return;
-            }
-            dialog.classList.add("is-closing");
-            window.setTimeout(() => {
-                dialog.classList.remove("is-closing");
-                dialog.close();
-                refreshTicket();
-            }, reduceMotion ? 0 : 200);
-        }
-
-        function openPostcard(source) {
-            if (postcard.open) {
-                return;
-            }
-            markSeen("welcome");
-            flip(false);
-            postcard.showModal();
-            $("#dealPostcardTitle").focus();
-            if (source !== "button" && !reduceMotion) {
-                window.setTimeout(() => postcard.open && !card.classList.contains("is-flipped") && card.classList.add("is-wiggling"), 900);
-            }
-        }
-
-        $("#dealFlip").addEventListener("click", () => {
-            card.classList.remove("is-wiggling");
-            flip(true);
-            $(".deal-pop_actions [data-promo-apply]", postcard).focus();
-            say("The postcard says: 15% off your whole first order with code " + WELCOME.code + ".");
-        });
-
-        [postcard, exit].forEach((dialog) => {
-            dialog.addEventListener("click", (event) => {
-                if (event.target === dialog || event.target.closest("[data-deal-close]")) {
-                    close(dialog);
+        // Cart, Details, Confirm step markers.
+        // Adapted from W3Schools, "How To Create a Form with Multiple Steps" (fixStepIndicator())
+        // https://www.w3schools.com/howto/howto_js_form_steps.asp
+        // Changed: marks earlier steps as done too, and sets aria-current="step".
+        function setStep(step) {
+            $$("#cartSteps li").forEach((li, index) => {
+                const current = index === step;
+                li.classList.toggle("is-current", current);
+                li.classList.toggle("is-done", index < step);
+                if (current) {
+                    li.setAttribute("aria-current", "step");
+                } else {
+                    li.removeAttribute("aria-current");
                 }
             });
-            dialog.addEventListener("cancel", (event) => {
-                event.preventDefault();
-                close(dialog);
-            });
-        });
+        }
 
-        ticket.addEventListener("click", () => {
-            openPostcard("button");
-            flip(true);
-        });
-
-        document.addEventListener("click", (event) => {
-            const apply = event.target.closest("[data-promo-apply]");
-            if (apply && M.shop) {
-                const result = M.shop.applyPromo(apply.dataset.promoApply);
-                const dialog = apply.closest("dialog.deal-pop");
-                if (dialog) {
-                    close(dialog);
-                }
-                if (result.ok && !("noFlash" in apply.dataset)) {
-                    flashLabel(apply, "Applied!");
-                }
-                refreshTicket();
+        function changeTerm(item, term) {
+            const entry = M.catalog.plan(item.plan);
+            if (entry.renews) {
+                fresh = item.key;
+                M.cart.add(item.plan, term);
                 return;
             }
-            const copy = event.target.closest("[data-promo-copy]");
-            if (copy) {
-                const target = copy.dataset.promoCopyFrom ? document.getElementById(copy.dataset.promoCopyFrom) : null;
-                const code = target ? target.textContent.trim() : copy.dataset.promoCopy;
-                copyText(code).then((ok) => {
-                    flashLabel(copy, ok ? "Copied!" : "Press Ctrl+C");
-                    say(ok ? code + " copied to your clipboard." : "Select the code and copy it.");
+            const qty = item.qty;
+            M.cart.remove(item.key);
+            const added = M.cart.add(item.plan, term);
+            if (added) {
+                fresh = added.key;
+                M.cart.setQty(added.key, Math.min(M.cart.maxQty, added.qty - 1 + qty));
+            }
+        }
+
+        function upgrade(item) {
+            const qty = item.qty;
+            const term = item.term;
+            M.cart.remove(item.key);
+            const added = M.cart.add("premium", term);
+            if (added) {
+                fresh = added.key;
+                M.cart.setQty(added.key, Math.min(M.cart.maxQty, added.qty - 1 + qty));
+            }
+        }
+
+        function showUndo(item) {
+            undoItem = { plan: item.plan, term: item.term, qty: item.qty };
+            $("#cartUndoText").textContent = titleFor(item) + " was removed.";
+            undoBox.hidden = false;
+            window.clearTimeout(undoTimer);
+            undoTimer = window.setTimeout(() => {
+                undoBox.hidden = true;
+                undoItem = null;
+            }, 8000);
+        }
+
+        $("#cartUndoButton").addEventListener("click", () => {
+            if (!undoItem) {
+                return;
+            }
+            const restore = undoItem;
+            undoItem = null;
+            undoBox.hidden = true;
+            const added = M.cart.add(restore.plan, restore.term);
+            if (added) {
+                fresh = added.key;
+                M.cart.setQty(added.key, Math.min(M.cart.maxQty, added.qty - 1 + restore.qty));
+            }
+            $("#cartItemsTitle").focus();
+        });
+
+        function stepper(item) {
+            const wrap = el("div", "cart-qty");
+            const title = titleFor(item);
+            const minus = el("button", "cart-qty_button", "−");
+            minus.type = "button";
+            minus.setAttribute("aria-label", "One fewer " + title + " box");
+            minus.disabled = item.qty <= 1;
+            minus.addEventListener("click", () => M.cart.setQty(item.key, item.qty - 1));
+            const value = el("output", "cart-qty_value", String(item.qty));
+            value.setAttribute("aria-label", item.qty + (item.qty === 1 ? " box" : " boxes"));
+            const plus = el("button", "cart-qty_button", "+");
+            plus.type = "button";
+            plus.setAttribute("aria-label", "One more " + title + " box");
+            plus.disabled = item.qty >= M.cart.maxQty;
+            plus.addEventListener("click", () => M.cart.setQty(item.key, item.qty + 1));
+            wrap.append(minus, value, plus);
+            return wrap;
+        }
+
+        function line(item) {
+            const entry = M.catalog.plan(item.plan);
+            const li = el("li", "cart-line");
+            li.dataset.key = item.key;
+            li.style.setProperty("--line-ink", PLAN_INK[item.plan] || "#1d2a3a");
+            if (fresh === item.key) {
+                li.classList.add("is-fresh");
+            }
+
+            const stamp = el("div", "cart-line_stamp");
+            stamp.setAttribute("aria-hidden", "true");
+            stamp.append(el("strong", "", entry.name.charAt(0)), el("small", "", entry.renews ? M.catalog.months(item.plan, item.term) + " mo" : item.term + " box"));
+
+            const info = el("div", "cart-line_info");
+            const heading = el("h3", "cart-line_title", titleFor(item));
+            info.append(heading, el("p", "cart-line_note", PLAN_NOTES[item.plan] || entry.tagline));
+
+            const tags = el("ul", "cart-line_tags");
+            tags.setAttribute("aria-label", "Included");
+            [entry.itemsPerBox + " local items a box", "Passport and city stamp", "Free shipping"].forEach((text) => tags.appendChild(el("li", "", text)));
+            info.appendChild(tags);
+
+            const field = el("div", "cart-line_term");
+            const id = "cartTerm-" + item.key;
+            const label = el("label", "", entry.renews ? "Billing" : "Boxes");
+            label.htmlFor = id;
+            const select = el("select");
+            select.id = id;
+            termOptions(item).forEach((option) => {
+                const node = el("option", "", option.label);
+                node.value = option.term;
+                node.selected = option.term === item.term;
+                select.appendChild(node);
+            });
+            select.addEventListener("change", () => changeTerm(item, select.value));
+            field.append(label, select);
+            info.appendChild(field);
+
+            const saved = lineSavings(item);
+            if (saved > 0) {
+                info.appendChild(el("p", "cart-line_saving", "Saving " + M.money(saved) + (entry.renews ? " compared with paying monthly" : " compared with the 3-box rate")));
+            }
+
+            if (item.plan === "basic" && !M.cart.has("premium")) {
+                const gap = M.catalog.price("premium", item.term) - M.catalog.price("basic", item.term);
+                const nudge = el("button", "cart-line_upgrade");
+                nudge.type = "button";
+                nudge.append(el("strong", "", "Upgrade to Premium"), el("span", "", "3 more local items and a signature piece for " + M.money(gap) + " more a box"));
+                nudge.addEventListener("click", () => upgrade(item));
+                info.appendChild(nudge);
+            }
+
+            const side = el("div", "cart-line_side");
+            const price = el("p", "cart-line_price", M.money(M.catalog.dueToday(item.plan, item.term) * item.qty));
+            const per = el("p", "cart-line_per", entry.renews
+                ? M.money(M.catalog.price(item.plan, item.term)) + " a box, " + ((M.catalog.data.billing[item.term] || {}).billed || "").toLowerCase()
+                : "Prepaid, never auto-renews");
+            const remove = el("button", "cart-text-button cart-line_remove", "Remove");
+            remove.type = "button";
+            remove.setAttribute("aria-label", "Remove " + titleFor(item));
+            remove.addEventListener("click", () => {
+                const snapshot = Object.assign({}, item);
+                li.classList.add("is-leaving");
+                window.setTimeout(() => {
+                    M.cart.remove(snapshot.key);
+                    showUndo(snapshot);
+                    $("#cartItemsTitle").focus();
+                }, reduceMotion ? 0 : 240);
+            });
+            side.append(price, per, stepper(item), remove);
+
+            li.append(stamp, info, side);
+            return li;
+        }
+
+        function renderLines() {
+            const items = M.cart.items;
+            lines.replaceChildren(...items.map(line));
+            fresh = "";
+            const count = M.cart.count();
+            empty.hidden = items.length > 0;
+            $("#cartClear").hidden = items.length === 0;
+            $("#cartCount").textContent = count ? "(" + count + (count === 1 ? " box)" : " boxes)") : "";
+        }
+
+        function renderMore() {
+            const list = $("#cartMore");
+            list.replaceChildren();
+            const plans = ["basic", "premium", "gift"].filter((plan) => M.catalog.plan(plan) && !M.cart.has(plan));
+            $(".cart-more").hidden = plans.length === 0;
+            $("#cartMoreLead").textContent = M.cart.items.length
+                ? "Add a plan or send a gift."
+                : "Switch or cancel anytime.";
+            plans.forEach((plan) => {
+                const entry = M.catalog.plan(plan);
+                const term = entry.renews ? "monthly" : Object.keys(entry.prices)[0];
+                const li = el("li", "cart-more_card");
+                li.style.setProperty("--line-ink", PLAN_INK[plan]);
+                const from = entry.renews ? M.money(Math.min(...Object.values(entry.prices).map(Number))) : M.money(M.catalog.price(plan, term));
+                li.append(
+                    el("h3", "", entry.name),
+                    el("p", "cart-more_tagline", entry.tagline),
+                    el("p", "cart-more_price", entry.renews ? "From " + from + " a box" : from + " for " + term + " boxes")
+                );
+                const button = el("button", "cart-button cart-button--small", "Add " + entry.name);
+                button.type = "button";
+                button.dataset.cartPlan = plan;
+                button.dataset.cartTerm = term;
+                li.appendChild(button);
+                list.appendChild(li);
+            });
+        }
+
+        function renderSummary() {
+            const discount = M.cart.discount();
+            const total = M.cart.total();
+            const items = M.cart.items;
+            $("#cartSubtotal").textContent = M.money(M.cart.subtotal());
+            $("#cartTotal").textContent = M.money(total);
+            $("#cartDiscountRow").hidden = !discount.amount;
+            $("#cartDiscountLabel").textContent = discount.code ? "Code " + discount.code : "Promo";
+            $("#cartDiscount").textContent = "−" + M.money(discount.amount);
+
+            const saved = items.reduce((sum, item) => sum + lineSavings(item), 0);
+            const savedNote = $("#cartSaved");
+            savedNote.hidden = saved <= 0 && !discount.amount;
+            savedNote.textContent = "You're saving " + M.money(Math.round((saved + discount.amount) * 100) / 100) + " on this order.";
+
+            $("#cartPromoForm").hidden = Boolean(discount.code);
+            const applied = $("#cartPromoApplied");
+            applied.hidden = !discount.code;
+            applied.classList.toggle("is-waiting", Boolean(discount.code && !discount.amount));
+            $("#cartPromoCode").textContent = discount.code;
+            $("#cartPromoLabel").textContent = discount.amount ? discount.label + ". You save " + M.money(discount.amount) + "." : discount.note;
+
+            const reward = M.catalog.reward();
+            const left = Math.max(0, reward.threshold - total);
+            const box = $("#cartReward");
+            box.classList.toggle("is-unlocked", items.length > 0 && left === 0);
+            $("#cartRewardText").textContent = !items.length
+                ? "Spend " + M.money(reward.threshold) + " and we'll add " + reward.label + "."
+                : left === 0
+                    ? "You unlocked " + reward.label + "! It ships with your first box."
+                    : "You're " + M.money(left) + " away from " + reward.label + ".";
+            $("#cartRewardFill").style.width = Math.min(100, (total / reward.threshold) * 100) + "%";
+
+            const checkout = $("#cartCheckout");
+            checkout.disabled = items.length === 0;
+            $("#cartRenewNote").textContent = !items.length
+                ? "Add a plan to check out."
+                : items.some((item) => M.catalog.plan(item.plan).renews)
+                    ? "Renews at the same price. Cancel anytime. No charge until launch."
+                    : "Gifts are prepaid and never renew. No charge until launch.";
+        }
+
+        function render() {
+            renderLines();
+            renderMore();
+            renderSummary();
+        }
+
+        function stamp() {
+            const code = $("#cartPromoCode");
+            if (reduceMotion) {
+                return;
+            }
+            code.classList.remove("is-slammed");
+            void code.offsetWidth;
+            code.classList.add("is-slammed");
+        }
+
+        function apply(code) {
+            const result = M.cart.applyPromo(code);
+            message.textContent = result.message;
+            message.classList.toggle("is-error", !result.ok);
+            message.classList.toggle("is-quiet", result.ok);
+            if (result.ok) {
+                stamp();
+                $("#cartPromoRemove").focus();
+            }
+            return result;
+        }
+
+        $("#cartPromoForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+            const input = $("#cartPromoInput");
+            if (!input.value.trim()) {
+                message.textContent = "Type a code first.";
+                message.classList.add("is-error");
+                input.setAttribute("aria-invalid", "true");
+                input.focus();
+                return;
+            }
+            const result = apply(input.value);
+            input.setAttribute("aria-invalid", String(!result.ok));
+            if (result.ok) {
+                input.value = "";
+            } else {
+                input.focus();
+            }
+        });
+
+        $("#cartPromoInput").addEventListener("input", (event) => {
+            event.target.value = event.target.value.toUpperCase().replace(/[^A-Z0-9-]/g, "");
+            event.target.removeAttribute("aria-invalid");
+            message.textContent = "";
+            message.classList.remove("is-error", "is-quiet");
+        });
+
+        $$(".cart-chip").forEach((chip) => chip.addEventListener("click", () => apply(chip.dataset.code)));
+
+        $("#cartPromoRemove").addEventListener("click", () => {
+            const code = M.cart.discount().code;
+            M.cart.removePromo();
+            message.classList.remove("is-error", "is-quiet");
+            message.textContent = code + " removed.";
+            $("#cartPromoInput").focus();
+        });
+
+        $("#cartClear").addEventListener("click", () => {
+            const items = M.cart.items.slice();
+            if (!items.length) {
+                return;
+            }
+            items.forEach((item) => M.cart.remove(item.key));
+            undoItem = null;
+            const count = items.length;
+            $("#cartUndoText").textContent = count + (count === 1 ? " plan was" : " plans were") + " removed.";
+            undoBox.hidden = false;
+            const restoreAll = () => {
+                items.forEach((item) => {
+                    const added = M.cart.add(item.plan, item.term);
+                    if (added) {
+                        M.cart.setQty(added.key, Math.min(M.cart.maxQty, added.qty - 1 + item.qty));
+                    }
                 });
-            }
-            const opener = event.target.closest("[data-open-postcard]");
-            if (opener) {
-                openPostcard("button");
-            }
-        });
-
-        const labelTimers = new WeakMap();
-        function flashLabel(button, text) {
-            if (!labelTimers.has(button)) {
-                button.dataset.label = button.textContent;
-            }
-            window.clearTimeout(labelTimers.get(button));
-            button.textContent = text;
-            button.classList.add("is-done");
-            labelTimers.set(button, window.setTimeout(() => {
-                button.textContent = button.dataset.label;
-                button.classList.remove("is-done");
-                labelTimers.delete(button);
-            }, 1600));
-        }
-
-        document.addEventListener("marlowby:cart", refreshTicket);
-        refreshTicket();
-
-        initRibbon();
-        initDealsSection();
-    }
-
-    function initRibbon() {
-        const ribbon = $("[data-ribbon]");
-        if (!ribbon) {
-            return;
-        }
-        const items = $$(".deal-ribbon_list li", ribbon);
-        const pause = $(".deal-ribbon_pause", ribbon);
-        let index = 0;
-        let paused = reduceMotion;
-        let hovering = false;
-        pause.textContent = paused ? "Play" : "Pause";
-        function show(next) {
-            items[index].classList.remove("is-active");
-            index = (next + items.length) % items.length;
-            items[index].classList.add("is-active");
-        }
-        window.setInterval(() => {
-            if (!paused && !hovering && !document.hidden) {
-                show(index + 1);
-            }
-        }, 4500);
-        pause.addEventListener("click", () => {
-            paused = !paused;
-            pause.textContent = paused ? "Play" : "Pause";
-        });
-        ribbon.addEventListener("mouseenter", () => (hovering = true));
-        ribbon.addEventListener("mouseleave", () => (hovering = false));
-        ribbon.addEventListener("focusin", () => (hovering = true));
-        ribbon.addEventListener("focusout", () => (hovering = false));
-    }
-
-    function parseAdds(text) {
-        return String(text || "").split(",").map((pair) => pair.trim().split(":")).filter((pair) => pair.length === 2);
-    }
-
-    function dealPrice(adds, code) {
-        const was = adds.reduce((total, [plan, term]) => total + M.catalog.dueToday(plan, term), 0);
-        const promo = code ? M.catalog.promo(code) : null;
-        if (!promo) {
-            return { was, now: was };
-        }
-        const eligible = promo.terms ? adds.filter(([, term]) => promo.terms.includes(term)).reduce((total, [plan, term]) => total + M.catalog.dueToday(plan, term), 0) : was;
-        const off = promo.type === "percent" ? eligible * promo.value / 100 : Math.min(promo.value, eligible);
-        return { was, now: Math.max(0, Math.round((was - off) * 100) / 100) };
-    }
-
-    function initDealsSection() {
-        $$("[data-flash-clock]").forEach((clock) => {
-            const tick = () => {
-                const now = new Date();
-                const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-                const left = Math.max(0, Math.floor((midnight - now) / 1000));
-                clock.textContent = pad(Math.floor(left / 3600)) + ":" + pad(Math.floor((left % 3600) / 60)) + ":" + pad(left % 60);
             };
-            tick();
-            window.setInterval(tick, 1000);
+            undoItem = null;
+            const button = $("#cartUndoButton");
+            const once = () => {
+                button.removeEventListener("click", once);
+                undoBox.hidden = true;
+                restoreAll();
+            };
+            button.addEventListener("click", once);
+            window.clearTimeout(undoTimer);
+            undoTimer = window.setTimeout(() => {
+                button.removeEventListener("click", once);
+                undoBox.hidden = true;
+            }, 8000);
+            $("#cartItemsTitle").focus();
         });
 
-        const addButtons = $$("[data-deal-add]");
-        function renderPrices() {
-            addButtons.forEach((button) => {
-                const scope = button.closest(".deal") || document;
-                const price = dealPrice(parseAdds(button.dataset.dealAdd), button.dataset.dealCode);
-                $$("[data-deal-was]", scope).forEach((node) => (node.textContent = M.money(price.was)));
-                $$("[data-deal-now]", scope).forEach((node) => (node.textContent = M.money(price.now)));
-            });
-        }
-        renderPrices();
-        document.addEventListener("marlowby:catalog", renderPrices);
-        addButtons.forEach((button) => {
-            const label = button.textContent;
-            button.addEventListener("click", () => {
-                if (!M.shop) {
+        $("#cartCheckout").addEventListener("click", () => {
+            if (!M.cart.items.length || !M.shop || !M.shop.openCheckout) {
+                return;
+            }
+            setStep(1);
+            M.shop.openCheckout();
+        });
+
+        const drawer = $("#shopCart");
+        if (drawer) {
+            drawer.addEventListener("close", () => {
+                if (!$("#cartDone").hidden) {
                     return;
                 }
-                parseAdds(button.dataset.dealAdd).forEach(([plan, term]) => M.shop.add(plan, term, button));
-                if (button.dataset.dealCode) {
-                    M.shop.applyPromo(button.dataset.dealCode);
-                }
-                button.classList.add("is-done");
-                button.textContent = "Added to your cart!";
-                window.setTimeout(() => {
-                    button.textContent = label;
-                    button.classList.remove("is-done");
-                }, 1800);
+                setStep(0);
             });
-        });
-
-        const refInput = $("#refName");
-        const refCode = $("#refCode");
-        if (refInput && refCode) {
-            const suffix = (M.catalog.data.referral || { suffix: "-MB10" }).suffix;
-            const render = () => {
-                const clean = refInput.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 12);
-                refCode.textContent = (clean.length >= 2 ? clean : "YOURNAME") + suffix;
-                refCode.classList.toggle("is-ready", clean.length >= 2);
-                $$("[data-ref-action]").forEach((button) => (button.disabled = clean.length < 2));
-            };
-            try {
-                const passport = JSON.parse(localStorage.getItem("marlowbyPassport") || "{}") || {};
-                if (passport.name) {
-                    refInput.value = passport.name.split(/\s+/)[0];
-                }
-            } catch (error) {
-            }
-            refInput.addEventListener("input", render);
-            render();
         }
 
-        const meters = $$("[data-reward-fill]");
-        if (meters.length) {
-            const render = () => {
-                const reward = M.catalog.reward();
-                const total = M.cart.total();
-                const left = Math.max(0, reward.threshold - total);
-                meters.forEach((meter) => {
-                    const card = meter.closest(".deal") || document.body;
-                    meter.style.width = Math.min(100, (total / reward.threshold) * 100) + "%";
-                    $$("[data-reward-text]", card).forEach((text) => {
-                        text.textContent = left === 0 ? "Unlocked! Your tote ships with your first box." : total ? "Your cart is at " + M.money(total) + ". Just " + M.money(left) + " to go." : "Your cart is empty. Fill it to " + M.money(reward.threshold) + ".";
-                    });
-                    card.classList.toggle("is-unlocked", left === 0);
-                });
-            };
-            document.addEventListener("marlowby:cart", render);
+        document.addEventListener("marlowby:cart", (event) => {
+            const detail = event.detail || {};
+            if (detail.item && /add|more|switch/.test(detail.reason)) {
+                fresh = detail.item.key;
+                $("#cartDone").hidden = true;
+                setStep(0);
+            }
             render();
+        });
+
+        document.addEventListener("marlowby:catalog", render);
+
+        document.addEventListener("marlowby:purchase", (event) => {
+            const detail = event.detail || {};
+            const first = String(detail.name || "").split(/\s+/)[0] || "traveler";
+            $("#cartDoneText").textContent = "Thanks, " + first + ". Order " + detail.order + " is reserved. We'll email " + detail.email + " before it ships.";
+            $("#cartDone").hidden = false;
+            setStep(2);
+        });
+
+        $$("#cartItemsTitle").forEach((heading) => heading.setAttribute("tabindex", "-1"));
+        render();
+        if (window.location.hash === "#checkout" && M.cart.items.length) {
+            window.setTimeout(() => $("#cartCheckout").click(), 300);
         }
     }
 

@@ -33,19 +33,28 @@
         const total = items.length;
         let timer = null;
 
+        // Live filter for the sitemap.
+        // Adapted from W3Schools, "How To Create a Filter/Search List"
+        // https://www.w3schools.com/howto/howto_js_filter_lists.asp
+        // Changed: also searches each link's description and section name, highlights the match,
+        // hides whole sections with no matches, and announces the number of results.
         function run() {
             const query = input.value.trim().toLowerCase();
+            const filter = input.value.trim().toUpperCase();
             let shown = 0;
-            items.forEach((entry) => {
-                const group = entry.item.closest("[data-sitemap-group]").querySelector("h2").textContent.toLowerCase();
-                const match = !query || entry.name.toLowerCase().includes(query) || entry.desc.toLowerCase().includes(query) || group.includes(query);
+            // Loop through all list items, and hide those who don't match the search query
+            for (let i = 0; i < items.length; i++) {
+                const entry = items[i];
+                const group = entry.item.closest("[data-sitemap-group]").querySelector("h2").textContent;
+                const txtValue = entry.name + " " + entry.desc + " " + group;
+                const match = txtValue.toUpperCase().indexOf(filter) > -1;
                 entry.item.hidden = !match;
                 entry.link.innerHTML = highlight(entry.name, query);
                 entry.note.innerHTML = highlight(entry.desc, query);
                 if (match) {
                     shown += 1;
                 }
-            });
+            }
             groups.forEach((group) => {
                 group.hidden = !group.querySelector("[data-sitemap-item]:not([hidden])");
             });

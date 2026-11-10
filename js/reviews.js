@@ -4,6 +4,9 @@
     const HELPFUL_KEY = "marlowbyHelpful";
     const MINE_KEY = "marlowbyMyReviews";
     const PAGE = 6;
+    // Reduced-motion check adapted from MDN, "Window: matchMedia() method"
+    // https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const BOXES = ["Savannah", "Providence", "Lexington", "Burlington"];
     const BOX_LABELS = { Savannah: "Savannah, GA", Providence: "Providence, RI", Lexington: "Lexington, KY", Burlington: "Burlington, VT" };
     const TOTALS = {
@@ -66,6 +69,8 @@
         return wrap;
     }
 
+    // Date format adapted from MDN, "Date.prototype.toLocaleDateString()" (options example)
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
     function formatDate(iso) {
         const date = new Date(iso + "T12:00:00");
         return date.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
@@ -118,6 +123,10 @@
         function filtered() {
             const all = mine.concat(REVIEWS);
             const rows = all.filter((review) => (state.box === "All" || review.box === state.box) && (state.plan === "All" || review.plan === state.plan));
+            // Sort with a compare function.
+            // Based on W3Schools, "JavaScript Sorting Arrays" (Sorting Object Arrays:
+            // cars.sort(function(a, b){return a.year - b.year})): https://www.w3schools.com/js/js_array_sort.asp
+            // Changed: three sort orders, newest first, highest rated, and most helpful.
             const sorters = {
                 recent: (a, b) => (a.pending === b.pending ? b.date.localeCompare(a.date) : a.pending ? -1 : 1),
                 rating: (a, b) => b.rating - a.rating || b.date.localeCompare(a.date),
@@ -185,9 +194,17 @@
             return item;
         }
 
+        let rendered = false;
         function renderList() {
             const rows = filtered();
             list.replaceChildren(...rows.slice(0, state.shown).map(card));
+            // Staggered entrance adapted from GSAP docs, "Staggers" and "gsap.fromTo()"
+            // https://gsap.com/resources/getting-started/Staggers
+            // https://gsap.com/docs/v3/GSAP/gsap.fromTo()
+            if (rendered && window.gsap && !reduceMotion) {
+                gsap.fromTo(list.children, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: "power2.out", stagger: 0.04, clearProps: "transform,opacity,visibility" });
+            }
+            rendered = true;
             const shown = Math.min(state.shown, rows.length);
             count.textContent = rows.length ? "Showing " + shown + " of " + rows.length + " featured reviews" : "";
             empty.hidden = rows.length > 0;

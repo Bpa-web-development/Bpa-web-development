@@ -2,6 +2,8 @@
     "use strict";
 
     const M = window.Marlowby;
+    // Checks the visitor's "reduce motion" setting with window.matchMedia().
+    // From MDN Web Docs, "Window: matchMedia() method": https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const $ = (selector, root = document) => root.querySelector(selector);
     const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -202,6 +204,30 @@
         sections.forEach((section) => observer.observe(section));
     }
 
+    // When the jump bar is stuck under the navbar, its background also fills the space behind
+    // the floating navbar, so page content doesn't show through the gap between them.
+    // The check runs at most once a frame, using requestAnimationFrame (MDN Web Docs,
+    // "Window: requestAnimationFrame()": https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame).
+    function initJumpStuck() {
+        const bar = $(".sp-jump");
+        if (!bar) {
+            return;
+        }
+        let queued = false;
+        const check = () => {
+            queued = false;
+            const navHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--sp-nav-h")) || 0;
+            bar.classList.toggle("is-stuck", navHeight > 0 && bar.getBoundingClientRect().top <= navHeight + 1);
+        };
+        window.addEventListener("scroll", () => {
+            if (!queued) {
+                queued = true;
+                window.requestAnimationFrame(check);
+            }
+        }, { passive: true });
+        check();
+    }
+
     function initLiveDeals() {
         const pill = $("[data-jump-save]");
         const cards = $$(".deal");
@@ -246,14 +272,19 @@
             return;
         }
         document.documentElement.classList.add("has-reveal");
-        const observer = new IntersectionObserver((entries) => {
+        // Adapted from MDN Web Docs, "Intersection Observer API"
+        // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+        // Changed: each element is revealed once, then no longer watched.
+        const options = { root: null, rootMargin: "0px 0px -40px 0px", threshold: 0.12 };
+        const callback = (entries, observer) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("is-visible");
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+        };
+        const observer = new IntersectionObserver(callback, options);
         targets.forEach((element, index) => {
             element.style.setProperty("--reveal-delay", (index % 3) * 90 + "ms");
             observer.observe(element);
@@ -263,6 +294,7 @@
     document.addEventListener("DOMContentLoaded", () => {
         initNavHeight();
         initJump();
+        initJumpStuck();
         initReveal();
         initMaker();
         initWeek();
