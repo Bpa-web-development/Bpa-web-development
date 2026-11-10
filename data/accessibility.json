@@ -1,48 +1,87 @@
 {
-    "title": "Accessibility Adjustments",
-    "language": "ENGLISH (US)",
+    "title": "Accessibility",
+    "subtitle": "Change how Marlowby looks and reads. Your choices are saved in this browser.",
 
-    "topButtons": [
+    "profilesTitle": "Quick profiles",
+    "profiles": [
         {
-            "label": "Reset Settings",
-            "icon": "↻",
-            "id": "ResetButton"
+            "id": "seizure",
+            "title": "Seizure Safety",
+            "description": "Stops animation and tones down strong color",
+            "icon": "zap"
         },
         {
-            "label": "Statement",
-            "icon": "▱",
-            "id": "StatementButton"
+            "id": "vision",
+            "title": "Low Vision",
+            "description": "Bigger text, underlined links, stronger focus outlines",
+            "icon": "eye"
+        },
+        {
+            "id": "adhd",
+            "title": "ADHD Friendly",
+            "description": "Stops motion and adds a reading guide",
+            "icon": "target"
+        },
+        {
+            "id": "dyslexia",
+            "title": "Dyslexia Friendly",
+            "description": "Plain font, wider spacing, left-aligned text",
+            "icon": "book"
         }
     ],
 
-    "sectionTitle": "Customize your browsing experience",
+    "textSize": {
+        "title": "Text size",
+        "levels": [100, 112.5, 125, 150]
+    },
 
-    "settings": [
+    "groups": [
         {
-            "title": "Seizure Safety",
-            "description": "Reduce motion and visual triggers",
-            "icon": "/assets/icons/vision.png",
-            "alt": "ϟ"
-
-
+            "title": "Text",
+            "tools": [
+                { "id": "font", "title": "Readable font", "icon": "type" },
+                { "id": "spacing", "title": "Text spacing", "icon": "spacing" },
+                { "id": "align", "title": "Align left", "icon": "align" },
+                { "id": "links", "title": "Underline links", "icon": "link" },
+                { "id": "headings", "title": "Mark headings", "icon": "heading" }
+            ]
         },
         {
-            "title": "Low Vision Support",
-            "description": "Improve clarity and contrast",
-            "icon": "/assets/icons/vision.png",
-            "alt": "👁"
+            "title": "Color",
+            "tools": [
+                { "id": "contrast", "title": "High contrast", "icon": "contrast" },
+                { "id": "mono", "title": "Grayscale", "icon": "mono" },
+                { "id": "lowsat", "title": "Soft color", "icon": "droplet" }
+            ]
         },
         {
-            "title": "ADHD Friendly",
-            "description": "Support focus and reduce distractions",
-            "icon": "/assets/icons/adhd.png",
-            "alt": "⚙"
-
+            "title": "Reading and focus",
+            "tools": [
+                { "id": "guide", "title": "Reading guide", "icon": "guide" },
+                { "id": "mask", "title": "Reading mask", "icon": "mask" },
+                { "id": "focus", "title": "Strong focus", "icon": "focus" },
+                { "id": "cursor", "title": "Big cursor", "icon": "cursor" },
+                { "id": "motion", "title": "Stop animation", "icon": "pause" },
+                { "id": "noimg", "title": "Hide images", "icon": "imageOff" }
+            ]
         }
+    ],
+
+    "readAloud": {
+        "title": "Read aloud",
+        "stopTitle": "Stop reading",
+        "hint": "Reads the text you've selected, or the whole page."
+    },
+
+    "statement": [
+        "Marlowby is working toward WCAG 2.2 Level AA. Every page can be used with a keyboard, images have text alternatives, and animations stop if your device is set to reduce motion.",
+        "These settings are saved in your browser, so they stay on as you move between pages. Nothing about them is sent to us.",
+        "If something on the site is hard to use, tell us through the Help Center and we'll fix it."
     ],
 
     "footer": {
-        "left": "Web Accessibility",
-        "right": "Learn More ›"
+        "text": "Web accessibility",
+        "linkText": "Learn more",
+        "link": "https://www.w3.org/WAI/fundamentals/accessibility-intro/"
     }
 }
