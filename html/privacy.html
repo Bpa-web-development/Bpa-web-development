@@ -19,9 +19,8 @@
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/polish.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="/assets/fonts/lato-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 </head>
 
@@ -52,7 +51,7 @@
                     </li>
 
                     <li class="link-dropdown">
-                        <a class="navbar-link-item" href="/html/burlington.html">Spotlight<span class="navbar-tag" aria-hidden="true">BTV</span></a>
+                        <a class="navbar-link-item" href="/html/burlington.html">Spotlight</a>
                         <button type="button" class="navbar-sub-toggle" aria-expanded="false" aria-controls="navSubSpotlight">
                             <span class="visually-hidden">Show Spotlight links</span>
                             <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -170,6 +169,11 @@
             </div>
 
             <div class="navbar-actions">
+                <button type="button" class="navbar-search" aria-label="Search the site" aria-haspopup="dialog" aria-keyshortcuts="/ Control+K Meta+K">
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+                    <span class="navbar-search_label">Search</span>
+                    <kbd class="navbar-search_key" aria-hidden="true">/</kbd>
+                </button>
                 <a class="navbar-sign-in" href="/html/sign-in.html">Sign In</a>
                 <a class="navbar-cart" href="/html/cart.html" aria-label="Cart">
                     <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>
@@ -207,12 +211,14 @@
             <div class="wc-hero_inner">
                 <p class="wc-eyebrow">Legal</p>
                 <h1 id="ppTitle">Privacy Policy and Cookies</h1>
-                <p class="wc-hero_lead">What we collect, why we collect it, and how to see or delete it. Effective October 25, 2026.</p>
+                <p class="wc-hero_lead">What we collect, why we collect it, and how to see or delete it. Effective October 27, 2026.</p>
                 <nav class="wc-jump" aria-label="Privacy Policy sections">
                     <a href="#collect">What we collect</a>
                     <a href="#use">How we use it</a>
                     <a href="#cookies">Cookies</a>
                     <a href="#share">Who we share with</a>
+                    <a href="#tools">Tools we use</a>
+                    <a href="#ai-use">AI</a>
                     <a href="#choices">Your choices</a>
                     <a href="#contact-privacy">Contact</a>
                 </nav>
@@ -228,6 +234,8 @@
                     <li>Your password is never stored. We keep only a one-way bcrypt hash of it.</li>
                     <li>We never collect payment card details, and nothing is charged.</li>
                     <li>We use no advertising, analytics or tracking cookies, and we never sell or share your information for advertising.</li>
+                    <li>Every page, font, script and animation is served from our own site. Your browser doesn't contact any other company while you browse.</li>
+                    <li>Nothing you type on this site is sent to an AI tool.</li>
                     <li>You can delete your account yourself at any time, or email us and we'll delete everything.</li>
                 </ul>
             </section>
@@ -287,7 +295,7 @@
                     </table>
                 </div>
                 <p>Local storage stays on your device and is not sent to us. You can clear cookies and site data at any time in your browser's settings. If you block the <code>mb_session</code> cookie, you won't be able to stay signed in.</p>
-                <p><strong>Fonts:</strong> our pages load the Lato and Playfair Display typefaces from Google Fonts, so your browser sends your IP address to Google when a page loads. Google Fonts does not set cookies. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</p>
+                <p><strong>Fonts:</strong> our typefaces (Lato, Playfair Display and Caveat) come from Google Fonts, but we serve the font files from our own site, so loading a page never contacts Google.</p>
                 <p><button type="button" class="pp-button" data-cookie-notice-open>Show the cookie notice again</button></p>
             </section>
 
@@ -297,9 +305,39 @@
                 <ul class="pp-list">
                     <li><strong>Vercel</strong> hosts the website and its server code.</li>
                     <li><strong>Neon</strong> hosts our database.</li>
-                    <li><strong>Google</strong> delivers our email through Gmail and serves our fonts.</li>
+                    <li><strong>Google</strong> delivers our email through Gmail (marlowbybox@gmail.com), so the emails we send you and the tickets forwarded to our team pass through Gmail.</li>
+                    <li><strong>Resend</strong> is a backup email service. It is only used if Gmail isn't set up, and then only to send the same emails.</li>
                 </ul>
                 <p>We may also share information if the law requires it. We do not sell personal information or share it for cross-context behavioral advertising, as those terms are defined in the California Consumer Privacy Act.</p>
+            </section>
+
+            <section class="wc-group pp-group" id="tools" aria-labelledby="ppTools">
+                <h2 id="ppTools">Tools and code libraries we use</h2>
+                <p>These are the tools that run the site. None of them is used for advertising or tracking, and the site has no embedded frames (iframes), social media widgets, chat widgets or analytics.</p>
+                <div class="pp-table-wrap">
+                    <table class="pp-table">
+                        <caption class="visually-hidden">Tools and code libraries used by Marlowby</caption>
+                        <thead>
+                            <tr><th scope="col">Tool</th><th scope="col">What it does</th><th scope="col">Does it see your information?</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">GSAP and ScrollTrigger (GreenSock)</th><td>Runs the animations, like headlines sliding in and the jazz festival carousel.</td><td>No. It runs only in your browser from files on our site and never sends anything anywhere.</td></tr>
+                            <tr><th scope="row">Web Audio API (built into your browser)</th><td>Plays the trumpet riff on the Spotlight page when you press the button.</td><td>No. The sound is created on your device.</td></tr>
+                            <tr><th scope="row">Vercel</th><td>Hosts the website and runs our server code.</td><td>Yes, everything you send to the site passes through it.</td></tr>
+                            <tr><th scope="row">Neon (Postgres database)</th><td>Stores accounts, orders, tickets and newsletter signups.</td><td>Yes, it stores the information in the tables above.</td></tr>
+                            <tr><th scope="row">bcrypt.js</th><td>Turns your password into a one-way hash on our server.</td><td>Only for the moment it hashes it. Your password is never saved.</td></tr>
+                            <tr><th scope="row">Nodemailer and Gmail</th><td>Send welcome emails, order confirmations and help desk replies.</td><td>Yes, the name, email and message in each email.</td></tr>
+                            <tr><th scope="row">Node.js</th><td>The programming platform our server code runs on.</td><td>Only while handling your request.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>The full list, with versions and licenses, is on our <a href="/html/works-cited.html#technologies">Works Cited</a> page.</p>
+            </section>
+
+            <section class="wc-group pp-group" id="ai-use" aria-labelledby="ppAi">
+                <h2 id="ppAi">Artificial intelligence</h2>
+                <p>Our team built Marlowby with help from an AI assistant (Claude, made by Anthropic) for parts of the code, layout, writing, fact-checking and testing. Some features were also adapted from public tutorials such as W3Schools and MDN Web Docs. Our team reviewed every change, and all of it is listed on our <a href="/html/works-cited.html#ai">Works Cited</a> page, as BPA's rules ask.</p>
+                <p>The website itself does not use AI. There's no chatbot, nothing you type is sent to an AI tool, and no decision about you or your order is made by AI.</p>
             </section>
 
             <section class="wc-group pp-group" aria-labelledby="ppKeep">
@@ -446,5 +484,8 @@
     <script src="/js/store.js"></script>
     <script src="/js/shop.js"></script>
     <script src="/js/deals.js"></script>
+    <script src="/js/vendor/gsap.min.js"></script>
+    <script src="/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="/js/motion.js"></script>
 </body>
 </html>

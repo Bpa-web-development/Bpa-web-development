@@ -19,9 +19,8 @@
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/polish.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="/assets/fonts/lato-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 </head>
 
@@ -52,7 +51,7 @@
                     </li>
 
                     <li class="link-dropdown">
-                        <a class="navbar-link-item" href="/html/burlington.html">Spotlight<span class="navbar-tag" aria-hidden="true">BTV</span></a>
+                        <a class="navbar-link-item" href="/html/burlington.html">Spotlight</a>
                         <button type="button" class="navbar-sub-toggle" aria-expanded="false" aria-controls="navSubSpotlight">
                             <span class="visually-hidden">Show Spotlight links</span>
                             <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -170,6 +169,11 @@
             </div>
 
             <div class="navbar-actions">
+                <button type="button" class="navbar-search" aria-label="Search the site" aria-haspopup="dialog" aria-keyshortcuts="/ Control+K Meta+K">
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+                    <span class="navbar-search_label">Search</span>
+                    <kbd class="navbar-search_key" aria-hidden="true">/</kbd>
+                </button>
                 <a class="navbar-sign-in" href="/html/sign-in.html">Sign In</a>
                 <a class="navbar-cart" href="/html/cart.html" aria-label="Cart">
                     <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>
@@ -213,6 +217,7 @@
                     <a href="#images">Images</a>
                     <a href="#research">Facts &amp; research</a>
                     <a href="#past-months">Past Months</a>
+                    <a href="#code">Code sources</a>
                     <a href="#technologies">Technologies</a>
                     <a href="#ai">AI assistance</a>
                 </nav>
@@ -233,6 +238,7 @@
                     <li>Google. (n.d.). <cite>Lato</cite> [Typeface; designed by Łukasz Dziedzic]. Google Fonts. Licensed under the SIL Open Font License 1.1. https://fonts.google.com/specimen/Lato</li>
                     <li>Google. (n.d.). <cite>Playfair Display</cite> [Typeface; designed by Claus Eggers Sørensen]. Google Fonts. Licensed under the SIL Open Font License 1.1. https://fonts.google.com/specimen/Playfair+Display</li>
                 </ul>
+                <p>We downloaded these font files from Google Fonts and serve them from our own site, which the Open Font License allows.</p>
             </section>
 
             <section class="wc-group" id="images" aria-labelledby="wcImages">
@@ -280,6 +286,65 @@
                 </ul>
             </section>
 
+            <section class="wc-group" id="code" aria-labelledby="wcCode">
+                <h2 id="wcCode">Code sources</h2>
+                <p>These features were built from public tutorials and documentation, then changed to fit our site. Each one has a comment in our code naming its source and what we changed.</p>
+                <ul class="wc-list">
+                    <li>British Dyslexia Association. (n.d.). <cite>Creating a dyslexia friendly workplace: Dyslexia friendly style guide</cite>. https://www.bdadyslexia.org.uk/advice/employers/creating-a-dyslexia-friendly-workplace/dyslexia-friendly-style-guide <span class="wc-used">Used for the Dyslexia Friendly profile, Readable font and Align left in the accessibility menu.</span></li>
+                    <li>Faulkner, S. (n.d.). <cite>Text spacing bookmarklet</cite>. https://www.html5accessibility.com/tests/tsbookmarklet.html <span class="wc-used">Used for the Text spacing setting in the accessibility menu.</span></li>
+                    <li>GreenSock. (n.d.). <cite>gsap.fromTo()</cite>. https://gsap.com/docs/v3/GSAP/gsap.fromTo() <span class="wc-used">Used for the plan finder steps sliding in and the countdown numbers flipping.</span></li>
+                    <li>GreenSock. (n.d.). <cite>gsap.matchMedia()</cite>. https://gsap.com/docs/v3/GSAP/gsap.matchMedia() <span class="wc-used">Used for turning animations off for visitors who ask for reduced motion.</span></li>
+                    <li>GreenSock. (n.d.). <cite>ScrollTrigger.batch()</cite>. https://gsap.com/docs/v3/Plugins/ScrollTrigger/static.batch()/ <span class="wc-used">Used for cards rising in as you scroll.</span></li>
+                    <li>GreenSock. (n.d.). <cite>Staggers</cite>. https://gsap.com/resources/getting-started/Staggers <span class="wc-used">Used for cart items, reviews and Help Center answers animating in one after another.</span></li>
+                    <li>Lucide Contributors. (n.d.). <cite>Lucide icons</cite>. https://lucide.dev <span class="wc-used">Used for the icons in the accessibility menu and its round button (ISC License).</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>ARIA live regions</cite>. https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions <span class="wc-used">Used for announcing accessibility settings to screen readers when they change.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>ARIA: img role</cite>. https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/img_role <span class="wc-used">Used for giving the trumpet drawing a text alternative.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>backdrop-filter</cite>. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter <span class="wc-used">Used for the glass on the trumpet's display case.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Client-side form validation</cite>. https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation <span class="wc-used">Used for the error messages under checkout and account fields.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Creating and triggering events</cite>. https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events <span class="wc-used">Used for telling every page when the cart or sign-in changes.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>cursor</cite>. https://developer.mozilla.org/en-US/docs/Web/CSS/cursor <span class="wc-used">Used for the Big cursor setting.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Date.prototype.toLocaleDateString()</cite>. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString <span class="wc-used">Used for showing dates on reviews, orders and your account.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>&lt;dialog&gt;: The Dialog element</cite>. https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog <span class="wc-used">Used for the site search box and the accessibility menu.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Element: input event</cite>. https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event <span class="wc-used">Used for the character counter on the Help Center message box.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Element: pointermove event</cite>. https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event <span class="wc-used">Used for the reading guide and reading mask in the accessibility menu.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Element: scrollIntoView() method</cite>. https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView <span class="wc-used">Used for scrolling to a section when you pick a topic or a result.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>&lt;figure&gt;: The Figure with Optional Caption element</cite>. https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/figure <span class="wc-used">Used for the trumpet's display case and its plaque on the Spotlight page.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>filter</cite>. https://developer.mozilla.org/en-US/docs/Web/CSS/filter <span class="wc-used">Used for the High contrast, Grayscale and Soft color settings.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Intersection Observer API</cite>. https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API <span class="wc-used">Used for sections fading in as you scroll.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Intl.NumberFormat</cite>. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat <span class="wc-used">Used for formatting every price in dollars.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>OscillatorNode</cite>. https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode <span class="wc-used">Used for the trumpet sound in “Play a riff”.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Set-Cookie header</cite>. https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie <span class="wc-used">Used for the settings on our sign-in cookie.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Using the Fetch API</cite>. https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch <span class="wc-used">Used for talking to our server for accounts, orders, the newsletter and help tickets.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Using the Web Speech API</cite>. https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API <span class="wc-used">Used for the Read aloud button in the accessibility menu.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Window: matchMedia() method</cite>. https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia <span class="wc-used">Used for checking whether a visitor asked for reduced motion.</span></li>
+                    <li>MDN Web Docs. (n.d.). <cite>Window: requestAnimationFrame() method</cite>. https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame <span class="wc-used">Used for prices rolling to their new value and the Specials jump bar filling in behind the navbar.</span></li>
+                    <li>OpenJS Foundation. (n.d.). <cite>Node.js Crypto: hash and randomBytes</cite>. https://nodejs.org/api/crypto.html <span class="wc-used">Used for random sign-in tokens and storing only their SHA-256 hash.</span></li>
+                    <li>W3C Web Accessibility Initiative. (n.d.). <cite>Button pattern</cite>. https://www.w3.org/WAI/ARIA/apg/patterns/button/ <span class="wc-used">Used for the on/off tool buttons in the accessibility menu.</span></li>
+                    <li>W3C Web Accessibility Initiative. (n.d.). <cite>Dialog (modal) pattern</cite>. https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/ <span class="wc-used">Used for the accessibility menu's keyboard and focus behavior.</span></li>
+                    <li>W3C Web Accessibility Initiative. (n.d.). <cite>Disclosure (show/hide) pattern</cite>. https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/ <span class="wc-used">Used for the Statement button in the accessibility menu.</span></li>
+                    <li>W3C Web Accessibility Initiative. (n.d.). <cite>Switch example using HTML button</cite>. https://www.w3.org/WAI/ARIA/apg/patterns/switch/examples/switch-button/ <span class="wc-used">Used for the profile switches in the accessibility menu (W3C Software License).</span></li>
+                    <li>W3C Web Accessibility Initiative. (n.d.). <cite>Technique C39: Using the CSS prefers-reduced-motion query to prevent motion</cite>. https://www.w3.org/WAI/WCAG21/Techniques/css/C39 <span class="wc-used">Used for the Seizure Safety, ADHD Friendly and Stop animation settings.</span></li>
+                    <li>W3C Web Accessibility Initiative. (n.d.). <cite>Technique C40: Creating a two-color focus indicator to ensure sufficient contrast with all components</cite>. https://www.w3.org/WAI/WCAG22/Techniques/css/C40 <span class="wc-used">Used for the Strong focus setting.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to copy text to the clipboard</cite>. https://www.w3schools.com/howto/howto_js_copy_clipboard.asp <span class="wc-used">Used for the Copy buttons on promo codes.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to create a clickable dropdown</cite>. https://www.w3schools.com/howto/howto_js_dropdown.asp <span class="wc-used">Used for the navbar dropdown menus.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to create a countdown timer</cite>. https://www.w3schools.com/howto/howto_js_countdown.asp <span class="wc-used">Used for the ship-date countdowns on Subscription Plans and the Spotlight page.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to create a filter/search list</cite>. https://www.w3schools.com/howto/howto_js_filter_lists.asp <span class="wc-used">Used for the Sitemap filter and the Help Center search.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to create a form with multiple steps</cite>. https://www.w3schools.com/howto/howto_js_form_steps.asp <span class="wc-used">Used for the plan finder quiz and the checkout steps.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to create a modal box</cite>. https://www.w3schools.com/howto/howto_css_modals.asp <span class="wc-used">Used for closing pop-ups when you click outside them.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to create a responsive top navigation menu</cite>. https://www.w3schools.com/howto/howto_js_topnav_responsive.asp <span class="wc-used">Used for the mobile menu button.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to create a slideshow</cite>. https://www.w3schools.com/howto/howto_js_slideshow.asp <span class="wc-used">Used for the arrows and dots on the jazz festival carousel.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to create a snackbar / toast</cite>. https://www.w3schools.com/howto/howto_js_snackbar.asp <span class="wc-used">Used for the “added to cart” pop-up.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to create an accordion</cite>. https://www.w3schools.com/howto/howto_js_accordion.asp <span class="wc-used">Used for the animated questions on Subscription Plans.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to create tabs</cite>. https://www.w3schools.com/howto/howto_js_tabs.asp <span class="wc-used">Used for the Sign In and Create Account tabs.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to shrink a header on scroll</cite>. https://www.w3schools.com/howto/howto_js_shrink_header_scroll.asp <span class="wc-used">Used for the navbar turning into a floating bar when you scroll.</span></li>
+                    <li>W3Schools. (n.d.). <cite>How to toggle password visibility</cite>. https://www.w3schools.com/howto/howto_js_toggle_password.asp <span class="wc-used">Used for the Show/Hide password buttons.</span></li>
+                    <li>W3Schools. (n.d.). <cite>HTML Web Storage API</cite>. https://www.w3schools.com/html/html5_webstorage.asp <span class="wc-used">Used for saving the cart and settings in the browser.</span></li>
+                    <li>W3Schools. (n.d.). <cite>JavaScript sorting arrays</cite>. https://www.w3schools.com/js/js_array_sort.asp <span class="wc-used">Used for sorting reviews by newest, highest and most helpful.</span></li>
+                    <li>Wirtz, D. (n.d.). <cite>bcrypt.js README: Usage</cite>. https://www.npmjs.com/package/bcryptjs <span class="wc-used">Used for hashing and checking passwords.</span></li>
+                    <li>World Wide Web Consortium. (n.d.). <cite>Web Content Accessibility Guidelines (WCAG) 2.2</cite>. https://www.w3.org/TR/WCAG22/ <span class="wc-used">Used for the Low Vision profile, Text size, Text spacing and Underline links settings, and the Specials page focus ring (resize text, text spacing, use of color, non-text contrast).</span></li>
+                </ul>
+            </section>
+
             <section class="wc-group" id="technologies" aria-labelledby="wcTech">
                 <h2 id="wcTech">Technologies</h2>
                 <ul class="wc-list">
@@ -292,8 +357,9 @@
                     <li>Vercel. (n.d.). <cite>Vercel Functions</cite> [Cloud hosting platform]. https://vercel.com/docs/functions</li>
                     <li>Neon. (n.d.). <cite>Neon serverless Postgres</cite> [Database service]. https://neon.tech</li>
                     <li>Neon. (n.d.). <cite>@neondatabase/serverless</cite> (Version 1.0) [Computer software]. https://github.com/neondatabase/serverless</li>
-                    <li>Wirth, D. (n.d.). <cite>bcrypt.js</cite> (Version 3.0) [Computer software]. https://github.com/dcodeIO/bcrypt.js</li>
+                    <li>Wirtz, D. (n.d.). <cite>bcrypt.js</cite> (Version 3.0) [Computer software]. https://github.com/dcodeIO/bcrypt.js</li>
                     <li>Google. (n.d.). <cite>Sign in with app passwords</cite>. Gmail Help. https://support.google.com/accounts/answer/185833</li>
+                    <li>GreenSock. (2025). <cite>GSAP and ScrollTrigger</cite> (Version 3.13) [Computer software]. Used under the GSAP Standard "No Charge" License. https://gsap.com</li>
                     <li>Reinman, A. (n.d.). <cite>Nodemailer</cite> (Version 7.0) [Computer software]. https://nodemailer.com</li>
                     <li>Resend. (n.d.). <cite>Resend email API</cite> [Email delivery service]. https://resend.com/docs</li>
                     <li>ElectricSQL. (n.d.). <cite>PGlite</cite> (Version 0.3) [Computer software]. https://pglite.dev</li>
@@ -306,7 +372,8 @@
                 <ul class="wc-list">
                     <li>Anthropic. (2026). <cite>Claude</cite> [Large language model]. https://claude.ai</li>
                 </ul>
-                <p>We used Claude to help with code (including the account and email backend), layouts, copy, fact-checking and testing. Our team reviewed and approved every change.</p>
+                <p>We used Claude to help with code (including the account and email backend), layouts, copy, fact-checking and testing. Where a feature follows a public tutorial or documentation example, we based it on that source and listed it under <a href="#code">Code sources</a>, with a comment in the code saying what we changed. Our team reviewed and approved every change.</p>
+                <p>The website itself does not use AI: there's no chatbot, and nothing visitors type is sent to an AI tool. See our <a href="/html/privacy.html#ai-use">Privacy Policy</a>.</p>
                 <p class="wc-callout">Before submitting, complete the BPA AI Usage and Documentation Form describing how Claude was used.</p>
             </section>
 
@@ -413,5 +480,8 @@
     <script src="/js/store.js"></script>
     <script src="/js/shop.js"></script>
     <script src="/js/deals.js"></script>
+    <script src="/js/vendor/gsap.min.js"></script>
+    <script src="/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="/js/motion.js"></script>
 </body>
 </html>
