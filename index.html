@@ -15,7 +15,7 @@
     <script src="/js/navbar.js" defer></script>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/responsive.css">
-
+    <link rel="stylesheet" href="/css/nav-footer.css">
     <!-- Google Fonts Link (Playfair Display & Lato) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -187,134 +187,221 @@
 
     <!-- <a href="/html/our-mission.html" class="team-link">Meet Our Team</a> -->
 
-    <div class="accessibility">
-        <button
-            class="accessibility-icon"
-            id="accessibilityOpen"
-            aria-label="Open accessibility menu">
+    <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
-            <img src="/assets/icons/accessability.png" alt="">
-        </button>
-    </div>
+    <main id="main">
 
-    <div id="accessibilityMenu">
-        <!-- Accessibility Menu Content -->    
-    </div>
-
-
-
-    <!--Home pageHero Section------------------------------------------------------------------------------------------------------->
-
-    <section class="homepage-hero-section">
-        <div class="homepage-hero_overlay"> <!-- Overlay for the hero section if we add a transparent layer over it -->
-            <div class="homepage-hero_text_card">
-                <div class="homepage-hero_text">
-                    <h1>Marlowby</h1>
-                    <p>Experience the life of a small town's culture</p> 
-                    <!-- <a href="/html/specials.html" class="homepage-hero-button">Explore Specials</a> -->
+        <!-- Hero ------------------------------------------------------------>
+        <section class="homepage-hero-section">
+            <div class="homepage-hero_overlay">
+                <div class="homepage-hero_text_card">
+                    <div class="homepage-hero_text">
+                        <h1>Marlowby</h1>
+                        <p>Experience the life of a small town's culture</p>
+                        <!-- <a href="/html/specials.html" class="homepage-hero-button">Explore Specials</a> -->
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section class="homepage-info-section">
+        </section>
 
-        <div class="homepage-info-section-container">
-            <div class="homepage-info-section-img">
-                <img src="./assets/images/IMG_0095.JPG" alt="Benton Sleep">
-            </div>
-            <div class="homepage-info-section-text">
-                <h1>Place holder H1 tag</h1>
-                <h3>Info about H1 Tag topic goes here</h3>
-            </div>
-        </div>
+        <!-- Info rows (image and text alternate) ------------------------------>
+        <section class="homepage-info-section">
 
-        <div class="homepage-info-section-container">
-            <div class="homepage-info-section-text">
-                <h1>Place holder H1 tag</h1>
-                <h3>Info about H1 Tag topic goes here</h3>
+            <div class="homepage-info-section-container">
+                <div class="homepage-info-section-img">
+                    <img src="./assets/images/IMG_0095.JPG" alt="Benton Sleep" loading="lazy">
+                </div>
+                <div class="homepage-info-section-text">
+                    <h2>Place holder H1 tag</h2>
+                    <p>Info about H1 Tag topic goes here</p>
+                </div>
             </div>
-            <div class="homepage-info-section-img">
-                <img src="./assets/images/DSCN0388.JPG" alt="Sardor Surogate">
-            </div>
-        </div>
 
-        <div class="homepage-info-section-container">
-            <div class="homepage-info-section-img">
-                <img src="/assets/images/Snapchat-585096878.jpg" alt="Keegan Cutey">
+            <div class="homepage-info-section-container">
+                <div class="homepage-info-section-text">
+                    <h2>Place holder H1 tag</h2>
+                    <p>Info about H1 Tag topic goes here</p>
+                </div>
+                <div class="homepage-info-section-img">
+                    <img src="./assets/images/DSCN0388.JPG" alt="Sardor Surogate" loading="lazy">
+                </div>
             </div>
-            <div class="homepage-info-section-text">
-                <h1>Place holder H1 tag</h1>
-                <h3>Info about H1 Tag topic goes here</h3>
+
+            <div class="homepage-info-section-container">
+                <div class="homepage-info-section-img">
+                    <img src="./assets/images/Snapchat-585096878.jpg" alt="Keegan Cutey" loading="lazy">
+                </div>
+                <div class="homepage-info-section-text">
+                    <h2>Place holder H1 tag</h2>
+                    <p>Info about H1 Tag topic goes here</p>
+                </div>
             </div>
-        </div>
 
-    </section>
+        </section>
 
-    <section class="homepage-news-container">
-        <div class="homepage-news-header">
-            <h1>News</h1>
-            <h3>Sub header</h3>
-        </div>
-        <div class="homepage-news-cards">
-            <div class="homepage-news-card">
-                <img src="./assets/images/IMG_0095.JPG" alt="">
-                <h2>Heading Text</h2>
+        <!-- News -------------------------------------------------------------->
+        <section class="homepage-news-container" aria-labelledby="news-title">
+            <div class="homepage-news-header">
+                <h2 id="news-title">News</h2>
+                <p>Sub header</p>
+            </div>
+            <div class="homepage-news-cards">
+                <article class="homepage-news-card">
+                    <img src="./assets/images/IMG_0095.JPG" alt="" loading="lazy">
+                    <h3>Heading Text</h3>
+                    <p>Paragraph</p>
+                </article>
+
+                <article class="homepage-news-card">
+                    <img src="./assets/images/DSCN0388.JPG" alt="" loading="lazy">
+                    <h3>Heading Text</h3>
+                    <p>Paragraph</p>
+                </article>
+
+                <article class="homepage-news-card">
+                    <img src="./assets/images/Snapchat-585096878.jpg" alt="" loading="lazy">
+                    <h3>Heading Text</h3>
+                    <p>Paragraph</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Subscriptions ------------------------------------------------------>
+        <section class="homepage-subflipbox-container" aria-labelledby="plans-title">
+            <div class="subflipbox-text">
+                <p class="subflipbox-small">Small Message</p>
+                <h2 id="plans-title">Header</h2>
                 <p>Paragraph</p>
             </div>
 
-            <div class="homepage-news-card">
-                <img src="./assets/images/DSCN0388.JPG" alt="">
-                <h2>Heading Text</h2>
-                <p>Paragraph</p>
-            </div>
+            <div class="subflipbox-cards">
+                <div class="subflipbox-card">
+                    <h3>Header</h3>
+                    <p>Paragraph</p>
+                    <button type="button" id="plan1">Subscribe</button>
+                </div>
 
-            <div class="homepage-news-card">
-                <img src="/assets/images/Snapchat-585096878.jpg" alt="">
-                <h2>Heading Text</h2>
-                <p>Paragraph</p>
-            </div>
+                <div class="subflipbox-card">
+                    <h3>Header</h3>
+                    <p>Paragraph</p>
+                    <button type="button" id="plan2">Subscribe</button>
+                </div>
 
+                <div class="subflipbox-card">
+                    <h3>Header</h3>
+                    <p>Paragraph</p>
+                    <button type="button" id="plan3">Subscribe</button>
+                </div>
+
+                <div class="subflipbox-card">
+                    <h3>Header</h3>
+                    <p>Paragraph</p>
+                    <button type="button" id="plan4">Subscribe</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Subscribe dialog (opened by the Subscribe buttons) -------------------->
+    <dialog id="subscribe-dialog" aria-labelledby="dialog-title">
+        <div class="dialog-body">
+            <h2 id="dialog-title">Subscribe to <span data-plan-name></span></h2>
+            <form method="dialog" novalidate>
+                <label for="sub-email">Email address</label>
+                <input type="email" id="sub-email" name="email" autocomplete="email" required>
+                <p class="dialog-error" data-error role="alert"></p>
+                <div class="dialog-actions">
+                    <button type="submit">Subscribe</button>
+                    <button type="button" class="dialog-cancel" data-close>Cancel</button>
+                </div>
+            </form>
+            <div class="dialog-done" data-done hidden>
+                <p data-done-text></p>
+                <button type="button" data-close>Close</button>
+            </div>
         </div>
-    </section>
-
-    <section class="homepage-subflipbox-container">
-        <div class="subflipbox-text">
-            <h3>Small Message</h3>
-            <h1>Header</h1>
-            <h2>Paragraph</h2>
-        </div>
-
-        <div class="subflipbox-cards">
-            <div class="subflipbox-card">
-                <h1>Header</h1>
-                <p>Paragraph</p>
-                <button id="plan1">Subscribe</button>
-            </div>
-            
-            <div class="subflipbox-card">
-                <h1>Header</h1>
-                <p>Paragraph</p>
-                <button id="plan2">Subscribe</button>
-            </div>
-
-            <div class="subflipbox-card">
-                <h1>Header</h1>
-                <p>Paragraph</p>
-                <button id="plan3">Subscribe</button>
-            </div>
-
-            <div class="subflipbox-card">
-                <h1>Header</h1>
-                <p>Paragraph</p>
-                <button id="plan4">Subscribe</button>
-            </div>
-        </div>
-
-    </section>
-
+    </dialog>
 
     <script src="/js/accessibility.js"></script>
     <script src="/js/nav-footer.js"></script>
+    <script src="./js/homepage.js"></script>
+
+
+    <div class="site-footer-inner">
+            <div class="site-footer-brand">
+                <a href="../index.html" class="site-footer-logo">Marlowby</a>
+                <p>One city, one box, every month. Local goods from small businesses across the U.S.</p>
+                <p class="site-footer-stamp" aria-hidden="true"><span>Next stop</span><strong id="footerCity">Burlington, VT</strong></p>
+            </div>
+
+            <nav class="site-footer-links" aria-label="Footer">
+                <div>
+                    <h2>Explore</h2>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="/html/burlington.html">This Month</a></li>
+                        <li><a href="/html/specials.html">Specials</a></li>
+                        <li><a href="/html/past-months.html" aria-current="page">Past Months</a></li>
+                        <li><a href="/html/SubscriptionPlans.html">Subscription Plans</a></li>
+                        <li><a href="/html/sign-in.html">Sign In</a></li>
+                        <li><a href="/html/cart.html">Your Cart</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Plans</h2>
+                    <ul>
+                        <li><a href="/html/SubscriptionPlans.html#basic">Basic Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#premium">Premium Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#gift">Gift Plan</a></li>
+                        <li><a href="/html/SubscriptionPlans.html#compare">Compare Plans</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Deals</h2>
+                    <ul>
+                        <li><a href="/html/specials.html#Daily">Daily Specials</a></li>
+                        <li><a href="/html/specials.html#Weekly">Weekly Deals</a></li>
+                        <li><a href="/html/specials.html#Limited">Limited Offers</a></li>
+                        <li><a href="/html/specials.html#wallet">Promo Codes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Company</h2>
+                    <ul>
+                        <li><a href="/html/our-mission.html">Our Mission</a></li>
+                        <li><a href="/html/our-mission.html#Story">Our Story</a></li>
+                        <li><a href="/html/our-mission.html#Team">Our Team</a></li>
+                        <li><a href="/html/faq.html#contact">Contact us</a></li>
+                        <li><a href="/html/faq.html">FAQs and help</a></li>
+                        <li><a href="/html/works-cited.html">Works Cited</a></li>
+                        <li><a href="/html/privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="site-footer-bottom">
+            <p>&copy; 2026 Marlowby. Supporting small businesses in every city we visit.</p>
+            <ul class="site-footer-legal">
+                <li><a href="/html/privacy.html">Privacy and cookies</a></li>
+                <li><a href="/html/sitemap.html">Sitemap</a></li>
+                <li><button type="button" data-open-a11y>Accessibility options</button></li>
+                <li><a href="#main-content" class="site-footer-top">Back to top</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="/js/accessibility.js"></script>
+    <script src="/js/nav-footer.js"></script>
+    <script src="/js/store.js"></script>
+    <script src="/js/shop.js"></script>
+    <script src="/js/deals.js"></script>
+    <script src="/js/vendor/gsap.min.js"></script>
+    <script src="/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="/js/motion.js"></script>
+    <script src="/js/past-months.js"></script>
+    <script src="/js/reviews.js"></script>
 </body>
 </html>
